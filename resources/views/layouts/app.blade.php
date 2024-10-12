@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="{{ asset('css/material-icons.css') }}" />
 		<link rel="stylesheet" href="{{ asset('css/animate.css') }}" />
 		<link rel="stylesheet" href="{{ asset('css/blueimp-gallery.css') }}" />
-<link rel="stylesheet" href="{{ asset('css/bootstrap-theme-pulse.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/bootstrap-theme-materia.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/flatpickr.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/dropzone.min.css') }}" />
 		<link rel="stylesheet" href="{{ asset('css/custom-style.css') }}" />

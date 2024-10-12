@@ -12,7 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="{{ asset('css/material-icons.css') }}" />
 		<link rel="stylesheet" href="{{ asset('css/animate.css') }}" />
-<link rel="stylesheet" href="{{ asset('css/bootstrap-theme-pulse.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/bootstrap-theme-materia.css') }}" />
 		<link rel="stylesheet" href="{{ asset('css/custom-style.css') }}" />
 		<script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 		@yield('pagecss')

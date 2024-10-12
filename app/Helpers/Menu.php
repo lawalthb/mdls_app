@@ -6,7 +6,7 @@
 		return [
 		[
 			'path' => 'home',
-			'label' => "Home", 
+			'label' => "", 
 			'icon' => '<i class="material-icons">extension</i>'
 		],
 		

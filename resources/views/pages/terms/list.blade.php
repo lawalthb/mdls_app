@@ -80,12 +80,11 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 </th>
                                                 <?php } ?>
                                                 <th class="td-" > </th><th class="td-id" > Id</th>
-                                                <th class="td-session_id" > Session Id</th>
-                                                <th class="td-name" > Name</th>
+                                                <th class="td-name" > Term Name</th>
+                                                <th class="td-session_id" > Session</th>
                                                 <th class="td-term_start" > Term Start</th>
                                                 <th class="td-term_end" > Term End</th>
                                                 <th class="td-is_active" > Is Active</th>
-                                                <th class="td-created_at" > Created At</th>
                                                 <th class="td-updated_at" > Updated At</th>
                                                 <th class="td-updated_by" > Updated By</th>
                                                 <th class="td-btn"></th>
@@ -119,13 +118,13 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             <td class="td-id">
                                                 <a href="<?php print_link("/terms/view/$data[id]") ?>"><?php echo $data['id']; ?></a>
                                             </td>
+                                            <td class="td-name">
+                                                <?php echo  $data['name'] ; ?>
+                                            </td>
                                             <td class="td-session_id">
                                                 <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("sessions/view/$data[session_id]?subpage=1") ?>">
-                                                <i class="material-icons">visibility</i> <?php echo "Sessions" ?>
+                                                <?php echo $data['sessions_name'] ?>
                                             </a>
-                                        </td>
-                                        <td class="td-name">
-                                            <?php echo  $data['name'] ; ?>
                                         </td>
                                         <td class="td-term_start">
                                             <?php echo  $data['term_start'] ; ?>
@@ -136,41 +135,31 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <td class="td-is_active">
                                             <?php echo  $data['is_active'] ; ?>
                                         </td>
-                                        <td class="td-created_at">
-                                            <?php echo  $data['created_at'] ; ?>
-                                        </td>
                                         <td class="td-updated_at">
                                             <?php echo  $data['updated_at'] ; ?>
                                         </td>
                                         <td class="td-updated_by">
                                             <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[updated_by]?subpage=1") ?>">
-                                            <i class="material-icons">visibility</i> <?php echo "Users" ?>
+                                            <?php echo $data['users_name'] ?>
                                         </a>
                                     </td>
                                     <!--PageComponentEnd-->
                                     <td class="td-btn">
-                                        <div class="dropdown" >
-                                            <button data-bs-toggle="dropdown" class="dropdown-toggle btn text-primary btn-flat btn-sm">
-                                            <i class="material-icons">menu</i> 
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <?php if($can_view){ ?>
-                                                <a class="dropdown-item "   href="<?php print_link("terms/view/$rec_id"); ?>" >
-                                                <i class="material-icons">visibility</i> View
-                                            </a>
-                                            <?php } ?>
-                                            <?php if($can_edit){ ?>
-                                            <a class="dropdown-item "   href="<?php print_link("terms/edit/$rec_id"); ?>" >
-                                            <i class="material-icons">edit</i> Edit
-                                        </a>
-                                        <?php } ?>
-                                        <?php if($can_delete){ ?>
-                                        <a class="dropdown-item record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" href="<?php print_link("terms/delete/$rec_id"); ?>" >
-                                        <i class="material-icons">delete_sweep</i> Delete
+                                        <?php if($can_view){ ?>
+                                        <a class="btn btn-sm btn-primary has-tooltip "    href="<?php print_link("terms/view/$rec_id"); ?>" >
+                                        <i class="material-icons">visibility</i> View
                                     </a>
                                     <?php } ?>
-                                </ul>
-                            </div>
+                                    <?php if($can_edit){ ?>
+                                    <a class="btn btn-sm btn-success has-tooltip "    href="<?php print_link("terms/edit/$rec_id"); ?>" >
+                                    <i class="material-icons">edit</i> Edit
+                                </a>
+                                <?php } ?>
+                                <?php if($can_delete){ ?>
+                                <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal"  href="<?php print_link("terms/delete/$rec_id"); ?>" >
+                                <i class="material-icons">delete_sweep</i> Delete
+                            </a>
+                            <?php } ?>
                         </td>
                     </tr>
                     <?php 

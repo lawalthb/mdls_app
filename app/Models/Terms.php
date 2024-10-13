@@ -41,8 +41,8 @@ class Terms extends Model
 	public static function search($query, $text){
 		//search table record 
 		$search_condition = '(
-				id LIKE ?  OR 
-				name LIKE ? 
+				terms.id LIKE ?  OR 
+				terms.name LIKE ? 
 		)';
 		$search_params = [
 			"%$text%","%$text%"
@@ -59,15 +59,16 @@ class Terms extends Model
      */
 	public static function listFields(){
 		return [ 
-			"id",
-			"session_id",
-			"name",
-			"term_start",
-			"term_end",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
+			"terms.id AS id",
+			"terms.name AS name",
+			"terms.session_id AS session_id",
+			"sessions.name AS sessions_name",
+			"terms.term_start AS term_start",
+			"terms.term_end AS term_end",
+			"terms.is_active AS is_active",
+			"terms.updated_at AS updated_at",
+			"terms.updated_by AS updated_by",
+			"users.name AS users_name" 
 		];
 	}
 	
@@ -79,15 +80,16 @@ class Terms extends Model
      */
 	public static function exportListFields(){
 		return [ 
-			"id",
-			"session_id",
-			"name",
-			"term_start",
-			"term_end",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
+			"terms.id AS id",
+			"terms.name AS name",
+			"terms.session_id AS session_id",
+			"sessions.name AS sessions_name",
+			"terms.term_start AS term_start",
+			"terms.term_end AS term_end",
+			"terms.is_active AS is_active",
+			"terms.updated_at AS updated_at",
+			"terms.updated_by AS updated_by",
+			"users.name AS users_name" 
 		];
 	}
 	
@@ -139,13 +141,13 @@ class Terms extends Model
      */
 	public static function editFields(){
 		return [ 
-			"id",
 			"session_id",
 			"name",
 			"term_start",
 			"term_end",
 			"is_active",
-			"updated_by" 
+			"updated_by",
+			"id" 
 		];
 	}
 }

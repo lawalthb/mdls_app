@@ -25,6 +25,8 @@ class TermsController extends Controller
 			$search = trim($request->search);
 			Terms::search($query, $search); // search table records
 		}
+		$query->join("sessions", "terms.session_id", "=", "sessions.id");
+		$query->join("users", "terms.updated_by", "=", "users.id");
 		$orderby = $request->orderby ?? "terms.id";
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);

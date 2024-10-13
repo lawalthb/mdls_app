@@ -125,10 +125,10 @@ class Sessions extends Model
      */
 	public static function editFields(){
 		return [ 
-			"id",
 			"name",
 			"is_active",
-			"updated_by" 
+			"updated_by",
+			"id" 
 		];
 	}
 }

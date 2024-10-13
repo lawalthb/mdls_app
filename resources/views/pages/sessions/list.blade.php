@@ -80,7 +80,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 </th>
                                                 <?php } ?>
                                                 <th class="td-" > </th><th class="td-id" > Id</th>
-                                                <th class="td-name" > Name</th>
+                                                <th class="td-name" > Sessions</th>
                                                 <th class="td-is_active" > Is Active</th>
                                                 <th class="td-updated_at" > Updated At</th>
                                                 <th class="td-updated_by" > Updated By</th>

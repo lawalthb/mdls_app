@@ -14,6 +14,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
     $total_records = $records->total();
     $limit = $records->perPage();
     $record_count = count($records);
+    $name_option_list = $comp_model->name_option_list();
     $pageTitle = "Users"; //set dynamic page title
 ?>
 @extends($layout)
@@ -49,6 +50,32 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                     </div>
                 </form>
             </div>
+            <div class="col-sm-3 comp-grid " >
+                <form method="get" action="" class="form">
+                    <div class="card mb-3 p-3 ">
+                        <select   name="name" class="form-select custom " >
+                        <option value="">Select a class...</option>
+                        <?php 
+                            $options = $name_option_list ?? [];
+                            foreach($options as $option){
+                            $value = $option->value;
+                            $label = $option->label ?? $value;
+                            $selected = Html::get_field_selected('name', $value);
+                        ?>
+                        <option <?php echo $selected; ?> value="<?php echo $value; ?>">
+                        <?php echo $label; ?>
+                        </option>
+                        <?php
+                            }
+                        ?>
+                        </select>
+                    </div>
+                    <hr />
+                    <div class="form-group text-center">
+                        <button class="btn btn-primary">Filter</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -68,6 +95,9 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     <?php Html::display_page_errors($errors); ?>
                                     <div class="filter-tags mb-2">
                                         <?php Html::filter_tag('search', __('Search')); ?>
+                                        <?php
+                                            Html::filter_tag('name', 'Class', $name_option_list);
+                                        ?>
                                     </div>
                                     <table class="table table-hover table-striped table-sm text-left">
                                         <thead class="table-header ">

@@ -212,6 +212,10 @@ $query->where("account_status", "=" , "active");
 		if($fieldname){
 			$query->where($fieldname , $fieldvalue); //filter by a table field
 		}
+		if($request->name){
+			$val = $request->name;
+			$query->where(DB::raw("classes.name"), "=", $val);
+		}
 		$records = $query->paginate($limit, Users::listStudentsFields());
 		return $this->renderView($view, compact("records"));
 	}

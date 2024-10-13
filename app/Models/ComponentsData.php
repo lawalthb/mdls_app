@@ -187,4 +187,16 @@ class ComponentsData{
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
+	
+
+	/**
+     * name_option_list Model Action
+     * @return array
+     */
+	function name_option_list(){
+		$sqltext = "SELECT  DISTINCT name AS value,name AS label FROM classes ORDER BY name ASC";
+		$query_params = [];
+		$arr = DB::select($sqltext, $query_params);
+		return $arr;
+	}
 }

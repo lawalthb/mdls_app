@@ -299,6 +299,23 @@ class Users extends Authenticatable
 	
 
 	/**
+     * return editStudent page fields of the model.
+     * 
+     * @return array
+     */
+	public static function editStudentFields(){
+		return [ 
+			"email",
+			"name",
+			"phone",
+			"image",
+			"account_status",
+			"id" 
+		];
+	}
+	
+
+	/**
      * Get current user name
      * @return string
      */

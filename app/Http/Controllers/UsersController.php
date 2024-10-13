@@ -6,6 +6,7 @@ use App\Http\Requests\UsersAccountEditRequest;
 use App\Http\Requests\UsersAddRequest;
 use App\Http\Requests\UsersEditRequest;
 use App\Http\Requests\Usersadd_studentRequest;
+use App\Http\Requests\Usersedit_studentRequest;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Exception;
@@ -227,4 +228,25 @@ class UsersController extends Controller
 
 
 
+	/**
+     * Update table record with form data
+	 * @param string $rec_id //select record by table primary key
+     * @return \Illuminate\View\View;
+     */
+	function edit_student(Usersedit_studentRequest $request, $rec_id = null){
+		$query = Users::query();
+		$record = $query->findOrFail($rec_id, Users::editStudentFields());
+		if ($request->isMethod('post')) {
+			$modeldata = $this->normalizeFormData($request->validated());
+
+		if( array_key_exists("image", $modeldata) ){
+			//move uploaded file from temp directory to destination directory
+			$fileInfo = $this->moveUploadedFiles($modeldata['image'], "image");
+			$modeldata['image'] = $fileInfo['filepath'];
+		}
+			$record->update($modeldata);
+			return $this->redirect("users", "Record updated successfully");
+		}
+		return $this->renderView("pages.users.edit_student", ["data" => $record, "rec_id" => $rec_id]);
+	}
 }

@@ -248,7 +248,8 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::get('users/list_students', 'UsersController@list_students');
 	Route::get('users/list_students/{filter?}/{filtervalue?}', 'UsersController@list_students');	
 	Route::get('users/view_student/{rec_id}', 'UsersController@view_student')->name('users.view_student');
-	Route::get('users/masterdetail/{rec_id}', 'UsersController@masterDetail')->name('users.masterdetail')->withoutMiddleware(['rbac']);
+	Route::get('users/masterdetail/{rec_id}', 'UsersController@masterDetail')->name('users.masterdetail')->withoutMiddleware(['rbac']);	
+	Route::any('users/edit_student/{rec_id}', 'UsersController@edit_student')->name('users.edit_student');
 
 /* routes for WebAbouts Controller */
 	Route::get('webabouts', 'WebAboutsController@index')->name('webabouts.index');

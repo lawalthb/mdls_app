@@ -83,7 +83,7 @@ class StudentDetailsController extends Controller
 		if ($request->isMethod('post')) {
 			$modeldata = $this->normalizeFormData($request->validated());
 			$record->update($modeldata);
-			return $this->redirect("studentdetails", "Record updated successfully");
+			return $this->redirect("users/list_students", "Record updated successfully");
 		}
 		return $this->renderView("pages.studentdetails.edit", ["data" => $record, "rec_id" => $rec_id]);
 	}

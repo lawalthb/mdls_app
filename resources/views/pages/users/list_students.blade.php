@@ -167,7 +167,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             </a>
                                             <?php } ?>
                                             <?php if($can_edit){ ?>
-                                            <a class="btn btn-sm btn-success has-tooltip "    href="<?php print_link("users/edit/$rec_id"); ?>" >
+                                            <a class="btn btn-sm btn-success has-tooltip "    href="<?php print_link("users/edit_student/$rec_id"); ?>" >
                                             <i class="material-icons">edit</i> Edit
                                         </a>
                                         <?php } ?>

@@ -9,6 +9,7 @@ use App\Http\Requests\Usersadd_studentRequest;
 use App\Http\Requests\Usersedit_studentRequest;
 use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Exception;
 class UsersController extends Controller
 {
@@ -207,6 +208,7 @@ class UsersController extends Controller
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);
 		$query->where("user_role_id", "=" , 2);
+$query->where("account_status", "=" , "active");
 		if($fieldname){
 			$query->where($fieldname , $fieldvalue); //filter by a table field
 		}
@@ -225,6 +227,7 @@ class UsersController extends Controller
 		$record = $query->findOrFail($rec_id, Users::viewStudentFields());
 		return $this->renderView("pages.users.view_student", ["data" => $record]);
 	}
+
 
 
 
@@ -249,4 +252,13 @@ class UsersController extends Controller
 		}
 		return $this->renderView("pages.users.edit_student", ["data" => $record, "rec_id" => $rec_id]);
 	}
+    /**
+     * Endpoint action
+     * @return \Illuminate\Http\Response
+     */
+    public function ban(Request $request){
+        $userid = $request->rec_id;
+        DB::table('users')->where('id', $userid)->update(['account_status' => 'Pending']);
+        return back()->with('success', 'Student Banned Successfully');
+    }
 }

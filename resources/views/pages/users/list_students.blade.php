@@ -126,10 +126,10 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 <?php echo  $data['name'] ; ?>
                                             </td>
                                             <td class="td-email">
-                                                <a href="<?php print_link("mailto:$data[email]") ?>"><?php echo $data['email']; ?></a>
+                                                <?php echo  $data['email'] ; ?>
                                             </td>
                                             <td class="td-phone">
-                                                <a href="<?php print_link("tel:$data[phone]") ?>"><?php echo $data['phone']; ?></a>
+                                                <?php echo  $data['phone'] ; ?>
                                             </td>
                                             <td class="td-image">
                                                 <?php 
@@ -171,11 +171,9 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             <i class="material-icons">edit</i> Edit
                                         </a>
                                         <?php } ?>
-                                        <?php if($can_delete){ ?>
-                                        <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal"  href="<?php print_link("users/delete/$rec_id"); ?>" >
-                                        <i class="material-icons">delete_sweep</i> Delete
+                                        <a class="btn btn-sm btn-danger has-tooltip "    href="<?php print_link("users/ban/$rec_id"); ?>" >
+                                        <i class="material-icons">delete_sweep</i> Ban
                                     </a>
-                                    <?php } ?>
                                 </td>
                             </tr>
                             <?php 

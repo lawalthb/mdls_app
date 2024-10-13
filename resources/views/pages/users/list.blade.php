@@ -121,13 +121,13 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 <a href="<?php print_link("/users/view/$data[id]") ?>"><?php echo $data['id']; ?></a>
                                             </td>
                                             <td class="td-email">
-                                                <a href="<?php print_link("mailto:$data[email]") ?>"><?php echo $data['email']; ?></a>
+                                                <?php echo  $data['email'] ; ?>
                                             </td>
                                             <td class="td-name">
                                                 <?php echo  $data['name'] ; ?>
                                             </td>
                                             <td class="td-phone">
-                                                <a href="<?php print_link("tel:$data[phone]") ?>"><?php echo $data['phone']; ?></a>
+                                                <?php echo  $data['phone'] ; ?>
                                             </td>
                                             <td class="td-image">
                                                 <?php 

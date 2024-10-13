@@ -61,146 +61,163 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
             <div class="col comp-grid " >
                 <div  class=" page-content" >
                     <div id="webblogcategories-list-records">
-                        <div id="page-main-content" class="table-responsive">
-                            <?php Html::page_bread_crumb("/webblogcategories/", $field_name, $field_value); ?>
-                            <?php Html::display_page_errors($errors); ?>
-                            <div class="filter-tags mb-2">
-                                <?php Html::filter_tag('search', __('Search')); ?>
-                            </div>
-                            <table class="table table-hover table-striped table-sm text-left">
-                                <thead class="table-header ">
-                                    <tr>
-                                        <?php if($can_delete){ ?>
-                                        <th class="td-checkbox">
-                                        <label class="form-check-label">
-                                        <input class="toggle-check-all form-check-input" type="checkbox" />
-                                        </label>
-                                        </th>
-                                        <?php } ?>
-                                        <th class="td-id" > Id</th>
-                                        <th class="td-name" > Name</th>
-                                        <th class="td-is_active" > Is Active</th>
-                                        <th class="td-created_at" > Created At</th>
-                                        <th class="td-updated_at" > Updated At</th>
-                                        <th class="td-btn"></th>
-                                    </tr>
-                                </thead>
-                                <?php
-                                    if($total_records){
-                                ?>
-                                <tbody class="page-data">
-                                    <!--record-->
-                                    <?php
-                                        $counter = 0;
-                                        foreach($records as $data){
-                                        $rec_id = ($data['id'] ? urlencode($data['id']) : null);
-                                        $counter++;
-                                    ?>
-                                    <tr>
-                                        <?php if($can_delete){ ?>
-                                        <td class=" td-checkbox">
-                                            <label class="form-check-label">
-                                            <input class="optioncheck form-check-input" name="optioncheck[]" value="<?php echo $data['id'] ?>" type="checkbox" />
-                                            </label>
-                                        </td>
-                                        <?php } ?>
-                                        <!--PageComponentStart-->
-                                        <td class="td-id">
-                                            <a href="<?php print_link("/webblogcategories/view/$data[id]") ?>"><?php echo $data['id']; ?></a>
-                                        </td>
-                                        <td class="td-name">
-                                            <?php echo  $data['name'] ; ?>
-                                        </td>
-                                        <td class="td-is_active">
-                                            <?php echo  $data['is_active'] ; ?>
-                                        </td>
-                                        <td class="td-created_at">
-                                            <?php echo  $data['created_at'] ; ?>
-                                        </td>
-                                        <td class="td-updated_at">
-                                            <?php echo  $data['updated_at'] ; ?>
-                                        </td>
-                                        <!--PageComponentEnd-->
-                                        <td class="td-btn">
-                                            <div class="dropdown" >
-                                                <button data-bs-toggle="dropdown" class="dropdown-toggle btn text-primary btn-flat btn-sm">
-                                                <i class="material-icons">menu</i> 
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <?php if($can_view){ ?>
-                                                    <a class="dropdown-item "   href="<?php print_link("webblogcategories/view/$rec_id"); ?>" >
-                                                    <i class="material-icons">visibility</i> View
+                        <div class="row gutter-lg ">
+                            <div class="col">
+                                <div id="page-main-content" class="table-responsive">
+                                    <?php Html::page_bread_crumb("/webblogcategories/", $field_name, $field_value); ?>
+                                    <?php Html::display_page_errors($errors); ?>
+                                    <div class="filter-tags mb-2">
+                                        <?php Html::filter_tag('search', __('Search')); ?>
+                                    </div>
+                                    <table class="table table-hover table-striped table-sm text-left">
+                                        <thead class="table-header ">
+                                            <tr>
+                                                <?php if($can_delete){ ?>
+                                                <th class="td-checkbox">
+                                                <label class="form-check-label">
+                                                <input class="toggle-check-all form-check-input" type="checkbox" />
+                                                </label>
+                                                </th>
+                                                <?php } ?>
+                                                <th class="td-" > </th><th class="td-id" > Id</th>
+                                                <th class="td-name" > Name</th>
+                                                <th class="td-is_active" > Is Active</th>
+                                                <th class="td-created_at" > Created At</th>
+                                                <th class="td-updated_at" > Updated At</th>
+                                                <th class="td-btn"></th>
+                                            </tr>
+                                        </thead>
+                                        <?php
+                                            if($total_records){
+                                        ?>
+                                        <tbody class="page-data">
+                                            <!--record-->
+                                            <?php
+                                                $counter = 0;
+                                                foreach($records as $data){
+                                                $rec_id = ($data['id'] ? urlencode($data['id']) : null);
+                                                $counter++;
+                                            ?>
+                                            <tr>
+                                                <?php if($can_delete){ ?>
+                                                <td class=" td-checkbox">
+                                                    <label class="form-check-label">
+                                                    <input class="optioncheck form-check-input" name="optioncheck[]" value="<?php echo $data['id'] ?>" type="checkbox" />
+                                                    </label>
+                                                </td>
+                                                <?php } ?>
+                                                <!--PageComponentStart-->
+                                                <td class="td-masterdetailbtn">
+                                                    <a data-page-id="webblogcategories-detail-page" class="btn btn-sm btn-secondary open-master-detail-page" href="<?php print_link("webblogcategories/masterdetail/$data[id]"); ?>">
+                                                    <i class="material-icons">more_vert</i> 
+                                                </a>
+                                            </td>
+                                            <td class="td-id">
+                                                <a href="<?php print_link("/webblogcategories/view/$data[id]") ?>"><?php echo $data['id']; ?></a>
+                                            </td>
+                                            <td class="td-name">
+                                                <?php echo  $data['name'] ; ?>
+                                            </td>
+                                            <td class="td-is_active">
+                                                <?php echo  $data['is_active'] ; ?>
+                                            </td>
+                                            <td class="td-created_at">
+                                                <?php echo  $data['created_at'] ; ?>
+                                            </td>
+                                            <td class="td-updated_at">
+                                                <?php echo  $data['updated_at'] ; ?>
+                                            </td>
+                                            <!--PageComponentEnd-->
+                                            <td class="td-btn">
+                                                <div class="dropdown" >
+                                                    <button data-bs-toggle="dropdown" class="dropdown-toggle btn text-primary btn-flat btn-sm">
+                                                    <i class="material-icons">menu</i> 
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <?php if($can_view){ ?>
+                                                        <a class="dropdown-item "   href="<?php print_link("webblogcategories/view/$rec_id"); ?>" >
+                                                        <i class="material-icons">visibility</i> View
+                                                    </a>
+                                                    <?php } ?>
+                                                    <?php if($can_edit){ ?>
+                                                    <a class="dropdown-item "   href="<?php print_link("webblogcategories/edit/$rec_id"); ?>" >
+                                                    <i class="material-icons">edit</i> Edit
                                                 </a>
                                                 <?php } ?>
-                                                <?php if($can_edit){ ?>
-                                                <a class="dropdown-item "   href="<?php print_link("webblogcategories/edit/$rec_id"); ?>" >
-                                                <i class="material-icons">edit</i> Edit
+                                                <?php if($can_delete){ ?>
+                                                <a class="dropdown-item record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" href="<?php print_link("webblogcategories/delete/$rec_id"); ?>" >
+                                                <i class="material-icons">delete_sweep</i> Delete
                                             </a>
                                             <?php } ?>
-                                            <?php if($can_delete){ ?>
-                                            <a class="dropdown-item record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" href="<?php print_link("webblogcategories/delete/$rec_id"); ?>" >
-                                            <i class="material-icons">delete_sweep</i> Delete
-                                        </a>
-                                        <?php } ?>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                        <?php 
-                            }
-                        ?>
-                        <!--endrecord-->
-                    </tbody>
-                    <tbody class="search-data"></tbody>
-                    <?php
-                        }
-                        else{
-                    ?>
-                    <tbody class="page-data">
-                        <tr>
-                            <td class="bg-light text-center text-muted animated bounce p-3" colspan="1000">
-                                <i class="material-icons">block</i> No record found
-                            </td>
-                        </tr>
-                    </tbody>
-                    <?php
-                        }
-                    ?>
-                </table>
-            </div>
-            <?php
-                if($show_footer){
-            ?>
-            <div class=" mt-3">
-                <div class="row align-items-center justify-content-between">    
-                    <div class="col-md-auto d-flex">    
-                        <?php if($can_delete){ ?>
-                        <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("webblogcategories/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
-                        <i class="material-icons">delete_sweep</i> Delete Selected
-                        </button>
-                        <?php } ?>
-                    </div>
-                    <div class="col">   
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php 
+                                }
+                            ?>
+                            <!--endrecord-->
+                        </tbody>
+                        <tbody class="search-data"></tbody>
                         <?php
-                            if($show_pagination == true){
-                            $pager = new Pagination($total_records, $record_count);
-                            $pager->show_page_count = false;
-                            $pager->show_record_count = true;
-                            $pager->show_page_limit =false;
-                            $pager->limit = $limit;
-                            $pager->show_page_number_list = true;
-                            $pager->pager_link_range=5;
-                            $pager->render();
+                            }
+                            else{
+                        ?>
+                        <tbody class="page-data">
+                            <tr>
+                                <td class="bg-light text-center text-muted animated bounce p-3" colspan="1000">
+                                    <i class="material-icons">block</i> No record found
+                                </td>
+                            </tr>
+                        </tbody>
+                        <?php
                             }
                         ?>
+                    </table>
+                </div>
+                <?php
+                    if($show_footer){
+                ?>
+                <div class=" mt-3">
+                    <div class="row align-items-center justify-content-between">    
+                        <div class="col-md-auto d-flex">    
+                            <?php if($can_delete){ ?>
+                            <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("webblogcategories/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
+                            <i class="material-icons">delete_sweep</i> Delete Selected
+                            </button>
+                            <?php } ?>
+                        </div>
+                        <div class="col">   
+                            <?php
+                                if($show_pagination == true){
+                                $pager = new Pagination($total_records, $record_count);
+                                $pager->show_page_count = false;
+                                $pager->show_record_count = true;
+                                $pager->show_page_limit =false;
+                                $pager->limit = $limit;
+                                $pager->show_page_number_list = true;
+                                $pager->pager_link_range=5;
+                                $pager->render();
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
+                <?php
+                    }
+                ?>
             </div>
-            <?php
-                }
-            ?>
+            <!-- Detail Page Column -->
+            <?php if(!request()->has('subpage')){ ?>
+            <div class="col-12">
+                <div class=" ">
+                    <div id="webblogcategories-detail-page" class="master-detail-page"></div>
+                </div>
+            </div>
+            <?php } ?>
         </div>
     </div>
+</div>
 </div>
 </div>
 </div>

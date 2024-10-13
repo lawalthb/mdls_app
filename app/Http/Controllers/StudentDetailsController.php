@@ -43,6 +43,7 @@ class StudentDetailsController extends Controller
      */
 	function view($rec_id = null){
 		$query = StudentDetails::query();
+		$query->join("classes", "student_details.class_id", "=", "classes.id");
 		$record = $query->findOrFail($rec_id, StudentDetails::viewFields());
 		return $this->renderView("pages.studentdetails.view", ["data" => $record]);
 	}

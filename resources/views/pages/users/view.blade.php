@@ -47,135 +47,147 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             $rec_id = ($data['id'] ? urlencode($data['id']) : null);
                         ?>
                         <div id="page-main-content" class=" px-3 mb-3">
-                            <div class="page-data">
-                                <!--PageComponentStart-->
-                                <div class="mb-3 row row justify-content-start g-0">
-                                    <div class="col-12">
-                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <small class="text-muted">Id</small>
-                                                    <div class="fw-bold">
-                                                        <?php echo  $data['id'] ; ?>
+                            <div class="row gutter-lg ">
+                                <div class="col">
+                                    <div class="page-data">
+                                        <!--PageComponentStart-->
+                                        <div class="mb-3 row row justify-content-start g-0">
+                                            <div class="col-12">
+                                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <small class="text-muted">Id</small>
+                                                            <div class="fw-bold">
+                                                                <?php echo  $data['id'] ; ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <small class="text-muted">Email</small>
+                                                            <div class="fw-bold">
+                                                                <?php echo  $data['email'] ; ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <small class="text-muted">Name</small>
+                                                            <div class="fw-bold">
+                                                                <?php echo  $data['name'] ; ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <small class="text-muted">Phone</small>
+                                                            <div class="fw-bold">
+                                                                <?php echo  $data['phone'] ; ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <small class="text-muted">Is Active</small>
+                                                            <div class="fw-bold">
+                                                                <?php echo  $data['is_active'] ; ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <small class="text-muted">Created At</small>
+                                                            <div class="fw-bold">
+                                                                <?php echo  $data['created_at'] ; ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <small class="text-muted">Updated At</small>
+                                                            <div class="fw-bold">
+                                                                <span title="<?php echo human_datetime($data['updated_at']); ?>" class="has-tooltip">
+                                                                <?php echo relative_date($data['updated_at']); ?>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <small class="text-muted">Account Status</small>
+                                                            <div class="fw-bold">
+                                                                <?php echo  $data['account_status'] ; ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <small class="text-muted">User Role Id</small>
+                                                            <div class="fw-bold">
+                                                                <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("roles/view/$data[user_role_id]?subpage=1") ?>">
+                                                                <i class="material-icons">visibility</i> <?php echo "Roles Detail" ?>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <small class="text-muted">Email</small>
-                                                    <div class="fw-bold">
-                                                        <?php echo  $data['email'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <small class="text-muted">Name</small>
-                                                    <div class="fw-bold">
-                                                        <?php echo  $data['name'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <small class="text-muted">Phone</small>
-                                                    <div class="fw-bold">
-                                                        <?php echo  $data['phone'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <small class="text-muted">Is Active</small>
-                                                    <div class="fw-bold">
-                                                        <?php echo  $data['is_active'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <small class="text-muted">Created At</small>
-                                                    <div class="fw-bold">
-                                                        <?php echo  $data['created_at'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <small class="text-muted">Updated At</small>
-                                                    <div class="fw-bold">
-                                                        <span title="<?php echo human_datetime($data['updated_at']); ?>" class="has-tooltip">
-                                                        <?php echo relative_date($data['updated_at']); ?>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <small class="text-muted">Account Status</small>
-                                                    <div class="fw-bold">
-                                                        <?php echo  $data['account_status'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <small class="text-muted">User Role Id</small>
-                                                    <div class="fw-bold">
-                                                        <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("roles/view/$data[user_role_id]?subpage=1") ?>">
-                                                        <i class="material-icons">visibility</i> <?php echo "Roles Detail" ?>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <!--PageComponentEnd-->
+                                    <div class="d-flex align-items-center gap-2">
+                                        <?php if($can_edit){ ?>
+                                        <a class="btn btn-sm btn-success has-tooltip "   title="Edit" href="<?php print_link("users/edit/$rec_id"); ?>" >
+                                        <i class="material-icons">edit</i> Edit
+                                    </a>
+                                    <?php } ?>
+                                    <?php if($can_delete){ ?>
+                                    <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" title="Delete" href="<?php print_link("users/delete/$rec_id?redirect=users"); ?>" >
+                                    <i class="material-icons">delete_sweep</i> Delete
+                                </a>
+                                <?php } ?>
                             </div>
-                            <!--PageComponentEnd-->
-                            <div class="d-flex align-items-center gap-2">
-                                <?php if($can_edit){ ?>
-                                <a class="btn btn-sm btn-success has-tooltip "   title="Edit" href="<?php print_link("users/edit/$rec_id"); ?>" >
-                                <i class="material-icons">edit</i> Edit
-                            </a>
-                            <?php } ?>
-                            <?php if($can_delete){ ?>
-                            <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" title="Delete" href="<?php print_link("users/delete/$rec_id?redirect=users"); ?>" >
-                            <i class="material-icons">delete_sweep</i> Delete
-                        </a>
-                        <?php } ?>
+                        </div>
                     </div>
+                    <!-- Detail Page Column -->
+                    <?php if(!request()->has('subpage')){ ?>
+                    <div class="col-12">
+                        <div class="my-3 p-1 ">
+                            @include("pages.users.detail-pages", ["masterRecordId" => $rec_id])
+                        </div>
+                    </div>
+                    <?php } ?>
                 </div>
             </div>
             <?php

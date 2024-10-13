@@ -219,14 +219,14 @@ class Users extends Authenticatable
 			"users.phone AS phone",
 			"users.image AS image",
 			"users.account_status AS account_status",
-			"student_details.id AS studentdetails_id",
 			"student_details.firstname AS studentdetails_firstname",
 			"student_details.middlemane AS studentdetails_middlemane",
 			"student_details.lastname AS studentdetails_lastname",
 			"student_details.dob AS studentdetails_dob",
-			"classes.id AS classes_id",
 			"classes.name AS classes_name",
-			"student_details.updated_at AS studentdetails_updated_at" 
+			"student_details.updated_at AS studentdetails_updated_at",
+			"student_details.id AS studentdetails_id",
+			"classes.id AS classes_id" 
 		];
 	}
 	
@@ -244,14 +244,56 @@ class Users extends Authenticatable
 			"users.phone AS phone",
 			"users.image AS image",
 			"users.account_status AS account_status",
-			"student_details.id AS studentdetails_id",
 			"student_details.firstname AS studentdetails_firstname",
 			"student_details.middlemane AS studentdetails_middlemane",
 			"student_details.lastname AS studentdetails_lastname",
 			"student_details.dob AS studentdetails_dob",
-			"classes.id AS classes_id",
 			"classes.name AS classes_name",
-			"student_details.updated_at AS studentdetails_updated_at" 
+			"student_details.updated_at AS studentdetails_updated_at",
+			"student_details.id AS studentdetails_id",
+			"classes.id AS classes_id" 
+		];
+	}
+	
+
+	/**
+     * return viewStudent page fields of the model.
+     * 
+     * @return array
+     */
+	public static function viewStudentFields(){
+		return [ 
+			"id",
+			"email",
+			"name",
+			"phone",
+			"image",
+			"is_active",
+			"created_at",
+			"updated_at",
+			"account_status",
+			"user_role_id" 
+		];
+	}
+	
+
+	/**
+     * return exportViewStudent page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportViewStudentFields(){
+		return [ 
+			"id",
+			"email",
+			"name",
+			"phone",
+			"image",
+			"is_active",
+			"created_at",
+			"updated_at",
+			"account_status",
+			"user_role_id" 
 		];
 	}
 	

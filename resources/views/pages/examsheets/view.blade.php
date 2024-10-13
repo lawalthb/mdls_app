@@ -47,16 +47,46 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             $rec_id = ($data['id'] ? urlencode($data['id']) : null);
                         ?>
                         <div id="page-main-content" class=" px-3 mb-3">
-                            <div class="page-data">
-                                <!--PageComponentStart-->
-                                <div class="mb-3 row row justify-content-start g-0">
-                                    <div class="col-12">
-                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <small class="text-muted">Id</small>
-                                                    <div class="fw-bold">
-                                                        <?php echo  $data['id'] ; ?>
+                            <div class="row gutter-lg ">
+                                <div class="col">
+                                    <div class="page-data">
+                                        <!--PageComponentStart-->
+                                        <div class="mb-3 row row justify-content-start g-0">
+                                            <div class="col-12">
+                                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <small class="text-muted">Id</small>
+                                                            <div class="fw-bold">
+                                                                <?php echo  $data['id'] ; ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <small class="text-muted">Session Id</small>
+                                                            <div class="fw-bold">
+                                                                <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("sessions/view/$data[session_id]?subpage=1") ?>">
+                                                                <i class="material-icons">visibility</i> <?php echo "Sessions Detail" ?>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                                <div class="row align-items-center">
+                                                    <div class="col">
+                                                        <small class="text-muted">Term Id</small>
+                                                        <div class="fw-bold">
+                                                            <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("terms/view/$data[term_id]?subpage=1") ?>">
+                                                            <i class="material-icons">visibility</i> <?php echo "Terms Detail" ?>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -66,10 +96,10 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <div class="bg-light mb-1 card-1 p-2 border rounded">
                                             <div class="row align-items-center">
                                                 <div class="col">
-                                                    <small class="text-muted">Session Id</small>
+                                                    <small class="text-muted">User Id</small>
                                                     <div class="fw-bold">
-                                                        <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("sessions/view/$data[session_id]?subpage=1") ?>">
-                                                        <i class="material-icons">visibility</i> <?php echo "Sessions Detail" ?>
+                                                        <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[user_id]?subpage=1") ?>">
+                                                        <i class="material-icons">visibility</i> <?php echo "Users Detail" ?>
                                                     </a>
                                                 </div>
                                             </div>
@@ -80,142 +110,124 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     <div class="bg-light mb-1 card-1 p-2 border rounded">
                                         <div class="row align-items-center">
                                             <div class="col">
-                                                <small class="text-muted">Term Id</small>
+                                                <small class="text-muted">Present Count</small>
                                                 <div class="fw-bold">
-                                                    <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("terms/view/$data[term_id]?subpage=1") ?>">
-                                                    <i class="material-icons">visibility</i> <?php echo "Terms Detail" ?>
+                                                    <?php echo  $data['present_count'] ; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <small class="text-muted">Open Count</small>
+                                                <div class="fw-bold">
+                                                    <?php echo  $data['open_count'] ; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <small class="text-muted">Resume On</small>
+                                                <div class="fw-bold">
+                                                    <?php echo  $data['resume_on'] ; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <small class="text-muted">Teacher Remark</small>
+                                                <div class="fw-bold">
+                                                    <?php echo  $data['teacher_remark'] ; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <small class="text-muted">Director Comment</small>
+                                                <div class="fw-bold">
+                                                    <?php echo  $data['director_comment'] ; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <small class="text-muted">Total Score</small>
+                                                <div class="fw-bold">
+                                                    <?php echo  $data['total_score'] ; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <small class="text-muted">Director Approval</small>
+                                                <div class="fw-bold">
+                                                    <?php echo  $data['director_approval'] ; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <small class="text-muted">Updated By</small>
+                                                <div class="fw-bold">
+                                                    <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[updated_by]?subpage=1") ?>">
+                                                    <i class="material-icons">visibility</i> <?php echo "Users Detail" ?>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <small class="text-muted">User Id</small>
-                                            <div class="fw-bold">
-                                                <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[user_id]?subpage=1") ?>">
-                                                <i class="material-icons">visibility</i> <?php echo "Users Detail" ?>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <div class="col-12">
-                            <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <small class="text-muted">Present Count</small>
-                                        <div class="fw-bold">
-                                            <?php echo  $data['present_count'] ; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <small class="text-muted">Open Count</small>
-                                        <div class="fw-bold">
-                                            <?php echo  $data['open_count'] ; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <small class="text-muted">Resume On</small>
-                                        <div class="fw-bold">
-                                            <?php echo  $data['resume_on'] ; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <small class="text-muted">Teacher Remark</small>
-                                        <div class="fw-bold">
-                                            <?php echo  $data['teacher_remark'] ; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <small class="text-muted">Director Comment</small>
-                                        <div class="fw-bold">
-                                            <?php echo  $data['director_comment'] ; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <small class="text-muted">Total Score</small>
-                                        <div class="fw-bold">
-                                            <?php echo  $data['total_score'] ; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <small class="text-muted">Director Approval</small>
-                                        <div class="fw-bold">
-                                            <?php echo  $data['director_approval'] ; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <small class="text-muted">Updated By</small>
-                                        <div class="fw-bold">
-                                            <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[updated_by]?subpage=1") ?>">
-                                            <i class="material-icons">visibility</i> <?php echo "Users Detail" ?>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <!--PageComponentEnd-->
+                        <div class="d-flex align-items-center gap-2">
+                            <?php if($can_edit){ ?>
+                            <a class="btn btn-sm btn-success has-tooltip "   title="Edit" href="<?php print_link("examsheets/edit/$rec_id"); ?>" >
+                            <i class="material-icons">edit</i> Edit
+                        </a>
+                        <?php } ?>
+                        <?php if($can_delete){ ?>
+                        <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" title="Delete" href="<?php print_link("examsheets/delete/$rec_id?redirect=examsheets"); ?>" >
+                        <i class="material-icons">delete_sweep</i> Delete
+                    </a>
+                    <?php } ?>
                 </div>
-                <!--PageComponentEnd-->
-                <div class="d-flex align-items-center gap-2">
-                    <?php if($can_edit){ ?>
-                    <a class="btn btn-sm btn-success has-tooltip "   title="Edit" href="<?php print_link("examsheets/edit/$rec_id"); ?>" >
-                    <i class="material-icons">edit</i> Edit
-                </a>
-                <?php } ?>
-                <?php if($can_delete){ ?>
-                <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" title="Delete" href="<?php print_link("examsheets/delete/$rec_id?redirect=examsheets"); ?>" >
-                <i class="material-icons">delete_sweep</i> Delete
-            </a>
-            <?php } ?>
+            </div>
         </div>
+        <!-- Detail Page Column -->
+        <?php if(!request()->has('subpage')){ ?>
+        <div class="col-12">
+            <div class="my-3 p-1 ">
+                @include("pages.examsheets.detail-pages", ["masterRecordId" => $rec_id])
+            </div>
+        </div>
+        <?php } ?>
     </div>
 </div>
 <?php

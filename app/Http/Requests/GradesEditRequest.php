@@ -23,10 +23,12 @@ class GradesEditRequest extends FormRequest
     public function rules()
     {
 		
+		$rec_id = request()->route('rec_id');
+
         return [
             
-				"name" => "filled|string",
-				"remarks" => "filled|string",
+				"name" => "filled|string|alpha_num|unique:grades,name,$rec_id,id",
+				"remarks" => "filled|string|unique:grades,remarks,$rec_id,id",
 				"score_range" => "filled|string",
 				"is_active" => "filled",
 				"updated_by" => "filled",

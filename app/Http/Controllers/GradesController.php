@@ -25,6 +25,7 @@ class GradesController extends Controller
 			$search = trim($request->search);
 			Grades::search($query, $search); // search table records
 		}
+		$query->join("users", "grades.updated_by", "=", "users.id");
 		$orderby = $request->orderby ?? "grades.id";
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);

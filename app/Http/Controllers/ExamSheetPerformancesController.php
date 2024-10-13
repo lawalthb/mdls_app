@@ -53,20 +53,18 @@ class ExamSheetPerformancesController extends Controller
      * @return \Illuminate\View\View
      */
 	function add(){
-		return $this->renderView("pages.examsheetperformances.add");
+		return view("pages.examsheetperformances.add");
 	}
 	
 
 	/**
-     * Save form record to the table
+     * Insert multiple record into the database table
      * @return \Illuminate\Http\Response
      */
 	function store(ExamSheetPerformancesAddRequest $request){
-		$modeldata = $this->normalizeFormData($request->validated());
-		
-		//save ExamSheetPerformances record
-		$record = ExamSheetPerformances::create($modeldata);
-		$rec_id = $record->id;
+		$postdata = $request->input("row");
+		$modeldata = array_values($postdata);
+		ExamSheetPerformances::insert($modeldata);
 		return $this->redirect("examsheetperformances", "Record added successfully");
 	}
 	

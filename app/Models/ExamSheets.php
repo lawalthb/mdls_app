@@ -154,7 +154,6 @@ class ExamSheets extends Model
      */
 	public static function editFields(){
 		return [ 
-			"id",
 			"session_id",
 			"term_id",
 			"user_id",
@@ -165,7 +164,8 @@ class ExamSheets extends Model
 			"director_comment",
 			"total_score",
 			"director_approval",
-			"updated_by" 
+			"updated_by",
+			"id" 
 		];
 	}
 }

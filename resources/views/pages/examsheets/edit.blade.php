@@ -45,11 +45,11 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <div class="form-group ">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label class="control-label" for="session_id">Session Id <span class="text-danger">*</span></label>
+                                        <label class="control-label" for="session_id">Session <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-session_id-holder" class=" ">
-                                            <select required=""  id="ctrl-session_id" data-field="session_id" name="session_id"  placeholder="Select a value ..."    class="form-select" >
+                                            <select required=""  id="ctrl-session_id" data-field="session_id" data-load-select-options="term_id" name="session_id"  placeholder="Select a value ..."    class="form-select" >
                                             <option value="">Select a value ...</option>
                                             <?php
                                                 $options = $comp_model->session_id_option_list() ?? [];
@@ -72,14 +72,13 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <div class="form-group ">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label class="control-label" for="term_id">Term Id <span class="text-danger">*</span></label>
+                                        <label class="control-label" for="term_id">Term <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-term_id-holder" class=" ">
-                                            <select required=""  id="ctrl-term_id" data-field="term_id" name="term_id"  placeholder="Select a value ..."    class="form-select" >
-                                            <option value="">Select a value ...</option>
+                                            <select required=""  id="ctrl-term_id" data-field="term_id" data-load-path="<?php print_link('componentsdata/term_id_option_list') ?>" name="term_id"  placeholder="Select a term base on session ..."    class="form-select" >
                                             <?php
-                                                $options = $comp_model->term_id_option_list() ?? [];
+                                                $options = $comp_model->term_id_option_list($data['session_id']) ?? [];
                                                 foreach($options as $option){
                                                 $value = $option->value;
                                                 $label = $option->label ?? $value;
@@ -175,11 +174,11 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <div class="form-group ">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label class="control-label" for="director_comment">Director Comment <span class="text-danger">*</span></label>
+                                        <label class="control-label" for="director_comment">Director Comment </label>
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-director_comment-holder" class=" ">
-                                            <input id="ctrl-director_comment" data-field="director_comment"  value="<?php  echo $data['director_comment']; ?>" type="text" placeholder="Enter Director Comment"  required="" name="director_comment"  class="form-control " />
+                                            <input id="ctrl-director_comment" data-field="director_comment"  value="<?php  echo $data['director_comment']; ?>" type="text" placeholder="Enter Director Comment"  name="director_comment"  class="form-control " />
                                         </div>
                                     </div>
                                 </div>
@@ -199,12 +198,10 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <div class="form-group ">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label class="control-label" for="director_approval">Director Approval <span class="text-danger">*</span></label>
+                                        <label class="control-label" for="director_approval">Director's Approval <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-director_approval-holder" class=" ">
-                                            <select required=""  id="ctrl-director_approval" data-field="director_approval" name="director_approval"  placeholder="Select a value ..."    class="form-select" >
-                                            <option value="">Select a value ...</option>
                                             <?php
                                                 $options = Menu::directorApproval();
                                                 $field_value = $data['director_approval'];
@@ -212,47 +209,34 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 foreach($options as $option){
                                                 $value = $option['value'];
                                                 $label = $option['label'];
-                                                $selected = Html::get_record_selected($field_value, $value);
+                                                //check if value is among checked options
+                                                $checked = Html::get_record_checked($field_value, $value);
                                             ?>
-                                            <option <?php echo $selected ?> value="<?php echo $value ?>">
-                                            <?php echo $label ?>
-                                            </option>                                   
+                                            <label class="form-check form-check-inline">
+                                            <input class="form-check-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="director_approval" />
+                                            <span class="form-check-label"><?php echo $label ?></span>
+                                            </label>
                                             <?php
                                                 }
                                                 }
                                             ?>
-                                            </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group ">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="updated_by">Updated By <span class="text-danger">*</span></label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div id="ctrl-updated_by-holder" class=" ">
-                                            <select required=""  id="ctrl-updated_by" data-field="updated_by" name="updated_by"  placeholder="Select a value ..."    class="form-select" >
-                                            <option value="">Select a value ...</option>
-                                            <?php
-                                                $options = $comp_model->updated_by_option_list() ?? [];
-                                                foreach($options as $option){
-                                                $value = $option->value;
-                                                $label = $option->label ?? $value;
-                                                $selected = ( $value == $data['updated_by'] ? 'selected' : null );
-                                            ?>
-                                            <option <?php echo $selected; ?> value="<?php echo $value; ?>">
-                                            <?php echo $label; ?>
-                                            </option>
-                                            <?php
-                                                }
-                                            ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <input id="ctrl-updated_by" data-field="updated_by"  value="<?php  echo $data['updated_by']; ?>" type="hidden" placeholder="Enter Updated By" list="updated_by_list"  required="" name="updated_by"  class="form-control " />
+                            <datalist id="updated_by_list">
+                            <?php
+                                $options = $comp_model->updated_by_option_list() ?? [];
+                                foreach($options as $option){
+                                $value = $option->value;
+                                $label = $option->label ?? $value;
+                            ?>
+                            <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+                            <?php
+                                }
+                            ?>
+                            </datalist>
                         </div>
                         <div class="form-ajax-status"></div>
                         <!--[form-content-end]-->

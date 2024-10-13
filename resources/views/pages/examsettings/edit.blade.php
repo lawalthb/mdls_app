@@ -96,6 +96,18 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <div class="form-group ">
                                 <div class="row">
                                     <div class="col-sm-4">
+                                        <label class="control-label" for="pratical_mark">Pratical Mark </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div id="ctrl-pratical_mark-holder" class=" ">
+                                            <input id="ctrl-pratical_mark" data-field="pratical_mark"  value="<?php  echo $data['pratical_mark']; ?>" type="number" placeholder="Enter Pratical Mark" step="any"  name="pratical_mark"  class="form-control " />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-sm-4">
                                         <label class="control-label" for="is_active">Is Active <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-sm-8">
@@ -123,45 +135,19 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group ">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="pratical_mark">Pratical Mark </label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div id="ctrl-pratical_mark-holder" class=" ">
-                                            <input id="ctrl-pratical_mark" data-field="pratical_mark"  value="<?php  echo $data['pratical_mark']; ?>" type="number" placeholder="Enter Pratical Mark" step="any"  name="pratical_mark"  class="form-control " />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="updated_by">Updated By <span class="text-danger">*</span></label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div id="ctrl-updated_by-holder" class=" ">
-                                            <select required=""  id="ctrl-updated_by" data-field="updated_by" name="updated_by"  placeholder="Select a value ..."    class="form-select" >
-                                            <option value="">Select a value ...</option>
-                                            <?php
-                                                $options = $comp_model->updated_by_option_list() ?? [];
-                                                foreach($options as $option){
-                                                $value = $option->value;
-                                                $label = $option->label ?? $value;
-                                                $selected = ( $value == $data['updated_by'] ? 'selected' : null );
-                                            ?>
-                                            <option <?php echo $selected; ?> value="<?php echo $value; ?>">
-                                            <?php echo $label; ?>
-                                            </option>
-                                            <?php
-                                                }
-                                            ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <input id="ctrl-updated_by" data-field="updated_by"  value="<?php  echo $data['updated_by']; ?>" type="hidden" placeholder="Enter Updated By" list="updated_by_list"  required="" name="updated_by"  class="form-control " />
+                            <datalist id="updated_by_list">
+                            <?php
+                                $options = $comp_model->updated_by_option_list() ?? [];
+                                foreach($options as $option){
+                                $value = $option->value;
+                                $label = $option->label ?? $value;
+                            ?>
+                            <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+                            <?php
+                                }
+                            ?>
+                            </datalist>
                         </div>
                         <div class="form-ajax-status"></div>
                         <!--[form-content-end]-->

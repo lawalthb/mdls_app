@@ -121,7 +121,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                     foreach($options as $option){
                                                     $value = $option['value'];
                                                     $label = $option['label'];
-                                                    $selected = Html::get_field_selected('is_active', $value, "Yes");
+                                                    $selected = Html::get_field_selected('is_active', $value, "");
                                                 ?>
                                                 <option <?php echo $selected ?> value="<?php echo $value ?>">
                                                 <?php echo $label ?>

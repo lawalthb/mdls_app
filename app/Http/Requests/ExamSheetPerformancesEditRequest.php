@@ -25,7 +25,6 @@ class ExamSheetPerformancesEditRequest extends FormRequest
 		
         return [
             
-				"exam_sheet_id" => "filled",
 				"user_id" => "filled",
 				"subject_id" => "filled",
 				"ca_score" => "filled|numeric",

@@ -25,8 +25,8 @@ class GradesAddRequest extends FormRequest
 		
         return [
             
-				"name" => "required|string",
-				"remarks" => "required|string",
+				"name" => "required|string|alpha_num|unique:grades,name",
+				"remarks" => "required|string|unique:grades,remarks",
 				"score_range" => "required|string",
 				"is_active" => "required",
 				"updated_by" => "required",

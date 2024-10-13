@@ -458,12 +458,6 @@ Route::get('componentsdata/updated_by_option_list',  function(Request $request){
 	}
 )->middleware(['auth']);
 	
-Route::get('componentsdata/exam_sheet_id_option_list',  function(Request $request){
-		$compModel = new App\Models\ComponentsData();
-		return $compModel->exam_sheet_id_option_list($request);
-	}
-)->middleware(['auth']);
-	
 Route::get('componentsdata/subject_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->subject_id_option_list($request);
@@ -479,6 +473,18 @@ Route::get('componentsdata/grade_id_option_list',  function(Request $request){
 Route::get('componentsdata/term_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->term_id_option_list($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/grades_name_value_exist',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->grades_name_value_exist($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/grades_remarks_value_exist',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->grades_remarks_value_exist($request);
 	}
 )->middleware(['auth']);
 	

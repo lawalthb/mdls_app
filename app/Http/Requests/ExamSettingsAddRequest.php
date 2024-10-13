@@ -28,8 +28,8 @@ class ExamSettingsAddRequest extends FormRequest
 				"session_id" => "required",
 				"ca_mark" => "required|numeric",
 				"exam_mark" => "required|numeric",
-				"is_active" => "required",
 				"pratical_mark" => "nullable|numeric",
+				"is_active" => "required",
 				"updated_by" => "required",
             
         ];

@@ -75,13 +75,13 @@
 		],
 		
 		[
-			'path' => '',
+			'path' => 'classes',
 			'label' => "Assign Class Teacher", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
 		
 		[
-			'path' => '',
+			'path' => 'classes',
 			'label' => "Promote Students", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		]

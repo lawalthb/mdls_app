@@ -32,7 +32,7 @@ class ExamSheetsEditRequest extends FormRequest
 				"open_count" => "nullable|string",
 				"resume_on" => "nullable|date",
 				"teacher_remark" => "filled|string",
-				"director_comment" => "filled|string",
+				"director_comment" => "nullable|string",
 				"total_score" => "filled|numeric",
 				"director_approval" => "filled",
 				"updated_by" => "filled",

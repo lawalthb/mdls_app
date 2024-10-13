@@ -28,8 +28,8 @@ class ExamSettingsEditRequest extends FormRequest
 				"session_id" => "filled",
 				"ca_mark" => "filled|numeric",
 				"exam_mark" => "filled|numeric",
-				"is_active" => "filled",
 				"pratical_mark" => "nullable|numeric",
+				"is_active" => "filled",
 				"updated_by" => "filled",
             
         ];

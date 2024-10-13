@@ -28,7 +28,7 @@ class ExamSettings extends Model
      * @var array
      */
 	protected $fillable = [
-		'session_id','ca_mark','exam_mark','is_active','pratical_mark','updated_by'
+		'session_id','ca_mark','exam_mark','pratical_mark','is_active','updated_by'
 	];
 	public $timestamps = false;
 	
@@ -41,7 +41,7 @@ class ExamSettings extends Model
 	public static function search($query, $text){
 		//search table record 
 		$search_condition = '(
-				id LIKE ? 
+				exam_settings.id LIKE ? 
 		)';
 		$search_params = [
 			"%$text%"
@@ -58,15 +58,16 @@ class ExamSettings extends Model
      */
 	public static function listFields(){
 		return [ 
-			"id",
-			"session_id",
-			"ca_mark",
-			"exam_mark",
-			"is_active",
-			"created_at",
-			"update_at",
-			"pratical_mark",
-			"updated_by" 
+			"exam_settings.id AS id",
+			"exam_settings.session_id AS session_id",
+			"sessions.name AS sessions_name",
+			"exam_settings.ca_mark AS ca_mark",
+			"exam_settings.exam_mark AS exam_mark",
+			"exam_settings.pratical_mark AS pratical_mark",
+			"exam_settings.is_active AS is_active",
+			"exam_settings.update_at AS update_at",
+			"exam_settings.updated_by AS updated_by",
+			"users.name AS users_name" 
 		];
 	}
 	
@@ -78,15 +79,16 @@ class ExamSettings extends Model
      */
 	public static function exportListFields(){
 		return [ 
-			"id",
-			"session_id",
-			"ca_mark",
-			"exam_mark",
-			"is_active",
-			"created_at",
-			"update_at",
-			"pratical_mark",
-			"updated_by" 
+			"exam_settings.id AS id",
+			"exam_settings.session_id AS session_id",
+			"sessions.name AS sessions_name",
+			"exam_settings.ca_mark AS ca_mark",
+			"exam_settings.exam_mark AS exam_mark",
+			"exam_settings.pratical_mark AS pratical_mark",
+			"exam_settings.is_active AS is_active",
+			"exam_settings.update_at AS update_at",
+			"exam_settings.updated_by AS updated_by",
+			"users.name AS users_name" 
 		];
 	}
 	
@@ -138,13 +140,13 @@ class ExamSettings extends Model
      */
 	public static function editFields(){
 		return [ 
-			"id",
 			"session_id",
 			"ca_mark",
 			"exam_mark",
-			"is_active",
 			"pratical_mark",
-			"updated_by" 
+			"is_active",
+			"updated_by",
+			"id" 
 		];
 	}
 }

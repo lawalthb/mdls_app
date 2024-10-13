@@ -25,6 +25,8 @@ class ExamSettingsController extends Controller
 			$search = trim($request->search);
 			ExamSettings::search($query, $search); // search table records
 		}
+		$query->join("sessions", "exam_settings.session_id", "=", "sessions.id");
+		$query->join("users", "exam_settings.updated_by", "=", "users.id");
 		$orderby = $request->orderby ?? "exam_settings.id";
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);

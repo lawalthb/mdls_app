@@ -37,18 +37,6 @@ class ComponentsData{
 	
 
 	/**
-     * exam_sheet_id_option_list Model Action
-     * @return array
-     */
-	function exam_sheet_id_option_list(){
-		$sqltext = "SELECT id as value, id as label FROM exam_sheets";
-		$query_params = [];
-		$arr = DB::select($sqltext, $query_params);
-		return $arr;
-	}
-	
-
-	/**
      * subject_id_option_list Model Action
      * @return array
      */
@@ -76,11 +64,43 @@ class ComponentsData{
      * term_id_option_list Model Action
      * @return array
      */
-	function term_id_option_list(){
-		$sqltext = "SELECT id as value, name as label FROM terms";
+	function term_id_option_list($value = null){
+		$lookup_value = request()->lookup ?? $value;
+		$sqltext = "SELECT  DISTINCT id AS value,name AS label FROM terms WHERE session_id=:lookup_session_id ORDER BY id DESC" ;
 		$query_params = [];
+		$query_params['lookup_session_id'] = $lookup_value;
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
+	}
+	
+
+	/**
+     * Check if value already exist in Grades table
+	 * @param string $value
+     * @return bool
+     */
+	function grades_name_value_exist(Request $request){
+		$value = trim($request->value);
+		$exist = DB::table('grades')->where('name', $value)->value('name');   
+		if($exist){
+			return true;
+		}
+		return false;
+	}
+	
+
+	/**
+     * Check if value already exist in Grades table
+	 * @param string $value
+     * @return bool
+     */
+	function grades_remarks_value_exist(Request $request){
+		$value = trim($request->value);
+		$exist = DB::table('grades')->where('remarks', $value)->value('remarks');   
+		if($exist){
+			return true;
+		}
+		return false;
 	}
 	
 

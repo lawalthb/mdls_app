@@ -41,10 +41,10 @@ class Grades extends Model
 	public static function search($query, $text){
 		//search table record 
 		$search_condition = '(
-				id LIKE ?  OR 
-				name LIKE ?  OR 
-				remarks LIKE ?  OR 
-				score_range LIKE ? 
+				grades.id LIKE ?  OR 
+				grades.name LIKE ?  OR 
+				grades.remarks LIKE ?  OR 
+				grades.score_range LIKE ? 
 		)';
 		$search_params = [
 			"%$text%","%$text%","%$text%","%$text%"
@@ -61,14 +61,14 @@ class Grades extends Model
      */
 	public static function listFields(){
 		return [ 
-			"id",
-			"name",
-			"remarks",
-			"score_range",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
+			"grades.id AS id",
+			"grades.name AS name",
+			"grades.remarks AS remarks",
+			"grades.score_range AS score_range",
+			"grades.is_active AS is_active",
+			"grades.updated_at AS updated_at",
+			"grades.updated_by AS updated_by",
+			"users.name AS users_name" 
 		];
 	}
 	
@@ -80,14 +80,14 @@ class Grades extends Model
      */
 	public static function exportListFields(){
 		return [ 
-			"id",
-			"name",
-			"remarks",
-			"score_range",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
+			"grades.id AS id",
+			"grades.name AS name",
+			"grades.remarks AS remarks",
+			"grades.score_range AS score_range",
+			"grades.is_active AS is_active",
+			"grades.updated_at AS updated_at",
+			"grades.updated_by AS updated_by",
+			"users.name AS users_name" 
 		];
 	}
 	
@@ -137,12 +137,12 @@ class Grades extends Model
      */
 	public static function editFields(){
 		return [ 
-			"id",
 			"name",
 			"remarks",
 			"score_range",
 			"is_active",
-			"updated_by" 
+			"updated_by",
+			"id" 
 		];
 	}
 }

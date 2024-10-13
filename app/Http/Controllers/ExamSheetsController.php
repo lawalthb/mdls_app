@@ -74,9 +74,34 @@ class ExamSheetsController extends Controller
 	function store(ExamSheetsAddRequest $request){
 		$modeldata = $this->normalizeFormData($request->validated());
 		
+		//Validate ExamSheetPerformances form data
+		$examsheetperformancesPostData = $request->examsheetperformances;
+		$examsheetperformancesValidator = validator()->make($examsheetperformancesPostData, ["*.user_id" => "required",
+				"*.subject_id" => "required",
+				"*.ca_score" => "required|numeric",
+				"*.exam_score" => "required|numeric",
+				"*.pratical_score" => "required|numeric",
+				"*.total" => "required|numeric",
+				"*.grade_id" => "required",
+				"*.remark" => "required|string",
+				"*.updated_by" => "required"]);
+		if ($examsheetperformancesValidator->fails()) {
+			return $examsheetperformancesValidator->errors();
+		}
+		$examsheetperformancesValidData = $examsheetperformancesValidator->valid();
+		$examsheetperformancesModeldata = array_values($examsheetperformancesValidData);
+		
 		//save ExamSheets record
 		$record = ExamSheets::create($modeldata);
 		$rec_id = $record->id;
+		
+		// set examsheetperformances.exam_sheet_id to exam_sheets $rec_id
+		foreach ($examsheetperformancesModeldata as &$data) {
+			$data['exam_sheet_id'] = $rec_id;
+		}
+		
+		//Save ExamSheetPerformances record
+		\App\Models\ExamSheetPerformances::insert($examsheetperformancesModeldata);
 		return $this->redirect("examsheets", "Record added successfully");
 	}
 	

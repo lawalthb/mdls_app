@@ -38,221 +38,167 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                 <div class="col-md-9 comp-grid " >
                     <div  class="card card-1 border rounded page-content" >
                         <!--[form-start]-->
-                        <form id="examsheetperformances-add-form" role="form" novalidate enctype="multipart/form-data" class="form page-form form-horizontal needs-validation" action="{{ route('examsheetperformances.store') }}" method="post">
+                        <form id="examsheetperformances-add-form"  novalidate role="form" enctype="multipart/form-data" class="form multi-form page-form" action="{{ route('examsheetperformances.store') }}" method="post" >
                             @csrf
                             <div>
-                                <div class="form-group ">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label" for="exam_sheet_id">Exam Sheet Id <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div id="ctrl-exam_sheet_id-holder" class=" ">
-                                                <select required=""  id="ctrl-exam_sheet_id" data-field="exam_sheet_id" name="exam_sheet_id"  placeholder="Select a value ..."    class="form-select" >
-                                                <option value="">Select a value ...</option>
-                                                <?php 
-                                                    $options = $comp_model->exam_sheet_id_option_list() ?? [];
-                                                    foreach($options as $option){
-                                                    $value = $option->value;
-                                                    $label = $option->label ?? $value;
-                                                    $selected = Html::get_field_selected('exam_sheet_id', $value, "");
-                                                ?>
-                                                <option <?php echo $selected; ?> value="<?php echo $value; ?>">
-                                                <?php echo $label; ?>
-                                                </option>
-                                                <?php
-                                                    }
-                                                ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <table class="table table-striped table-sm" data-maxrow="10" data-minrow="1">
+                                    <thead>
+                                        <tr>
+                                            <th class="bg-light"><label for="user_id">User Id</label></th>
+                                            <th class="bg-light"><label for="subject_id">Subject Id</label></th>
+                                            <th class="bg-light"><label for="ca_score">Ca Score</label></th>
+                                            <th class="bg-light"><label for="exam_score">Exam Score</label></th>
+                                            <th class="bg-light"><label for="pratical_score">Pratical Score</label></th>
+                                            <th class="bg-light"><label for="total">Total</label></th>
+                                            <th class="bg-light"><label for="grade_id">Grade Id</label></th>
+                                            <th class="bg-light"><label for="remark">Remark</label></th>
+                                            <th class="bg-light"><label for="updated_by">Updated By</label></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th colspan="100" class="text-right">
+                                        <?php $template_id = "table-row-" . random_str(); ?>
+                                        <button type="button" data-template="#<?php echo $template_id ?>" class="btn btn-sm btn-success btn-add-table-row"><i class="material-icons">add</i></button>
+                                        </th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                                <!--[table row template]-->
+                                <template id="<?php echo $template_id ?>">
+                                <?php $row = "CURRENTROW"; // will be replaced with current row index. ?>
+                                <tr data-row="<?php echo $row ?>" class="input-row">
+                                <td>
+                                    <div id="ctrl-user_id-row<?php echo $row; ?>-holder" class=" ">
+                                    <select required=""  id="ctrl-user_id-row<?php echo $row; ?>" data-field="user_id" name="row[<?php echo $row ?>][user_id]"  placeholder="Select a value ..."    class="form-select" >
+                                    <option value="">Select a value ...</option>
+                                    <?php 
+                                        $options = $comp_model->updated_by_option_list() ?? [];
+                                        foreach($options as $option){
+                                        $value = $option->value;
+                                        $label = $option->label ?? $value;
+                                        $selected = Html::get_field_selected('user_id', $value, "");
+                                    ?>
+                                    <option <?php echo $selected; ?> value="<?php echo $value; ?>">
+                                    <?php echo $label; ?>
+                                    </option>
+                                    <?php
+                                        }
+                                    ?>
+                                    </select>
                                 </div>
-                                <div class="form-group ">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label" for="user_id">User Id <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div id="ctrl-user_id-holder" class=" ">
-                                                <select required=""  id="ctrl-user_id" data-field="user_id" name="user_id"  placeholder="Select a value ..."    class="form-select" >
-                                                <option value="">Select a value ...</option>
-                                                <?php 
-                                                    $options = $comp_model->updated_by_option_list() ?? [];
-                                                    foreach($options as $option){
-                                                    $value = $option->value;
-                                                    $label = $option->label ?? $value;
-                                                    $selected = Html::get_field_selected('user_id', $value, "");
-                                                ?>
-                                                <option <?php echo $selected; ?> value="<?php echo $value; ?>">
-                                                <?php echo $label; ?>
-                                                </option>
-                                                <?php
-                                                    }
-                                                ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label" for="subject_id">Subject Id <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div id="ctrl-subject_id-holder" class=" ">
-                                                <select required=""  id="ctrl-subject_id" data-field="subject_id" name="subject_id"  placeholder="Select a value ..."    class="form-select" >
-                                                <option value="">Select a value ...</option>
-                                                <?php 
-                                                    $options = $comp_model->subject_id_option_list() ?? [];
-                                                    foreach($options as $option){
-                                                    $value = $option->value;
-                                                    $label = $option->label ?? $value;
-                                                    $selected = Html::get_field_selected('subject_id', $value, "");
-                                                ?>
-                                                <option <?php echo $selected; ?> value="<?php echo $value; ?>">
-                                                <?php echo $label; ?>
-                                                </option>
-                                                <?php
-                                                    }
-                                                ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label" for="ca_score">Ca Score <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div id="ctrl-ca_score-holder" class=" ">
-                                                <input id="ctrl-ca_score" data-field="ca_score"  value="<?php echo get_value('ca_score', "0.00") ?>" type="number" placeholder="Enter Ca Score" step="0.1"  required="" name="ca_score"  class="form-control " />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label" for="exam_score">Exam Score <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div id="ctrl-exam_score-holder" class=" ">
-                                                <input id="ctrl-exam_score" data-field="exam_score"  value="<?php echo get_value('exam_score') ?>" type="number" placeholder="Enter Exam Score" step="0.1"  required="" name="exam_score"  class="form-control " />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label" for="pratical_score">Pratical Score <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div id="ctrl-pratical_score-holder" class=" ">
-                                                <input id="ctrl-pratical_score" data-field="pratical_score"  value="<?php echo get_value('pratical_score') ?>" type="number" placeholder="Enter Pratical Score" step="0.1"  required="" name="pratical_score"  class="form-control " />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label" for="total">Total <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div id="ctrl-total-holder" class=" ">
-                                                <input id="ctrl-total" data-field="total"  value="<?php echo get_value('total') ?>" type="number" placeholder="Enter Total" step="0.1"  required="" name="total"  class="form-control " />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label" for="grade_id">Grade Id <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div id="ctrl-grade_id-holder" class=" ">
-                                                <select required=""  id="ctrl-grade_id" data-field="grade_id" name="grade_id"  placeholder="Select a value ..."    class="form-select" >
-                                                <option value="">Select a value ...</option>
-                                                <?php 
-                                                    $options = $comp_model->grade_id_option_list() ?? [];
-                                                    foreach($options as $option){
-                                                    $value = $option->value;
-                                                    $label = $option->label ?? $value;
-                                                    $selected = Html::get_field_selected('grade_id', $value, "");
-                                                ?>
-                                                <option <?php echo $selected; ?> value="<?php echo $value; ?>">
-                                                <?php echo $label; ?>
-                                                </option>
-                                                <?php
-                                                    }
-                                                ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label" for="remark">Remark <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div id="ctrl-remark-holder" class=" ">
-                                                <input id="ctrl-remark" data-field="remark"  value="<?php echo get_value('remark') ?>" type="text" placeholder="Enter Remark"  required="" name="remark"  class="form-control " />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label class="control-label" for="updated_by">Updated By <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div id="ctrl-updated_by-holder" class=" ">
-                                                <select required=""  id="ctrl-updated_by" data-field="updated_by" name="updated_by"  placeholder="Select a value ..."    class="form-select" >
-                                                <option value="">Select a value ...</option>
-                                                <?php 
-                                                    $options = $comp_model->updated_by_option_list() ?? [];
-                                                    foreach($options as $option){
-                                                    $value = $option->value;
-                                                    $label = $option->label ?? $value;
-                                                    $selected = Html::get_field_selected('updated_by', $value, "");
-                                                ?>
-                                                <option <?php echo $selected; ?> value="<?php echo $value; ?>">
-                                                <?php echo $label; ?>
-                                                </option>
-                                                <?php
-                                                    }
-                                                ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            </td>
+                            <td>
+                                <div id="ctrl-subject_id-row<?php echo $row; ?>-holder" class=" ">
+                                <select required=""  id="ctrl-subject_id-row<?php echo $row; ?>" data-field="subject_id" name="row[<?php echo $row ?>][subject_id]"  placeholder="Select a value ..."    class="form-select" >
+                                <option value="">Select a value ...</option>
+                                <?php 
+                                    $options = $comp_model->subject_id_option_list() ?? [];
+                                    foreach($options as $option){
+                                    $value = $option->value;
+                                    $label = $option->label ?? $value;
+                                    $selected = Html::get_field_selected('subject_id', $value, "");
+                                ?>
+                                <option <?php echo $selected; ?> value="<?php echo $value; ?>">
+                                <?php echo $label; ?>
+                                </option>
+                                <?php
+                                    }
+                                ?>
+                                </select>
                             </div>
-                            <div class="form-ajax-status"></div>
-                            <!--[form-button-start]-->
-                            <div class="form-group form-submit-btn-holder text-center mt-3">
-                                <button class="btn btn-primary" type="submit">
-                                Submit
-                                <i class="material-icons">send</i>
-                                </button>
-                            </div>
-                            <!--[form-button-end]-->
-                        </form>
-                        <!--[form-end]-->
+                        </td>
+                        <td>
+                            <div id="ctrl-ca_score-row<?php echo $row; ?>-holder" class=" ">
+                            <input id="ctrl-ca_score-row<?php echo $row; ?>" data-field="ca_score"  value="<?php echo get_value('ca_score', "0.00") ?>" type="number" placeholder="Enter Ca Score" step="0.1"  required="" name="row[<?php echo $row ?>][ca_score]"  class="form-control " />
+                        </div>
+                    </td>
+                    <td>
+                        <div id="ctrl-exam_score-row<?php echo $row; ?>-holder" class=" ">
+                        <input id="ctrl-exam_score-row<?php echo $row; ?>" data-field="exam_score"  value="<?php echo get_value('exam_score') ?>" type="number" placeholder="Enter Exam Score" step="0.1"  required="" name="row[<?php echo $row ?>][exam_score]"  class="form-control " />
                     </div>
+                </td>
+                <td>
+                    <div id="ctrl-pratical_score-row<?php echo $row; ?>-holder" class=" ">
+                    <input id="ctrl-pratical_score-row<?php echo $row; ?>" data-field="pratical_score"  value="<?php echo get_value('pratical_score') ?>" type="number" placeholder="Enter Pratical Score" step="0.1"  required="" name="row[<?php echo $row ?>][pratical_score]"  class="form-control " />
                 </div>
+            </td>
+            <td>
+                <div id="ctrl-total-row<?php echo $row; ?>-holder" class=" ">
+                <input id="ctrl-total-row<?php echo $row; ?>" data-field="total"  value="<?php echo get_value('total') ?>" type="number" placeholder="Enter Total" step="0.1"  required="" name="row[<?php echo $row ?>][total]"  class="form-control " />
             </div>
+        </td>
+        <td>
+            <div id="ctrl-grade_id-row<?php echo $row; ?>-holder" class=" ">
+            <select required=""  id="ctrl-grade_id-row<?php echo $row; ?>" data-field="grade_id" name="row[<?php echo $row ?>][grade_id]"  placeholder="Select a value ..."    class="form-select" >
+            <option value="">Select a value ...</option>
+            <?php 
+                $options = $comp_model->grade_id_option_list() ?? [];
+                foreach($options as $option){
+                $value = $option->value;
+                $label = $option->label ?? $value;
+                $selected = Html::get_field_selected('grade_id', $value, "");
+            ?>
+            <option <?php echo $selected; ?> value="<?php echo $value; ?>">
+            <?php echo $label; ?>
+            </option>
+            <?php
+                }
+            ?>
+            </select>
         </div>
+    </td>
+    <td>
+        <div id="ctrl-remark-row<?php echo $row; ?>-holder" class=" ">
+        <input id="ctrl-remark-row<?php echo $row; ?>" data-field="remark"  value="<?php echo get_value('remark') ?>" type="text" placeholder="Enter Remark"  required="" name="row[<?php echo $row ?>][remark]"  class="form-control " />
     </div>
+</td>
+<td>
+    <div id="ctrl-updated_by-row<?php echo $row; ?>-holder" class=" ">
+    <select required=""  id="ctrl-updated_by-row<?php echo $row; ?>" data-field="updated_by" name="row[<?php echo $row ?>][updated_by]"  placeholder="Select a value ..."    class="form-select" >
+    <option value="">Select a value ...</option>
+    <?php 
+        $options = $comp_model->updated_by_option_list() ?? [];
+        foreach($options as $option){
+        $value = $option->value;
+        $label = $option->label ?? $value;
+        $selected = Html::get_field_selected('updated_by', $value, "");
+    ?>
+    <option <?php echo $selected; ?> value="<?php echo $value; ?>">
+    <?php echo $label; ?>
+    </option>
+    <?php
+        }
+    ?>
+    </select>
+</div>
+</td>
+<th class="text-center">
+<button type="button" class="btn-close btn-remove-table-row"></button>
+</th>
+</tr>
+</template>
+<!--[/table row template]-->
+</div>
+<div class="form-ajax-status"></div>
+<!--[form-button-start]-->
+<div class="form-group form-submit-btn-holder text-center mt-3">
+    <button class="btn btn-primary" type="submit">
+    Submit
+    <i class="material-icons">send</i>
+    </button>
+</div>
+<!--[form-button-end]-->
+</form>
+<!--[form-end]-->
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 

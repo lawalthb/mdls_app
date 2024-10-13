@@ -41,11 +41,11 @@ class Subjects extends Model
 	public static function search($query, $text){
 		//search table record 
 		$search_condition = '(
-				id LIKE ?  OR 
-				name LIKE ?  OR 
-				code LIKE ?  OR 
-				type LIKE ?  OR 
-				is_active LIKE ? 
+				subjects.id LIKE ?  OR 
+				subjects.name LIKE ?  OR 
+				subjects.code LIKE ?  OR 
+				subjects.type LIKE ?  OR 
+				subjects.is_active LIKE ? 
 		)';
 		$search_params = [
 			"%$text%","%$text%","%$text%","%$text%","%$text%"
@@ -62,14 +62,15 @@ class Subjects extends Model
      */
 	public static function listFields(){
 		return [ 
-			"id",
-			"name",
-			"code",
-			"type",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
+			"subjects.id AS id",
+			"subjects.name AS name",
+			"subjects.code AS code",
+			"subjects.type AS type",
+			"subjects.is_active AS is_active",
+			"subjects.created_at AS created_at",
+			"subjects.updated_at AS updated_at",
+			"subjects.updated_by AS updated_by",
+			"users.name AS users_name" 
 		];
 	}
 	
@@ -81,14 +82,15 @@ class Subjects extends Model
      */
 	public static function exportListFields(){
 		return [ 
-			"id",
-			"name",
-			"code",
-			"type",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
+			"subjects.id AS id",
+			"subjects.name AS name",
+			"subjects.code AS code",
+			"subjects.type AS type",
+			"subjects.is_active AS is_active",
+			"subjects.created_at AS created_at",
+			"subjects.updated_at AS updated_at",
+			"subjects.updated_by AS updated_by",
+			"users.name AS users_name" 
 		];
 	}
 	
@@ -138,12 +140,12 @@ class Subjects extends Model
      */
 	public static function editFields(){
 		return [ 
-			"id",
 			"name",
 			"code",
 			"type",
 			"is_active",
-			"updated_by" 
+			"updated_by",
+			"id" 
 		];
 	}
 }

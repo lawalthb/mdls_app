@@ -121,6 +121,21 @@ class ComponentsData{
 	
 
 	/**
+     * Check if value already exist in Subjects table
+	 * @param string $value
+     * @return bool
+     */
+	function subjects_name_value_exist(Request $request){
+		$value = trim($request->value);
+		$exist = DB::table('subjects')->where('name', $value)->value('name');   
+		if($exist){
+			return true;
+		}
+		return false;
+	}
+	
+
+	/**
      * price_settings_id_option_list Model Action
      * @return array
      */

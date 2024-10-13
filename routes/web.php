@@ -500,6 +500,12 @@ Route::get('componentsdata/class_id_option_list',  function(Request $request){
 	}
 )->middleware(['auth']);
 	
+Route::get('componentsdata/subjects_name_value_exist',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->subjects_name_value_exist($request);
+	}
+)->middleware(['auth']);
+	
 Route::get('componentsdata/price_settings_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->price_settings_id_option_list($request);

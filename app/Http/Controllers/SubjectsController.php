@@ -25,6 +25,7 @@ class SubjectsController extends Controller
 			$search = trim($request->search);
 			Subjects::search($query, $search); // search table records
 		}
+		$query->join("users", "subjects.updated_by", "=", "users.id");
 		$orderby = $request->orderby ?? "subjects.id";
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);

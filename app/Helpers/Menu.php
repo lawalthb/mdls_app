@@ -291,6 +291,30 @@
 		],] ;
 	}
 	
+	public static function type(){
+		return [
+		[
+			'value' => 'theory', 
+			'label' => "Theory", 
+		],
+		[
+			'value' => 'pratical', 
+			'label' => "Pratical", 
+		],] ;
+	}
+	
+	public static function isActive2(){
+		return [
+		[
+			'value' => 'no', 
+			'label' => "no", 
+		],
+		[
+			'value' => 'yes', 
+			'label' => "yes", 
+		],] ;
+	}
+	
 	public static function status(){
 		return [
 		[

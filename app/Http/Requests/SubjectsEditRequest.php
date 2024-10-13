@@ -23,12 +23,14 @@ class SubjectsEditRequest extends FormRequest
     public function rules()
     {
 		
+		$rec_id = request()->route('rec_id');
+
         return [
             
-				"name" => "nullable|string",
+				"name" => "filled|string|unique:subjects,name,$rec_id,id",
 				"code" => "filled|string",
-				"type" => "filled|string",
-				"is_active" => "nullable|string",
+				"type" => "filled",
+				"is_active" => "nullable",
 				"updated_by" => "filled",
             
         ];

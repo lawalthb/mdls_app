@@ -25,10 +25,10 @@ class SubjectsAddRequest extends FormRequest
 		
         return [
             
-				"name" => "nullable|string",
+				"name" => "required|string|unique:subjects,name",
 				"code" => "required|string",
-				"type" => "required|string",
-				"is_active" => "nullable|string",
+				"type" => "required",
+				"is_active" => "nullable",
 				"updated_by" => "required",
             
         ];

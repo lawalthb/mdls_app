@@ -41,8 +41,8 @@ class Classes extends Model
 	public static function search($query, $text){
 		//search table record 
 		$search_condition = '(
-				id LIKE ?  OR 
-				name LIKE ? 
+				classes.id LIKE ?  OR 
+				classes.name LIKE ? 
 		)';
 		$search_params = [
 			"%$text%","%$text%"
@@ -59,12 +59,12 @@ class Classes extends Model
      */
 	public static function listFields(){
 		return [ 
-			"id",
-			"name",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
+			"classes.id AS id",
+			"classes.name AS name",
+			"classes.is_active AS is_active",
+			"classes.updated_at AS updated_at",
+			"classes.updated_by AS updated_by",
+			"users.name AS users_name" 
 		];
 	}
 	
@@ -76,12 +76,12 @@ class Classes extends Model
      */
 	public static function exportListFields(){
 		return [ 
-			"id",
-			"name",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
+			"classes.id AS id",
+			"classes.name AS name",
+			"classes.is_active AS is_active",
+			"classes.updated_at AS updated_at",
+			"classes.updated_by AS updated_by",
+			"users.name AS users_name" 
 		];
 	}
 	

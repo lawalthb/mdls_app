@@ -92,21 +92,11 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 <div class="bg-light mb-1 card-1 p-2 border rounded">
                                                     <div class="row align-items-center">
                                                         <div class="col">
-                                                            <small class="text-muted">Created At</small>
-                                                            <div class="fw-bold">
-                                                                <?php echo  $data['created_at'] ; ?>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                                    <div class="row align-items-center">
-                                                        <div class="col">
                                                             <small class="text-muted">Updated At</small>
                                                             <div class="fw-bold">
-                                                                <?php echo  $data['updated_at'] ; ?>
+                                                                <span title="<?php echo human_datetime($data['updated_at']); ?>" class="has-tooltip">
+                                                                <?php echo relative_date($data['updated_at']); ?>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>

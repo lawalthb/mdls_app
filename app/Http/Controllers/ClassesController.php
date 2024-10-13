@@ -25,6 +25,7 @@ class ClassesController extends Controller
 			$search = trim($request->search);
 			Classes::search($query, $search); // search table records
 		}
+		$query->join("users", "classes.updated_by", "=", "users.id");
 		$orderby = $request->orderby ?? "classes.id";
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);

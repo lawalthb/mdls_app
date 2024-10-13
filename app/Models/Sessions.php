@@ -41,8 +41,8 @@ class Sessions extends Model
 	public static function search($query, $text){
 		//search table record 
 		$search_condition = '(
-				id LIKE ?  OR 
-				name LIKE ? 
+				sessions.id LIKE ?  OR 
+				sessions.name LIKE ? 
 		)';
 		$search_params = [
 			"%$text%","%$text%"
@@ -59,12 +59,12 @@ class Sessions extends Model
      */
 	public static function listFields(){
 		return [ 
-			"id",
-			"name",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
+			"sessions.id AS id",
+			"sessions.name AS name",
+			"sessions.is_active AS is_active",
+			"sessions.updated_at AS updated_at",
+			"sessions.updated_by AS updated_by",
+			"users.name AS users_name" 
 		];
 	}
 	
@@ -76,12 +76,12 @@ class Sessions extends Model
      */
 	public static function exportListFields(){
 		return [ 
-			"id",
-			"name",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
+			"sessions.id AS id",
+			"sessions.name AS name",
+			"sessions.is_active AS is_active",
+			"sessions.updated_at AS updated_at",
+			"sessions.updated_by AS updated_by",
+			"users.name AS users_name" 
 		];
 	}
 	
@@ -96,7 +96,6 @@ class Sessions extends Model
 			"id",
 			"name",
 			"is_active",
-			"created_at",
 			"updated_at",
 			"updated_by" 
 		];
@@ -113,7 +112,6 @@ class Sessions extends Model
 			"id",
 			"name",
 			"is_active",
-			"created_at",
 			"updated_at",
 			"updated_by" 
 		];

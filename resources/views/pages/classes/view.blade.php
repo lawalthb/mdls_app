@@ -106,7 +106,9 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                         <div class="col">
                                                             <small class="text-muted">Updated At</small>
                                                             <div class="fw-bold">
-                                                                <?php echo  $data['updated_at'] ; ?>
+                                                                <span title="<?php echo human_datetime($data['updated_at']); ?>" class="has-tooltip">
+                                                                <?php echo relative_date($data['updated_at']); ?>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -25,6 +25,7 @@ class SessionsController extends Controller
 			$search = trim($request->search);
 			Sessions::search($query, $search); // search table records
 		}
+		$query->join("users", "sessions.updated_by", "=", "users.id");
 		$orderby = $request->orderby ?? "sessions.id";
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);

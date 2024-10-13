@@ -68,7 +68,6 @@ class Subjects extends Model
 			"subjects.type AS type",
 			"subjects.is_active AS is_active",
 			"subjects.created_at AS created_at",
-			"subjects.updated_at AS updated_at",
 			"subjects.updated_by AS updated_by",
 			"users.name AS users_name" 
 		];
@@ -88,7 +87,6 @@ class Subjects extends Model
 			"subjects.type AS type",
 			"subjects.is_active AS is_active",
 			"subjects.created_at AS created_at",
-			"subjects.updated_at AS updated_at",
 			"subjects.updated_by AS updated_by",
 			"users.name AS users_name" 
 		];

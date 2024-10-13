@@ -22,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view)
         {
             
+			$user = request()->user();
+			$view->with('user', $user);
+
 			$layout = "layouts.app";
 			if(request()->ajax()){
 				$layout = "layouts.ajax";

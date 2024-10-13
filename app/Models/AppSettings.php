@@ -133,11 +133,11 @@ class AppSettings extends Model
      */
 	public static function editFields(){
 		return [ 
-			"id",
 			"name",
 			"value",
 			"slug",
-			"active" 
+			"active",
+			"id" 
 		];
 	}
 }

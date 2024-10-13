@@ -1,8 +1,11 @@
 <?php 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UsersRegisterRequest;
+use App\Http\Requests\UsersAccountEditRequest;
 use App\Http\Requests\UsersAddRequest;
 use App\Http\Requests\UsersEditRequest;
+use App\Http\Requests\Usersadd_studentRequest;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Exception;
@@ -125,5 +128,83 @@ class UsersController extends Controller
 		$query->delete();
 		$redirectUrl = $request->redirect ?? url()->previous();
 		return $this->redirect($redirectUrl, "Record deleted successfully");
+	}
+	
+
+	/**
+     * Display form page
+     * @return \Illuminate\View\View
+     */
+	function add_student(){
+		return $this->renderView("pages.users.add_student");
+	}
+	
+
+	/**
+     * Save form record to the table
+     * @return \Illuminate\Http\Response
+     */
+	function add_student_store(Usersadd_studentRequest $request){
+		$modeldata = $this->normalizeFormData($request->validated());
+		
+		if( array_key_exists("image", $modeldata) ){
+			//move uploaded file from temp directory to destination directory
+			$fileInfo = $this->moveUploadedFiles($modeldata['image'], "image");
+			$modeldata['image'] = $fileInfo['filepath'];
+		}
+		
+		//Validate StudentDetails form data
+		$studentdetailsPostData = $request->studentdetails;
+		$studentdetailsValidator = validator()->make($studentdetailsPostData, ["firstname" => "required|string",
+				"middlemane" => "nullable|string",
+				"lastname" => "required|string",
+				"dob" => "nullable|date",
+				"class_id" => "required",
+				"religion" => "nullable",
+				"phone" => "nullable|string",
+				"blood_group" => "nullable",
+				"height" => "nullable|numeric",
+				"weight" => "nullable|numeric",
+				"measurement_date" => "nullable|date"]);
+		if ($studentdetailsValidator->fails()) {
+			return $studentdetailsValidator->errors();
+		}
+		$studentdetailsModeldata = $this->normalizeFormData($studentdetailsValidator->valid());
+		
+		//save Users record
+		$record = Users::create($modeldata);
+		$rec_id = $record->id;
+		
+        // set studentdetails.user_id to users.id
+		$studentdetailsModeldata['user_id'] = $rec_id;
+		//save StudentDetails record
+		$studentdetailsRecord = \App\Models\StudentDetails::create($studentdetailsModeldata);
+		return $this->redirect("users", "Record added successfully");
+	}
+	
+
+	/**
+     * List table records
+	 * @param  \Illuminate\Http\Request
+     * @param string $fieldname //filter records by a table field
+     * @param string $fieldvalue //filter value
+     * @return \Illuminate\View\View
+     */
+	function list_students(Request $request, $fieldname = null , $fieldvalue = null){
+		$view = "pages.users.list_students";
+		$query = Users::query();
+		$limit = $request->limit ?? 10;
+		if($request->search){
+			$search = trim($request->search);
+			Users::search($query, $search); // search table records
+		}
+		$orderby = $request->orderby ?? "users.id";
+		$ordertype = $request->ordertype ?? "desc";
+		$query->orderBy($orderby, $ordertype);
+		if($fieldname){
+			$query->where($fieldname , $fieldvalue); //filter by a table field
+		}
+		$records = $query->paginate($limit, Users::listStudentsFields());
+		return $this->renderView($view, compact("records"));
 	}
 }

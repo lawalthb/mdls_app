@@ -25,8 +25,6 @@ class StudentDetailsAddRequest extends FormRequest
 		
         return [
             
-				"id" => "required|numeric",
-				"user_id" => "required",
 				"firstname" => "required|string",
 				"middlemane" => "nullable|string",
 				"lastname" => "required|string",

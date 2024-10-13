@@ -28,7 +28,7 @@ class StudentDetails extends Model
      * @var array
      */
 	protected $fillable = [
-		'id','user_id','firstname','middlemane','lastname','dob','class_id','religion','phone','blood_group','height','weight','measurement_date'
+		'user_id','firstname','middlemane','lastname','dob','class_id','religion','phone','blood_group','height','weight','measurement_date'
 	];
 	public $timestamps = false;
 	

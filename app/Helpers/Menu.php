@@ -289,4 +289,16 @@
 		],] ;
 	}
 	
+	public static function accountStatus(){
+		return [
+		[
+			'value' => 'active', 
+			'label' => "Allow to login", 
+		],
+		[
+			'value' => 'Pending', 
+			'label' => "Not Allow", 
+		],] ;
+	}
+	
 	}

@@ -1,9 +1,11 @@
 <?php 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-class Users extends Model 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+class Users extends Authenticatable 
 {
+	use Notifiable;
 	
 
 	/**
@@ -20,16 +22,7 @@ class Users extends Model
      * @var string
      */
 	protected $primaryKey = 'id';
-	
-
-	/**
-     * Table fillable fields
-     *
-     * @var array
-     */
-	protected $fillable = [
-		'email','name','phone','password','image','is_active'
-	];
+	protected $fillable = ['email','name','phone','password','image','account_status','is_active'];
 	public $timestamps = false;
 	
 
@@ -45,7 +38,7 @@ class Users extends Model
 				email LIKE ?  OR 
 				name LIKE ?  OR 
 				phone LIKE ?  OR 
-				password LIKE ? 
+				account_status LIKE ? 
 		)';
 		$search_params = [
 			"%$text%","%$text%","%$text%","%$text%","%$text%"
@@ -69,7 +62,8 @@ class Users extends Model
 			"image",
 			"is_active",
 			"created_at",
-			"updated_at" 
+			"updated_at",
+			"account_status" 
 		];
 	}
 	
@@ -88,7 +82,8 @@ class Users extends Model
 			"image",
 			"is_active",
 			"created_at",
-			"updated_at" 
+			"updated_at",
+			"account_status" 
 		];
 	}
 	
@@ -104,10 +99,10 @@ class Users extends Model
 			"email",
 			"name",
 			"phone",
-			"image",
 			"is_active",
 			"created_at",
-			"updated_at" 
+			"updated_at",
+			"account_status" 
 		];
 	}
 	
@@ -123,10 +118,65 @@ class Users extends Model
 			"email",
 			"name",
 			"phone",
-			"image",
 			"is_active",
 			"created_at",
-			"updated_at" 
+			"updated_at",
+			"account_status" 
+		];
+	}
+	
+
+	/**
+     * return accountedit page fields of the model.
+     * 
+     * @return array
+     */
+	public static function accounteditFields(){
+		return [ 
+			"id",
+			"name",
+			"phone",
+			"image",
+			"is_active",
+			"account_status" 
+		];
+	}
+	
+
+	/**
+     * return accountview page fields of the model.
+     * 
+     * @return array
+     */
+	public static function accountviewFields(){
+		return [ 
+			"id",
+			"email",
+			"name",
+			"phone",
+			"is_active",
+			"created_at",
+			"updated_at",
+			"account_status" 
+		];
+	}
+	
+
+	/**
+     * return exportAccountview page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportAccountviewFields(){
+		return [ 
+			"id",
+			"email",
+			"name",
+			"phone",
+			"is_active",
+			"created_at",
+			"updated_at",
+			"account_status" 
 		];
 	}
 	
@@ -138,12 +188,87 @@ class Users extends Model
      */
 	public static function editFields(){
 		return [ 
+			"name",
+			"phone",
+			"image",
+			"is_active",
+			"account_status",
+			"id" 
+		];
+	}
+	
+
+	/**
+     * return listStudents page fields of the model.
+     * 
+     * @return array
+     */
+	public static function listStudentsFields(){
+		return [ 
 			"id",
 			"email",
 			"name",
 			"phone",
 			"image",
-			"is_active" 
+			"is_active",
+			"created_at",
+			"updated_at",
+			"account_status" 
 		];
+	}
+	
+
+	/**
+     * return exportListStudents page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportListStudentsFields(){
+		return [ 
+			"id",
+			"email",
+			"name",
+			"phone",
+			"image",
+			"is_active",
+			"created_at",
+			"updated_at",
+			"account_status" 
+		];
+	}
+	
+
+	/**
+     * Get current user name
+     * @return string
+     */
+	public function UserName(){
+		return $this->name;
+	}
+	
+
+	/**
+     * Get current user id
+     * @return string
+     */
+	public function UserId(){
+		return $this->id;
+	}
+	public function UserEmail(){
+		return $this->email;
+	}
+	public function UserPhoto(){
+		return $this->image;
+	}
+	
+
+	/**
+     * Send Password reset link to user email 
+	 * @param string $token
+     * @return string
+     */
+	public function sendPasswordResetNotification($token)
+	{
+		$this->notify(new \App\Notifications\ResetPassword($token));
 	}
 }

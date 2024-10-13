@@ -14,12 +14,41 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
+
+
+	Route::get('', 'IndexController@index')->name('index')->middleware(['redirect.to.home']);
+	Route::get('index/login', 'IndexController@login')->name('login');
 	
-	Route::get('', 'HomeController@index')->name('index');
+	Route::post('auth/login', 'AuthController@login')->name('auth.login');
+	Route::any('auth/logout', 'AuthController@logout')->name('logout')->middleware(['auth']);
+
+	Route::get('auth/accountcreated', 'AuthController@accountcreated')->name('accountcreated');
+	Route::get('auth/accountpending', 'AuthController@accountpending')->name('accountpending');
+	Route::get('auth/accountblocked', 'AuthController@accountblocked')->name('accountblocked');
+	Route::get('auth/accountinactive', 'AuthController@accountinactive')->name('accountinactive');
+
+
+	
+	Route::get('index/register', 'AuthController@register')->name('auth.register')->middleware(['redirect.to.home']);
+	Route::post('index/register', 'AuthController@register_store')->name('auth.register_store');
+		
+	Route::post('auth/login', 'AuthController@login')->name('auth.login');
+	Route::get('auth/password/forgotpassword', 'AuthController@showForgotPassword')->name('password.forgotpassword');
+	Route::post('auth/password/sendemail', 'AuthController@sendPasswordResetLink')->name('password.email');
+	Route::get('auth/password/reset', 'AuthController@showResetPassword')->name('password.reset.token');
+	Route::post('auth/password/resetpassword', 'AuthController@resetPassword')->name('password.resetpassword');
+	Route::get('auth/password/resetcompleted', 'AuthController@passwordResetCompleted')->name('password.resetcompleted');
+	Route::get('auth/password/linksent', 'AuthController@passwordResetLinkSent')->name('password.resetlinksent');
+	
+
+/**
+ * All routes which requires auth
+ */
+Route::middleware(['auth', 'accountstatus'])->group(function () {
+		
 	Route::get('home', 'HomeController@index')->name('home');
 
-
-
+	
 
 /* routes for Admins Controller */
 	Route::get('admins', 'AdminsController@index')->name('admins.index');
@@ -184,11 +213,19 @@ use Illuminate\Support\Facades\Mail;
 	Route::get('users/index/{filter?}/{filtervalue?}', 'UsersController@index')->name('users.index');	
 	Route::get('users/view/{rec_id}', 'UsersController@view')->name('users.view');
 	Route::get('users/masterdetail/{rec_id}', 'UsersController@masterDetail')->name('users.masterdetail');	
+	Route::any('account/edit', 'AccountController@edit')->name('account.edit');	
+	Route::get('account', 'AccountController@index');	
+	Route::post('account/changepassword', 'AccountController@changepassword')->name('account.changepassword');	
 	Route::get('users/add', 'UsersController@add')->name('users.add');
 	Route::post('users/add', 'UsersController@store')->name('users.store');
 		
 	Route::any('users/edit/{rec_id}', 'UsersController@edit')->name('users.edit');	
-	Route::get('users/delete/{rec_id}', 'UsersController@delete');
+	Route::get('users/delete/{rec_id}', 'UsersController@delete');	
+	Route::get('users/add_student', 'UsersController@add_student')->name('users.add_student');
+	Route::post('users/add_student', 'UsersController@add_student_store')->name('users.add_student_store');
+		
+	Route::get('users/list_students', 'UsersController@list_students');
+	Route::get('users/list_students/{filter?}/{filtervalue?}', 'UsersController@list_students');
 
 /* routes for WebAbouts Controller */
 	Route::get('webabouts', 'WebAboutsController@index')->name('webabouts.index');
@@ -380,13 +417,6 @@ use Illuminate\Support\Facades\Mail;
 		
 	Route::any('webvissions/edit/{rec_id}', 'WebVissionsController@edit')->name('webvissions.edit');	
 	Route::get('webvissions/delete/{rec_id}', 'WebVissionsController@delete');
-
-/**
- * All routes which requires auth
- */
-Route::middleware(['auth'])->group(function () {
-	
-	
 });
 
 
@@ -395,61 +425,79 @@ Route::get('componentsdata/session_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->session_id_option_list($request);
 	}
-);
+)->middleware(['auth']);
 	
 Route::get('componentsdata/updated_by_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->updated_by_option_list($request);
 	}
-);
+)->middleware(['auth']);
 	
 Route::get('componentsdata/exam_sheet_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->exam_sheet_id_option_list($request);
 	}
-);
+)->middleware(['auth']);
 	
 Route::get('componentsdata/subject_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->subject_id_option_list($request);
 	}
-);
+)->middleware(['auth']);
 	
 Route::get('componentsdata/grade_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->grade_id_option_list($request);
 	}
-);
+)->middleware(['auth']);
 	
 Route::get('componentsdata/term_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->term_id_option_list($request);
 	}
-);
+)->middleware(['auth']);
 	
 Route::get('componentsdata/plans_updated_by_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->plans_updated_by_option_list($request);
 	}
-);
+)->middleware(['auth']);
 	
 Route::get('componentsdata/class_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->class_id_option_list($request);
 	}
-);
+)->middleware(['auth']);
 	
 Route::get('componentsdata/price_settings_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->price_settings_id_option_list($request);
 	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/users_email_value_exist',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->users_email_value_exist($request);
+	}
 );
+	
+Route::get('componentsdata/users_name_value_exist',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->users_name_value_exist($request);
+	}
+);
+	
+Route::get('componentsdata/users_phone_value_exist',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->users_phone_value_exist($request);
+	}
+)->middleware(['auth']);
 	
 Route::get('componentsdata/category_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->category_id_option_list($request);
 	}
-);
+)->middleware(['auth']);
 
 
 Route::post('fileuploader/upload/{fieldname}', 'FileUploaderController@upload');

@@ -97,20 +97,6 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <div class="bg-light mb-1 card-1 p-2 border rounded">
                                             <div class="row align-items-center">
                                                 <div class="col">
-                                                    <small class="text-muted">Image</small>
-                                                    <div class="fw-bold">
-                                                        <?php 
-                                                            Html :: page_img($data['image'], 'auto', 'auto', "", 1); 
-                                                        ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                            <div class="row align-items-center">
-                                                <div class="col">
                                                     <small class="text-muted">Is Active</small>
                                                     <div class="fw-bold">
                                                         <?php echo  $data['is_active'] ; ?>
@@ -138,6 +124,18 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                     <small class="text-muted">Updated At</small>
                                                     <div class="fw-bold">
                                                         <?php echo  $data['updated_at'] ; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <small class="text-muted">Account Status</small>
+                                                    <div class="fw-bold">
+                                                        <?php echo  $data['account_status'] ; ?>
                                                     </div>
                                                 </div>
                                             </div>

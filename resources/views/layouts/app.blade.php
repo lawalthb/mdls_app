@@ -34,11 +34,15 @@
 		</script>
 	</head>
 	<?php
-		$page_name = request()->segment(1)  ?? 'index';
-		$page_action = request()->segment(2)  ?? 'index';
+		$body_id = "index";
+		if(auth()->check()){
+			$body_id = "main";
+		}
+		$page_name = request()->segment(1) ?? 'index';
+		$page_action = request()->segment(2) ?? 'index';
 		$body_class = "$page_name-$page_action";
 	?>
-	<body id="main" class="<?php echo $body_class ?>">
+	<body id="<?php echo $body_id ?>" class="with-login <?php echo $body_class ?>">
 		<div id="page-wrapper">
 			<!-- Show progress bar when ajax upload-->
 			<div id="ajax-progress-bar" class="progress"  style="display:none">

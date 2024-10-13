@@ -13,7 +13,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
     <?php
         if( $show_header == true ){
     ?>
-    <div  class="bg-light p-3 mb-3" >
+    <div  class="bg-light p-3 mb-3 mb-3" >
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-auto  back-btn-col" >
@@ -23,7 +23,12 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                 </div>
                 <div class="col  " >
                     <div class="">
-                        <div class="h5 font-weight-bold text-primary">Add New User</div>
+                        <div class="h5 font-weight-bold text-primary">User registration</div>
+                    </div>
+                </div>
+                <div class="col-md-auto comp-grid " >
+                    <div class=" ">
+                        Already have an account?  <a class="btn btn-primary" href="<?php print_link('') ?>"> Login</a>
                     </div>
                 </div>
             </div>
@@ -38,7 +43,8 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                 <div class="col-md-9 comp-grid " >
                     <div  class="card card-1 border rounded page-content" >
                         <!--[form-start]-->
-                        <form id="users-add-form" role="form" novalidate enctype="multipart/form-data" class="form page-form form-horizontal needs-validation" action="{{ route('users.store') }}" method="post">
+                        <form id="users-userregister-form" role="form" novalidate enctype="multipart/form-data" class="form page-form form-horizontal needs-validation" action="{{ route('auth.register_store') }}" method="post">
+                            <!--[form-content-start]-->
                             @csrf
                             <div>
                                 <div class="form-group ">
@@ -149,6 +155,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                 </div>
                             </div>
                             <div class="form-ajax-status"></div>
+                            <!--[form-content-end]-->
                             <!--[form-button-start]-->
                             <div class="form-group form-submit-btn-holder text-center mt-3">
                                 <button class="btn btn-primary" type="submit">
@@ -165,6 +172,6 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
         </div>
     </div>
 </section>
-
-
+<!-- Page custom js --><script><!--pageautofill--><!--custom page js--><!--pagejs--></script>
+<!-- Page custom css --><style><!--custom page css--><!--pagecss--></style>
 @endsection

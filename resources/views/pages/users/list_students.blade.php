@@ -53,9 +53,9 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
         <div class="row ">
             <div class="col comp-grid " >
                 <div  class=" page-content" >
-                    <div id="users-list-records">
+                    <div id="users-list_students-records">
                         <div id="page-main-content" class="table-responsive">
-                            <?php Html::page_bread_crumb("/users/", $field_name, $field_value); ?>
+                            <?php Html::page_bread_crumb("/users/list_students", $field_name, $field_value); ?>
                             <?php Html::display_page_errors($errors); ?>
                             <div class="filter-tags mb-2">
                                 <?php Html::filter_tag('search', __('Search')); ?>

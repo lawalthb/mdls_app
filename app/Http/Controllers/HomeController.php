@@ -14,7 +14,7 @@ class HomeController extends Controller{
      * @return \Illuminate\View\View
      */
 	function index(){
-		
+		$user = auth()->user();
 		
 		return view("pages.home.index");
 

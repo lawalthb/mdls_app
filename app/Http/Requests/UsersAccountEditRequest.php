@@ -30,6 +30,7 @@ class UsersAccountEditRequest extends FormRequest
 				"image" => "nullable",
 				"is_active" => "filled",
 				"account_status" => "nullable|string",
+				"user_role_id" => "nullable",
             
         ];
     }

@@ -22,7 +22,7 @@ class Users extends Authenticatable
      * @var string
      */
 	protected $primaryKey = 'id';
-	protected $fillable = ['email','name','phone','password','image','account_status','is_active'];
+	protected $fillable = ['email','name','phone','password','image','account_status','is_active','user_role_id'];
 	public $timestamps = false;
 	
 
@@ -63,7 +63,8 @@ class Users extends Authenticatable
 			"is_active",
 			"created_at",
 			"updated_at",
-			"account_status" 
+			"account_status",
+			"user_role_id" 
 		];
 	}
 	
@@ -83,7 +84,8 @@ class Users extends Authenticatable
 			"is_active",
 			"created_at",
 			"updated_at",
-			"account_status" 
+			"account_status",
+			"user_role_id" 
 		];
 	}
 	
@@ -102,7 +104,8 @@ class Users extends Authenticatable
 			"is_active",
 			"created_at",
 			"updated_at",
-			"account_status" 
+			"account_status",
+			"user_role_id" 
 		];
 	}
 	
@@ -121,7 +124,8 @@ class Users extends Authenticatable
 			"is_active",
 			"created_at",
 			"updated_at",
-			"account_status" 
+			"account_status",
+			"user_role_id" 
 		];
 	}
 	
@@ -138,7 +142,8 @@ class Users extends Authenticatable
 			"phone",
 			"image",
 			"is_active",
-			"account_status" 
+			"account_status",
+			"user_role_id" 
 		];
 	}
 	
@@ -157,7 +162,8 @@ class Users extends Authenticatable
 			"is_active",
 			"created_at",
 			"updated_at",
-			"account_status" 
+			"account_status",
+			"user_role_id" 
 		];
 	}
 	
@@ -176,7 +182,8 @@ class Users extends Authenticatable
 			"is_active",
 			"created_at",
 			"updated_at",
-			"account_status" 
+			"account_status",
+			"user_role_id" 
 		];
 	}
 	
@@ -193,7 +200,8 @@ class Users extends Authenticatable
 			"image",
 			"is_active",
 			"account_status",
-			"id" 
+			"id",
+			"user_role_id" 
 		];
 	}
 	
@@ -213,7 +221,8 @@ class Users extends Authenticatable
 			"is_active",
 			"created_at",
 			"updated_at",
-			"account_status" 
+			"account_status",
+			"user_role_id" 
 		];
 	}
 	
@@ -233,7 +242,8 @@ class Users extends Authenticatable
 			"is_active",
 			"created_at",
 			"updated_at",
-			"account_status" 
+			"account_status",
+			"user_role_id" 
 		];
 	}
 	
@@ -260,6 +270,9 @@ class Users extends Authenticatable
 	public function UserPhoto(){
 		return $this->image;
 	}
+	public function UserRole(){
+		return $this->user_role_id;
+	}
 	
 
 	/**
@@ -270,5 +283,97 @@ class Users extends Authenticatable
 	public function sendPasswordResetNotification($token)
 	{
 		$this->notify(new \App\Notifications\ResetPassword($token));
+	}
+	
+	private $roleNames = [];
+	private $userPages = [];
+	
+	/**
+	* Get the permissions of the user.
+	*/
+	public function permissions(){
+		return $this->hasMany(Permissions::class, 'role_id', 'user_role_id');
+	}
+	
+	/**
+	* Get the roles of the user.
+	*/
+	public function roles(){
+		return $this->hasMany(Roles::class, 'role_id', 'user_role_id');
+	}
+	
+	/**
+	* set user role
+	*/
+	public function assignRole($roleName){
+		$roleId = Roles::select('role_id')->where('role_name', $roleName)->value('role_id');
+		$this->user_role_id = $roleId;
+		$this->save();
+	}
+	
+	/**
+     * return list of pages user can access
+     * @return array
+     */
+	public function getUserPages(){
+		if(empty($this->userPages)){ // ensure we make db query once
+			$this->userPages = $this->permissions()->pluck('permission')->toArray();
+		}
+		return $this->userPages;
+	}
+	
+	/**
+     * return user role names
+     * @return array
+     */
+	public function getRoleNames(){
+		if(empty($this->roleNames)){// ensure we make db query once
+			$this->roleNames = $this->roles()->pluck('role_name')->toArray();
+		}
+		return $this->roleNames;
+	}
+	
+	/**
+     * check if user has a role
+     * @return bool
+     */
+	public function hasRole($arrRoles){
+		if(!is_array($arrRoles)){
+			$arrRoles = [$arrRoles];
+		}
+		$userRoles = $this->getRoleNames();
+		if(array_intersect(array_map('strtolower', $userRoles), array_map('strtolower', $arrRoles))){
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+     * check if user is the owner of the record
+     * @return bool
+     */
+	public function isOwner($recId){
+		return $this->UserId() == $recId;
+	}
+	
+	/**
+     * check if user can access page
+     * @return bool
+     */
+	public function canAccess($path){
+		$userPages = $this->getUserPages();
+		$arrPaths = explode("/", strtolower($path));
+		$page = $arrPaths[0] ?? "home";
+		$action = $arrPaths[1] ?? "index";
+		$page_path = "$page/$action";
+		return in_array($page_path, $userPages);
+	}
+	
+	/**
+     * check if user is the owner of the record or has role that can edit or delete it
+     * @return bool
+     */
+	public function canManage($path, $recId){
+		return false;
 	}
 }

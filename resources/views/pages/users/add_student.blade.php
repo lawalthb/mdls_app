@@ -95,7 +95,50 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         </div>
                                     </div>
                                 </div>
-                                <input id="ctrl-is_active" data-field="is_active"  value="<?php echo get_value('is_active', "Yes") ?>" type="hidden" placeholder="Enter Is Active"  name="is_active"  class="form-control " />
+                                <div class="form-group ">
+                                    <label class="control-label" for="is_active">Is Active </label>
+                                    <div id="ctrl-is_active-holder" class=" "> 
+                                        <select  id="ctrl-is_active" data-field="is_active" name="is_active"  placeholder="Select a value ..."    class="form-select" >
+                                        <option value="">Select a value ...</option>
+                                        <?php
+                                            $options = Menu::isActive();
+                                            if(!empty($options)){
+                                            foreach($options as $option){
+                                            $value = $option['value'];
+                                            $label = $option['label'];
+                                            $selected = Html::get_field_selected('is_active', $value, "");
+                                        ?>
+                                        <option <?php echo $selected ?> value="<?php echo $value ?>">
+                                        <?php echo $label ?>
+                                        </option>                                   
+                                        <?php
+                                            }
+                                            }
+                                        ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label" for="user_role_id">User Role Id </label>
+                                    <div id="ctrl-user_role_id-holder" class=" "> 
+                                        <select  id="ctrl-user_role_id" data-field="user_role_id" name="user_role_id"  placeholder="Select a value ..."    class="form-select" >
+                                        <option value="">Select a value ...</option>
+                                        <?php 
+                                            $options = $comp_model->role_id_option_list() ?? [];
+                                            foreach($options as $option){
+                                            $value = $option->value;
+                                            $label = $option->label ?? $value;
+                                            $selected = Html::get_field_selected('user_role_id', $value, "");
+                                        ?>
+                                        <option <?php echo $selected; ?> value="<?php echo $value; ?>">
+                                        <?php echo $label; ?>
+                                        </option>
+                                        <?php
+                                            }
+                                        ?>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-ajax-status"></div>
                             <div class="bg-light p-2 subform">

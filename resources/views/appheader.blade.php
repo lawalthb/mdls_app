@@ -12,6 +12,8 @@
         </button>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <div class="me-auto"></div>
+            {{ Html::render_menu(Menu::navbartopleft()  , "navbar-nav me-auto" ) }}
+            {{ Html::render_menu(Menu::navbartopright()  , "navbar-nav" ) }}
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
@@ -55,6 +57,9 @@
     </a>
     <h5 class="user-name">Hi 
     <?php echo $user->UserName(); ?>
+    <?php $userRoles = $user->getRoleNames(); ?>
+    <br />
+    <small class="text-muted text-capitalize"> <?php echo implode(", ", $userRoles); ?></small>
     </h5>
     <div class="dropdown menu-dropdown">
         <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

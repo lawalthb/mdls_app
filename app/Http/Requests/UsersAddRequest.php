@@ -31,6 +31,7 @@ class UsersAddRequest extends FormRequest
 				"password" => "required|same:confirm_password",
 				"image" => "nullable",
 				"account_status" => "nullable|string",
+				"user_role_id" => "nullable",
             
         ];
     }

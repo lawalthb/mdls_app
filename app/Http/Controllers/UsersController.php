@@ -86,6 +86,7 @@ class UsersController extends Controller
 		
 		//save Users record
 		$record = Users::create($modeldata);
+		$record->assignRole("User"); //set default role for user
 		$rec_id = $record->id;
 		return $this->redirect("users", "Record added successfully");
 	}
@@ -173,6 +174,7 @@ class UsersController extends Controller
 		
 		//save Users record
 		$record = Users::create($modeldata);
+		$record->assignRole("User"); //set default role for user
 		$rec_id = $record->id;
 		
         // set studentdetails.user_id to users.id

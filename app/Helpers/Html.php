@@ -32,7 +32,7 @@ class Html
 	 */
 	public static function render_menu($arrMenu, $menu_class = "nav navbar-nav", $menu_type = "dropdown")
 	{
-		//acl validation$user =  auth()->user();
+		$user =  auth()->user();
 
 		$page_name = request()->segment(1, "index");
 		$page_action = request()->segment(2, "index");
@@ -59,7 +59,7 @@ class Html
 
 					$menu_path = urldecode(trim(parse_url($menu_url, PHP_URL_PATH), "/"));
 					$page_path = urldecode(trim(parse_url(url()->current(), PHP_URL_PATH), "/"));
-					//acl validationif ($user->canAccess($menu_path)) {
+					if ($user->canAccess($menu_path)) {
 					$active_class = null;
 					if ($page_name == $menu_path || $page_path == $menu_path) {
 						$active_class = "active";
@@ -97,7 +97,7 @@ class Html
 						</li>
 				<?php
 					}
-					//acl validation}
+					}
 				}
 				?>
 			</ul>
@@ -112,7 +112,7 @@ class Html
 	 */
 	public static function render_submenu($arrMenu, $menu_type = "dropdown", $parent_id = null, $group_id = null)
 	{
-		//acl validation$user =  auth()->user();
+		$user =  auth()->user();
 
 		$page_name = request()->segment(1, "index");
 		$page_action = request()->segment(2, "index");
@@ -142,7 +142,7 @@ class Html
 				foreach ($arrMenu as $key => $menu_obj) {
 					$menu_url = $menu_obj['path'];
 					$menu_path = trim(parse_url($menu_url, PHP_URL_PATH), "/");
-					//acl validationif ($user->canAccess($menu_path)) {
+					if ($user->canAccess($menu_path)) {
 					$active_class = null;
 					if ($page_name == $menu_path || $page_path == $menu_path) {
 						$active_class = "active";
@@ -168,7 +168,7 @@ class Html
 						</li>
 				<?php
 					}
-					//acl validation}
+					}
 				}
 				?>
 			</ul>

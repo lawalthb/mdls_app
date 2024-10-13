@@ -176,6 +176,50 @@
 			'path' => 'menu9',
 			'label' => "LogOut", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_left</i>'
+		],
+		
+		[
+			'path' => 'permissions',
+			'label' => "Permissions", 
+			'icon' => '<i class="material-icons">extension</i>'
+		],
+		
+		[
+			'path' => 'roles',
+			'label' => "Roles", 
+			'icon' => '<i class="material-icons">extension</i>'
+		]
+	] ;
+	}
+	
+	public static function navbartopleft(){
+		return [
+		[
+			'path' => 'permissions',
+			'label' => "Permissions", 
+			'icon' => '<i class="material-icons">extension</i>'
+		],
+		
+		[
+			'path' => 'roles',
+			'label' => "Roles", 
+			'icon' => '<i class="material-icons">extension</i>'
+		]
+	] ;
+	}
+	
+	public static function navbartopright(){
+		return [
+		[
+			'path' => 'permissions',
+			'label' => "Permissions", 
+			'icon' => '<i class="material-icons">extension</i>'
+		],
+		
+		[
+			'path' => 'roles',
+			'label' => "Roles", 
+			'icon' => '<i class="material-icons">extension</i>'
 		]
 	] ;
 	}

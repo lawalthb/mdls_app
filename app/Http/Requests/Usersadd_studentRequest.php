@@ -31,6 +31,7 @@ class Usersadd_studentRequest extends FormRequest
 				"account_status" => "nullable",
 				"image" => "nullable",
 				"is_active" => "nullable",
+				"user_role_id" => "nullable",
             
         ];
     }

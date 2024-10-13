@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Users;
 use App\Http\Requests\UsersRegisterRequest;
+use App\Models\permissions;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
@@ -69,6 +70,7 @@ class AuthController extends Controller{
 		
 		//save Users record
 		$user = $record = Users::create($modeldata);
+		$user->assignRole("User"); //set default role for user
 		$rec_id = $record->id;
 		return redirect('/auth/accountcreated'); //show registration completed page
 	}

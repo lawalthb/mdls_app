@@ -4,6 +4,11 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
 -->
 @inject('comp_model', 'App\Models\ComponentsData')
 <?php
+    //check if current user role is allowed access to the pages
+    $can_add = $user->canAccess("appsettings/add");
+    $can_edit = $user->canAccess("appsettings/edit");
+    $can_view = $user->canAccess("appsettings/view");
+    $can_delete = $user->canAccess("appsettings/delete");
     $pageTitle = "App Setting Details"; //set dynamic page title
 ?>
 @extends($layout)
@@ -132,12 +137,16 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                 </div>
                                 <!--PageComponentEnd-->
                                 <div class="d-flex align-items-center gap-2">
+                                    <?php if($can_edit){ ?>
                                     <a class="btn btn-sm btn-success has-tooltip "   title="Edit" href="<?php print_link("appsettings/edit/$rec_id"); ?>" >
                                     <i class="material-icons">edit</i> Edit
                                 </a>
+                                <?php } ?>
+                                <?php if($can_delete){ ?>
                                 <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" title="Delete" href="<?php print_link("appsettings/delete/$rec_id?redirect=appsettings"); ?>" >
                                 <i class="material-icons">delete_sweep</i> Delete
                             </a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

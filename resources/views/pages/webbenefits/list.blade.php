@@ -4,6 +4,11 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
 -->
 @inject('comp_model', 'App\Models\ComponentsData')
 <?php
+    //check if current user role is allowed access to the pages
+    $can_add = $user->canAccess("webbenefits/add");
+    $can_edit = $user->canAccess("webbenefits/edit");
+    $can_view = $user->canAccess("webbenefits/view");
+    $can_delete = $user->canAccess("webbenefits/delete");
     $field_name = request()->segment(3);
     $field_value = request()->segment(4);
     $total_records = $records->total();
@@ -27,10 +32,12 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                     </div>
                 </div>
                 <div class="col-auto  " >
+                    <?php if($can_add){ ?>
                     <a  class="btn btn-primary btn-block" href="<?php print_link("webbenefits/add", true) ?>" >
                     <i class="material-icons">add</i>                               
                     Add New Web Benefit 
                 </a>
+                <?php } ?>
             </div>
             <div class="col-md-3  " >
                 <!-- Page drop down search component -->
@@ -63,11 +70,13 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <table class="table table-hover table-striped table-sm text-left">
                                 <thead class="table-header ">
                                     <tr>
+                                        <?php if($can_delete){ ?>
                                         <th class="td-checkbox">
                                         <label class="form-check-label">
                                         <input class="toggle-check-all form-check-input" type="checkbox" />
                                         </label>
                                         </th>
+                                        <?php } ?>
                                         <th class="td-id" > Id</th>
                                         <th class="td-title" > Title</th>
                                         <th class="td-icon" > Icon</th>
@@ -92,11 +101,13 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         $counter++;
                                     ?>
                                     <tr>
+                                        <?php if($can_delete){ ?>
                                         <td class=" td-checkbox">
                                             <label class="form-check-label">
                                             <input class="optioncheck form-check-input" name="optioncheck[]" value="<?php echo $data['id'] ?>" type="checkbox" />
                                             </label>
                                         </td>
+                                        <?php } ?>
                                         <!--PageComponentStart-->
                                         <td class="td-id">
                                             <a href="<?php print_link("/webbenefits/view/$data[id]") ?>"><?php echo $data['id']; ?></a>
@@ -136,15 +147,21 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             <i class="material-icons">menu</i> 
                                             </button>
                                             <ul class="dropdown-menu">
+                                                <?php if($can_view){ ?>
                                                 <a class="dropdown-item "   href="<?php print_link("webbenefits/view/$rec_id"); ?>" >
                                                 <i class="material-icons">visibility</i> View
                                             </a>
+                                            <?php } ?>
+                                            <?php if($can_edit){ ?>
                                             <a class="dropdown-item "   href="<?php print_link("webbenefits/edit/$rec_id"); ?>" >
                                             <i class="material-icons">edit</i> Edit
                                         </a>
+                                        <?php } ?>
+                                        <?php if($can_delete){ ?>
                                         <a class="dropdown-item record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" href="<?php print_link("webbenefits/delete/$rec_id"); ?>" >
                                         <i class="material-icons">delete_sweep</i> Delete
                                     </a>
+                                    <?php } ?>
                                 </ul>
                             </div>
                         </td>
@@ -177,9 +194,11 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
         <div class=" mt-3">
             <div class="row align-items-center justify-content-between">    
                 <div class="col-md-auto d-flex">    
+                    <?php if($can_delete){ ?>
                     <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("webbenefits/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
                     <i class="material-icons">delete_sweep</i> Delete Selected
                     </button>
+                    <?php } ?>
                 </div>
                 <div class="col">   
                     <?php

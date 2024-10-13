@@ -44,7 +44,7 @@ use Illuminate\Support\Facades\Mail;
 /**
  * All routes which requires auth
  */
-Route::middleware(['auth', 'accountstatus'])->group(function () {
+Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 		
 	Route::get('home', 'HomeController@index')->name('home');
 
@@ -54,7 +54,7 @@ Route::middleware(['auth', 'accountstatus'])->group(function () {
 	Route::get('admins', 'AdminsController@index')->name('admins.index');
 	Route::get('admins/index/{filter?}/{filtervalue?}', 'AdminsController@index')->name('admins.index');	
 	Route::get('admins/view/{rec_id}', 'AdminsController@view')->name('admins.view');
-	Route::get('admins/masterdetail/{rec_id}', 'AdminsController@masterDetail')->name('admins.masterdetail');	
+	Route::get('admins/masterdetail/{rec_id}', 'AdminsController@masterDetail')->name('admins.masterdetail')->withoutMiddleware(['rbac']);	
 	Route::get('admins/add', 'AdminsController@add')->name('admins.add');
 	Route::post('admins/add', 'AdminsController@store')->name('admins.store');
 		
@@ -75,7 +75,7 @@ Route::middleware(['auth', 'accountstatus'])->group(function () {
 	Route::get('classes', 'ClassesController@index')->name('classes.index');
 	Route::get('classes/index/{filter?}/{filtervalue?}', 'ClassesController@index')->name('classes.index');	
 	Route::get('classes/view/{rec_id}', 'ClassesController@view')->name('classes.view');
-	Route::get('classes/masterdetail/{rec_id}', 'ClassesController@masterDetail')->name('classes.masterdetail');	
+	Route::get('classes/masterdetail/{rec_id}', 'ClassesController@masterDetail')->name('classes.masterdetail')->withoutMiddleware(['rbac']);	
 	Route::get('classes/add', 'ClassesController@add')->name('classes.add');
 	Route::post('classes/add', 'ClassesController@store')->name('classes.store');
 		
@@ -106,7 +106,7 @@ Route::middleware(['auth', 'accountstatus'])->group(function () {
 	Route::get('examsheets', 'ExamSheetsController@index')->name('examsheets.index');
 	Route::get('examsheets/index/{filter?}/{filtervalue?}', 'ExamSheetsController@index')->name('examsheets.index');	
 	Route::get('examsheets/view/{rec_id}', 'ExamSheetsController@view')->name('examsheets.view');
-	Route::get('examsheets/masterdetail/{rec_id}', 'ExamSheetsController@masterDetail')->name('examsheets.masterdetail');	
+	Route::get('examsheets/masterdetail/{rec_id}', 'ExamSheetsController@masterDetail')->name('examsheets.masterdetail')->withoutMiddleware(['rbac']);	
 	Route::get('examsheets/add', 'ExamSheetsController@add')->name('examsheets.add');
 	Route::post('examsheets/add', 'ExamSheetsController@store')->name('examsheets.store');
 		
@@ -117,7 +117,7 @@ Route::middleware(['auth', 'accountstatus'])->group(function () {
 	Route::get('grades', 'GradesController@index')->name('grades.index');
 	Route::get('grades/index/{filter?}/{filtervalue?}', 'GradesController@index')->name('grades.index');	
 	Route::get('grades/view/{rec_id}', 'GradesController@view')->name('grades.view');
-	Route::get('grades/masterdetail/{rec_id}', 'GradesController@masterDetail')->name('grades.masterdetail');	
+	Route::get('grades/masterdetail/{rec_id}', 'GradesController@masterDetail')->name('grades.masterdetail')->withoutMiddleware(['rbac']);	
 	Route::get('grades/add', 'GradesController@add')->name('grades.add');
 	Route::post('grades/add', 'GradesController@store')->name('grades.store');
 		
@@ -144,22 +144,43 @@ Route::middleware(['auth', 'accountstatus'])->group(function () {
 	Route::any('parents/edit/{rec_id}', 'ParentsController@edit')->name('parents.edit');	
 	Route::get('parents/delete/{rec_id}', 'ParentsController@delete');
 
+/* routes for Permissions Controller */
+	Route::get('permissions', 'PermissionsController@index')->name('permissions.index');
+	Route::get('permissions/index/{filter?}/{filtervalue?}', 'PermissionsController@index')->name('permissions.index');	
+	Route::get('permissions/view/{rec_id}', 'PermissionsController@view')->name('permissions.view');	
+	Route::get('permissions/add', 'PermissionsController@add')->name('permissions.add');
+	Route::post('permissions/add', 'PermissionsController@store')->name('permissions.store');
+		
+	Route::any('permissions/edit/{rec_id}', 'PermissionsController@edit')->name('permissions.edit');	
+	Route::get('permissions/delete/{rec_id}', 'PermissionsController@delete');
+
 /* routes for Plans Controller */
 	Route::get('plans', 'PlansController@index')->name('plans.index');
 	Route::get('plans/index/{filter?}/{filtervalue?}', 'PlansController@index')->name('plans.index');	
 	Route::get('plans/view/{rec_id}', 'PlansController@view')->name('plans.view');
-	Route::get('plans/masterdetail/{rec_id}', 'PlansController@masterDetail')->name('plans.masterdetail');	
+	Route::get('plans/masterdetail/{rec_id}', 'PlansController@masterDetail')->name('plans.masterdetail')->withoutMiddleware(['rbac']);	
 	Route::get('plans/add', 'PlansController@add')->name('plans.add');
 	Route::post('plans/add', 'PlansController@store')->name('plans.store');
 		
 	Route::any('plans/edit/{rec_id}', 'PlansController@edit')->name('plans.edit');	
 	Route::get('plans/delete/{rec_id}', 'PlansController@delete');
 
+/* routes for Roles Controller */
+	Route::get('roles', 'RolesController@index')->name('roles.index');
+	Route::get('roles/index/{filter?}/{filtervalue?}', 'RolesController@index')->name('roles.index');	
+	Route::get('roles/view/{rec_id}', 'RolesController@view')->name('roles.view');
+	Route::get('roles/masterdetail/{rec_id}', 'RolesController@masterDetail')->name('roles.masterdetail')->withoutMiddleware(['rbac']);	
+	Route::get('roles/add', 'RolesController@add')->name('roles.add');
+	Route::post('roles/add', 'RolesController@store')->name('roles.store');
+		
+	Route::any('roles/edit/{rec_id}', 'RolesController@edit')->name('roles.edit');	
+	Route::get('roles/delete/{rec_id}', 'RolesController@delete');
+
 /* routes for Sessions Controller */
 	Route::get('sessions', 'SessionsController@index')->name('sessions.index');
 	Route::get('sessions/index/{filter?}/{filtervalue?}', 'SessionsController@index')->name('sessions.index');	
 	Route::get('sessions/view/{rec_id}', 'SessionsController@view')->name('sessions.view');
-	Route::get('sessions/masterdetail/{rec_id}', 'SessionsController@masterDetail')->name('sessions.masterdetail');	
+	Route::get('sessions/masterdetail/{rec_id}', 'SessionsController@masterDetail')->name('sessions.masterdetail')->withoutMiddleware(['rbac']);	
 	Route::get('sessions/add', 'SessionsController@add')->name('sessions.add');
 	Route::post('sessions/add', 'SessionsController@store')->name('sessions.store');
 		
@@ -180,7 +201,7 @@ Route::middleware(['auth', 'accountstatus'])->group(function () {
 	Route::get('subjects', 'SubjectsController@index')->name('subjects.index');
 	Route::get('subjects/index/{filter?}/{filtervalue?}', 'SubjectsController@index')->name('subjects.index');	
 	Route::get('subjects/view/{rec_id}', 'SubjectsController@view')->name('subjects.view');
-	Route::get('subjects/masterdetail/{rec_id}', 'SubjectsController@masterDetail')->name('subjects.masterdetail');	
+	Route::get('subjects/masterdetail/{rec_id}', 'SubjectsController@masterDetail')->name('subjects.masterdetail')->withoutMiddleware(['rbac']);	
 	Route::get('subjects/add', 'SubjectsController@add')->name('subjects.add');
 	Route::post('subjects/add', 'SubjectsController@store')->name('subjects.store');
 		
@@ -191,7 +212,7 @@ Route::middleware(['auth', 'accountstatus'])->group(function () {
 	Route::get('terms', 'TermsController@index')->name('terms.index');
 	Route::get('terms/index/{filter?}/{filtervalue?}', 'TermsController@index')->name('terms.index');	
 	Route::get('terms/view/{rec_id}', 'TermsController@view')->name('terms.view');
-	Route::get('terms/masterdetail/{rec_id}', 'TermsController@masterDetail')->name('terms.masterdetail');	
+	Route::get('terms/masterdetail/{rec_id}', 'TermsController@masterDetail')->name('terms.masterdetail')->withoutMiddleware(['rbac']);	
 	Route::get('terms/add', 'TermsController@add')->name('terms.add');
 	Route::post('terms/add', 'TermsController@store')->name('terms.store');
 		
@@ -212,7 +233,7 @@ Route::middleware(['auth', 'accountstatus'])->group(function () {
 	Route::get('users', 'UsersController@index')->name('users.index');
 	Route::get('users/index/{filter?}/{filtervalue?}', 'UsersController@index')->name('users.index');	
 	Route::get('users/view/{rec_id}', 'UsersController@view')->name('users.view');
-	Route::get('users/masterdetail/{rec_id}', 'UsersController@masterDetail')->name('users.masterdetail');	
+	Route::get('users/masterdetail/{rec_id}', 'UsersController@masterDetail')->name('users.masterdetail')->withoutMiddleware(['rbac']);	
 	Route::any('account/edit', 'AccountController@edit')->name('account.edit');	
 	Route::get('account', 'AccountController@index');	
 	Route::post('account/changepassword', 'AccountController@changepassword')->name('account.changepassword');	
@@ -251,7 +272,7 @@ Route::middleware(['auth', 'accountstatus'])->group(function () {
 	Route::get('webblogcategories', 'WebBlogCategoriesController@index')->name('webblogcategories.index');
 	Route::get('webblogcategories/index/{filter?}/{filtervalue?}', 'WebBlogCategoriesController@index')->name('webblogcategories.index');	
 	Route::get('webblogcategories/view/{rec_id}', 'WebBlogCategoriesController@view')->name('webblogcategories.view');
-	Route::get('webblogcategories/masterdetail/{rec_id}', 'WebBlogCategoriesController@masterDetail')->name('webblogcategories.masterdetail');	
+	Route::get('webblogcategories/masterdetail/{rec_id}', 'WebBlogCategoriesController@masterDetail')->name('webblogcategories.masterdetail')->withoutMiddleware(['rbac']);	
 	Route::get('webblogcategories/add', 'WebBlogCategoriesController@add')->name('webblogcategories.add');
 	Route::post('webblogcategories/add', 'WebBlogCategoriesController@store')->name('webblogcategories.store');
 		
@@ -454,6 +475,12 @@ Route::get('componentsdata/grade_id_option_list',  function(Request $request){
 Route::get('componentsdata/term_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->term_id_option_list($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/role_id_option_list',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->role_id_option_list($request);
 	}
 )->middleware(['auth']);
 	

@@ -25,13 +25,10 @@ class ExamSheetPerformancesAddRequest extends FormRequest
 		
         return [
             
-				"row.*.user_id" => "required",
 				"row.*.subject_id" => "required",
 				"row.*.ca_score" => "required|numeric",
 				"row.*.exam_score" => "required|numeric",
-				"row.*.pratical_score" => "required|numeric",
 				"row.*.total" => "required|numeric",
-				"row.*.grade_id" => "required",
 				"row.*.remark" => "required|string",
 				"row.*.updated_by" => "required",
             

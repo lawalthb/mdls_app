@@ -25,13 +25,10 @@ class ExamSheetPerformancesEditRequest extends FormRequest
 		
         return [
             
-				"user_id" => "filled",
 				"subject_id" => "filled",
 				"ca_score" => "filled|numeric",
 				"exam_score" => "filled|numeric",
-				"pratical_score" => "filled|numeric",
 				"total" => "filled|numeric",
-				"grade_id" => "filled",
 				"remark" => "filled|string",
 				"updated_by" => "filled",
             

@@ -28,7 +28,7 @@ class ExamSheetPerformances extends Model
      * @var array
      */
 	protected $fillable = [
-		'exam_sheet_id','user_id','subject_id','ca_score','exam_score','pratical_score','total','grade_id','remark','updated_by'
+		'exam_sheet_id','subject_id','ca_score','exam_score','total','remark','updated_by'
 	];
 	public $timestamps = false;
 	
@@ -61,13 +61,11 @@ class ExamSheetPerformances extends Model
 		return [ 
 			"id",
 			"exam_sheet_id",
-			"user_id",
 			"subject_id",
 			"ca_score",
 			"exam_score",
 			"pratical_score",
 			"total",
-			"grade_id",
 			"remark",
 			"created_at",
 			"updated_at",
@@ -85,13 +83,11 @@ class ExamSheetPerformances extends Model
 		return [ 
 			"id",
 			"exam_sheet_id",
-			"user_id",
 			"subject_id",
 			"ca_score",
 			"exam_score",
 			"pratical_score",
 			"total",
-			"grade_id",
 			"remark",
 			"created_at",
 			"updated_at",
@@ -109,13 +105,11 @@ class ExamSheetPerformances extends Model
 		return [ 
 			"id",
 			"exam_sheet_id",
-			"user_id",
 			"subject_id",
 			"ca_score",
 			"exam_score",
 			"pratical_score",
 			"total",
-			"grade_id",
 			"remark",
 			"created_at",
 			"updated_at",
@@ -133,13 +127,11 @@ class ExamSheetPerformances extends Model
 		return [ 
 			"id",
 			"exam_sheet_id",
-			"user_id",
 			"subject_id",
 			"ca_score",
 			"exam_score",
 			"pratical_score",
 			"total",
-			"grade_id",
 			"remark",
 			"created_at",
 			"updated_at",
@@ -155,17 +147,14 @@ class ExamSheetPerformances extends Model
      */
 	public static function editFields(){
 		return [ 
-			"id",
 			"exam_sheet_id",
-			"user_id",
 			"subject_id",
 			"ca_score",
 			"exam_score",
-			"pratical_score",
 			"total",
-			"grade_id",
 			"remark",
-			"updated_by" 
+			"updated_by",
+			"id" 
 		];
 	}
 }

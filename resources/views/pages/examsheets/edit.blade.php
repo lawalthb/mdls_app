@@ -202,6 +202,8 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-director_approval-holder" class=" ">
+                                            <select required=""  id="ctrl-director_approval" data-field="director_approval" name="director_approval"  placeholder="Select a value ..."    class="form-select" >
+                                            <option value="">Select a value ...</option>
                                             <?php
                                                 $options = Menu::directorApproval();
                                                 $field_value = $data['director_approval'];
@@ -209,17 +211,16 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 foreach($options as $option){
                                                 $value = $option['value'];
                                                 $label = $option['label'];
-                                                //check if value is among checked options
-                                                $checked = Html::get_record_checked($field_value, $value);
+                                                $selected = Html::get_record_selected($field_value, $value);
                                             ?>
-                                            <label class="form-check form-check-inline">
-                                            <input class="form-check-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="director_approval" />
-                                            <span class="form-check-label"><?php echo $label ?></span>
-                                            </label>
+                                            <option <?php echo $selected ?> value="<?php echo $value ?>">
+                                            <?php echo $label ?>
+                                            </option>                                   
                                             <?php
                                                 }
                                                 }
                                             ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

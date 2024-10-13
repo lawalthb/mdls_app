@@ -80,10 +80,10 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     <div class="bg-light mb-1 card-1 p-2 border rounded">
                                         <div class="row align-items-center">
                                             <div class="col">
-                                                <small class="text-muted">User Id</small>
+                                                <small class="text-muted">Subject Id</small>
                                                 <div class="fw-bold">
-                                                    <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[user_id]?subpage=1") ?>">
-                                                    <i class="material-icons">visibility</i> <?php echo "Users Detail" ?>
+                                                    <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("subjects/view/$data[subject_id]?subpage=1") ?>">
+                                                    <i class="material-icons">visibility</i> <?php echo "Subjects Detail" ?>
                                                 </a>
                                             </div>
                                         </div>
@@ -94,155 +94,127 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                 <div class="bg-light mb-1 card-1 p-2 border rounded">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <small class="text-muted">Subject Id</small>
+                                            <small class="text-muted">Ca Score</small>
                                             <div class="fw-bold">
-                                                <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("subjects/view/$data[subject_id]?subpage=1") ?>">
-                                                <i class="material-icons">visibility</i> <?php echo "Subjects Detail" ?>
+                                                <?php echo  $data['ca_score'] ; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <small class="text-muted">Exam Score</small>
+                                            <div class="fw-bold">
+                                                <?php echo  $data['exam_score'] ; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <small class="text-muted">Pratical Score</small>
+                                            <div class="fw-bold">
+                                                <?php echo  $data['pratical_score'] ; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <small class="text-muted">Total</small>
+                                            <div class="fw-bold">
+                                                <?php echo  $data['total'] ; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <small class="text-muted">Remark</small>
+                                            <div class="fw-bold">
+                                                <?php echo  $data['remark'] ; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <small class="text-muted">Created At</small>
+                                            <div class="fw-bold">
+                                                <?php echo  $data['created_at'] ; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <small class="text-muted">Updated At</small>
+                                            <div class="fw-bold">
+                                                <?php echo  $data['updated_at'] ; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <small class="text-muted">Updated By</small>
+                                            <div class="fw-bold">
+                                                <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[updated_by]?subpage=1") ?>">
+                                                <i class="material-icons">visibility</i> <?php echo "Users Detail" ?>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <small class="text-muted">Ca Score</small>
-                                        <div class="fw-bold">
-                                            <?php echo  $data['ca_score'] ; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <small class="text-muted">Exam Score</small>
-                                        <div class="fw-bold">
-                                            <?php echo  $data['exam_score'] ; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <small class="text-muted">Pratical Score</small>
-                                        <div class="fw-bold">
-                                            <?php echo  $data['pratical_score'] ; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <small class="text-muted">Total</small>
-                                        <div class="fw-bold">
-                                            <?php echo  $data['total'] ; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <small class="text-muted">Grade Id</small>
-                                        <div class="fw-bold">
-                                            <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("grades/view/$data[grade_id]?subpage=1") ?>">
-                                            <i class="material-icons">visibility</i> <?php echo "Grades Detail" ?>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-12">
-                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <small class="text-muted">Remark</small>
-                                    <div class="fw-bold">
-                                        <?php echo  $data['remark'] ; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <small class="text-muted">Created At</small>
-                                    <div class="fw-bold">
-                                        <?php echo  $data['created_at'] ; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <small class="text-muted">Updated At</small>
-                                    <div class="fw-bold">
-                                        <?php echo  $data['updated_at'] ; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <small class="text-muted">Updated By</small>
-                                    <div class="fw-bold">
-                                        <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[updated_by]?subpage=1") ?>">
-                                        <i class="material-icons">visibility</i> <?php echo "Users Detail" ?>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <!--PageComponentEnd-->
+                    <div class="d-flex align-items-center gap-2">
+                        <?php if($can_edit){ ?>
+                        <a class="btn btn-sm btn-success has-tooltip "   title="Edit" href="<?php print_link("examsheetperformances/edit/$rec_id"); ?>" >
+                        <i class="material-icons">edit</i> Edit
+                    </a>
+                    <?php } ?>
+                    <?php if($can_delete){ ?>
+                    <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" title="Delete" href="<?php print_link("examsheetperformances/delete/$rec_id?redirect=examsheetperformances"); ?>" >
+                    <i class="material-icons">delete_sweep</i> Delete
+                </a>
+                <?php } ?>
             </div>
-            <!--PageComponentEnd-->
-            <div class="d-flex align-items-center gap-2">
-                <?php if($can_edit){ ?>
-                <a class="btn btn-sm btn-success has-tooltip "   title="Edit" href="<?php print_link("examsheetperformances/edit/$rec_id"); ?>" >
-                <i class="material-icons">edit</i> Edit
-            </a>
-            <?php } ?>
-            <?php if($can_delete){ ?>
-            <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" title="Delete" href="<?php print_link("examsheetperformances/delete/$rec_id?redirect=examsheetperformances"); ?>" >
-            <i class="material-icons">delete_sweep</i> Delete
-        </a>
-        <?php } ?>
+        </div>
     </div>
-</div>
-</div>
-<?php
-    }
-    else{
-?>
-<!-- Empty Record Message -->
-<div class="text-muted p-3">
-    <i class="material-icons">block</i> No Record Found
-</div>
-<?php
-    }
-?>
+    <?php
+        }
+        else{
+    ?>
+    <!-- Empty Record Message -->
+    <div class="text-muted p-3">
+        <i class="material-icons">block</i> No Record Found
+    </div>
+    <?php
+        }
+    ?>
 </div>
 </div>
 </div>

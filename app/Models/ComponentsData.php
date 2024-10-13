@@ -49,18 +49,6 @@ class ComponentsData{
 	
 
 	/**
-     * grade_id_option_list Model Action
-     * @return array
-     */
-	function grade_id_option_list(){
-		$sqltext = "SELECT id as value, name as label FROM grades";
-		$query_params = [];
-		$arr = DB::select($sqltext, $query_params);
-		return $arr;
-	}
-	
-
-	/**
      * term_id_option_list Model Action
      * @return array
      */

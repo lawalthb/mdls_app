@@ -464,12 +464,6 @@ Route::get('componentsdata/subject_id_option_list',  function(Request $request){
 	}
 )->middleware(['auth']);
 	
-Route::get('componentsdata/grade_id_option_list',  function(Request $request){
-		$compModel = new App\Models\ComponentsData();
-		return $compModel->grade_id_option_list($request);
-	}
-)->middleware(['auth']);
-	
 Route::get('componentsdata/term_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->term_id_option_list($request);

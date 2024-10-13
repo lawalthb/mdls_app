@@ -76,13 +76,10 @@ class ExamSheetsController extends Controller
 		
 		//Validate ExamSheetPerformances form data
 		$examsheetperformancesPostData = $request->examsheetperformances;
-		$examsheetperformancesValidator = validator()->make($examsheetperformancesPostData, ["*.user_id" => "required",
-				"*.subject_id" => "required",
+		$examsheetperformancesValidator = validator()->make($examsheetperformancesPostData, ["*.subject_id" => "required",
 				"*.ca_score" => "required|numeric",
 				"*.exam_score" => "required|numeric",
-				"*.pratical_score" => "required|numeric",
 				"*.total" => "required|numeric",
-				"*.grade_id" => "required",
 				"*.remark" => "required|string",
 				"*.updated_by" => "required"]);
 		if ($examsheetperformancesValidator->fails()) {

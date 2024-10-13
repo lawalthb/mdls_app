@@ -79,13 +79,11 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <?php } ?>
                                         <th class="td-id" > Id</th>
                                         <th class="td-exam_sheet_id" > Exam Sheet Id</th>
-                                        <th class="td-user_id" > User Id</th>
                                         <th class="td-subject_id" > Subject Id</th>
                                         <th class="td-ca_score" > Ca Score</th>
                                         <th class="td-exam_score" > Exam Score</th>
                                         <th class="td-pratical_score" > Pratical Score</th>
                                         <th class="td-total" > Total</th>
-                                        <th class="td-grade_id" > Grade Id</th>
                                         <th class="td-remark" > Remark</th>
                                         <th class="td-created_at" > Created At</th>
                                         <th class="td-updated_at" > Updated At</th>
@@ -121,94 +119,84 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             <i class="material-icons">visibility</i> <?php echo "Exam Sheets" ?>
                                         </a>
                                     </td>
-                                    <td class="td-user_id">
-                                        <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[user_id]?subpage=1") ?>">
-                                        <i class="material-icons">visibility</i> <?php echo "Users" ?>
+                                    <td class="td-subject_id">
+                                        <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("subjects/view/$data[subject_id]?subpage=1") ?>">
+                                        <i class="material-icons">visibility</i> <?php echo "Subjects" ?>
                                     </a>
                                 </td>
-                                <td class="td-subject_id">
-                                    <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("subjects/view/$data[subject_id]?subpage=1") ?>">
-                                    <i class="material-icons">visibility</i> <?php echo "Subjects" ?>
+                                <td class="td-ca_score">
+                                    <?php echo  $data['ca_score'] ; ?>
+                                </td>
+                                <td class="td-exam_score">
+                                    <?php echo  $data['exam_score'] ; ?>
+                                </td>
+                                <td class="td-pratical_score">
+                                    <?php echo  $data['pratical_score'] ; ?>
+                                </td>
+                                <td class="td-total">
+                                    <?php echo  $data['total'] ; ?>
+                                </td>
+                                <td class="td-remark">
+                                    <?php echo  $data['remark'] ; ?>
+                                </td>
+                                <td class="td-created_at">
+                                    <?php echo  $data['created_at'] ; ?>
+                                </td>
+                                <td class="td-updated_at">
+                                    <?php echo  $data['updated_at'] ; ?>
+                                </td>
+                                <td class="td-updated_by">
+                                    <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[updated_by]?subpage=1") ?>">
+                                    <i class="material-icons">visibility</i> <?php echo "Users" ?>
                                 </a>
                             </td>
-                            <td class="td-ca_score">
-                                <?php echo  $data['ca_score'] ; ?>
-                            </td>
-                            <td class="td-exam_score">
-                                <?php echo  $data['exam_score'] ; ?>
-                            </td>
-                            <td class="td-pratical_score">
-                                <?php echo  $data['pratical_score'] ; ?>
-                            </td>
-                            <td class="td-total">
-                                <?php echo  $data['total'] ; ?>
-                            </td>
-                            <td class="td-grade_id">
-                                <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("grades/view/$data[grade_id]?subpage=1") ?>">
-                                <i class="material-icons">visibility</i> <?php echo "Grades" ?>
-                            </a>
-                        </td>
-                        <td class="td-remark">
-                            <?php echo  $data['remark'] ; ?>
-                        </td>
-                        <td class="td-created_at">
-                            <?php echo  $data['created_at'] ; ?>
-                        </td>
-                        <td class="td-updated_at">
-                            <?php echo  $data['updated_at'] ; ?>
-                        </td>
-                        <td class="td-updated_by">
-                            <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[updated_by]?subpage=1") ?>">
-                            <i class="material-icons">visibility</i> <?php echo "Users" ?>
-                        </a>
-                    </td>
-                    <!--PageComponentEnd-->
-                    <td class="td-btn">
-                        <div class="dropdown" >
-                            <button data-bs-toggle="dropdown" class="dropdown-toggle btn text-primary btn-flat btn-sm">
-                            <i class="material-icons">menu</i> 
-                            </button>
-                            <ul class="dropdown-menu">
-                                <?php if($can_view){ ?>
-                                <a class="dropdown-item "   href="<?php print_link("examsheetperformances/view/$rec_id"); ?>" >
-                                <i class="material-icons">visibility</i> View
+                            <!--PageComponentEnd-->
+                            <td class="td-btn">
+                                <div class="dropdown" >
+                                    <button data-bs-toggle="dropdown" class="dropdown-toggle btn text-primary btn-flat btn-sm">
+                                    <i class="material-icons">menu</i> 
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <?php if($can_view){ ?>
+                                        <a class="dropdown-item "   href="<?php print_link("examsheetperformances/view/$rec_id"); ?>" >
+                                        <i class="material-icons">visibility</i> View
+                                    </a>
+                                    <?php } ?>
+                                    <?php if($can_edit){ ?>
+                                    <a class="dropdown-item "   href="<?php print_link("examsheetperformances/edit/$rec_id"); ?>" >
+                                    <i class="material-icons">edit</i> Edit
+                                </a>
+                                <?php } ?>
+                                <?php if($can_delete){ ?>
+                                <a class="dropdown-item record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" href="<?php print_link("examsheetperformances/delete/$rec_id"); ?>" >
+                                <i class="material-icons">delete_sweep</i> Delete
                             </a>
                             <?php } ?>
-                            <?php if($can_edit){ ?>
-                            <a class="dropdown-item "   href="<?php print_link("examsheetperformances/edit/$rec_id"); ?>" >
-                            <i class="material-icons">edit</i> Edit
-                        </a>
-                        <?php } ?>
-                        <?php if($can_delete){ ?>
-                        <a class="dropdown-item record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" href="<?php print_link("examsheetperformances/delete/$rec_id"); ?>" >
-                        <i class="material-icons">delete_sweep</i> Delete
-                    </a>
-                    <?php } ?>
-                </ul>
-            </div>
-        </td>
-    </tr>
-    <?php 
-        }
-    ?>
-    <!--endrecord-->
-</tbody>
-<tbody class="search-data"></tbody>
-<?php
-    }
-    else{
-?>
-<tbody class="page-data">
-    <tr>
-        <td class="bg-light text-center text-muted animated bounce p-3" colspan="1000">
-            <i class="material-icons">block</i> No record found
-        </td>
-    </tr>
-</tbody>
-<?php
-    }
-?>
-</table>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <?php 
+                }
+            ?>
+            <!--endrecord-->
+        </tbody>
+        <tbody class="search-data"></tbody>
+        <?php
+            }
+            else{
+        ?>
+        <tbody class="page-data">
+            <tr>
+                <td class="bg-light text-center text-muted animated bounce p-3" colspan="1000">
+                    <i class="material-icons">block</i> No record found
+                </td>
+            </tr>
+        </tbody>
+        <?php
+            }
+        ?>
+    </table>
 </div>
 <?php
     if($show_footer){

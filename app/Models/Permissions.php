@@ -41,8 +41,8 @@ class Permissions extends Model
 	public static function search($query, $text){
 		//search table record 
 		$search_condition = '(
-				permission_id LIKE ?  OR 
-				permission LIKE ? 
+				permissions.permission_id LIKE ?  OR 
+				permissions.permission LIKE ? 
 		)';
 		$search_params = [
 			"%$text%","%$text%"
@@ -59,9 +59,10 @@ class Permissions extends Model
      */
 	public static function listFields(){
 		return [ 
-			"permission_id",
-			"permission",
-			"role_id" 
+			"permissions.permission_id AS permission_id",
+			"permissions.permission AS permission",
+			"permissions.role_id AS role_id",
+			"roles.role_name AS roles_role_name" 
 		];
 	}
 	
@@ -73,9 +74,10 @@ class Permissions extends Model
      */
 	public static function exportListFields(){
 		return [ 
-			"permission_id",
-			"permission",
-			"role_id" 
+			"permissions.permission_id AS permission_id",
+			"permissions.permission AS permission",
+			"permissions.role_id AS role_id",
+			"roles.role_name AS roles_role_name" 
 		];
 	}
 	

@@ -213,16 +213,20 @@ class Users extends Authenticatable
      */
 	public static function listStudentsFields(){
 		return [ 
-			"id",
-			"email",
-			"name",
-			"phone",
-			"image",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"account_status",
-			"user_role_id" 
+			"users.id AS id",
+			"users.name AS name",
+			"users.email AS email",
+			"users.phone AS phone",
+			"users.image AS image",
+			"users.account_status AS account_status",
+			"student_details.id AS studentdetails_id",
+			"student_details.firstname AS studentdetails_firstname",
+			"student_details.middlemane AS studentdetails_middlemane",
+			"student_details.lastname AS studentdetails_lastname",
+			"student_details.dob AS studentdetails_dob",
+			"classes.id AS classes_id",
+			"classes.name AS classes_name",
+			"student_details.updated_at AS studentdetails_updated_at" 
 		];
 	}
 	
@@ -234,16 +238,20 @@ class Users extends Authenticatable
      */
 	public static function exportListStudentsFields(){
 		return [ 
-			"id",
-			"email",
-			"name",
-			"phone",
-			"image",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"account_status",
-			"user_role_id" 
+			"users.id AS id",
+			"users.name AS name",
+			"users.email AS email",
+			"users.phone AS phone",
+			"users.image AS image",
+			"users.account_status AS account_status",
+			"student_details.id AS studentdetails_id",
+			"student_details.firstname AS studentdetails_firstname",
+			"student_details.middlemane AS studentdetails_middlemane",
+			"student_details.lastname AS studentdetails_lastname",
+			"student_details.dob AS studentdetails_dob",
+			"classes.id AS classes_id",
+			"classes.name AS classes_name",
+			"student_details.updated_at AS studentdetails_updated_at" 
 		];
 	}
 	

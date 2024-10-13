@@ -31,11 +31,11 @@ class StudentDetailsEditRequest extends FormRequest
 				"dob" => "nullable|date",
 				"class_id" => "filled",
 				"religion" => "nullable",
-				"phone" => "nullable|string",
 				"blood_group" => "nullable",
 				"height" => "nullable|numeric",
 				"weight" => "nullable|numeric",
 				"measurement_date" => "nullable|date",
+				"address" => "nullable|string",
             
         ];
     }

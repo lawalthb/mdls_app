@@ -85,12 +85,12 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <th class="td-dob" > Dob</th>
                                         <th class="td-class_id" > Class Id</th>
                                         <th class="td-religion" > Religion</th>
-                                        <th class="td-phone" > Phone</th>
                                         <th class="td-blood_group" > Blood Group</th>
                                         <th class="td-height" > Height</th>
                                         <th class="td-weight" > Weight</th>
                                         <th class="td-measurement_date" > Measurement Date</th>
                                         <th class="td-updated_at" > Updated At</th>
+                                        <th class="td-address" > Address</th>
                                         <th class="td-btn"></th>
                                     </tr>
                                 </thead>
@@ -142,9 +142,6 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                 <td class="td-religion">
                                     <?php echo  $data['religion'] ; ?>
                                 </td>
-                                <td class="td-phone">
-                                    <a href="<?php print_link("tel:$data[phone]") ?>"><?php echo $data['phone']; ?></a>
-                                </td>
                                 <td class="td-blood_group">
                                     <?php echo  $data['blood_group'] ; ?>
                                 </td>
@@ -159,6 +156,9 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                 </td>
                                 <td class="td-updated_at">
                                     <?php echo  $data['updated_at'] ; ?>
+                                </td>
+                                <td class="td-address">
+                                    <?php echo  $data['address'] ; ?>
                                 </td>
                                 <!--PageComponentEnd-->
                                 <td class="td-btn">

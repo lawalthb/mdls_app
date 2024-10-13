@@ -28,7 +28,7 @@ class StudentDetails extends Model
      * @var array
      */
 	protected $fillable = [
-		'user_id','firstname','middlemane','lastname','dob','class_id','religion','phone','blood_group','height','weight','measurement_date'
+		'user_id','firstname','middlemane','lastname','dob','class_id','religion','blood_group','height','weight','measurement_date','address'
 	];
 	public $timestamps = false;
 	
@@ -45,7 +45,7 @@ class StudentDetails extends Model
 				firstname LIKE ?  OR 
 				middlemane LIKE ?  OR 
 				lastname LIKE ?  OR 
-				phone LIKE ? 
+				address LIKE ? 
 		)';
 		$search_params = [
 			"%$text%","%$text%","%$text%","%$text%","%$text%"
@@ -70,12 +70,12 @@ class StudentDetails extends Model
 			"dob",
 			"class_id",
 			"religion",
-			"phone",
 			"blood_group",
 			"height",
 			"weight",
 			"measurement_date",
-			"updated_at" 
+			"updated_at",
+			"address" 
 		];
 	}
 	
@@ -95,12 +95,12 @@ class StudentDetails extends Model
 			"dob",
 			"class_id",
 			"religion",
-			"phone",
 			"blood_group",
 			"height",
 			"weight",
 			"measurement_date",
-			"updated_at" 
+			"updated_at",
+			"address" 
 		];
 	}
 	
@@ -120,12 +120,12 @@ class StudentDetails extends Model
 			"dob",
 			"class_id",
 			"religion",
-			"phone",
 			"blood_group",
 			"height",
 			"weight",
 			"measurement_date",
-			"updated_at" 
+			"updated_at",
+			"address" 
 		];
 	}
 	
@@ -145,12 +145,12 @@ class StudentDetails extends Model
 			"dob",
 			"class_id",
 			"religion",
-			"phone",
 			"blood_group",
 			"height",
 			"weight",
 			"measurement_date",
-			"updated_at" 
+			"updated_at",
+			"address" 
 		];
 	}
 	
@@ -162,7 +162,6 @@ class StudentDetails extends Model
      */
 	public static function editFields(){
 		return [ 
-			"id",
 			"user_id",
 			"firstname",
 			"middlemane",
@@ -170,11 +169,12 @@ class StudentDetails extends Model
 			"dob",
 			"class_id",
 			"religion",
-			"phone",
 			"blood_group",
 			"height",
 			"weight",
-			"measurement_date" 
+			"measurement_date",
+			"address",
+			"id" 
 		];
 	}
 }

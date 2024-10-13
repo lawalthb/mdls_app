@@ -154,18 +154,6 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                 <div class="bg-light mb-1 card-1 p-2 border rounded">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <small class="text-muted">Phone</small>
-                                            <div class="fw-bold">
-                                                <?php echo  $data['phone'] ; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                    <div class="row align-items-center">
-                                        <div class="col">
                                             <small class="text-muted">Blood Group</small>
                                             <div class="fw-bold">
                                                 <?php echo  $data['blood_group'] ; ?>
@@ -217,6 +205,18 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             <small class="text-muted">Updated At</small>
                                             <div class="fw-bold">
                                                 <?php echo  $data['updated_at'] ; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <small class="text-muted">Address</small>
+                                            <div class="fw-bold">
+                                                <?php echo  $data['address'] ; ?>
                                             </div>
                                         </div>
                                     </div>

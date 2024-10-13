@@ -11,11 +11,11 @@
 		],
 		
 		[
-			'path' => '',
+			'path' => 'users',
 			'label' => "Student Management", 
 			'icon' => '<i class="material-icons ">supervisor_account</i>','submenu' => [
 		[
-			'path' => 'users',
+			'path' => 'users/list_students',
 			'label' => "Students", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
@@ -47,7 +47,7 @@
 		],
 		
 		[
-			'path' => '',
+			'path' => 'subjects',
 			'label' => "Academics", 
 			'icon' => '<i class="material-icons ">class</i>','submenu' => [
 		[
@@ -89,7 +89,7 @@
 		],
 		
 		[
-			'path' => '',
+			'path' => 'examsettings',
 			'label' => "Examination", 
 			'icon' => '<i class="material-icons ">library_books</i>','submenu' => [
 		[
@@ -131,7 +131,7 @@
 		],
 		
 		[
-			'path' => '',
+			'path' => 'users',
 			'label' => "Staff Management", 
 			'icon' => '<i class="material-icons ">account_circle</i>','submenu' => [
 		[
@@ -155,7 +155,7 @@
 		],
 		
 		[
-			'path' => '',
+			'path' => 'webabouts',
 			'label' => "Website Management", 
 			'icon' => '<i class="material-icons ">web</i>'
 		],
@@ -167,59 +167,33 @@
 		],
 		
 		[
-			'path' => '',
+			'path' => 'roles',
+			'label' => "Roles and Permission", 
+			'icon' => '<i class="material-icons ">perm_contact_calendar</i>','submenu' => [
+		[
+			'path' => 'roles',
+			'label' => "Roles", 
+			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
+		],
+		
+		[
+			'path' => 'permissions',
+			'label' => "Permissions", 
+			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
+		]
+	]
+		],
+		
+		[
+			'path' => 'account',
 			'label' => "Profile", 
 			'icon' => '<i class="material-icons ">person</i>'
 		],
 		
 		[
-			'path' => 'menu9',
+			'path' => 'auth/logout',
 			'label' => "LogOut", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_left</i>'
-		],
-		
-		[
-			'path' => 'permissions',
-			'label' => "Permissions", 
-			'icon' => '<i class="material-icons">extension</i>'
-		],
-		
-		[
-			'path' => 'roles',
-			'label' => "Roles", 
-			'icon' => '<i class="material-icons">extension</i>'
-		]
-	] ;
-	}
-	
-	public static function navbartopleft(){
-		return [
-		[
-			'path' => 'permissions',
-			'label' => "Permissions", 
-			'icon' => '<i class="material-icons">extension</i>'
-		],
-		
-		[
-			'path' => 'roles',
-			'label' => "Roles", 
-			'icon' => '<i class="material-icons">extension</i>'
-		]
-	] ;
-	}
-	
-	public static function navbartopright(){
-		return [
-		[
-			'path' => 'permissions',
-			'label' => "Permissions", 
-			'icon' => '<i class="material-icons">extension</i>'
-		],
-		
-		[
-			'path' => 'roles',
-			'label' => "Roles", 
-			'icon' => '<i class="material-icons">extension</i>'
 		]
 	] ;
 	}

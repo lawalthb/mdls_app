@@ -111,7 +111,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         </td>
                                         <td class="td-role_id">
                                             <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("roles/view/$data[role_id]?subpage=1") ?>">
-                                            <i class="material-icons">visibility</i> <?php echo "Roles" ?>
+                                            <i class="material-icons">visibility</i> <?php echo $data['roles_role_name'] ?>
                                         </a>
                                     </td>
                                     <!--PageComponentEnd-->

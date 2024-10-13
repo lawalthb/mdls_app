@@ -162,11 +162,11 @@ class UsersController extends Controller
 				"dob" => "nullable|date",
 				"class_id" => "required",
 				"religion" => "nullable",
-				"phone" => "nullable|string",
 				"blood_group" => "nullable",
 				"height" => "nullable|numeric",
 				"weight" => "nullable|numeric",
-				"measurement_date" => "nullable|date"]);
+				"measurement_date" => "nullable|date",
+				"address" => "nullable|string"]);
 		if ($studentdetailsValidator->fails()) {
 			return $studentdetailsValidator->errors();
 		}
@@ -181,7 +181,7 @@ class UsersController extends Controller
 		$studentdetailsModeldata['user_id'] = $rec_id;
 		//save StudentDetails record
 		$studentdetailsRecord = \App\Models\StudentDetails::create($studentdetailsModeldata);
-		return $this->redirect("users", "Record added successfully");
+		return $this->redirect("users/list_students", "Record added successfully");
 	}
 	
 
@@ -200,9 +200,12 @@ class UsersController extends Controller
 			$search = trim($request->search);
 			Users::search($query, $search); // search table records
 		}
+		$query->join("student_details", "users.id", "=", "student_details.user_id");
+		$query->join("classes", "student_details.class_id", "=", "classes.id");
 		$orderby = $request->orderby ?? "users.id";
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);
+		$query->where("user_role_id", "=" , 2);
 		if($fieldname){
 			$query->where($fieldname , $fieldvalue); //filter by a table field
 		}

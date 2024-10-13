@@ -30,12 +30,6 @@ class UsersAddRequest extends FormRequest
 				"phone" => "nullable|string",
 				"password" => "required|same:confirm_password",
 				"image" => "nullable",
-				"address" => "nullable|string",
-				"state" => "required|numeric",
-				"lga" => "required|numeric",
-				"balance" => "required|numeric",
-				"refer_by" => "nullable|string",
-				"referral_code" => "required|string",
 				"is_active" => "required",
             
         ];

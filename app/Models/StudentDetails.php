@@ -2,7 +2,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-class Users extends Model 
+class StudentDetails extends Model 
 {
 	
 
@@ -11,7 +11,7 @@ class Users extends Model
      *
      * @var string
      */
-	protected $table = 'users';
+	protected $table = 'student_details';
 	
 
 	/**
@@ -28,7 +28,7 @@ class Users extends Model
      * @var array
      */
 	protected $fillable = [
-		'email','name','phone','password','image','is_active'
+		'id','user_id','firstname','middlemane','lastname','dob','class_id','religion','phone','blood_group','height','weight','measurement_date'
 	];
 	public $timestamps = false;
 	
@@ -42,10 +42,10 @@ class Users extends Model
 		//search table record 
 		$search_condition = '(
 				id LIKE ?  OR 
-				email LIKE ?  OR 
-				name LIKE ?  OR 
-				phone LIKE ?  OR 
-				password LIKE ? 
+				firstname LIKE ?  OR 
+				middlemane LIKE ?  OR 
+				lastname LIKE ?  OR 
+				phone LIKE ? 
 		)';
 		$search_params = [
 			"%$text%","%$text%","%$text%","%$text%","%$text%"
@@ -63,12 +63,18 @@ class Users extends Model
 	public static function listFields(){
 		return [ 
 			"id",
-			"email",
-			"name",
+			"user_id",
+			"firstname",
+			"middlemane",
+			"lastname",
+			"dob",
+			"class_id",
+			"religion",
 			"phone",
-			"image",
-			"is_active",
-			"created_at",
+			"blood_group",
+			"height",
+			"weight",
+			"measurement_date",
 			"updated_at" 
 		];
 	}
@@ -82,12 +88,18 @@ class Users extends Model
 	public static function exportListFields(){
 		return [ 
 			"id",
-			"email",
-			"name",
+			"user_id",
+			"firstname",
+			"middlemane",
+			"lastname",
+			"dob",
+			"class_id",
+			"religion",
 			"phone",
-			"image",
-			"is_active",
-			"created_at",
+			"blood_group",
+			"height",
+			"weight",
+			"measurement_date",
 			"updated_at" 
 		];
 	}
@@ -101,12 +113,18 @@ class Users extends Model
 	public static function viewFields(){
 		return [ 
 			"id",
-			"email",
-			"name",
+			"user_id",
+			"firstname",
+			"middlemane",
+			"lastname",
+			"dob",
+			"class_id",
+			"religion",
 			"phone",
-			"image",
-			"is_active",
-			"created_at",
+			"blood_group",
+			"height",
+			"weight",
+			"measurement_date",
 			"updated_at" 
 		];
 	}
@@ -120,12 +138,18 @@ class Users extends Model
 	public static function exportViewFields(){
 		return [ 
 			"id",
-			"email",
-			"name",
+			"user_id",
+			"firstname",
+			"middlemane",
+			"lastname",
+			"dob",
+			"class_id",
+			"religion",
 			"phone",
-			"image",
-			"is_active",
-			"created_at",
+			"blood_group",
+			"height",
+			"weight",
+			"measurement_date",
 			"updated_at" 
 		];
 	}
@@ -139,11 +163,18 @@ class Users extends Model
 	public static function editFields(){
 		return [ 
 			"id",
-			"email",
-			"name",
+			"user_id",
+			"firstname",
+			"middlemane",
+			"lastname",
+			"dob",
+			"class_id",
+			"religion",
 			"phone",
-			"image",
-			"is_active" 
+			"blood_group",
+			"height",
+			"weight",
+			"measurement_date" 
 		];
 	}
 }

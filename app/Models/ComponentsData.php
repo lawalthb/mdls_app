@@ -97,6 +97,18 @@ class ComponentsData{
 	
 
 	/**
+     * class_id_option_list Model Action
+     * @return array
+     */
+	function class_id_option_list(){
+		$sqltext = "SELECT id as value, name as label FROM classes";
+		$query_params = [];
+		$arr = DB::select($sqltext, $query_params);
+		return $arr;
+	}
+	
+
+	/**
      * price_settings_id_option_list Model Action
      * @return array
      */

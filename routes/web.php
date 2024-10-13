@@ -45,7 +45,8 @@ use Illuminate\Support\Facades\Mail;
 /* routes for Classes Controller */
 	Route::get('classes', 'ClassesController@index')->name('classes.index');
 	Route::get('classes/index/{filter?}/{filtervalue?}', 'ClassesController@index')->name('classes.index');	
-	Route::get('classes/view/{rec_id}', 'ClassesController@view')->name('classes.view');	
+	Route::get('classes/view/{rec_id}', 'ClassesController@view')->name('classes.view');
+	Route::get('classes/masterdetail/{rec_id}', 'ClassesController@masterDetail')->name('classes.masterdetail');	
 	Route::get('classes/add', 'ClassesController@add')->name('classes.add');
 	Route::post('classes/add', 'ClassesController@store')->name('classes.store');
 		
@@ -94,6 +95,26 @@ use Illuminate\Support\Facades\Mail;
 	Route::any('grades/edit/{rec_id}', 'GradesController@edit')->name('grades.edit');	
 	Route::get('grades/delete/{rec_id}', 'GradesController@delete');
 
+/* routes for Parentables Controller */
+	Route::get('parentables', 'ParentablesController@index')->name('parentables.index');
+	Route::get('parentables/index/{filter?}/{filtervalue?}', 'ParentablesController@index')->name('parentables.index');	
+	Route::get('parentables/view/{rec_id}', 'ParentablesController@view')->name('parentables.view');	
+	Route::get('parentables/add', 'ParentablesController@add')->name('parentables.add');
+	Route::post('parentables/add', 'ParentablesController@store')->name('parentables.store');
+		
+	Route::any('parentables/edit/{rec_id}', 'ParentablesController@edit')->name('parentables.edit');	
+	Route::get('parentables/delete/{rec_id}', 'ParentablesController@delete');
+
+/* routes for Parents Controller */
+	Route::get('parents', 'ParentsController@index')->name('parents.index');
+	Route::get('parents/index/{filter?}/{filtervalue?}', 'ParentsController@index')->name('parents.index');	
+	Route::get('parents/view/{rec_id}', 'ParentsController@view')->name('parents.view');	
+	Route::get('parents/add', 'ParentsController@add')->name('parents.add');
+	Route::post('parents/add', 'ParentsController@store')->name('parents.store');
+		
+	Route::any('parents/edit/{rec_id}', 'ParentsController@edit')->name('parents.edit');	
+	Route::get('parents/delete/{rec_id}', 'ParentsController@delete');
+
 /* routes for Plans Controller */
 	Route::get('plans', 'PlansController@index')->name('plans.index');
 	Route::get('plans/index/{filter?}/{filtervalue?}', 'PlansController@index')->name('plans.index');	
@@ -115,6 +136,16 @@ use Illuminate\Support\Facades\Mail;
 		
 	Route::any('sessions/edit/{rec_id}', 'SessionsController@edit')->name('sessions.edit');	
 	Route::get('sessions/delete/{rec_id}', 'SessionsController@delete');
+
+/* routes for StudentDetails Controller */
+	Route::get('studentdetails', 'StudentDetailsController@index')->name('studentdetails.index');
+	Route::get('studentdetails/index/{filter?}/{filtervalue?}', 'StudentDetailsController@index')->name('studentdetails.index');	
+	Route::get('studentdetails/view/{rec_id}', 'StudentDetailsController@view')->name('studentdetails.view');	
+	Route::get('studentdetails/add', 'StudentDetailsController@add')->name('studentdetails.add');
+	Route::post('studentdetails/add', 'StudentDetailsController@store')->name('studentdetails.store');
+		
+	Route::any('studentdetails/edit/{rec_id}', 'StudentDetailsController@edit')->name('studentdetails.edit');	
+	Route::get('studentdetails/delete/{rec_id}', 'StudentDetailsController@delete');
 
 /* routes for Subjects Controller */
 	Route::get('subjects', 'SubjectsController@index')->name('subjects.index');
@@ -399,6 +430,12 @@ Route::get('componentsdata/term_id_option_list',  function(Request $request){
 Route::get('componentsdata/plans_updated_by_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->plans_updated_by_option_list($request);
+	}
+);
+	
+Route::get('componentsdata/class_id_option_list',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->class_id_option_list($request);
 	}
 );
 	

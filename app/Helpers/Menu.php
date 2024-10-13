@@ -6,7 +6,7 @@
 		return [
 		[
 			'path' => 'home',
-			'label' => "", 
+			'label' => "Dashboard", 
 			'icon' => '<i class="material-icons">extension</i>'
 		],
 		
@@ -200,6 +200,68 @@
 			'path' => 'webvissions',
 			'label' => "Web Vissions", 
 			'icon' => '<i class="material-icons">extension</i>'
+		],
+		
+		[
+			'path' => 'studentdetails',
+			'label' => "Student Details", 
+			'icon' => '<i class="material-icons">extension</i>'
+		],
+		
+		[
+			'path' => 'parents',
+			'label' => "Parents", 
+			'icon' => '<i class="material-icons">extension</i>'
+		],
+		
+		[
+			'path' => 'parentables',
+			'label' => "Parentables", 
+			'icon' => '<i class="material-icons">extension</i>'
+		]
+	] ;
+	}
+	
+	public static function navbartopleft(){
+		return [
+		[
+			'path' => 'studentdetails',
+			'label' => "Student Details", 
+			'icon' => '<i class="material-icons">extension</i>'
+		],
+		
+		[
+			'path' => 'parents',
+			'label' => "Parents", 
+			'icon' => '<i class="material-icons">extension</i>'
+		],
+		
+		[
+			'path' => 'parentables',
+			'label' => "Parentables", 
+			'icon' => '<i class="material-icons">extension</i>'
+		]
+	] ;
+	}
+	
+	public static function navbartopright(){
+		return [
+		[
+			'path' => 'studentdetails',
+			'label' => "Student Details", 
+			'icon' => '<i class="material-icons">extension</i>'
+		],
+		
+		[
+			'path' => 'parents',
+			'label' => "Parents", 
+			'icon' => '<i class="material-icons">extension</i>'
+		],
+		
+		[
+			'path' => 'parentables',
+			'label' => "Parentables", 
+			'icon' => '<i class="material-icons">extension</i>'
 		]
 	] ;
 	}
@@ -230,6 +292,70 @@
 		[
 			'value' => 'Disapproved', 
 			'label' => "Disapproved", 
+		],] ;
+	}
+	
+	public static function parentType(){
+		return [
+		[
+			'value' => 'Father', 
+			'label' => "Father", 
+		],
+		[
+			'value' => 'Monther', 
+			'label' => "Monther", 
+		],] ;
+	}
+	
+	public static function religion(){
+		return [
+		[
+			'value' => 'Christian', 
+			'label' => "Christian", 
+		],
+		[
+			'value' => 'Islam', 
+			'label' => "Islam", 
+		],
+		[
+			'value' => 'Others', 
+			'label' => "Others", 
+		],] ;
+	}
+	
+	public static function bloodGroup(){
+		return [
+		[
+			'value' => 'O+', 
+			'label' => "O+", 
+		],
+		[
+			'value' => 'A+', 
+			'label' => "A+", 
+		],
+		[
+			'value' => 'B+', 
+			'label' => "B+", 
+		],
+		[
+			'value' => 'AB+', 
+			'label' => "AB+", 
+		],
+		[
+			'value' => 'O-', 
+			'label' => "O-", 
+		],
+		[
+			'value' => 'A-', 
+			'label' => "A-", 
+		],
+		[
+			'value' => 'B-', 
+			'label' => "B-", 
+		],
+		[
+			'value' => 'AB-', 
+			'label' => "AB-", 
 		],] ;
 	}
 	

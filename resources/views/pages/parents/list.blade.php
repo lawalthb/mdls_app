@@ -9,7 +9,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
     $total_records = $records->total();
     $limit = $records->perPage();
     $record_count = count($records);
-    $pageTitle = "Users"; //set dynamic page title
+    $pageTitle = "Parents"; //set dynamic page title
 ?>
 @extends($layout)
 @section('title', $pageTitle)
@@ -23,13 +23,13 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
             <div class="row justify-content-between align-items-center gap-3">
                 <div class="col  " >
                     <div class="">
-                        <div class="h5 font-weight-bold text-primary">Users</div>
+                        <div class="h5 font-weight-bold text-primary">Parents</div>
                     </div>
                 </div>
                 <div class="col-auto  " >
-                    <a  class="btn btn-primary btn-block" href="<?php print_link("users/add", true) ?>" >
+                    <a  class="btn btn-primary btn-block" href="<?php print_link("parents/add", true) ?>" >
                     <i class="material-icons">add</i>                               
-                    Add New User 
+                    Add New Parent 
                 </a>
             </div>
             <div class="col-md-3  " >
@@ -53,9 +53,9 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
         <div class="row ">
             <div class="col comp-grid " >
                 <div  class=" page-content" >
-                    <div id="users-list-records">
+                    <div id="parents-list-records">
                         <div id="page-main-content" class="table-responsive">
-                            <?php Html::page_bread_crumb("/users/", $field_name, $field_value); ?>
+                            <?php Html::page_bread_crumb("/parents/", $field_name, $field_value); ?>
                             <?php Html::display_page_errors($errors); ?>
                             <div class="filter-tags mb-2">
                                 <?php Html::filter_tag('search', __('Search')); ?>
@@ -69,13 +69,16 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         </label>
                                         </th>
                                         <th class="td-id" > Id</th>
-                                        <th class="td-email" > Email</th>
-                                        <th class="td-name" > Name</th>
+                                        <th class="td-fullname" > Fullname</th>
                                         <th class="td-phone" > Phone</th>
-                                        <th class="td-image" > Image</th>
-                                        <th class="td-is_active" > Is Active</th>
+                                        <th class="td-occupation" > Occupation</th>
+                                        <th class="td-address" > Address</th>
+                                        <th class="td-state" > State</th>
+                                        <th class="td-lga" > Lga</th>
+                                        <th class="td-parent_type" > Parent Type</th>
                                         <th class="td-created_at" > Created At</th>
                                         <th class="td-updated_at" > Updated At</th>
+                                        <th class="td-is_active" > Is Active</th>
                                         <th class="td-btn"></th>
                                     </tr>
                                 </thead>
@@ -98,30 +101,37 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         </td>
                                         <!--PageComponentStart-->
                                         <td class="td-id">
-                                            <a href="<?php print_link("/users/view/$data[id]") ?>"><?php echo $data['id']; ?></a>
+                                            <?php echo  $data['id'] ; ?>
                                         </td>
-                                        <td class="td-email">
-                                            <a href="<?php print_link("mailto:$data[email]") ?>"><?php echo $data['email']; ?></a>
-                                        </td>
-                                        <td class="td-name">
-                                            <?php echo  $data['name'] ; ?>
+                                        <td class="td-fullname">
+                                            <?php echo  $data['fullname'] ; ?>
                                         </td>
                                         <td class="td-phone">
                                             <a href="<?php print_link("tel:$data[phone]") ?>"><?php echo $data['phone']; ?></a>
                                         </td>
-                                        <td class="td-image">
-                                            <?php 
-                                                Html :: page_img($data['image'], '50px', '50px', "small", 1); 
-                                            ?>
+                                        <td class="td-occupation">
+                                            <?php echo  $data['occupation'] ; ?>
                                         </td>
-                                        <td class="td-is_active">
-                                            <?php echo  $data['is_active'] ; ?>
+                                        <td class="td-address">
+                                            <?php echo  $data['address'] ; ?>
+                                        </td>
+                                        <td class="td-state">
+                                            <?php echo  $data['state'] ; ?>
+                                        </td>
+                                        <td class="td-lga">
+                                            <?php echo  $data['lga'] ; ?>
+                                        </td>
+                                        <td class="td-parent_type">
+                                            <?php echo  $data['parent_type'] ; ?>
                                         </td>
                                         <td class="td-created_at">
                                             <?php echo  $data['created_at'] ; ?>
                                         </td>
                                         <td class="td-updated_at">
                                             <?php echo  $data['updated_at'] ; ?>
+                                        </td>
+                                        <td class="td-is_active">
+                                            <?php echo  $data['is_active'] ; ?>
                                         </td>
                                         <!--PageComponentEnd-->
                                         <td class="td-btn">
@@ -130,13 +140,13 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 <i class="material-icons">menu</i> 
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <a class="dropdown-item "   href="<?php print_link("users/view/$rec_id"); ?>" >
+                                                    <a class="dropdown-item "   href="<?php print_link("parents/view/$rec_id"); ?>" >
                                                     <i class="material-icons">visibility</i> View
                                                 </a>
-                                                <a class="dropdown-item "   href="<?php print_link("users/edit/$rec_id"); ?>" >
+                                                <a class="dropdown-item "   href="<?php print_link("parents/edit/$rec_id"); ?>" >
                                                 <i class="material-icons">edit</i> Edit
                                             </a>
-                                            <a class="dropdown-item record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" href="<?php print_link("users/delete/$rec_id"); ?>" >
+                                            <a class="dropdown-item record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" href="<?php print_link("parents/delete/$rec_id"); ?>" >
                                             <i class="material-icons">delete_sweep</i> Delete
                                         </a>
                                     </ul>
@@ -171,7 +181,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
             <div class=" mt-3">
                 <div class="row align-items-center justify-content-between">    
                     <div class="col-md-auto d-flex">    
-                        <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("users/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
+                        <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("parents/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
                         <i class="material-icons">delete_sweep</i> Delete Selected
                         </button>
                     </div>

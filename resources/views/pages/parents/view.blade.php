@@ -4,7 +4,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
 -->
 @inject('comp_model', 'App\Models\ComponentsData')
 <?php
-    $pageTitle = "User Details"; //set dynamic page title
+    $pageTitle = "Parent Details"; //set dynamic page title
 ?>
 @extends($layout)
 @section('title', $pageTitle)
@@ -23,7 +23,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                 </div>
                 <div class="col  " >
                     <div class="">
-                        <div class="h5 font-weight-bold text-primary">User Details</div>
+                        <div class="h5 font-weight-bold text-primary">Parent Details</div>
                     </div>
                 </div>
             </div>
@@ -61,21 +61,9 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <div class="bg-light mb-1 card-1 p-2 border rounded">
                                             <div class="row align-items-center">
                                                 <div class="col">
-                                                    <small class="text-muted">Email</small>
+                                                    <small class="text-muted">Fullname</small>
                                                     <div class="fw-bold">
-                                                        <?php echo  $data['email'] ; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <small class="text-muted">Name</small>
-                                                    <div class="fw-bold">
-                                                        <?php echo  $data['name'] ; ?>
+                                                        <?php echo  $data['fullname'] ; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -97,11 +85,9 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <div class="bg-light mb-1 card-1 p-2 border rounded">
                                             <div class="row align-items-center">
                                                 <div class="col">
-                                                    <small class="text-muted">Image</small>
+                                                    <small class="text-muted">Occupation</small>
                                                     <div class="fw-bold">
-                                                        <?php 
-                                                            Html :: page_img($data['image'], 'auto', 'auto', "", 1); 
-                                                        ?>
+                                                        <?php echo  $data['occupation'] ; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -111,9 +97,45 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <div class="bg-light mb-1 card-1 p-2 border rounded">
                                             <div class="row align-items-center">
                                                 <div class="col">
-                                                    <small class="text-muted">Is Active</small>
+                                                    <small class="text-muted">Address</small>
                                                     <div class="fw-bold">
-                                                        <?php echo  $data['is_active'] ; ?>
+                                                        <?php echo  $data['address'] ; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <small class="text-muted">State</small>
+                                                    <div class="fw-bold">
+                                                        <?php echo  $data['state'] ; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <small class="text-muted">Lga</small>
+                                                    <div class="fw-bold">
+                                                        <?php echo  $data['lga'] ; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <small class="text-muted">Parent Type</small>
+                                                    <div class="fw-bold">
+                                                        <?php echo  $data['parent_type'] ; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -143,13 +165,25 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-12">
+                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <small class="text-muted">Is Active</small>
+                                                    <div class="fw-bold">
+                                                        <?php echo  $data['is_active'] ; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!--PageComponentEnd-->
                                 <div class="d-flex align-items-center gap-2">
-                                    <a class="btn btn-sm btn-success has-tooltip "   title="Edit" href="<?php print_link("users/edit/$rec_id"); ?>" >
+                                    <a class="btn btn-sm btn-success has-tooltip "   title="Edit" href="<?php print_link("parents/edit/$rec_id"); ?>" >
                                     <i class="material-icons">edit</i> Edit
                                 </a>
-                                <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" title="Delete" href="<?php print_link("users/delete/$rec_id?redirect=users"); ?>" >
+                                <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" title="Delete" href="<?php print_link("parents/delete/$rec_id?redirect=parents"); ?>" >
                                 <i class="material-icons">delete_sweep</i> Delete
                             </a>
                         </div>

@@ -2,7 +2,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-class Users extends Model 
+class Parentables extends Model 
 {
 	
 
@@ -11,7 +11,7 @@ class Users extends Model
      *
      * @var string
      */
-	protected $table = 'users';
+	protected $table = 'parentables';
 	
 
 	/**
@@ -28,7 +28,7 @@ class Users extends Model
      * @var array
      */
 	protected $fillable = [
-		'email','name','phone','password','image','is_active'
+		'parent_id','user_id','parentable_type'
 	];
 	public $timestamps = false;
 	
@@ -42,13 +42,10 @@ class Users extends Model
 		//search table record 
 		$search_condition = '(
 				id LIKE ?  OR 
-				email LIKE ?  OR 
-				name LIKE ?  OR 
-				phone LIKE ?  OR 
-				password LIKE ? 
+				parentable_type LIKE ? 
 		)';
 		$search_params = [
-			"%$text%","%$text%","%$text%","%$text%","%$text%"
+			"%$text%","%$text%"
 		];
 		//setting search conditions
 		$query->whereRaw($search_condition, $search_params);
@@ -63,12 +60,9 @@ class Users extends Model
 	public static function listFields(){
 		return [ 
 			"id",
-			"email",
-			"name",
-			"phone",
-			"image",
-			"is_active",
-			"created_at",
+			"parent_id",
+			"user_id",
+			"parentable_type",
 			"updated_at" 
 		];
 	}
@@ -82,12 +76,9 @@ class Users extends Model
 	public static function exportListFields(){
 		return [ 
 			"id",
-			"email",
-			"name",
-			"phone",
-			"image",
-			"is_active",
-			"created_at",
+			"parent_id",
+			"user_id",
+			"parentable_type",
 			"updated_at" 
 		];
 	}
@@ -101,12 +92,9 @@ class Users extends Model
 	public static function viewFields(){
 		return [ 
 			"id",
-			"email",
-			"name",
-			"phone",
-			"image",
-			"is_active",
-			"created_at",
+			"parent_id",
+			"user_id",
+			"parentable_type",
 			"updated_at" 
 		];
 	}
@@ -120,12 +108,9 @@ class Users extends Model
 	public static function exportViewFields(){
 		return [ 
 			"id",
-			"email",
-			"name",
-			"phone",
-			"image",
-			"is_active",
-			"created_at",
+			"parent_id",
+			"user_id",
+			"parentable_type",
 			"updated_at" 
 		];
 	}
@@ -139,11 +124,9 @@ class Users extends Model
 	public static function editFields(){
 		return [ 
 			"id",
-			"email",
-			"name",
-			"phone",
-			"image",
-			"is_active" 
+			"parent_id",
+			"user_id",
+			"parentable_type" 
 		];
 	}
 }

@@ -1,12 +1,12 @@
 <?php 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ClassesAddRequest;
-use App\Http\Requests\ClassesEditRequest;
-use App\Models\Classes;
+use App\Http\Requests\StudentDetailsAddRequest;
+use App\Http\Requests\StudentDetailsEditRequest;
+use App\Models\StudentDetails;
 use Illuminate\Http\Request;
 use Exception;
-class ClassesController extends Controller
+class StudentDetailsController extends Controller
 {
 	
 
@@ -18,20 +18,20 @@ class ClassesController extends Controller
      * @return \Illuminate\View\View
      */
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
-		$view = "pages.classes.list";
-		$query = Classes::query();
+		$view = "pages.studentdetails.list";
+		$query = StudentDetails::query();
 		$limit = $request->limit ?? 10;
 		if($request->search){
 			$search = trim($request->search);
-			Classes::search($query, $search); // search table records
+			StudentDetails::search($query, $search); // search table records
 		}
-		$orderby = $request->orderby ?? "classes.id";
+		$orderby = $request->orderby ?? "student_details.id";
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);
 		if($fieldname){
 			$query->where($fieldname , $fieldvalue); //filter by a table field
 		}
-		$records = $query->paginate($limit, Classes::listFields());
+		$records = $query->paginate($limit, StudentDetails::listFields());
 		return $this->renderView($view, compact("records"));
 	}
 	
@@ -42,19 +42,9 @@ class ClassesController extends Controller
      * @return \Illuminate\View\View
      */
 	function view($rec_id = null){
-		$query = Classes::query();
-		$record = $query->findOrFail($rec_id, Classes::viewFields());
-		return $this->renderView("pages.classes.view", ["data" => $record]);
-	}
-	
-
-	/**
-     * Display Master Detail Pages
-	 * @param string $rec_id //master record id
-     * @return \Illuminate\View\View
-     */
-	function masterDetail($rec_id = null){
-		return View("pages.classes.detail-pages", ["masterRecordId" => $rec_id]);
+		$query = StudentDetails::query();
+		$record = $query->findOrFail($rec_id, StudentDetails::viewFields());
+		return $this->renderView("pages.studentdetails.view", ["data" => $record]);
 	}
 	
 
@@ -63,7 +53,7 @@ class ClassesController extends Controller
      * @return \Illuminate\View\View
      */
 	function add(){
-		return $this->renderView("pages.classes.add");
+		return $this->renderView("pages.studentdetails.add");
 	}
 	
 
@@ -71,13 +61,13 @@ class ClassesController extends Controller
      * Save form record to the table
      * @return \Illuminate\Http\Response
      */
-	function store(ClassesAddRequest $request){
+	function store(StudentDetailsAddRequest $request){
 		$modeldata = $this->normalizeFormData($request->validated());
 		
-		//save Classes record
-		$record = Classes::create($modeldata);
+		//save StudentDetails record
+		$record = StudentDetails::create($modeldata);
 		$rec_id = $record->id;
-		return $this->redirect("classes", "Record added successfully");
+		return $this->redirect("studentdetails", "Record added successfully");
 	}
 	
 
@@ -86,15 +76,15 @@ class ClassesController extends Controller
 	 * @param string $rec_id //select record by table primary key
      * @return \Illuminate\View\View;
      */
-	function edit(ClassesEditRequest $request, $rec_id = null){
-		$query = Classes::query();
-		$record = $query->findOrFail($rec_id, Classes::editFields());
+	function edit(StudentDetailsEditRequest $request, $rec_id = null){
+		$query = StudentDetails::query();
+		$record = $query->findOrFail($rec_id, StudentDetails::editFields());
 		if ($request->isMethod('post')) {
 			$modeldata = $this->normalizeFormData($request->validated());
 			$record->update($modeldata);
-			return $this->redirect("classes", "Record updated successfully");
+			return $this->redirect("studentdetails", "Record updated successfully");
 		}
-		return $this->renderView("pages.classes.edit", ["data" => $record, "rec_id" => $rec_id]);
+		return $this->renderView("pages.studentdetails.edit", ["data" => $record, "rec_id" => $rec_id]);
 	}
 	
 
@@ -107,7 +97,7 @@ class ClassesController extends Controller
      */
 	function delete(Request $request, $rec_id = null){
 		$arr_id = explode(",", $rec_id);
-		$query = Classes::query();
+		$query = StudentDetails::query();
 		$query->whereIn("id", $arr_id);
 		$query->delete();
 		$redirectUrl = $request->redirect ?? url()->previous();

@@ -22,7 +22,7 @@ class Users extends Authenticatable
      * @var string
      */
 	protected $primaryKey = 'id';
-	protected $fillable = ['email','name','phone','password','image','account_status','is_active','class_id','user_role_id'];
+	protected $fillable = ['email','name','phone','password','image','account_status','is_active','user_role_id'];
 	public $timestamps = false;
 	
 
@@ -64,8 +64,7 @@ class Users extends Authenticatable
 			"created_at",
 			"updated_at",
 			"account_status",
-			"user_role_id",
-			"class_id" 
+			"user_role_id" 
 		];
 	}
 	
@@ -86,8 +85,7 @@ class Users extends Authenticatable
 			"created_at",
 			"updated_at",
 			"account_status",
-			"user_role_id",
-			"class_id" 
+			"user_role_id" 
 		];
 	}
 	
@@ -107,8 +105,7 @@ class Users extends Authenticatable
 			"created_at",
 			"updated_at",
 			"account_status",
-			"user_role_id",
-			"class_id" 
+			"user_role_id" 
 		];
 	}
 	
@@ -128,8 +125,7 @@ class Users extends Authenticatable
 			"created_at",
 			"updated_at",
 			"account_status",
-			"user_role_id",
-			"class_id" 
+			"user_role_id" 
 		];
 	}
 	
@@ -147,8 +143,7 @@ class Users extends Authenticatable
 			"image",
 			"is_active",
 			"account_status",
-			"user_role_id",
-			"class_id" 
+			"user_role_id" 
 		];
 	}
 	
@@ -168,8 +163,7 @@ class Users extends Authenticatable
 			"created_at",
 			"updated_at",
 			"account_status",
-			"user_role_id",
-			"class_id" 
+			"user_role_id" 
 		];
 	}
 	
@@ -189,8 +183,7 @@ class Users extends Authenticatable
 			"created_at",
 			"updated_at",
 			"account_status",
-			"user_role_id",
-			"class_id" 
+			"user_role_id" 
 		];
 	}
 	
@@ -208,8 +201,7 @@ class Users extends Authenticatable
 			"is_active",
 			"account_status",
 			"id",
-			"user_role_id",
-			"class_id" 
+			"user_role_id" 
 		];
 	}
 	
@@ -280,8 +272,7 @@ class Users extends Authenticatable
 			"created_at",
 			"updated_at",
 			"account_status",
-			"user_role_id",
-			"class_id" 
+			"user_role_id" 
 		];
 	}
 	
@@ -302,8 +293,7 @@ class Users extends Authenticatable
 			"created_at",
 			"updated_at",
 			"account_status",
-			"user_role_id",
-			"class_id" 
+			"user_role_id" 
 		];
 	}
 	
@@ -320,8 +310,7 @@ class Users extends Authenticatable
 			"phone",
 			"image",
 			"account_status",
-			"id",
-			"class_id" 
+			"id" 
 		];
 	}
 	

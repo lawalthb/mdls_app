@@ -32,7 +32,6 @@ class UsersAddRequest extends FormRequest
 				"image" => "nullable",
 				"account_status" => "nullable|string",
 				"user_role_id" => "nullable",
-				"class_id" => "required|numeric",
             
         ];
     }

@@ -211,6 +211,18 @@
 		],] ;
 	}
 	
+	public static function directorApprove(){
+		return [
+		[
+			'value' => 'Approved', 
+			'label' => "Approved", 
+		],
+		[
+			'value' => 'Not Yet', 
+			'label' => "Not Yet", 
+		],] ;
+	}
+	
 	public static function directorApproval(){
 		return [
 		[

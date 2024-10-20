@@ -30,7 +30,6 @@ class Usersadd_studentRequest extends FormRequest
 				"phone" => "required|string|unique:users,phone",
 				"account_status" => "nullable",
 				"image" => "nullable",
-				"class_id" => "required|numeric",
             
         ];
     }

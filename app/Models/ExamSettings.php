@@ -158,10 +158,10 @@ class ExamSettings extends Model
 			"pratical_mark",
 			"is_active",
 			"updated_by",
-			"id",
 			"present_count",
 			"resume_date",
-			"director_approve" 
+			"director_approve",
+			"id" 
 		];
 	}
 }

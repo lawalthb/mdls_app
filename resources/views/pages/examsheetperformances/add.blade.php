@@ -41,7 +41,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                         <form id="examsheetperformances-add-form"  novalidate role="form" enctype="multipart/form-data" class="form multi-form page-form" action="{{ route('examsheetperformances.store') }}" method="post" >
                             @csrf
                             <div>
-                                <table class="table table-striped table-sm" data-maxrow="10" data-minrow="1">
+                                <table class="table table-striped table-sm" data-maxrow="50" data-minrow="1">
                                     <thead>
                                         <tr>
                                             <th class="bg-light"><label for="subject_id">Subject Id</label></th>

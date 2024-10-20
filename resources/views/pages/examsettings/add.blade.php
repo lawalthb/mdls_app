@@ -181,7 +181,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 <select required=""  id="ctrl-director_approve" data-field="director_approve" name="director_approve"  placeholder="Select a value ..."    class="form-select" >
                                                 <option value="">Select a value ...</option>
                                                 <?php
-                                                    $options = Menu::isActive();
+                                                    $options = Menu::directorApprove();
                                                     if(!empty($options)){
                                                     foreach($options as $option){
                                                     $value = $option['value'];

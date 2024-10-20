@@ -54,9 +54,35 @@ class ComponentsData{
      */
 	function term_id_option_list($value = null){
 		$lookup_value = request()->lookup ?? $value;
-		$sqltext = "SELECT  DISTINCT id AS value,name AS label FROM terms WHERE session_id=:lookup_session_id ORDER BY id DESC" ;
+		$sqltext = "SELECT  DISTINCT id AS value,name AS label FROM terms WHERE session_id=:lookup_session_id ORDER BY id ASC" ;
 		$query_params = [];
 		$query_params['lookup_session_id'] = $lookup_value;
+		$arr = DB::select($sqltext, $query_params);
+		return $arr;
+	}
+	
+
+	/**
+     * class_id_option_list Model Action
+     * @return array
+     */
+	function class_id_option_list(){
+		$sqltext = "SELECT id as value, name as label FROM classes";
+		$query_params = [];
+		$arr = DB::select($sqltext, $query_params);
+		return $arr;
+	}
+	
+
+	/**
+     * user_id_option_list Model Action
+     * @return array
+     */
+	function user_id_option_list($value = null){
+		$lookup_value = request()->lookup ?? $value;
+		$sqltext = "SELECT  DISTINCT id AS value,firstname AS label FROM student_details WHERE class_id=:lookup_class_id " ;
+		$query_params = [];
+		$query_params['lookup_class_id'] = $lookup_value;
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
@@ -110,18 +136,6 @@ class ComponentsData{
      */
 	function plans_updated_by_option_list(){
 		$sqltext = "SELECT id as value, firstname as label FROM admins";
-		$query_params = [];
-		$arr = DB::select($sqltext, $query_params);
-		return $arr;
-	}
-	
-
-	/**
-     * class_id_option_list Model Action
-     * @return array
-     */
-	function class_id_option_list(){
-		$sqltext = "SELECT id as value, name as label FROM classes";
 		$query_params = [];
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;

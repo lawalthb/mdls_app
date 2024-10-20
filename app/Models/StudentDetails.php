@@ -112,8 +112,6 @@ class StudentDetails extends Model
      */
 	public static function viewFields(){
 		return [ 
-			"student_details.id AS id",
-			"student_details.user_id AS user_id",
 			"student_details.firstname AS firstname",
 			"student_details.middlemane AS middlemane",
 			"student_details.lastname AS lastname",
@@ -126,7 +124,10 @@ class StudentDetails extends Model
 			"student_details.height AS height",
 			"student_details.weight AS weight",
 			"student_details.measurement_date AS measurement_date",
-			"student_details.updated_at AS updated_at" 
+			"student_details.updated_at AS updated_at",
+			"student_details.id AS id",
+			"student_details.user_id AS user_id",
+			"users.id AS users_id" 
 		];
 	}
 	
@@ -138,8 +139,6 @@ class StudentDetails extends Model
      */
 	public static function exportViewFields(){
 		return [ 
-			"student_details.id AS id",
-			"student_details.user_id AS user_id",
 			"student_details.firstname AS firstname",
 			"student_details.middlemane AS middlemane",
 			"student_details.lastname AS lastname",
@@ -152,7 +151,10 @@ class StudentDetails extends Model
 			"student_details.height AS height",
 			"student_details.weight AS weight",
 			"student_details.measurement_date AS measurement_date",
-			"student_details.updated_at AS updated_at" 
+			"student_details.updated_at AS updated_at",
+			"student_details.id AS id",
+			"student_details.user_id AS user_id",
+			"users.id AS users_id" 
 		];
 	}
 	

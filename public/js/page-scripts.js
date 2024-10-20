@@ -279,15 +279,6 @@ function showToastDanger(msg){
 	new bootstrap.Toast(toast).show();
 }
 $(document).ready(function() {
-$('#ctrl-ca_score-row1').on('change', function(){ 
-    //do something like 
-    //$(this).hide(); 
-    //$(#anotherfieldid).show();
-    //var ctrlVal = $(this).val();
-    //$(#anotherfieldname).val(ctrlVal)
-    var ca_score = $(this).val();
-    alert(ca_score);
-});
 });
 /**
  * Table toggle select all records

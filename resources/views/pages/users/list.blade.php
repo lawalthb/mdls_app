@@ -89,6 +89,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 <th class="td-updated_at" > Updated At</th>
                                                 <th class="td-account_status" > Account Status</th>
                                                 <th class="td-user_role_id" > User Role Id</th>
+                                                <th class="td-class_id" > Class Id</th>
                                                 <th class="td-btn"></th>
                                             </tr>
                                         </thead>
@@ -150,6 +151,9 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("roles/view/$data[user_role_id]?subpage=1") ?>">
                                                 <i class="material-icons">visibility</i> <?php echo "Roles" ?>
                                             </a>
+                                        </td>
+                                        <td class="td-class_id">
+                                            <?php echo  $data['class_id'] ; ?>
                                         </td>
                                         <!--PageComponentEnd-->
                                         <td class="td-btn">

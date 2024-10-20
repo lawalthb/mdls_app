@@ -45,12 +45,12 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <div class="form-group ">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label class="control-label" for="subject_id">Subject <span class="text-danger">*</span></label>
+                                        <label class="control-label" for="subject_id">Subject Id <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-subject_id-holder" class=" ">
-                                            <select required=""  id="ctrl-subject_id" data-field="subject_id" name="subject_id"  placeholder="Select a subject ..."    class="form-select" >
-                                            <option value="">Select a subject ...</option>
+                                            <select required=""  id="ctrl-subject_id" data-field="subject_id" name="subject_id"  placeholder="Select a value ..."    class="form-select" >
+                                            <option value="">Select a value ...</option>
                                             <?php
                                                 $options = $comp_model->subject_id_option_list() ?? [];
                                                 foreach($options as $option){
@@ -96,6 +96,18 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <div class="form-group ">
                                 <div class="row">
                                     <div class="col-sm-4">
+                                        <label class="control-label" for="pratical_score">Pratical Score <span class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div id="ctrl-pratical_score-holder" class=" ">
+                                            <input id="ctrl-pratical_score" data-field="pratical_score"  value="<?php  echo $data['pratical_score']; ?>" type="number" placeholder="Enter Pratical Score" step="0.1"  required="" name="pratical_score"  class="form-control " />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-sm-4">
                                         <label class="control-label" for="total">Total <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-sm-8">
@@ -112,24 +124,38 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-remark-holder" class=" ">
-                                            <input id="ctrl-remark" data-field="remark"  value="<?php  echo $data['remark']; ?>" type="text" placeholder="Enter Remark (Optional)"  required="" name="remark"  class="form-control " />
+                                            <input id="ctrl-remark" data-field="remark"  value="<?php  echo $data['remark']; ?>" type="text" placeholder="Enter Remark"  required="" name="remark"  class="form-control " />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <input id="ctrl-updated_by" data-field="updated_by"  value="<?php  echo $data['updated_by']; ?>" type="hidden" placeholder="Enter Updated By" list="updated_by_list"  required="" name="updated_by"  class="form-control " />
-                            <datalist id="updated_by_list">
-                            <?php
-                                $options = $comp_model->updated_by_option_list() ?? [];
-                                foreach($options as $option){
-                                $value = $option->value;
-                                $label = $option->label ?? $value;
-                            ?>
-                            <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-                            <?php
-                                }
-                            ?>
-                            </datalist>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label class="control-label" for="updated_by">Updated By <span class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div id="ctrl-updated_by-holder" class=" ">
+                                            <select required=""  id="ctrl-updated_by" data-field="updated_by" name="updated_by"  placeholder="Select a value ..."    class="form-select" >
+                                            <option value="">Select a value ...</option>
+                                            <?php
+                                                $options = $comp_model->updated_by_option_list() ?? [];
+                                                foreach($options as $option){
+                                                $value = $option->value;
+                                                $label = $option->label ?? $value;
+                                                $selected = ( $value == $data['updated_by'] ? 'selected' : null );
+                                            ?>
+                                            <option <?php echo $selected; ?> value="<?php echo $value; ?>">
+                                            <?php echo $label; ?>
+                                            </option>
+                                            <?php
+                                                }
+                                            ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-ajax-status"></div>
                         <!--[form-content-end]-->

@@ -28,6 +28,7 @@ class ExamSheetPerformancesAddRequest extends FormRequest
 				"row.*.subject_id" => "required",
 				"row.*.ca_score" => "required|numeric",
 				"row.*.exam_score" => "required|numeric",
+				"row.*.pratical_score" => "required|numeric",
 				"row.*.total" => "required|numeric",
 				"row.*.remark" => "required|string",
 				"row.*.updated_by" => "required",

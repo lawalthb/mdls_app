@@ -28,7 +28,7 @@ class ExamSheets extends Model
      * @var array
      */
 	protected $fillable = [
-		'session_id','term_id','user_id','present_count','open_count','resume_on','teacher_remark','director_comment','total_score','director_approval','updated_by'
+		'session_id','term_id','class_id','user_id','present_count','open_count','resume_on','teacher_remark','total_score','director_approval','director_comment','updated_by'
 	];
 	public $timestamps = false;
 	
@@ -73,7 +73,8 @@ class ExamSheets extends Model
 			"director_comment",
 			"total_score",
 			"director_approval",
-			"updated_by" 
+			"updated_by",
+			"class_id" 
 		];
 	}
 	
@@ -96,7 +97,8 @@ class ExamSheets extends Model
 			"director_comment",
 			"total_score",
 			"director_approval",
-			"updated_by" 
+			"updated_by",
+			"class_id" 
 		];
 	}
 	
@@ -119,7 +121,8 @@ class ExamSheets extends Model
 			"director_comment",
 			"total_score",
 			"director_approval",
-			"updated_by" 
+			"updated_by",
+			"class_id" 
 		];
 	}
 	
@@ -142,7 +145,8 @@ class ExamSheets extends Model
 			"director_comment",
 			"total_score",
 			"director_approval",
-			"updated_by" 
+			"updated_by",
+			"class_id" 
 		];
 	}
 	
@@ -156,14 +160,15 @@ class ExamSheets extends Model
 		return [ 
 			"session_id",
 			"term_id",
+			"class_id",
 			"user_id",
 			"present_count",
 			"open_count",
 			"resume_on",
 			"teacher_remark",
-			"director_comment",
 			"total_score",
 			"director_approval",
+			"director_comment",
 			"updated_by",
 			"id" 
 		];

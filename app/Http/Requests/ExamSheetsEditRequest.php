@@ -27,14 +27,15 @@ class ExamSheetsEditRequest extends FormRequest
             
 				"session_id" => "filled",
 				"term_id" => "filled",
+				"class_id" => "filled",
 				"user_id" => "filled",
 				"present_count" => "nullable|string",
 				"open_count" => "nullable|string",
 				"resume_on" => "nullable|date",
 				"teacher_remark" => "filled|string",
-				"director_comment" => "nullable|string",
 				"total_score" => "filled|numeric",
 				"director_approval" => "filled",
+				"director_comment" => "nullable|string",
 				"updated_by" => "filled",
             
         ];

@@ -31,6 +31,7 @@ class UsersRegisterRequest extends FormRequest
 				"password" => "required|same:confirm_password",
 				"image" => "nullable",
 				"account_status" => "nullable|string",
+				"class_id" => "required|numeric",
             
         ];
     }

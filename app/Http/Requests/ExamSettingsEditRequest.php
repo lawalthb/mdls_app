@@ -31,6 +31,9 @@ class ExamSettingsEditRequest extends FormRequest
 				"pratical_mark" => "nullable|numeric",
 				"is_active" => "filled",
 				"updated_by" => "filled",
+				"present_count" => "nullable|numeric",
+				"resume_date" => "nullable|date",
+				"director_approve" => "filled",
             
         ];
     }

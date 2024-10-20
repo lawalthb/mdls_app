@@ -28,6 +28,7 @@ class ExamSheetPerformancesEditRequest extends FormRequest
 				"subject_id" => "filled",
 				"ca_score" => "filled|numeric",
 				"exam_score" => "filled|numeric",
+				"pratical_score" => "filled|numeric",
 				"total" => "filled|numeric",
 				"remark" => "filled|string",
 				"updated_by" => "filled",

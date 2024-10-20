@@ -470,6 +470,18 @@ Route::get('componentsdata/term_id_option_list',  function(Request $request){
 	}
 )->middleware(['auth']);
 	
+Route::get('componentsdata/class_id_option_list',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->class_id_option_list($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/user_id_option_list',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->user_id_option_list($request);
+	}
+)->middleware(['auth']);
+	
 Route::get('componentsdata/grades_name_value_exist',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->grades_name_value_exist($request);
@@ -491,12 +503,6 @@ Route::get('componentsdata/role_id_option_list',  function(Request $request){
 Route::get('componentsdata/plans_updated_by_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->plans_updated_by_option_list($request);
-	}
-)->middleware(['auth']);
-	
-Route::get('componentsdata/class_id_option_list',  function(Request $request){
-		$compModel = new App\Models\ComponentsData();
-		return $compModel->class_id_option_list($request);
 	}
 )->middleware(['auth']);
 	

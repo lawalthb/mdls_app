@@ -28,7 +28,7 @@ class ExamSheetPerformances extends Model
      * @var array
      */
 	protected $fillable = [
-		'exam_sheet_id','subject_id','ca_score','exam_score','total','remark','updated_by'
+		'exam_sheet_id','subject_id','ca_score','exam_score','pratical_score','total','remark','updated_by'
 	];
 	public $timestamps = false;
 	
@@ -147,14 +147,15 @@ class ExamSheetPerformances extends Model
      */
 	public static function editFields(){
 		return [ 
+			"id",
 			"exam_sheet_id",
 			"subject_id",
 			"ca_score",
 			"exam_score",
+			"pratical_score",
 			"total",
 			"remark",
-			"updated_by",
-			"id" 
+			"updated_by" 
 		];
 	}
 }

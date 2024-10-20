@@ -146,6 +146,60 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     }
                                 ?>
                                 </datalist>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="present_count">Present Count </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div id="ctrl-present_count-holder" class=" ">
+                                                <input id="ctrl-present_count" data-field="present_count"  value="<?php echo get_value('present_count') ?>" type="number" placeholder="Enter Present Count" step="any"  name="present_count"  class="form-control " />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="resume_date">Resume Date </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div id="ctrl-resume_date-holder" class="input-group ">
+                                                <input id="ctrl-resume_date" data-field="resume_date" class="form-control datepicker  datepicker"  value="<?php echo get_value('resume_date') ?>" type="datetime" name="resume_date" placeholder="Enter Resume Date" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
+                                                <span class="input-group-text"><i class="material-icons">date_range</i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="director_approve">Director Approve <span class="text-danger">*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div id="ctrl-director_approve-holder" class=" ">
+                                                <select required=""  id="ctrl-director_approve" data-field="director_approve" name="director_approve"  placeholder="Select a value ..."    class="form-select" >
+                                                <option value="">Select a value ...</option>
+                                                <?php
+                                                    $options = Menu::isActive();
+                                                    if(!empty($options)){
+                                                    foreach($options as $option){
+                                                    $value = $option['value'];
+                                                    $label = $option['label'];
+                                                    $selected = Html::get_field_selected('director_approve', $value, "");
+                                                ?>
+                                                <option <?php echo $selected ?> value="<?php echo $value ?>">
+                                                <?php echo $label ?>
+                                                </option>                                   
+                                                <?php
+                                                    }
+                                                    }
+                                                ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-ajax-status"></div>
                             <!--[form-button-start]-->

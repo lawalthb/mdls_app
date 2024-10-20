@@ -85,6 +85,9 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <th class="td-is_active" > Is Active</th>
                                         <th class="td-update_at" > Update At</th>
                                         <th class="td-updated_by" > Updated By</th>
+                                        <th class="td-present_count" > Present Count</th>
+                                        <th class="td-resume_date" > Resume Date</th>
+                                        <th class="td-director_approve" > Director Approve</th>
                                         <th class="td-btn"></th>
                                     </tr>
                                 </thead>
@@ -135,6 +138,15 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[updated_by]?subpage=1") ?>">
                                         <?php echo $data['users_name'] ?>
                                     </a>
+                                </td>
+                                <td class="td-present_count">
+                                    <?php echo  $data['present_count'] ; ?>
+                                </td>
+                                <td class="td-resume_date">
+                                    <?php echo  $data['resume_date'] ; ?>
+                                </td>
+                                <td class="td-director_approve">
+                                    <?php echo  $data['director_approve'] ; ?>
                                 </td>
                                 <!--PageComponentEnd-->
                                 <td class="td-btn">

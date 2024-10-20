@@ -28,7 +28,7 @@ class ExamSettings extends Model
      * @var array
      */
 	protected $fillable = [
-		'session_id','ca_mark','exam_mark','pratical_mark','is_active','updated_by'
+		'session_id','ca_mark','exam_mark','pratical_mark','is_active','updated_by','present_count','resume_date','director_approve'
 	];
 	public $timestamps = false;
 	
@@ -67,7 +67,10 @@ class ExamSettings extends Model
 			"exam_settings.is_active AS is_active",
 			"exam_settings.update_at AS update_at",
 			"exam_settings.updated_by AS updated_by",
-			"users.name AS users_name" 
+			"users.name AS users_name",
+			"exam_settings.present_count AS present_count",
+			"exam_settings.resume_date AS resume_date",
+			"exam_settings.director_approve AS director_approve" 
 		];
 	}
 	
@@ -88,7 +91,10 @@ class ExamSettings extends Model
 			"exam_settings.is_active AS is_active",
 			"exam_settings.update_at AS update_at",
 			"exam_settings.updated_by AS updated_by",
-			"users.name AS users_name" 
+			"users.name AS users_name",
+			"exam_settings.present_count AS present_count",
+			"exam_settings.resume_date AS resume_date",
+			"exam_settings.director_approve AS director_approve" 
 		];
 	}
 	
@@ -108,7 +114,10 @@ class ExamSettings extends Model
 			"created_at",
 			"update_at",
 			"pratical_mark",
-			"updated_by" 
+			"updated_by",
+			"present_count",
+			"resume_date",
+			"director_approve" 
 		];
 	}
 	
@@ -128,7 +137,10 @@ class ExamSettings extends Model
 			"created_at",
 			"update_at",
 			"pratical_mark",
-			"updated_by" 
+			"updated_by",
+			"present_count",
+			"resume_date",
+			"director_approve" 
 		];
 	}
 	
@@ -146,7 +158,10 @@ class ExamSettings extends Model
 			"pratical_mark",
 			"is_active",
 			"updated_by",
-			"id" 
+			"id",
+			"present_count",
+			"resume_date",
+			"director_approve" 
 		];
 	}
 }

@@ -164,6 +164,18 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-12">
+                                            <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                                <div class="row align-items-center">
+                                                    <div class="col">
+                                                        <small class="text-muted">Class Id</small>
+                                                        <div class="fw-bold">
+                                                            <?php echo  $data['class_id'] ; ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!--PageComponentEnd-->
                                     <div class="d-flex align-items-center gap-2">

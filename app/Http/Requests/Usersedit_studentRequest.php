@@ -30,6 +30,7 @@ class Usersedit_studentRequest extends FormRequest
 				"phone" => "nullable|string",
 				"image" => "nullable",
 				"account_status" => "nullable|string",
+				"class_id" => "filled|numeric",
             
         ];
     }

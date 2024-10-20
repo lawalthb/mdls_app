@@ -27,14 +27,15 @@ class ExamSheetsAddRequest extends FormRequest
             
 				"session_id" => "required",
 				"term_id" => "required",
+				"class_id" => "required",
 				"user_id" => "required",
 				"present_count" => "nullable|string",
 				"open_count" => "nullable|string",
 				"resume_on" => "nullable|date",
 				"teacher_remark" => "required|string",
-				"director_comment" => "nullable|string",
 				"total_score" => "required|numeric",
 				"director_approval" => "required",
+				"director_comment" => "nullable|string",
 				"updated_by" => "required",
             
         ];

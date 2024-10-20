@@ -44,11 +44,13 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                 <table class="table table-striped table-sm" data-maxrow="10" data-minrow="1">
                                     <thead>
                                         <tr>
-                                            <th class="bg-light"><label for="subject_id">Subject</label></th>
+                                            <th class="bg-light"><label for="subject_id">Subject Id</label></th>
                                             <th class="bg-light"><label for="ca_score">Ca Score</label></th>
                                             <th class="bg-light"><label for="exam_score">Exam Score</label></th>
+                                            <th class="bg-light"><label for="pratical_score">Pratical Score</label></th>
                                             <th class="bg-light"><label for="total">Total</label></th>
                                             <th class="bg-light"><label for="remark">Remark</label></th>
+                                            <th class="bg-light"><label for="updated_by">Updated By</label></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -69,8 +71,8 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                 <tr data-row="<?php echo $row ?>" class="input-row">
                                 <td>
                                     <div id="ctrl-subject_id-row<?php echo $row; ?>-holder" class=" ">
-                                    <select required=""  id="ctrl-subject_id-row<?php echo $row; ?>" data-field="subject_id" name="row[<?php echo $row ?>][subject_id]"  placeholder="Select a subject ..."    class="form-select" >
-                                    <option value="">Select a subject ...</option>
+                                    <select required=""  id="ctrl-subject_id-row<?php echo $row; ?>" data-field="subject_id" name="row[<?php echo $row ?>][subject_id]"  placeholder="Select a value ..."    class="form-select" >
+                                    <option value="">Select a value ...</option>
                                     <?php 
                                         $options = $comp_model->subject_id_option_list() ?? [];
                                         foreach($options as $option){
@@ -94,38 +96,50 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                         </td>
                         <td>
                             <div id="ctrl-exam_score-row<?php echo $row; ?>-holder" class=" ">
-                            <input id="ctrl-exam_score-row<?php echo $row; ?>" data-field="exam_score"  value="<?php echo get_value('exam_score', "0.00") ?>" type="number" placeholder="Enter Exam Score" step="0.1"  required="" name="row[<?php echo $row ?>][exam_score]"  class="form-control " />
+                            <input id="ctrl-exam_score-row<?php echo $row; ?>" data-field="exam_score"  value="<?php echo get_value('exam_score') ?>" type="number" placeholder="Enter Exam Score" step="0.1"  required="" name="row[<?php echo $row ?>][exam_score]"  class="form-control " />
                         </div>
                     </td>
                     <td>
-                        <div id="ctrl-total-row<?php echo $row; ?>-holder" class=" ">
-                        <input id="ctrl-total-row<?php echo $row; ?>" data-field="total"  value="<?php echo get_value('total') ?>" type="number" placeholder="Enter Total" step="0.1"  required="" name="row[<?php echo $row ?>][total]"  class="form-control " />
+                        <div id="ctrl-pratical_score-row<?php echo $row; ?>-holder" class=" ">
+                        <input id="ctrl-pratical_score-row<?php echo $row; ?>" data-field="pratical_score"  value="<?php echo get_value('pratical_score') ?>" type="number" placeholder="Enter Pratical Score" step="0.1"  required="" name="row[<?php echo $row ?>][pratical_score]"  class="form-control " />
                     </div>
                 </td>
                 <td>
-                    <div id="ctrl-remark-row<?php echo $row; ?>-holder" class=" ">
-                    <input id="ctrl-remark-row<?php echo $row; ?>" data-field="remark"  value="<?php echo get_value('remark') ?>" type="text" placeholder="Enter Remark (Optional)"  required="" name="row[<?php echo $row ?>][remark]"  class="form-control " />
+                    <div id="ctrl-total-row<?php echo $row; ?>-holder" class=" ">
+                    <input id="ctrl-total-row<?php echo $row; ?>" data-field="total"  value="<?php echo get_value('total') ?>" type="number" placeholder="Enter Total" step="0.1"  required="" name="row[<?php echo $row ?>][total]"  class="form-control " />
                 </div>
             </td>
-            <input id="ctrl-updated_by-row<?php echo $row; ?>" data-field="updated_by"  value="<?php echo get_value('updated_by', auth()->user()->id) ?>" type="hidden" placeholder="Enter Updated By" list="updated_by_list"  required="" name="row[<?php echo $row ?>][updated_by]"  class="form-control " />
-            <datalist id="updated_by_list">
+            <td>
+                <div id="ctrl-remark-row<?php echo $row; ?>-holder" class=" ">
+                <input id="ctrl-remark-row<?php echo $row; ?>" data-field="remark"  value="<?php echo get_value('remark') ?>" type="text" placeholder="Enter Remark"  required="" name="row[<?php echo $row ?>][remark]"  class="form-control " />
+            </div>
+        </td>
+        <td>
+            <div id="ctrl-updated_by-row<?php echo $row; ?>-holder" class=" ">
+            <select required=""  id="ctrl-updated_by-row<?php echo $row; ?>" data-field="updated_by" name="row[<?php echo $row ?>][updated_by]"  placeholder="Select a value ..."    class="form-select" >
+            <option value="">Select a value ...</option>
             <?php 
                 $options = $comp_model->updated_by_option_list() ?? [];
                 foreach($options as $option){
                 $value = $option->value;
                 $label = $option->label ?? $value;
+                $selected = Html::get_field_selected('updated_by', $value, "");
             ?>
-            <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+            <option <?php echo $selected; ?> value="<?php echo $value; ?>">
+            <?php echo $label; ?>
+            </option>
             <?php
                 }
             ?>
-            </datalist>
-            <th class="text-center">
-            <button type="button" class="btn-close btn-remove-table-row"></button>
-            </th>
-        </tr>
-    </template>
-    <!--[/table row template]-->
+            </select>
+        </div>
+    </td>
+    <th class="text-center">
+    <button type="button" class="btn-close btn-remove-table-row"></button>
+    </th>
+</tr>
+</template>
+<!--[/table row template]-->
 </div>
 <div class="form-ajax-status"></div>
 <!--[form-button-start]-->

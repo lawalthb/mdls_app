@@ -53,14 +53,6 @@ class UsersController extends Controller
 	}
 
 
-	/**
-     * Display Master Detail Pages
-	 * @param string $rec_id //master record id
-     * @return \Illuminate\View\View
-     */
-	function masterDetail($rec_id = null){
-		return View("pages.users.detail-pages", ["masterRecordId" => $rec_id]);
-	}
 
 
 	/**
@@ -233,6 +225,14 @@ $query->where("account_status", "=" , "active");
 	}
 
 
+	/**
+     * Display Master Detail Pages
+	 * @param string $rec_id //master record id
+     * @return \Illuminate\View\View
+     */
+	function masterDetail($rec_id = null){
+		return View("pages.users.detail-pages", ["masterRecordId" => $rec_id]);
+	}
 
 
 	/**

@@ -95,6 +95,12 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group ">
+                                    <label class="control-label" for="class_id">Class Id <span class="text-danger">*</span></label>
+                                    <div id="ctrl-class_id-holder" class=" "> 
+                                        <input id="ctrl-class_id" data-field="class_id"  value="<?php echo get_value('class_id', "1") ?>" type="number" placeholder="Enter Class Id" step="any"  required="" name="class_id"  class="form-control " />
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-ajax-status"></div>
                             <div class="bg-light p-2 subform">

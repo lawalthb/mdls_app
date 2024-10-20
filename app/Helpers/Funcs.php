@@ -1,16 +1,18 @@
 <?php
 
+use App\Models\ExamSettings;
+
 /**
  * print out url
  * @method string  print_link
  * @param string  path
  * @return void
  */
-function print_link($path = "", $appendCurrentQueryString=false)
+function print_link($path = "", $appendCurrentQueryString = false)
 {
-	if($appendCurrentQueryString){
+	if ($appendCurrentQueryString) {
 		$arrQs = request()->query();
-		if(!empty($arrQs)){
+		if (!empty($arrQs)) {
 			$path = $path . '?' . http_build_query($arrQs);
 		}
 	}
@@ -23,20 +25,19 @@ function print_link($path = "", $appendCurrentQueryString=false)
  * @param string  path
  * @return void
  */
-function getImgSizePath($src, $size="medium")
+function getImgSizePath($src, $size = "medium")
 {
-	if($src){
+	if ($src) {
 		//currently Radsystems does not save different sizes of images in s3 bucket
 		//rough implementation of detecting s3 bucket file
-		$isawsS3File = stripos($src, ".amazonaws.com") > 5; 
-		if($size &&  !$isawsS3File){
+		$isawsS3File = stripos($src, ".amazonaws.com") > 5;
+		if ($size &&  !$isawsS3File) {
 			$paths = explode("/", $src);
 			$lastpath = count($paths) - 1;
 			array_splice($paths, $lastpath, 0, $size);
 			$src = implode("/", $paths);
 		}
-	}
-	else{
+	} else {
 		$src = "images/no-image-available.png";
 	}
 	return url($src);
@@ -89,18 +90,19 @@ function slugify($text)
  * @param  string $data
  * @return string
  */
-function guidv4($data = null) {
-    // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
-    $data = $data ?? random_bytes(16);
-    assert(strlen($data) == 16);
+function guidv4($data = null)
+{
+	// Generate 16 bytes (128 bits) of random data or use the data passed into the function.
+	$data = $data ?? random_bytes(16);
+	assert(strlen($data) == 16);
 
-    // Set version to 0100
-    $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
-    // Set bits 6-7 to 10
-    $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+	// Set version to 0100
+	$data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+	// Set bits 6-7 to 10
+	$data[8] = chr(ord($data[8]) & 0x3f | 0x80);
 
-    // Output the 36 character UUID.
-    return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+	// Output the 36 character UUID.
+	return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 }
 
 /**
@@ -126,12 +128,12 @@ function arr_to_csv($data)
 
 /**
  * Recursively implodes an array with optional key inclusion
- * 
+ *
  * Example of $include_keys output: key, value, key, value, key, value
- * 
+ *
  * @access  public
  * @param   array   $array         multi-dimensional array to recursively implode
- * @param   string  $glue          value that glues elements together	
+ * @param   string  $glue          value that glues elements together
  * @param   bool    $include_keys  include keys before their values
  * @param   bool    $trim_all      trim ALL whitespace from string
  * @return  string  imploded array
@@ -183,7 +185,7 @@ function validationErrorsToString($errArray)
  * URL after:
  * 1. https://example.com/orders/123?order=ABC009&status=shipped
  * 2. https://example.com/orders/123?order=ABC009&status=shipped&coupon=CCC2019
- * 
+ *
  * @return string
  */
 function add_query_params(array $params = [])
@@ -208,7 +210,7 @@ function add_query_params(array $params = [])
  * URL after:
  * 1. https://example.com/orders/123?order=ABC009
  * 2. https://example.com/orders/123
- * 
+ *
  * @return string
  */
 function remove_query_params(array $params = [])
@@ -259,7 +261,7 @@ function parse_csv_file($file_path, $options)
 
 
 /**
- * Sometimes REMOTE_ADDR does not returns the correct IP address of the user. 
+ * Sometimes REMOTE_ADDR does not returns the correct IP address of the user.
  * The reason behind this is to use Proxy. In that situation, use the following code to get real IP address of user in PHP.
  * @return string
  */
@@ -278,7 +280,7 @@ function get_user_ip()
 }
 
 /**
- * encode data to json and convert special characters to unicode 
+ * encode data to json and convert special characters to unicode
  * for display in HTMl attribute
  * @param string $data
  * @return  string
@@ -290,7 +292,7 @@ function json_encode_quote($data)
 
 /**
  * Merge array of paths to a url
- * 
+ *
  * @method string saveFile
  * @param array $arr_paths
  * @param string $separator
@@ -356,10 +358,11 @@ function format_date($date_str, $format = 'Y-m-d H:i:s')
  * @param int $precision [optional] Number of digits after the decimal point (eg. 1)
  * @return string Value converted with unit (eg. 25.3KB)
  */
-function format_size($bytes, $precision = 0) {
-    $unit = ["B", "KB", "MB", "GB"];
-    $exp = floor(log($bytes, 1024)) | 0;
-    return round($bytes / (pow(1024, $exp)), $precision)." ".$unit[$exp];
+function format_size($bytes, $precision = 0)
+{
+	$unit = ["B", "KB", "MB", "GB"];
+	$exp = floor(log($bytes, 1024)) | 0;
+	return round($bytes / (pow(1024, $exp)), $precision) . " " . $unit[$exp];
 }
 
 /**
@@ -586,7 +589,7 @@ function random_num($limit = 10, $context = '1234567890')
 }
 
 /**
- * Generate a Random color String 
+ * Generate a Random color String
  * @param int $alpha
  * @return  string
  */
@@ -599,7 +602,7 @@ function random_color($alpha = 1)
 }
 
 /**
- * Generate array Random color 
+ * Generate array Random color
  * @param int $num
  * @param float $alpha
  * @return  array
@@ -607,7 +610,7 @@ function random_color($alpha = 1)
 function arr_random_color($num, $alpha = 1)
 {
 	$colors = [];
-	for($i=0; $i<$num; $i++){
+	for ($i = 0; $i < $num; $i++) {
 		$colors[] = random_color($alpha);
 	}
 	return $colors;
@@ -657,4 +660,17 @@ function make_readable($string = '')
 		$string = preg_replace('/\s+/', ' ', $string);
 	}
 	return $string;
+}
+
+
+
+function examsettings($name)
+{
+	$examsettings = ExamSettings::where('id', 1)->first();
+
+	if ($examsettings && isset($examsettings->$name)) {
+		return $examsettings->$name;
+	}
+
+	return null;
 }

@@ -91,6 +91,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 <th class="td-total_score" > Total Score</th>
                                                 <th class="td-director_approval" > Director Approval</th>
                                                 <th class="td-updated_by" > Updated By</th>
+                                                <th class="td-class_id" > Class</th>
                                                 <th class="td-btn"></th>
                                             </tr>
                                         </thead>
@@ -116,7 +117,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 <!--PageComponentStart-->
                                                 <td class="td-masterdetailbtn">
                                                     <a data-page-id="examsheets-detail-page" class="btn btn-sm btn-secondary open-master-detail-page" href="<?php print_link("examsheets/masterdetail/$data[id]"); ?>">
-                                                    <i class="material-icons">more_vert</i> 
+                                                    <i class="material-icons">more_vert</i> view
                                                 </a>
                                             </td>
                                             <td class="td-id">
@@ -163,53 +164,58 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     <i class="material-icons">visibility</i> <?php echo "Users" ?>
                                 </a>
                             </td>
-                            <!--PageComponentEnd-->
-                            <td class="td-btn">
-                                <div class="dropdown" >
-                                    <button data-bs-toggle="dropdown" class="dropdown-toggle btn text-primary btn-flat btn-sm">
-                                    <i class="material-icons">menu</i> 
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <?php if($can_view){ ?>
-                                        <a class="dropdown-item "   href="<?php print_link("examsheets/view/$rec_id"); ?>" >
-                                        <i class="material-icons">visibility</i> View
-                                    </a>
-                                    <?php } ?>
-                                    <?php if($can_edit){ ?>
-                                    <a class="dropdown-item "   href="<?php print_link("examsheets/edit/$rec_id"); ?>" >
-                                    <i class="material-icons">edit</i> Edit
+                            <td class="td-class_id">
+                                <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("classes/view/$data[class_id]?subpage=1") ?>">
+                                <i class="material-icons">visibility</i> <?php echo "Classes" ?>
+                            </a>
+                        </td>
+                        <!--PageComponentEnd-->
+                        <td class="td-btn">
+                            <div class="dropdown" >
+                                <button data-bs-toggle="dropdown" class="dropdown-toggle btn text-primary btn-flat btn-sm">
+                                <i class="material-icons">menu</i> 
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <?php if($can_view){ ?>
+                                    <a class="dropdown-item "   href="<?php print_link("examsheets/view/$rec_id"); ?>" >
+                                    <i class="material-icons">visibility</i> View
                                 </a>
                                 <?php } ?>
-                                <?php if($can_delete){ ?>
-                                <a class="dropdown-item record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" href="<?php print_link("examsheets/delete/$rec_id"); ?>" >
-                                <i class="material-icons">delete_sweep</i> Delete
+                                <?php if($can_edit){ ?>
+                                <a class="dropdown-item "   href="<?php print_link("examsheets/edit/$rec_id"); ?>" >
+                                <i class="material-icons">edit</i> Edit
                             </a>
                             <?php } ?>
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-            <?php 
-                }
-            ?>
-            <!--endrecord-->
-        </tbody>
-        <tbody class="search-data"></tbody>
-        <?php
-            }
-            else{
-        ?>
-        <tbody class="page-data">
-            <tr>
-                <td class="bg-light text-center text-muted animated bounce p-3" colspan="1000">
-                    <i class="material-icons">block</i> No record found
-                </td>
-            </tr>
-        </tbody>
-        <?php
+                            <?php if($can_delete){ ?>
+                            <a class="dropdown-item record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" href="<?php print_link("examsheets/delete/$rec_id"); ?>" >
+                            <i class="material-icons">delete_sweep</i> Delete
+                        </a>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <?php 
             }
         ?>
-    </table>
+        <!--endrecord-->
+    </tbody>
+    <tbody class="search-data"></tbody>
+    <?php
+        }
+        else{
+    ?>
+    <tbody class="page-data">
+        <tr>
+            <td class="bg-light text-center text-muted animated bounce p-3" colspan="1000">
+                <i class="material-icons">block</i> No record found
+            </td>
+        </tr>
+    </tbody>
+    <?php
+        }
+    ?>
+</table>
 </div>
 <?php
     if($show_footer){

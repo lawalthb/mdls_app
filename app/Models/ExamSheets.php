@@ -41,14 +41,10 @@ class ExamSheets extends Model
 	public static function search($query, $text){
 		//search table record 
 		$search_condition = '(
-				id LIKE ?  OR 
-				present_count LIKE ?  OR 
-				open_count LIKE ?  OR 
-				teacher_remark LIKE ?  OR 
-				director_comment LIKE ? 
+				exam_sheets.id LIKE ? 
 		)';
 		$search_params = [
-			"%$text%","%$text%","%$text%","%$text%","%$text%"
+			"%$text%"
 		];
 		//setting search conditions
 		$query->whereRaw($search_condition, $search_params);
@@ -62,19 +58,17 @@ class ExamSheets extends Model
      */
 	public static function listFields(){
 		return [ 
-			"id",
-			"session_id",
-			"term_id",
-			"user_id",
-			"present_count",
-			"open_count",
-			"resume_on",
-			"teacher_remark",
-			"director_comment",
-			"total_score",
-			"director_approval",
-			"updated_by",
-			"class_id" 
+			"exam_sheets.id AS id",
+			"exam_sheets.session_id AS session_id",
+			"sessions.name AS sessions_name",
+			"exam_sheets.term_id AS term_id",
+			"terms.name AS terms_name",
+			"exam_sheets.user_id AS user_id",
+			"users.name AS users_name",
+			"exam_sheets.class_id AS class_id",
+			"classes.name AS classes_name",
+			"exam_sheets.total_score AS total_score",
+			"exam_sheets.director_approval AS director_approval" 
 		];
 	}
 	
@@ -86,19 +80,17 @@ class ExamSheets extends Model
      */
 	public static function exportListFields(){
 		return [ 
-			"id",
-			"session_id",
-			"term_id",
-			"user_id",
-			"present_count",
-			"open_count",
-			"resume_on",
-			"teacher_remark",
-			"director_comment",
-			"total_score",
-			"director_approval",
-			"updated_by",
-			"class_id" 
+			"exam_sheets.id AS id",
+			"exam_sheets.session_id AS session_id",
+			"sessions.name AS sessions_name",
+			"exam_sheets.term_id AS term_id",
+			"terms.name AS terms_name",
+			"exam_sheets.user_id AS user_id",
+			"users.name AS users_name",
+			"exam_sheets.class_id AS class_id",
+			"classes.name AS classes_name",
+			"exam_sheets.total_score AS total_score",
+			"exam_sheets.director_approval AS director_approval" 
 		];
 	}
 	
@@ -110,19 +102,20 @@ class ExamSheets extends Model
      */
 	public static function viewFields(){
 		return [ 
-			"id",
-			"session_id",
-			"term_id",
-			"user_id",
-			"present_count",
-			"open_count",
-			"resume_on",
-			"teacher_remark",
-			"director_comment",
-			"total_score",
-			"director_approval",
-			"updated_by",
-			"class_id" 
+			"exam_sheets.id AS id",
+			"exam_sheets.session_id AS session_id",
+			"sessions.name AS sessions_name",
+			"exam_sheets.term_id AS term_id",
+			"exam_sheets.user_id AS user_id",
+			"exam_sheets.present_count AS present_count",
+			"exam_sheets.open_count AS open_count",
+			"exam_sheets.resume_on AS resume_on",
+			"exam_sheets.teacher_remark AS teacher_remark",
+			"exam_sheets.director_comment AS director_comment",
+			"exam_sheets.total_score AS total_score",
+			"exam_sheets.director_approval AS director_approval",
+			"exam_sheets.updated_by AS updated_by",
+			"exam_sheets.class_id AS class_id" 
 		];
 	}
 	
@@ -134,19 +127,20 @@ class ExamSheets extends Model
      */
 	public static function exportViewFields(){
 		return [ 
-			"id",
-			"session_id",
-			"term_id",
-			"user_id",
-			"present_count",
-			"open_count",
-			"resume_on",
-			"teacher_remark",
-			"director_comment",
-			"total_score",
-			"director_approval",
-			"updated_by",
-			"class_id" 
+			"exam_sheets.id AS id",
+			"exam_sheets.session_id AS session_id",
+			"sessions.name AS sessions_name",
+			"exam_sheets.term_id AS term_id",
+			"exam_sheets.user_id AS user_id",
+			"exam_sheets.present_count AS present_count",
+			"exam_sheets.open_count AS open_count",
+			"exam_sheets.resume_on AS resume_on",
+			"exam_sheets.teacher_remark AS teacher_remark",
+			"exam_sheets.director_comment AS director_comment",
+			"exam_sheets.total_score AS total_score",
+			"exam_sheets.director_approval AS director_approval",
+			"exam_sheets.updated_by AS updated_by",
+			"exam_sheets.class_id AS class_id" 
 		];
 	}
 	

@@ -82,6 +82,16 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::any('classes/edit/{rec_id}', 'ClassesController@edit')->name('classes.edit');	
 	Route::get('classes/delete/{rec_id}', 'ClassesController@delete');
 
+/* routes for ClassSubjects Controller */
+	Route::get('classsubjects', 'ClassSubjectsController@index')->name('classsubjects.index');
+	Route::get('classsubjects/index/{filter?}/{filtervalue?}', 'ClassSubjectsController@index')->name('classsubjects.index');	
+	Route::get('classsubjects/view/{rec_id}', 'ClassSubjectsController@view')->name('classsubjects.view');	
+	Route::get('classsubjects/add', 'ClassSubjectsController@add')->name('classsubjects.add');
+	Route::post('classsubjects/add', 'ClassSubjectsController@store')->name('classsubjects.store');
+		
+	Route::any('classsubjects/edit/{rec_id}', 'ClassSubjectsController@edit')->name('classsubjects.edit');	
+	Route::get('classsubjects/delete/{rec_id}', 'ClassSubjectsController@delete');
+
 /* routes for ExamSettings Controller */
 	Route::get('examsettings', 'ExamSettingsController@index')->name('examsettings.index');
 	Route::get('examsettings/index/{filter?}/{filtervalue?}', 'ExamSettingsController@index')->name('examsettings.index');	
@@ -446,6 +456,18 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	
 	Route::get('users/ban', 'usersController@ban')->name('users.ban')->middleware(['auth']);
 	
+Route::get('componentsdata/class_id_option_list',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->class_id_option_list($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/subject_id_option_list',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->subject_id_option_list($request);
+	}
+)->middleware(['auth']);
+	
 Route::get('componentsdata/session_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->session_id_option_list($request);
@@ -458,21 +480,9 @@ Route::get('componentsdata/updated_by_option_list',  function(Request $request){
 	}
 )->middleware(['auth']);
 	
-Route::get('componentsdata/subject_id_option_list',  function(Request $request){
-		$compModel = new App\Models\ComponentsData();
-		return $compModel->subject_id_option_list($request);
-	}
-)->middleware(['auth']);
-	
 Route::get('componentsdata/term_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->term_id_option_list($request);
-	}
-)->middleware(['auth']);
-	
-Route::get('componentsdata/class_id_option_list',  function(Request $request){
-		$compModel = new App\Models\ComponentsData();
-		return $compModel->class_id_option_list($request);
 	}
 )->middleware(['auth']);
 	

@@ -81,6 +81,12 @@
 		],
 		
 		[
+			'path' => 'classsubjects',
+			'label' => "Assign Class Subjects", 
+			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
+		],
+		
+		[
 			'path' => 'classes',
 			'label' => "Promote Students", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
@@ -194,6 +200,32 @@
 			'path' => 'auth/logout',
 			'label' => "LogOut", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_left</i>'
+		],
+		
+		[
+			'path' => 'classsubjects',
+			'label' => "Class Subjects", 
+			'icon' => '<i class="material-icons">extension</i>'
+		]
+	] ;
+	}
+	
+	public static function navbartopleft(){
+		return [
+		[
+			'path' => 'classsubjects',
+			'label' => "Class Subjects", 
+			'icon' => '<i class="material-icons">extension</i>'
+		]
+	] ;
+	}
+	
+	public static function navbartopright(){
+		return [
+		[
+			'path' => 'classsubjects',
+			'label' => "Class Subjects", 
+			'icon' => '<i class="material-icons">extension</i>'
 		]
 	] ;
 	}

@@ -13,6 +13,30 @@ class ComponentsData{
 	
 
 	/**
+     * class_id_option_list Model Action
+     * @return array
+     */
+	function class_id_option_list(){
+		$sqltext = "SELECT id as value, name as label FROM classes";
+		$query_params = [];
+		$arr = DB::select($sqltext, $query_params);
+		return $arr;
+	}
+	
+
+	/**
+     * subject_id_option_list Model Action
+     * @return array
+     */
+	function subject_id_option_list(){
+		$sqltext = "SELECT id as value, name as label FROM subjects";
+		$query_params = [];
+		$arr = DB::select($sqltext, $query_params);
+		return $arr;
+	}
+	
+
+	/**
      * session_id_option_list Model Action
      * @return array
      */
@@ -37,18 +61,6 @@ class ComponentsData{
 	
 
 	/**
-     * subject_id_option_list Model Action
-     * @return array
-     */
-	function subject_id_option_list(){
-		$sqltext = "SELECT id as value, name as label FROM subjects";
-		$query_params = [];
-		$arr = DB::select($sqltext, $query_params);
-		return $arr;
-	}
-	
-
-	/**
      * term_id_option_list Model Action
      * @return array
      */
@@ -57,18 +69,6 @@ class ComponentsData{
 		$sqltext = "SELECT  DISTINCT id AS value,name AS label FROM terms WHERE session_id=:lookup_session_id ORDER BY id ASC" ;
 		$query_params = [];
 		$query_params['lookup_session_id'] = $lookup_value;
-		$arr = DB::select($sqltext, $query_params);
-		return $arr;
-	}
-	
-
-	/**
-     * class_id_option_list Model Action
-     * @return array
-     */
-	function class_id_option_list(){
-		$sqltext = "SELECT id as value, name as label FROM classes";
-		$query_params = [];
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}

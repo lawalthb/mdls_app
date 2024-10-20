@@ -25,6 +25,10 @@ class ExamSheetsController extends Controller
 			$search = trim($request->search);
 			ExamSheets::search($query, $search); // search table records
 		}
+		$query->join("sessions", "exam_sheets.session_id", "=", "sessions.id");
+		$query->join("terms", "exam_sheets.term_id", "=", "terms.id");
+		$query->join("users", "exam_sheets.user_id", "=", "users.id");
+		$query->join("classes", "exam_sheets.class_id", "=", "classes.id");
 		$orderby = $request->orderby ?? "exam_sheets.id";
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);
@@ -43,6 +47,7 @@ class ExamSheetsController extends Controller
      */
 	function view($rec_id = null){
 		$query = ExamSheets::query();
+		$query->join("sessions", "exam_sheets.session_id", "=", "sessions.id");
 		$record = $query->findOrFail($rec_id, ExamSheets::viewFields());
 		return $this->renderView("pages.examsheets.view", ["data" => $record]);
 	}

@@ -12,6 +12,8 @@
         </button>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <div class="me-auto"></div>
+            {{ Html::render_menu(Menu::navbartopleft()  , "navbar-nav me-auto" ) }}
+            {{ Html::render_menu(Menu::navbartopright()  , "navbar-nav" ) }}
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">

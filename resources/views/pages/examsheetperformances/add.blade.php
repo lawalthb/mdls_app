@@ -107,6 +107,19 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                     <input id="ctrl-remark-row<?php echo $row; ?>" data-field="remark"  value="<?php echo get_value('remark') ?>" type="text" placeholder="Enter Remark"  name="row[<?php echo $row ?>][remark]"  class="form-control " />
                 </div>
             </td>
+            <input id="ctrl-updated_by-row<?php echo $row; ?>" data-field="updated_by"  value="<?php echo get_value('updated_by', auth()->user()->id) ?>" type="hidden" placeholder="Enter Updated By" list="updated_by_list"  required="" name="row[<?php echo $row ?>][updated_by]"  class="form-control " />
+            <datalist id="updated_by_list">
+            <?php 
+                $options = $comp_model->updated_by_option_list() ?? [];
+                foreach($options as $option){
+                $value = $option->value;
+                $label = $option->label ?? $value;
+            ?>
+            <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+            <?php
+                }
+            ?>
+            </datalist>
             <th class="text-center">
             <button type="button" class="btn-close btn-remove-table-row"></button>
             </th>

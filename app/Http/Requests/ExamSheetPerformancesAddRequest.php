@@ -30,6 +30,7 @@ class ExamSheetPerformancesAddRequest extends FormRequest
 				"row.*.exam_score" => "required|numeric|max:60|min:0",
 				"row.*.total" => "required|numeric|max:100|min:0",
 				"row.*.remark" => "nullable|string",
+				"row.*.updated_by" => "required",
             
         ];
     }

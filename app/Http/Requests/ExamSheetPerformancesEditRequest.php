@@ -30,6 +30,7 @@ class ExamSheetPerformancesEditRequest extends FormRequest
 				"exam_score" => "filled|numeric|max:60|min:0",
 				"total" => "filled|numeric|max:100|min:0",
 				"remark" => "nullable|string",
+				"updated_by" => "filled",
             
         ];
     }

@@ -76,7 +76,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-ca_score-holder" class=" ">
-                                            <input id="ctrl-ca_score" data-field="ca_score"  value="<?php  echo $data['ca_score']; ?>" type="number" placeholder="Enter Ca Score" step="0.1"  required="" name="ca_score"  class="form-control " />
+                                            <input id="ctrl-ca_score" data-field="ca_score"  value="<?php  echo $data['ca_score']; ?>" type="number" placeholder="Enter Ca Score" min="0" max="40" step="0.1"  required="" name="ca_score"  class="form-control " />
                                         </div>
                                     </div>
                                 </div>
@@ -88,19 +88,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-exam_score-holder" class=" ">
-                                            <input id="ctrl-exam_score" data-field="exam_score"  value="<?php  echo $data['exam_score']; ?>" type="number" placeholder="Enter Exam Score" step="0.1"  required="" name="exam_score"  class="form-control " />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="pratical_score">Pratical Score <span class="text-danger">*</span></label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div id="ctrl-pratical_score-holder" class=" ">
-                                            <input id="ctrl-pratical_score" data-field="pratical_score"  value="<?php  echo $data['pratical_score']; ?>" type="number" placeholder="Enter Pratical Score" step="0.1"  required="" name="pratical_score"  class="form-control " />
+                                            <input id="ctrl-exam_score" data-field="exam_score"  value="<?php  echo $data['exam_score']; ?>" type="number" placeholder="Enter Exam Score" min="0" max="60" step="0.1"  required="" name="exam_score"  class="form-control " />
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +100,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-total-holder" class=" ">
-                                            <input id="ctrl-total" data-field="total"  value="<?php  echo $data['total']; ?>" type="number" placeholder="Enter Total" step="0.1"  required="" name="total"  class="form-control " />
+                                            <input id="ctrl-total" data-field="total"  value="<?php  echo $data['total']; ?>" type="number" placeholder="Enter Total" min="0" max="100" step="0.1"  required="" name="total"  class="form-control " />
                                         </div>
                                     </div>
                                 </div>
@@ -120,38 +108,11 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <div class="form-group ">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label class="control-label" for="remark">Remark <span class="text-danger">*</span></label>
+                                        <label class="control-label" for="remark">Remark </label>
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-remark-holder" class=" ">
-                                            <input id="ctrl-remark" data-field="remark"  value="<?php  echo $data['remark']; ?>" type="text" placeholder="Enter Remark"  required="" name="remark"  class="form-control " />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="updated_by">Updated By <span class="text-danger">*</span></label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div id="ctrl-updated_by-holder" class=" ">
-                                            <select required=""  id="ctrl-updated_by" data-field="updated_by" name="updated_by"  placeholder="Select a value ..."    class="form-select" >
-                                            <option value="">Select a value ...</option>
-                                            <?php
-                                                $options = $comp_model->updated_by_option_list() ?? [];
-                                                foreach($options as $option){
-                                                $value = $option->value;
-                                                $label = $option->label ?? $value;
-                                                $selected = ( $value == $data['updated_by'] ? 'selected' : null );
-                                            ?>
-                                            <option <?php echo $selected; ?> value="<?php echo $value; ?>">
-                                            <?php echo $label; ?>
-                                            </option>
-                                            <?php
-                                                }
-                                            ?>
-                                            </select>
+                                            <input id="ctrl-remark" data-field="remark"  value="<?php  echo $data['remark']; ?>" type="text" placeholder="Enter Remark"  name="remark"  class="form-control " />
                                         </div>
                                     </div>
                                 </div>

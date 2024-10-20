@@ -1,4 +1,4 @@
-<?php
+<?php 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UsersRegisterRequest;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 class UsersController extends Controller
 {
-
+	
 
 	/**
      * List table records
@@ -39,7 +39,7 @@ class UsersController extends Controller
 		$records = $query->paginate($limit, Users::listFields());
 		return $this->renderView($view, compact("records"));
 	}
-
+	
 
 	/**
      * Select table record by ID
@@ -51,9 +51,17 @@ class UsersController extends Controller
 		$record = $query->findOrFail($rec_id, Users::viewFields());
 		return $this->renderView("pages.users.view", ["data" => $record]);
 	}
+	
 
-
-
+	/**
+     * Display Master Detail Pages
+	 * @param string $rec_id //master record id
+     * @return \Illuminate\View\View
+     */
+	function masterDetail($rec_id = null){
+		return View("pages.users.detail-pages", ["masterRecordId" => $rec_id]);
+	}
+	
 
 	/**
      * Display form page
@@ -62,7 +70,7 @@ class UsersController extends Controller
 	function add(){
 		return $this->renderView("pages.users.add");
 	}
-
+	
 
 	/**
      * Save form record to the table
@@ -70,21 +78,21 @@ class UsersController extends Controller
      */
 	function store(UsersAddRequest $request){
 		$modeldata = $this->normalizeFormData($request->validated());
-
+		
 		if( array_key_exists("image", $modeldata) ){
 			//move uploaded file from temp directory to destination directory
 			$fileInfo = $this->moveUploadedFiles($modeldata['image'], "image");
 			$modeldata['image'] = $fileInfo['filepath'];
 		}
 		$modeldata['password'] = bcrypt($modeldata['password']);
-
+		
 		//save Users record
 		$record = Users::create($modeldata);
 		$record->assignRole("User"); //set default role for user
 		$rec_id = $record->id;
 		return $this->redirect("users", "Record added successfully");
 	}
-
+	
 
 	/**
      * Update table record with form data
@@ -96,7 +104,7 @@ class UsersController extends Controller
 		$record = $query->findOrFail($rec_id, Users::editFields());
 		if ($request->isMethod('post')) {
 			$modeldata = $this->normalizeFormData($request->validated());
-
+		
 		if( array_key_exists("image", $modeldata) ){
 			//move uploaded file from temp directory to destination directory
 			$fileInfo = $this->moveUploadedFiles($modeldata['image'], "image");
@@ -107,13 +115,13 @@ class UsersController extends Controller
 		}
 		return $this->renderView("pages.users.edit", ["data" => $record, "rec_id" => $rec_id]);
 	}
-
+	
 
 	/**
      * Delete record from the database
 	 * Support multi delete by separating record id by comma.
 	 * @param  \Illuminate\Http\Request
-	 * @param string $rec_id //can be separated by comma
+	 * @param string $rec_id //can be separated by comma 
      * @return \Illuminate\Http\Response
      */
 	function delete(Request $request, $rec_id = null){
@@ -124,7 +132,7 @@ class UsersController extends Controller
 		$redirectUrl = $request->redirect ?? url()->previous();
 		return $this->redirect($redirectUrl, "Record deleted successfully");
 	}
-
+	
 
 	/**
      * Display form page
@@ -133,7 +141,7 @@ class UsersController extends Controller
 	function add_student(){
 		return $this->renderView("pages.users.add_student");
 	}
-
+	
 
 	/**
      * Save form record to the table
@@ -141,13 +149,13 @@ class UsersController extends Controller
      */
 	function add_student_store(Usersadd_studentRequest $request){
 		$modeldata = $this->normalizeFormData($request->validated());
-
+		
 		if( array_key_exists("image", $modeldata) ){
 			//move uploaded file from temp directory to destination directory
 			$fileInfo = $this->moveUploadedFiles($modeldata['image'], "image");
 			$modeldata['image'] = $fileInfo['filepath'];
 		}
-
+		
 		//Validate StudentDetails form data
 		$studentdetailsPostData = $request->studentdetails;
 		$studentdetailsValidator = validator()->make($studentdetailsPostData, ["firstname" => "required|string",
@@ -165,19 +173,19 @@ class UsersController extends Controller
 			return $studentdetailsValidator->errors();
 		}
 		$studentdetailsModeldata = $this->normalizeFormData($studentdetailsValidator->valid());
-
+		
 		//save Users record
 		$record = Users::create($modeldata);
 		$record->assignRole("User"); //set default role for user
 		$rec_id = $record->id;
-
+		
         // set studentdetails.user_id to users.id
 		$studentdetailsModeldata['user_id'] = $rec_id;
 		//save StudentDetails record
 		$studentdetailsRecord = \App\Models\StudentDetails::create($studentdetailsModeldata);
 		return $this->redirect("users/list_students", "Record added successfully");
 	}
-
+	
 
 	/**
      * List table records
@@ -211,7 +219,7 @@ $query->where("account_status", "=" , "active");
 		$records = $query->paginate($limit, Users::listStudentsFields());
 		return $this->renderView($view, compact("records"));
 	}
-
+	
 
 	/**
      * Select table record by ID
@@ -223,7 +231,7 @@ $query->where("account_status", "=" , "active");
 		$record = $query->findOrFail($rec_id, Users::viewStudentFields());
 		return $this->renderView("pages.users.view_student", ["data" => $record]);
 	}
-
+	
 
 	/**
      * Display Master Detail Pages
@@ -233,7 +241,7 @@ $query->where("account_status", "=" , "active");
 	function masterDetail($rec_id = null){
 		return View("pages.users.detail-pages", ["masterRecordId" => $rec_id]);
 	}
-
+	
 
 	/**
      * Update table record with form data
@@ -245,7 +253,7 @@ $query->where("account_status", "=" , "active");
 		$record = $query->findOrFail($rec_id, Users::editStudentFields());
 		if ($request->isMethod('post')) {
 			$modeldata = $this->normalizeFormData($request->validated());
-
+		
 		if( array_key_exists("image", $modeldata) ){
 			//move uploaded file from temp directory to destination directory
 			$fileInfo = $this->moveUploadedFiles($modeldata['image'], "image");

@@ -64,6 +64,7 @@ class ExamSheetPerformancesController extends Controller
 	function store(ExamSheetPerformancesAddRequest $request){
 		$postdata = $request->input("row");
 		$modeldata = array_values($postdata);
+		$modeldata['updated_by'] = auth()->user()->id;
 		ExamSheetPerformances::insert($modeldata);
 		return $this->redirect("examsheetperformances", "Record added successfully");
 	}

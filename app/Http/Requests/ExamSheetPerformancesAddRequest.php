@@ -26,12 +26,10 @@ class ExamSheetPerformancesAddRequest extends FormRequest
         return [
             
 				"row.*.subject_id" => "required",
-				"row.*.ca_score" => "required|numeric",
-				"row.*.exam_score" => "required|numeric",
-				"row.*.pratical_score" => "required|numeric",
-				"row.*.total" => "required|numeric",
-				"row.*.remark" => "required|string",
-				"row.*.updated_by" => "required",
+				"row.*.ca_score" => "required|numeric|max:40|min:0",
+				"row.*.exam_score" => "required|numeric|max:60|min:0",
+				"row.*.total" => "required|numeric|max:100|min:0",
+				"row.*.remark" => "nullable|string",
             
         ];
     }

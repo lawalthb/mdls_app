@@ -26,12 +26,10 @@ class ExamSheetPerformancesEditRequest extends FormRequest
         return [
             
 				"subject_id" => "filled",
-				"ca_score" => "filled|numeric",
-				"exam_score" => "filled|numeric",
-				"pratical_score" => "filled|numeric",
-				"total" => "filled|numeric",
-				"remark" => "filled|string",
-				"updated_by" => "filled",
+				"ca_score" => "filled|numeric|max:40|min:0",
+				"exam_score" => "filled|numeric|max:60|min:0",
+				"total" => "filled|numeric|max:100|min:0",
+				"remark" => "nullable|string",
             
         ];
     }

@@ -227,6 +227,30 @@ class ComponentsData{
 	
 
 	/**
+     * class_id_option_list_2 Model Action
+     * @return array
+     */
+	function class_id_option_list_2(){
+		$sqltext = "SELECT  DISTINCT id AS value,name AS label FROM classes ORDER BY name ASC";
+		$query_params = [];
+		$arr = DB::select($sqltext, $query_params);
+		return $arr;
+	}
+	
+
+	/**
+     * classesid_list Model Action
+     * @return array
+     */
+	function classesid_list(){
+		$sqltext = "SELECT id AS value, name AS label FROM classes GROUP BY id, name ORDER BY name ASC";
+		$query_params = [];
+		$arr = DB::select($sqltext, $query_params);
+		return $arr;
+	}
+	
+
+	/**
      * name_option_list Model Action
      * @return array
      */

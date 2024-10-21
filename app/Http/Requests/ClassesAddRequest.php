@@ -25,9 +25,9 @@ class ClassesAddRequest extends FormRequest
 		
         return [
             
-				"name" => "required|string",
-				"is_active" => "required",
-				"updated_by" => "required|numeric",
+				"row.*.name" => "required|string",
+				"row.*.is_active" => "required",
+				"row.*.updated_by" => "required|numeric",
             
         ];
     }

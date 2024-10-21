@@ -42,42 +42,28 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                         <!--[form-content-start]-->
                         @csrf
                         <div>
+                            <input id="ctrl-class_id" data-field="class_id"  value="<?php  echo $data['class_id']; ?>" type="hidden" placeholder="Enter Class" list="class_id_list"  required="" name="class_id"  class="form-control " />
+                            <datalist id="class_id_list">
+                            <?php
+                                $options = $comp_model->class_id_option_list() ?? [];
+                                foreach($options as $option){
+                                $value = $option->value;
+                                $label = $option->label ?? $value;
+                            ?>
+                            <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+                            <?php
+                                }
+                            ?>
+                            </datalist>
                             <div class="form-group ">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label class="control-label" for="class_id">Class Id <span class="text-danger">*</span></label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div id="ctrl-class_id-holder" class=" ">
-                                            <select required=""  id="ctrl-class_id" data-field="class_id" name="class_id"  placeholder="Select a value ..."    class="form-select" >
-                                            <option value="">Select a value ...</option>
-                                            <?php
-                                                $options = $comp_model->class_id_option_list() ?? [];
-                                                foreach($options as $option){
-                                                $value = $option->value;
-                                                $label = $option->label ?? $value;
-                                                $selected = ( $value == $data['class_id'] ? 'selected' : null );
-                                            ?>
-                                            <option <?php echo $selected; ?> value="<?php echo $value; ?>">
-                                            <?php echo $label; ?>
-                                            </option>
-                                            <?php
-                                                }
-                                            ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="subject_id">Subject Id <span class="text-danger">*</span></label>
+                                        <label class="control-label" for="subject_id">Subject <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-subject_id-holder" class=" ">
-                                            <select required=""  id="ctrl-subject_id" data-field="subject_id" name="subject_id"  placeholder="Select a value ..."    class="form-select" >
-                                            <option value="">Select a value ...</option>
+                                            <select required=""  id="ctrl-subject_id" data-field="subject_id" name="subject_id"  placeholder="Select a subject ..."    class="form-select" >
+                                            <option value="">Select a subject ...</option>
                                             <?php
                                                 $options = $comp_model->subject_id_option_list() ?? [];
                                                 foreach($options as $option){
@@ -103,8 +89,8 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-is_active-holder" class=" ">
-                                            <select required=""  id="ctrl-is_active" data-field="is_active" name="is_active"  placeholder="Select a value ..."    class="form-select" >
-                                            <option value="">Select a value ...</option>
+                                            <input id="ctrl-is_active" data-field="is_active"  value="<?php  echo $data['is_active']; ?>" type="text" placeholder="Enter Is Active" list="is_active_list"  required="" name="is_active"  class="form-control " />
+                                            <datalist id="is_active_list">
                                             <?php
                                                 $options = Menu::isActive();
                                                 $field_value = $data['is_active'];
@@ -116,12 +102,12 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             ?>
                                             <option <?php echo $selected ?> value="<?php echo $value ?>">
                                             <?php echo $label ?>
-                                            </option>                                   
+                                            </option>
                                             <?php
                                                 }
                                                 }
                                             ?>
-                                            </select>
+                                            </datalist>
                                         </div>
                                     </div>
                                 </div>

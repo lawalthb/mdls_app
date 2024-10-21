@@ -25,9 +25,9 @@ class ClassSubjectsAddRequest extends FormRequest
 		
         return [
             
-				"class_id" => "required",
-				"subject_id" => "required",
-				"is_active" => "required",
+				"row.*.class_id" => "required",
+				"row.*.subject_id" => "required",
+				"row.*.is_active" => "required|string",
             
         ];
     }

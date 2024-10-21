@@ -80,7 +80,11 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::post('classes/add', 'ClassesController@store')->name('classes.store');
 		
 	Route::any('classes/edit/{rec_id}', 'ClassesController@edit')->name('classes.edit');	
-	Route::get('classes/delete/{rec_id}', 'ClassesController@delete');
+	Route::get('classes/delete/{rec_id}', 'ClassesController@delete');	
+	Route::get('classes/exam_class/{rec_id}', 'ClassesController@exam_class')->name('classes.exam_class');
+	Route::get('classes/masterdetail/{rec_id}', 'ClassesController@masterDetail')->name('classes.masterdetail')->withoutMiddleware(['rbac']);	
+	Route::get('classes/exam', 'ClassesController@exam');
+	Route::get('classes/exam/{filter?}/{filtervalue?}', 'ClassesController@exam');
 
 /* routes for ClassSubjects Controller */
 	Route::get('classsubjects', 'ClassSubjectsController@index')->name('classsubjects.index');
@@ -454,7 +458,8 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 });
 
 	
-	Route::get('users/ban', 'usersController@ban')->name('users.ban')->middleware(['auth']);
+	Route::get('users/ban', 'usersController@ban')->name('users.ban')->middleware(['auth']);	
+	Route::any('examsheets/byclass', 'examsheetsController@byclass')->middleware(['auth']);
 	
 Route::get('componentsdata/class_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
@@ -549,6 +554,18 @@ Route::get('componentsdata/users_phone_value_exist',  function(Request $request)
 Route::get('componentsdata/category_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->category_id_option_list($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/class_id_option_list_2',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->class_id_option_list_2($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/classesid_list',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->classesid_list($request);
 	}
 )->middleware(['auth']);
 	

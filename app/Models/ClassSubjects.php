@@ -41,7 +41,7 @@ class ClassSubjects extends Model
 	public static function search($query, $text){
 		//search table record 
 		$search_condition = '(
-				id LIKE ? 
+				class_subjects.id LIKE ? 
 		)';
 		$search_params = [
 			"%$text%"
@@ -58,10 +58,12 @@ class ClassSubjects extends Model
      */
 	public static function listFields(){
 		return [ 
-			"id",
-			"class_id",
-			"subject_id",
-			"is_active" 
+			"class_subjects.id AS id",
+			"class_subjects.class_id AS class_id",
+			"classes.name AS classes_name",
+			"class_subjects.subject_id AS subject_id",
+			"subjects.name AS subjects_name",
+			"class_subjects.is_active AS is_active" 
 		];
 	}
 	
@@ -73,10 +75,12 @@ class ClassSubjects extends Model
      */
 	public static function exportListFields(){
 		return [ 
-			"id",
-			"class_id",
-			"subject_id",
-			"is_active" 
+			"class_subjects.id AS id",
+			"class_subjects.class_id AS class_id",
+			"classes.name AS classes_name",
+			"class_subjects.subject_id AS subject_id",
+			"subjects.name AS subjects_name",
+			"class_subjects.is_active AS is_active" 
 		];
 	}
 	
@@ -118,10 +122,10 @@ class ClassSubjects extends Model
      */
 	public static function editFields(){
 		return [ 
-			"id",
 			"class_id",
 			"subject_id",
-			"is_active" 
+			"is_active",
+			"id" 
 		];
 	}
 }

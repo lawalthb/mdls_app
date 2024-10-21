@@ -132,6 +132,12 @@
 			'path' => 'examsheetperformances',
 			'label' => "Exam Sheet Performances", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
+		],
+		
+		[
+			'path' => 'classes/exam',
+			'label' => "By Class", 
+			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		]
 	]
 		],

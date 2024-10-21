@@ -14,6 +14,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
     $total_records = $records->total();
     $limit = $records->perPage();
     $record_count = count($records);
+    $class_id_option_list_2 = $comp_model->class_id_option_list_2();
     $pageTitle = "Class Subjects"; //set dynamic page title
 ?>
 @extends($layout)
@@ -58,6 +59,35 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
 <div  class="" >
     <div class="container-fluid">
         <div class="row ">
+            <div class="col-md-3 comp-grid " >
+                <form method="get" action="" class="form">
+                    <div class="card mb-3 p-3 ">
+                        <div class="">
+                            <div class="fw-bold">Filter by Class</div>
+                        </div>
+                        <select   name="class_id" class="form-select custom " >
+                        <option value="">Select a value ...</option>
+                        <?php 
+                            $options = $class_id_option_list_2 ?? [];
+                            foreach($options as $option){
+                            $value = $option->value;
+                            $label = $option->label ?? $value;
+                            $selected = Html::get_field_selected('class_id', $value);
+                        ?>
+                        <option <?php echo $selected; ?> value="<?php echo $value; ?>">
+                        <?php echo $label; ?>
+                        </option>
+                        <?php
+                            }
+                        ?>
+                        </select>
+                    </div>
+                    <hr />
+                    <div class="form-group text-center">
+                        <button class="btn btn-primary">Filter</button>
+                    </div>
+                </form>
+            </div>
             <div class="col comp-grid " >
                 <div  class=" page-content" >
                     <div id="classsubjects-list-records">
@@ -66,6 +96,9 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <?php Html::display_page_errors($errors); ?>
                             <div class="filter-tags mb-2">
                                 <?php Html::filter_tag('search', __('Search')); ?>
+                                <?php
+                                    Html::filter_tag('class_id', 'Class', $class_id_option_list_2);
+                                ?>
                             </div>
                             <table class="table table-hover table-striped table-sm text-left">
                                 <thead class="table-header ">
@@ -78,8 +111,8 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         </th>
                                         <?php } ?>
                                         <th class="td-id" > Id</th>
-                                        <th class="td-class_id" > Class Id</th>
-                                        <th class="td-subject_id" > Subject Id</th>
+                                        <th class="td-class_id" > Class</th>
+                                        <th class="td-subject_id" > Subject</th>
                                         <th class="td-is_active" > Is Active</th>
                                         <th class="td-btn"></th>
                                     </tr>
@@ -109,12 +142,12 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         </td>
                                         <td class="td-class_id">
                                             <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("classes/view/$data[class_id]?subpage=1") ?>">
-                                            <i class="material-icons">visibility</i> <?php echo "Classes" ?>
+                                            <?php echo $data['classes_name'] ?>
                                         </a>
                                     </td>
                                     <td class="td-subject_id">
                                         <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("subjects/view/$data[subject_id]?subpage=1") ?>">
-                                        <i class="material-icons">visibility</i> <?php echo "Subjects" ?>
+                                        <?php echo $data['subjects_name'] ?>
                                     </a>
                                 </td>
                                 <td class="td-is_active">

@@ -5,6 +5,7 @@ use App\Http\Requests\ExamSheetsAddRequest;
 use App\Http\Requests\ExamSheetsEditRequest;
 use App\Models\ExamSheets;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Exception;
 class ExamSheetsController extends Controller
 {
@@ -140,4 +141,100 @@ class ExamSheetsController extends Controller
 		$redirectUrl = $request->redirect ?? url()->previous();
 		return $this->redirect($redirectUrl, "Record deleted successfully");
 	}
+    /**
+     * Endpoint action
+     * @return \Illuminate\Http\Response
+     */
+    public function byclass(Request $request){
+        $request->validate([
+    'subject_id' => 'required|integer|exists:subjects,id', 
+  'class_id' => 'required|integer|exists:classes,id', 
+    'user_id' => 'required|integer|exists:users,id',         
+    'session_id' => 'required|integer|exists:sessions,id',   
+    'term_id' => 'required|integer|exists:terms,id',         
+    'ca_score' => 'required|numeric|min:0|max:40',           
+    'exam_score' => 'required|numeric|min:0|max:60',         
+]);
+$existingExamSheet = DB::table('exam_sheets')
+    ->where('user_id', $request->input('user_id'))
+    ->where('session_id', $request->input('session_id'))
+    ->where('term_id', $request->input('term_id'))
+    ->where('class_id', $request->input('class_id'))
+    ->first();
+if ($existingExamSheet) {
+    $exam_sheet_id = $existingExamSheet->id;
+    // Handle the case where the exam sheet already exists
+    // Assuming you're receiving data via a form or request
+$user_id    = $request->input('user_id');
+$session_id = $request->input('session_id');
+$term_id    = $request->input('term_id');
+$class_id   = $request->input('class_id');
+$existingPerformance = DB::table('exam_sheet_performances')
+        ->where('exam_sheet_id', $exam_sheet_id)
+        ->where('subject_id', $request->input('subject_id'))
+        ->first();
+    if ($existingPerformance) {
+          $perf_id = $existingPerformance->id;
+        DB::table('exam_sheet_performances')->where('id', $perf_id)->update([
+        'subject_id' => $request->input('subject_id') ,
+        'ca_score' => $request->input('ca_score'),
+        'exam_score' => $request->input('exam_score') ,
+        'total' => $request->input('total') ,
+        'updated_at' => now()
+    ]);
+        return "Updated"; 
+    }
+  DB::table('exam_sheet_performances')->insert([
+        'exam_sheet_id' => $exam_sheet_id, // foreign key
+        'subject_id' => $request->input('subject_id') ,
+        'ca_score' => $request->input('ca_score'),
+        'exam_score' => $request->input('exam_score') ,
+        'total' => $request->input('total') ,
+        'created_at' => now(),
+        'updated_at' => now()
+    ]);
+    return "success";
+}
+// Assuming you're receiving data via a form or request
+$user_id    = $request->input('user_id');
+$session_id = $request->input('session_id');
+$term_id    = $request->input('term_id');
+$class_id   = $request->input('class_id');
+// Insert data into exam_sheets table and get the exam_sheet_id
+$examSheetId = DB::table('exam_sheets')->insertGetId([
+    'user_id' => $user_id,
+    'session_id' => $session_id,
+    'term_id' => $term_id,
+'class_id' => $class_id,   
+ 'present_count' => 20,
+     'open_count' => 20,
+     'updated_by' => auth()->user()->id
+]);
+ $existingPerformance = DB::table('exam_sheet_performances')
+        ->where('exam_sheet_id', $exam_sheet_id)
+        ->where('subject_id', $request->input('subject_id'))
+        ->first();
+    if ($existingPerformance) {
+        // Handle the case where the subject performance already exists
+        $perf_id = $existingPerformance->id;
+        DB::table('exam_sheet_performances')->where('id', $perf_id)->update([
+        'subject_id' => $request->input('subject_id') ,
+        'ca_score' => $request->input('ca_score'),
+        'exam_score' => $request->input('exam_score') ,
+        'total' => $request->input('total') ,
+        'updated_at' => now()
+    ]);
+        return "Updated"; 
+    }
+  DB::table('exam_sheet_performances')->insert([
+        'exam_sheet_id' => $exam_sheet_id, // foreign key
+        'subject_id' => $request->input('subject_id') ,
+        'ca_score' => $request->input('ca_score'),
+        'exam_score' => $request->input('exam_score') ,
+        'total' => $request->input('total') ,
+        'created_at' => now(),
+        'updated_at' => now()
+    ]);
+    return "success";
+  }
 }

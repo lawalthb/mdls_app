@@ -5,6 +5,7 @@ use App\Http\Requests\ClassSubjectsAddRequest;
 use App\Http\Requests\ClassSubjectsEditRequest;
 use App\Models\ClassSubjects;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Exception;
 class ClassSubjectsController extends Controller
 {
@@ -25,11 +26,17 @@ class ClassSubjectsController extends Controller
 			$search = trim($request->search);
 			ClassSubjects::search($query, $search); // search table records
 		}
+		$query->join("classes", "class_subjects.class_id", "=", "classes.id");
+		$query->join("subjects", "class_subjects.subject_id", "=", "subjects.id");
 		$orderby = $request->orderby ?? "class_subjects.id";
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);
 		if($fieldname){
 			$query->where($fieldname , $fieldvalue); //filter by a table field
+		}
+		if($request->class_id){
+			$val = $request->class_id;
+			$query->where(DB::raw("class_subjects.class_id"), "=", $val);
 		}
 		$records = $query->paginate($limit, ClassSubjects::listFields());
 		return $this->renderView($view, compact("records"));
@@ -53,20 +60,18 @@ class ClassSubjectsController extends Controller
      * @return \Illuminate\View\View
      */
 	function add(){
-		return $this->renderView("pages.classsubjects.add");
+		return view("pages.classsubjects.add");
 	}
 	
 
 	/**
-     * Save form record to the table
+     * Insert multiple record into the database table
      * @return \Illuminate\Http\Response
      */
 	function store(ClassSubjectsAddRequest $request){
-		$modeldata = $this->normalizeFormData($request->validated());
-		
-		//save ClassSubjects record
-		$record = ClassSubjects::create($modeldata);
-		$rec_id = $record->id;
+		$postdata = $request->input("row");
+		$modeldata = array_values($postdata);
+		ClassSubjects::insert($modeldata);
 		return $this->redirect("classsubjects", "Record added successfully");
 	}
 	

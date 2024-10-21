@@ -28,7 +28,7 @@ class Classes extends Model
      * @var array
      */
 	protected $fillable = [
-		'name','is_active','updated_by'
+		'id','name','is_active','updated_by'
 	];
 	public $timestamps = false;
 	
@@ -131,6 +131,58 @@ class Classes extends Model
 			"name",
 			"is_active",
 			"updated_by" 
+		];
+	}
+	
+
+	/**
+     * return examClass page fields of the model.
+     * 
+     * @return array
+     */
+	public static function examClassFields(){
+		return [ 
+			"id",
+			"name" 
+		];
+	}
+	
+
+	/**
+     * return exportExamClass page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportExamClassFields(){
+		return [ 
+			"id",
+			"name" 
+		];
+	}
+	
+
+	/**
+     * return exam page fields of the model.
+     * 
+     * @return array
+     */
+	public static function examFields(){
+		return [ 
+			"id",
+			"name" 
+		];
+	}
+	
+
+	/**
+     * return exportExam page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportExamFields(){
+		return [ 
+			"id",
+			"name" 
 		];
 	}
 }

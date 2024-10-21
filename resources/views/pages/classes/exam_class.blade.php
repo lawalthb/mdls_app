@@ -138,10 +138,17 @@ $pageTitle = "Class Details"; //set dynamic page title
                                             ->where('class_subjects.class_id', $rec_id)
                                             ->select('class_subjects.*', 'subjects.name as subject_name')
                                             ->get();
+
+                                            if(isset($_GET['subject_id'])){
+                                            $sub_id = $_GET['subject_id'];
+                                            $sub_name = App\Models\Subjects::where('id', $sub_id)->value('name');
+                                            echo $sub_name;
+                                            }
+
                                             @endphp
 
                                             <select id="subject_id" required name="subject" class="form-control" style="width: 150px;" onchange="reloadWithSubjectId()">
-                                                <option value="">Select a subject ...</option>
+                                                <option value="">Change Subject ...</option>
                                                 @foreach ($class_subjects as $class_subject)
                                                 <option value="{{ $class_subject->subject_id }}">
                                                     {{ $class_subject->subject_name }} {{-- Fetching the subject name from the subjects table --}}
@@ -181,15 +188,19 @@ $pageTitle = "Class Details"; //set dynamic page title
                                                                 //echo $student->user_id;
                                                                 //echo $cur_term;
                                                                 // echo $cur_session;
-                                                                //echo $_GET['subject_id'];
+
                                                                 $existingExamSheet = DB::table('exam_sheets')
                                                                 ->where('user_id', $student->user_id)
                                                                 ->where('session_id', $cur_session)
                                                                 ->where('term_id', $cur_term)
                                                                 ->where('class_id', $rec_id)
                                                                 ->first();
-
+                                                                if( $existingExamSheet){
                                                                 $exam_sheet_id = $existingExamSheet->id;
+                                                                }else{
+                                                                $exam_sheet_id = null;
+                                                                }
+
                                                                 @endphp
 
 
@@ -210,25 +221,45 @@ $pageTitle = "Class Details"; //set dynamic page title
 
                                                             <td style="border: 1px solid;">
                                                                 @php
-                                                                $score = App\Models\ExamSheetPerformances::where('exam_sheet_id', $exam_sheet_id)->where('subject_id', $_GET['subject_id'])->first();
+                                                                if (isset($_GET['subject_id'])) {
+                                                                $subject = $_GET['subject_id'];
+                                                                } else {
+                                                                $subject = 1;
+                                                                }
+                                                                $score = DB::table('exam_sheets')
+                                                                ->join('exam_sheet_performances', 'exam_sheet_performances.exam_sheet_id', '=', 'exam_sheets.id')
+                                                                ->where('exam_sheet_performances.exam_sheet_id',$exam_sheet_id)
+                                                                ->where('exam_sheets.user_id', $student->user_id )
+                                                                ->where('exam_sheet_performances.subject_id', $subject )
+                                                                ->select('exam_sheet_performances.*')
+                                                                ->first();
+                                                                if($score){
+                                                                $ca_score = $score->ca_score ?? 0;
+                                                                $exam_score = $score->exam_score ?? 0;
+                                                                $total = $score->total ?? 0;
+                                                                }
+
 
                                                                 @endphp
                                                                 CA <input id="" value="<?php if (isset($score->ca_score)) {
-                                                                                            echo $score->ca_score;
+                                                                                            echo
+                                                                                            $ca_score;
                                                                                         } else {
                                                                                             echo 0;
                                                                                         } ?>" type="number" placeholder="Enter CA Score" name="ca_score" style="width: 80px;" class="form-control ca_score" oninput="calculateTotal(this)" min="0" max="40" step="0.1" />
                                                             </td>
                                                             <td>
                                                                 Exam <input id="" value="<?php if (isset($score->exam_score)) {
-                                                                                                echo $score->exam_score;
+                                                                                                echo
+                                                                                                $exam_score;
                                                                                             } else {
                                                                                                 echo 0;
                                                                                             } ?>" type="number" placeholder="Enter Exam Score" style="width: 80px;" name="exam_score" class="form-control exam_score" oninput="calculateTotal(this)" min="0" max="60" step="0.1" />
                                                             </td>
                                                             <td style="border: 1px solid;">
                                                                 Total <input id="" value="<?php if (isset($score->total)) {
-                                                                                                echo $score->total;
+                                                                                                echo
+                                                                                                $total;
                                                                                             } else {
                                                                                                 echo 0;
                                                                                             } ?>" type="number" name="total" style="width: 80px;" class="form-control total_score " readonly />

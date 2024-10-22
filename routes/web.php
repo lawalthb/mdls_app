@@ -201,6 +201,16 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::any('sessions/edit/{rec_id}', 'SessionsController@edit')->name('sessions.edit');	
 	Route::get('sessions/delete/{rec_id}', 'SessionsController@delete');
 
+/* routes for StaffDetails Controller */
+	Route::get('staffdetails', 'StaffDetailsController@index')->name('staffdetails.index');
+	Route::get('staffdetails/index/{filter?}/{filtervalue?}', 'StaffDetailsController@index')->name('staffdetails.index');	
+	Route::get('staffdetails/view/{rec_id}', 'StaffDetailsController@view')->name('staffdetails.view');	
+	Route::get('staffdetails/add', 'StaffDetailsController@add')->name('staffdetails.add');
+	Route::post('staffdetails/add', 'StaffDetailsController@store')->name('staffdetails.store');
+		
+	Route::any('staffdetails/edit/{rec_id}', 'StaffDetailsController@edit')->name('staffdetails.edit');	
+	Route::get('staffdetails/delete/{rec_id}', 'StaffDetailsController@delete');
+
 /* routes for StudentDetails Controller */
 	Route::get('studentdetails', 'StudentDetailsController@index')->name('studentdetails.index');
 	Route::get('studentdetails/index/{filter?}/{filtervalue?}', 'StudentDetailsController@index')->name('studentdetails.index');	
@@ -263,7 +273,10 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::get('users/list_students/{filter?}/{filtervalue?}', 'UsersController@list_students');	
 	Route::get('users/view_student/{rec_id}', 'UsersController@view_student')->name('users.view_student');
 	Route::get('users/masterdetail/{rec_id}', 'UsersController@masterDetail')->name('users.masterdetail')->withoutMiddleware(['rbac']);	
-	Route::any('users/edit_student/{rec_id}', 'UsersController@edit_student')->name('users.edit_student');
+	Route::any('users/edit_student/{rec_id}', 'UsersController@edit_student')->name('users.edit_student');	
+	Route::get('users/add_staff', 'UsersController@add_staff')->name('users.add_staff');
+	Route::post('users/add_staff', 'UsersController@add_staff_store')->name('users.add_staff_store');
+	
 
 /* routes for WebAbouts Controller */
 	Route::get('webabouts', 'WebAboutsController@index')->name('webabouts.index');
@@ -488,6 +501,12 @@ Route::get('componentsdata/updated_by_option_list',  function(Request $request){
 Route::get('componentsdata/term_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->term_id_option_list($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/examsheets_term_id_option_list',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->examsheets_term_id_option_list($request);
 	}
 )->middleware(['auth']);
 	

@@ -221,6 +221,29 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             <input id="ctrl-address" data-field="address"  value="<?php echo get_value('address') ?>" type="text" placeholder="Enter Address"  name="studentdetails[address]"  class="form-control " />
                                         </div>
                                     </div>
+                                    <div class="form-group ">
+                                        <label class="control-label" for="gender">Gender <span class="text-danger">*</span></label>
+                                        <div id="ctrl-gender-holder" class=" "> 
+                                            <select required=""  id="ctrl-gender" data-field="gender" name="studentdetails[gender]"  placeholder="Select a value ..."    class="form-select" >
+                                            <option value="">Select a value ...</option>
+                                            <?php
+                                                $options = Menu::gender();
+                                                if(!empty($options)){
+                                                foreach($options as $option){
+                                                $value = $option['value'];
+                                                $label = $option['label'];
+                                                $selected = Html::get_field_selected('gender', $value, "");
+                                            ?>
+                                            <option <?php echo $selected ?> value="<?php echo $value ?>">
+                                            <?php echo $label ?>
+                                            </option>                                   
+                                            <?php
+                                                }
+                                                }
+                                            ?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-ajax-status"></div>
                             </div>

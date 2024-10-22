@@ -88,6 +88,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <th class="td-present_count" > Present Count</th>
                                         <th class="td-resume_date" > Resume Date</th>
                                         <th class="td-director_approve" > Director Approve</th>
+                                        <th class="td-term_id" > Term Id</th>
                                         <th class="td-btn"></th>
                                     </tr>
                                 </thead>
@@ -148,74 +149,79 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                 <td class="td-director_approve">
                                     <?php echo  $data['director_approve'] ; ?>
                                 </td>
-                                <!--PageComponentEnd-->
-                                <td class="td-btn">
-                                    <?php if($can_edit){ ?>
-                                    <a class="btn btn-sm btn-success has-tooltip "    href="<?php print_link("examsettings/edit/$rec_id"); ?>" >
-                                    <i class="material-icons">edit</i> Edit
+                                <td class="td-term_id">
+                                    <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("terms/view/$data[term_id]?subpage=1") ?>">
+                                    <i class="material-icons">visibility</i> <?php echo "Terms" ?>
                                 </a>
-                                <?php } ?>
-                                <?php if($can_delete){ ?>
-                                <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal"  href="<?php print_link("examsettings/delete/$rec_id"); ?>" >
-                                <i class="material-icons">delete_sweep</i> Delete
+                            </td>
+                            <!--PageComponentEnd-->
+                            <td class="td-btn">
+                                <?php if($can_edit){ ?>
+                                <a class="btn btn-sm btn-success has-tooltip "    href="<?php print_link("examsettings/edit/$rec_id"); ?>" >
+                                <i class="material-icons">edit</i> Edit
                             </a>
                             <?php } ?>
-                        </td>
-                    </tr>
-                    <?php 
-                        }
-                    ?>
-                    <!--endrecord-->
-                </tbody>
-                <tbody class="search-data"></tbody>
-                <?php
-                    }
-                    else{
-                ?>
-                <tbody class="page-data">
-                    <tr>
-                        <td class="bg-light text-center text-muted animated bounce p-3" colspan="1000">
-                            <i class="material-icons">block</i> No record found
-                        </td>
-                    </tr>
-                </tbody>
-                <?php
+                            <?php if($can_delete){ ?>
+                            <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal"  href="<?php print_link("examsettings/delete/$rec_id"); ?>" >
+                            <i class="material-icons">delete_sweep</i> Delete
+                        </a>
+                        <?php } ?>
+                    </td>
+                </tr>
+                <?php 
                     }
                 ?>
-            </table>
-        </div>
-        <?php
-            if($show_footer){
-        ?>
-        <div class=" mt-3">
-            <div class="row align-items-center justify-content-between">    
-                <div class="col-md-auto d-flex">    
-                    <?php if($can_delete){ ?>
-                    <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("examsettings/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
-                    <i class="material-icons">delete_sweep</i> Delete Selected
-                    </button>
-                    <?php } ?>
-                </div>
-                <div class="col">   
-                    <?php
-                        if($show_pagination == true){
-                        $pager = new Pagination($total_records, $record_count);
-                        $pager->show_page_count = false;
-                        $pager->show_record_count = true;
-                        $pager->show_page_limit =false;
-                        $pager->limit = $limit;
-                        $pager->show_page_number_list = true;
-                        $pager->pager_link_range=5;
-                        $pager->render();
-                        }
-                    ?>
-                </div>
+                <!--endrecord-->
+            </tbody>
+            <tbody class="search-data"></tbody>
+            <?php
+                }
+                else{
+            ?>
+            <tbody class="page-data">
+                <tr>
+                    <td class="bg-light text-center text-muted animated bounce p-3" colspan="1000">
+                        <i class="material-icons">block</i> No record found
+                    </td>
+                </tr>
+            </tbody>
+            <?php
+                }
+            ?>
+        </table>
+    </div>
+    <?php
+        if($show_footer){
+    ?>
+    <div class=" mt-3">
+        <div class="row align-items-center justify-content-between">    
+            <div class="col-md-auto d-flex">    
+                <?php if($can_delete){ ?>
+                <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("examsettings/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
+                <i class="material-icons">delete_sweep</i> Delete Selected
+                </button>
+                <?php } ?>
+            </div>
+            <div class="col">   
+                <?php
+                    if($show_pagination == true){
+                    $pager = new Pagination($total_records, $record_count);
+                    $pager->show_page_count = false;
+                    $pager->show_record_count = true;
+                    $pager->show_page_limit =false;
+                    $pager->limit = $limit;
+                    $pager->show_page_number_list = true;
+                    $pager->pager_link_range=5;
+                    $pager->render();
+                    }
+                ?>
             </div>
         </div>
-        <?php
-            }
-        ?>
     </div>
+    <?php
+        }
+    ?>
+</div>
 </div>
 </div>
 </div>

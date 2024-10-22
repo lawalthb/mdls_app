@@ -36,6 +36,7 @@ class StudentDetailsEditRequest extends FormRequest
 				"weight" => "nullable|numeric",
 				"measurement_date" => "nullable|date",
 				"address" => "nullable|string",
+				"gender" => "filled",
             
         ];
     }

@@ -34,6 +34,7 @@ class ExamSettingsEditRequest extends FormRequest
 				"present_count" => "nullable|numeric",
 				"resume_date" => "nullable|date",
 				"director_approve" => "filled",
+				"term_id" => "filled",
             
         ];
     }

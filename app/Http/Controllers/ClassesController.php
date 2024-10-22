@@ -1,4 +1,4 @@
-<?php
+<?php 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassesAddRequest;
@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Exception;
 class ClassesController extends Controller
 {
-
+	
 
 	/**
      * List table records
@@ -35,7 +35,7 @@ class ClassesController extends Controller
 		$records = $query->paginate($limit, Classes::listFields());
 		return $this->renderView($view, compact("records"));
 	}
-
+	
 
 	/**
      * Select table record by ID
@@ -47,7 +47,7 @@ class ClassesController extends Controller
 		$record = $query->findOrFail($rec_id, Classes::viewFields());
 		return $this->renderView("pages.classes.view", ["data" => $record]);
 	}
-
+	
 
 	/**
      * Display Master Detail Pages
@@ -57,7 +57,7 @@ class ClassesController extends Controller
 	function masterDetail($rec_id = null){
 		return View("pages.classes.detail-pages", ["masterRecordId" => $rec_id]);
 	}
-
+	
 
 	/**
      * Display form page
@@ -66,7 +66,7 @@ class ClassesController extends Controller
 	function add(){
 		return view("pages.classes.add");
 	}
-
+	
 
 	/**
      * Insert multiple record into the database table
@@ -78,7 +78,7 @@ class ClassesController extends Controller
 		Classes::insert($modeldata);
 		return $this->redirect("classes", "Record added successfully");
 	}
-
+	
 
 	/**
      * Update table record with form data
@@ -95,13 +95,13 @@ class ClassesController extends Controller
 		}
 		return $this->renderView("pages.classes.edit", ["data" => $record, "rec_id" => $rec_id]);
 	}
-
+	
 
 	/**
      * Delete record from the database
 	 * Support multi delete by separating record id by comma.
 	 * @param  \Illuminate\Http\Request
-	 * @param string $rec_id //can be separated by comma
+	 * @param string $rec_id //can be separated by comma 
      * @return \Illuminate\Http\Response
      */
 	function delete(Request $request, $rec_id = null){
@@ -112,7 +112,7 @@ class ClassesController extends Controller
 		$redirectUrl = $request->redirect ?? url()->previous();
 		return $this->redirect($redirectUrl, "Record deleted successfully");
 	}
-
+	
 
 	/**
      * Select table record by ID
@@ -124,8 +124,16 @@ class ClassesController extends Controller
 		$record = $query->findOrFail($rec_id, Classes::examClassFields());
 		return $this->renderView("pages.classes.exam_class", ["data" => $record]);
 	}
+	
 
-
+	/**
+     * Display Master Detail Pages
+	 * @param string $rec_id //master record id
+     * @return \Illuminate\View\View
+     */
+	function masterDetail($rec_id = null){
+		return View("pages.classes.detail-pages", ["masterRecordId" => $rec_id]);
+	}
 	
 
 	/**

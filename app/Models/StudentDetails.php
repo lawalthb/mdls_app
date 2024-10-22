@@ -28,7 +28,7 @@ class StudentDetails extends Model
      * @var array
      */
 	protected $fillable = [
-		'user_id','firstname','middlemane','lastname','dob','class_id','religion','blood_group','height','weight','measurement_date','address'
+		'user_id','firstname','middlemane','lastname','dob','class_id','religion','blood_group','height','weight','measurement_date','address','gender'
 	];
 	public $timestamps = false;
 	
@@ -75,7 +75,8 @@ class StudentDetails extends Model
 			"weight",
 			"measurement_date",
 			"updated_at",
-			"address" 
+			"address",
+			"gender" 
 		];
 	}
 	
@@ -100,7 +101,8 @@ class StudentDetails extends Model
 			"weight",
 			"measurement_date",
 			"updated_at",
-			"address" 
+			"address",
+			"gender" 
 		];
 	}
 	
@@ -127,7 +129,8 @@ class StudentDetails extends Model
 			"student_details.updated_at AS updated_at",
 			"student_details.id AS id",
 			"student_details.user_id AS user_id",
-			"users.id AS users_id" 
+			"users.id AS users_id",
+			"student_details.gender AS gender" 
 		];
 	}
 	
@@ -154,7 +157,8 @@ class StudentDetails extends Model
 			"student_details.updated_at AS updated_at",
 			"student_details.id AS id",
 			"student_details.user_id AS user_id",
-			"users.id AS users_id" 
+			"users.id AS users_id",
+			"student_details.gender AS gender" 
 		];
 	}
 	
@@ -178,7 +182,8 @@ class StudentDetails extends Model
 			"weight",
 			"measurement_date",
 			"address",
-			"id" 
+			"id",
+			"gender" 
 		];
 	}
 }

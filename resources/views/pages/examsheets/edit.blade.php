@@ -79,7 +79,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             <div id="ctrl-term_id-holder" class=" ">
                                                 <select required=""  id="ctrl-term_id" data-field="term_id" data-load-path="<?php print_link('componentsdata/term_id_option_list') ?>" name="term_id"  placeholder="Select a value ..."    class="form-select" >
                                                 <?php
-                                                    $options = $comp_model->term_id_option_list($data['session_id']) ?? [];
+                                                    $options = $comp_model->examsheets_term_id_option_list($data['session_id']) ?? [];
                                                     foreach($options as $option){
                                                     $value = $option->value;
                                                     $label = $option->label ?? $value;

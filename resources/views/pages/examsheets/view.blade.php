@@ -221,6 +221,14 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                     </div>
                     <!--PageComponentEnd-->
                     <div class="d-flex align-items-center gap-2">
+                        <div class="dropup export-btn-holder">
+                            <button  class="btn  btn-sm btn-outline-primary dropdown-toggle" title="Export" type="button" data-bs-toggle="dropdown">
+                            <i class="material-icons">save</i> 
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <?php Html :: export_menus(['pdf', 'print']); ?>
+                            </div>
+                        </div>
                         <?php if($can_edit){ ?>
                         <a class="btn btn-sm btn-success has-tooltip "   title="Edit" href="<?php print_link("examsheets/edit/$rec_id"); ?>" >
                         <i class="material-icons">edit</i> Edit

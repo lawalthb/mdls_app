@@ -5,6 +5,9 @@ use App\Http\Requests\ExamSheetsAddRequest;
 use App\Http\Requests\ExamSheetsEditRequest;
 use App\Models\ExamSheets;
 use Illuminate\Http\Request;
+use \PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExamsheetsViewExport;
 use Illuminate\Support\Facades\DB;
 use Exception;
 class ExamSheetsController extends Controller
@@ -49,6 +52,10 @@ class ExamSheetsController extends Controller
 	function view($rec_id = null){
 		$query = ExamSheets::query();
 		$query->join("sessions", "exam_sheets.session_id", "=", "sessions.id");
+		// if request format is for export example:- product/view/344?export=pdf
+		if($this->getExportFormat()){
+			return $this->ExportView($query, $rec_id);
+		}
 		$record = $query->findOrFail($rec_id, ExamSheets::viewFields());
 		return $this->renderView("pages.examsheets.view", ["data" => $record]);
 	}
@@ -237,4 +244,33 @@ $examSheetId = DB::table('exam_sheets')->insertGetId([
     ]);
     return "success";
   }
+	
+
+	/**
+     * Export single record to different format
+	 * supported format:- PDF, CSV, EXCEL, HTML
+	 * @param \Illuminate\Database\Eloquent\Model $record
+	 * @param string $rec_id
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+	private function ExportView($query, $rec_id){
+		ob_end_clean();// clean any output to allow file download
+		$filename ="ViewExamSheetsReport-" . date_now();
+		$format = $this->getExportFormat();
+		if($format == "print"){
+			$record = $query->findOrFail($rec_id, ExamSheets::exportViewFields());
+			return view("reports.examsheets-view", ["record" => $record]);
+		}
+		elseif($format == "pdf"){
+			$record = $query->findOrFail($rec_id, ExamSheets::exportViewFields());
+			$pdf = PDF::loadView("reports.examsheets-view", ["record" => $record]);
+			return $pdf->download("$filename.pdf");
+		}
+		elseif($format == "csv"){
+			return Excel::download(new ExamsheetsViewExport($query, $rec_id), "$filename.csv", \Maatwebsite\Excel\Excel::CSV);
+		}
+		elseif($format == "excel"){
+			return Excel::download(new ExamsheetsViewExport($query, $rec_id), "$filename.xlsx", \Maatwebsite\Excel\Excel::XLSX);
+		}
+	}
 }

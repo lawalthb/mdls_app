@@ -3,7 +3,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ExamSettingsAddRequest extends FormRequest
+class StaffDetailsEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,16 +25,13 @@ class ExamSettingsAddRequest extends FormRequest
 		
         return [
             
-				"session_id" => "required",
-				"ca_mark" => "required|numeric",
-				"exam_mark" => "required|numeric",
-				"pratical_mark" => "nullable|numeric",
-				"is_active" => "required",
-				"updated_by" => "required",
-				"present_count" => "nullable|numeric",
-				"resume_date" => "nullable|date",
-				"director_approve" => "required",
-				"term_id" => "required",
+				"class_id" => "nullable|numeric",
+				"gender" => "filled",
+				"address" => "nullable|string",
+				"guarantor_details" => "nullable",
+				"files" => "nullable",
+				"date_joined" => "nullable|date",
+				"other_info" => "nullable",
             
         ];
     }

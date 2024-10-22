@@ -89,8 +89,8 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     </div>
                                     <div class="col-sm-8">
                                         <div id="ctrl-is_active-holder" class=" ">
-                                            <input id="ctrl-is_active" data-field="is_active"  value="<?php  echo $data['is_active']; ?>" type="text" placeholder="Enter Is Active" list="is_active_list"  required="" name="is_active"  class="form-control " />
-                                            <datalist id="is_active_list">
+                                            <select required=""  id="ctrl-is_active" data-field="is_active" name="is_active"  placeholder="Select a value ..."    class="form-select" >
+                                            <option value="">Select a value ...</option>
                                             <?php
                                                 $options = Menu::isActive();
                                                 $field_value = $data['is_active'];
@@ -102,12 +102,12 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             ?>
                                             <option <?php echo $selected ?> value="<?php echo $value ?>">
                                             <?php echo $label ?>
-                                            </option>
+                                            </option>                                   
                                             <?php
                                                 }
                                                 }
                                             ?>
-                                            </datalist>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

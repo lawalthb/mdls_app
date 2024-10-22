@@ -27,7 +27,7 @@ class ClassSubjectsEditRequest extends FormRequest
             
 				"class_id" => "filled",
 				"subject_id" => "filled",
-				"is_active" => "filled|string",
+				"is_active" => "filled",
             
         ];
     }

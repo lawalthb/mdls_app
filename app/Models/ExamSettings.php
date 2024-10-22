@@ -28,7 +28,7 @@ class ExamSettings extends Model
      * @var array
      */
 	protected $fillable = [
-		'session_id','ca_mark','exam_mark','pratical_mark','is_active','updated_by','present_count','resume_date','director_approve'
+		'session_id','ca_mark','exam_mark','pratical_mark','is_active','updated_by','present_count','resume_date','director_approve','term_id'
 	];
 	public $timestamps = false;
 	
@@ -70,7 +70,8 @@ class ExamSettings extends Model
 			"users.name AS users_name",
 			"exam_settings.present_count AS present_count",
 			"exam_settings.resume_date AS resume_date",
-			"exam_settings.director_approve AS director_approve" 
+			"exam_settings.director_approve AS director_approve",
+			"exam_settings.term_id AS term_id" 
 		];
 	}
 	
@@ -94,7 +95,8 @@ class ExamSettings extends Model
 			"users.name AS users_name",
 			"exam_settings.present_count AS present_count",
 			"exam_settings.resume_date AS resume_date",
-			"exam_settings.director_approve AS director_approve" 
+			"exam_settings.director_approve AS director_approve",
+			"exam_settings.term_id AS term_id" 
 		];
 	}
 	
@@ -117,7 +119,8 @@ class ExamSettings extends Model
 			"updated_by",
 			"present_count",
 			"resume_date",
-			"director_approve" 
+			"director_approve",
+			"term_id" 
 		];
 	}
 	
@@ -140,7 +143,8 @@ class ExamSettings extends Model
 			"updated_by",
 			"present_count",
 			"resume_date",
-			"director_approve" 
+			"director_approve",
+			"term_id" 
 		];
 	}
 	
@@ -161,7 +165,8 @@ class ExamSettings extends Model
 			"present_count",
 			"resume_date",
 			"director_approve",
-			"id" 
+			"id",
+			"term_id" 
 		];
 	}
 }

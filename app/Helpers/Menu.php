@@ -212,6 +212,12 @@
 			'path' => 'classsubjects',
 			'label' => "Class Subjects", 
 			'icon' => '<i class="material-icons">extension</i>'
+		],
+		
+		[
+			'path' => 'staffdetails',
+			'label' => "Staff Details", 
+			'icon' => '<i class="material-icons">extension</i>'
 		]
 	] ;
 	}
@@ -222,6 +228,12 @@
 			'path' => 'classsubjects',
 			'label' => "Class Subjects", 
 			'icon' => '<i class="material-icons">extension</i>'
+		],
+		
+		[
+			'path' => 'staffdetails',
+			'label' => "Staff Details", 
+			'icon' => '<i class="material-icons">extension</i>'
 		]
 	] ;
 	}
@@ -231,6 +243,12 @@
 		[
 			'path' => 'classsubjects',
 			'label' => "Class Subjects", 
+			'icon' => '<i class="material-icons">extension</i>'
+		],
+		
+		[
+			'path' => 'staffdetails',
+			'label' => "Staff Details", 
 			'icon' => '<i class="material-icons">extension</i>'
 		]
 	] ;
@@ -286,6 +304,18 @@
 		[
 			'value' => 'Monther', 
 			'label' => "Monther", 
+		],] ;
+	}
+	
+	public static function gender(){
+		return [
+		[
+			'value' => 'Male', 
+			'label' => "Male", 
+		],
+		[
+			'value' => 'Female', 
+			'label' => "Female", 
 		],] ;
 	}
 	

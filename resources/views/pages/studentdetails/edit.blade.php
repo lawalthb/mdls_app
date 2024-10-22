@@ -163,6 +163,30 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     <input id="ctrl-address" data-field="address"  value="<?php  echo $data['address']; ?>" type="text" placeholder="Enter Address"  name="address"  class="form-control " />
                                 </div>
                             </div>
+                            <div class="form-group ">
+                                <label class="control-label" for="gender">Gender <span class="text-danger">*</span></label>
+                                <div id="ctrl-gender-holder" class=" "> 
+                                    <select required=""  id="ctrl-gender" data-field="gender" name="gender"  placeholder="Select a value ..."    class="form-select" >
+                                    <option value="">Select a value ...</option>
+                                    <?php
+                                        $options = Menu::gender();
+                                        $field_value = $data['gender'];
+                                        if(!empty($options)){
+                                        foreach($options as $option){
+                                        $value = $option['value'];
+                                        $label = $option['label'];
+                                        $selected = Html::get_record_selected($field_value, $value);
+                                    ?>
+                                    <option <?php echo $selected ?> value="<?php echo $value ?>">
+                                    <?php echo $label ?>
+                                    </option>                                   
+                                    <?php
+                                        }
+                                        }
+                                    ?>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-ajax-status"></div>
                         <!--[form-content-end]-->

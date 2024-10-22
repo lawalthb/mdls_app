@@ -64,7 +64,19 @@ class ComponentsData{
      * term_id_option_list Model Action
      * @return array
      */
-	function term_id_option_list($value = null){
+	function term_id_option_list(){
+		$sqltext = "SELECT id as value, name as label FROM terms";
+		$query_params = [];
+		$arr = DB::select($sqltext, $query_params);
+		return $arr;
+	}
+	
+
+	/**
+     * examsheets_term_id_option_list Model Action
+     * @return array
+     */
+	function examsheets_term_id_option_list($value = null){
 		$lookup_value = request()->lookup ?? $value;
 		$sqltext = "SELECT  DISTINCT id AS value,name AS label FROM terms WHERE session_id=:lookup_session_id ORDER BY id ASC" ;
 		$query_params = [];

@@ -155,6 +155,18 @@ class ComponentsData{
 	
 
 	/**
+     * staffdetails_class_id_option_list Model Action
+     * @return array
+     */
+	function staffdetails_class_id_option_list(){
+		$sqltext = "SELECT  DISTINCT id AS value,name AS label FROM classes ORDER BY name ASC";
+		$query_params = [];
+		$arr = DB::select($sqltext, $query_params);
+		return $arr;
+	}
+	
+
+	/**
      * Check if value already exist in Subjects table
 	 * @param string $value
      * @return bool
@@ -227,23 +239,24 @@ class ComponentsData{
 	
 
 	/**
-     * category_id_option_list Model Action
+     * user_role_id_option_list Model Action
      * @return array
      */
-	function category_id_option_list(){
-		$sqltext = "SELECT id as value, name as label FROM web_blog_categories";
+	function user_role_id_option_list(){
+		$sqltext = "SELECT role_id AS value, role_name AS label FROM roles where role_id <>:roleid" ;
 		$query_params = [];
+$query_params['roleid'] = 2;
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
 	
 
 	/**
-     * class_id_option_list_2 Model Action
+     * category_id_option_list Model Action
      * @return array
      */
-	function class_id_option_list_2(){
-		$sqltext = "SELECT  DISTINCT id AS value,name AS label FROM classes ORDER BY name ASC";
+	function category_id_option_list(){
+		$sqltext = "SELECT id as value, name as label FROM web_blog_categories";
 		$query_params = [];
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;

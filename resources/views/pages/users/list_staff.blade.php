@@ -5,16 +5,16 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
 @inject('comp_model', 'App\Models\ComponentsData')
 <?php
     //check if current user role is allowed access to the pages
-    $can_add = $user->canAccess("staffdetails/add");
-    $can_edit = $user->canAccess("staffdetails/edit");
-    $can_view = $user->canAccess("staffdetails/view");
-    $can_delete = $user->canAccess("staffdetails/delete");
+    $can_add = $user->canAccess("users/add");
+    $can_edit = $user->canAccess("users/edit");
+    $can_view = $user->canAccess("users/view");
+    $can_delete = $user->canAccess("users/delete");
     $field_name = request()->segment(3);
     $field_value = request()->segment(4);
     $total_records = $records->total();
     $limit = $records->perPage();
     $record_count = count($records);
-    $pageTitle = "Staff Details"; //set dynamic page title
+    $pageTitle = "Users"; //set dynamic page title
 ?>
 @extends($layout)
 @section('title', $pageTitle)
@@ -28,14 +28,14 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
             <div class="row justify-content-between align-items-center gap-3">
                 <div class="col  " >
                     <div class="">
-                        <div class="h5 font-weight-bold text-primary">Staff Details</div>
+                        <div class="h5 font-weight-bold text-primary">Staff List</div>
                     </div>
                 </div>
                 <div class="col-auto  " >
                     <?php if($can_add){ ?>
-                    <a  class="btn btn-primary btn-block" href="<?php print_link("staffdetails/add", true) ?>" >
+                    <a  class="btn btn-primary btn-block" href="<?php print_link("users/add_staff", true) ?>" >
                     <i class="material-icons">add</i>                               
-                    Add New Staff Detail 
+                    Add New User 
                 </a>
                 <?php } ?>
             </div>
@@ -60,9 +60,9 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
         <div class="row ">
             <div class="col comp-grid " >
                 <div  class=" page-content" >
-                    <div id="staffdetails-list-records">
+                    <div id="users-list_staff-records">
                         <div id="page-main-content" class="table-responsive">
-                            <?php Html::page_bread_crumb("/staffdetails/", $field_name, $field_value); ?>
+                            <?php Html::page_bread_crumb("/users/list_staff", $field_name, $field_value); ?>
                             <?php Html::display_page_errors($errors); ?>
                             <div class="filter-tags mb-2">
                                 <?php Html::filter_tag('search', __('Search')); ?>
@@ -77,15 +77,16 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         </label>
                                         </th>
                                         <?php } ?>
-                                        <th class="td-class_id" > Class Id</th>
-                                        <th class="td-gender" > Gender</th>
-                                        <th class="td-address" > Address</th>
-                                        <th class="td-guarantor_details" > Guarantor Details</th>
-                                        <th class="td-files" > Files</th>
-                                        <th class="td-date_joined" > Date Joined</th>
-                                        <th class="td-other_info" > Other Info</th>
                                         <th class="td-id" > Id</th>
-                                        <th class="td-user_id" > User Id</th>
+                                        <th class="td-email" > Email</th>
+                                        <th class="td-name" > Name</th>
+                                        <th class="td-phone" > Phone</th>
+                                        <th class="td-image" > Image</th>
+                                        <th class="td-is_active" > Is Active</th>
+                                        <th class="td-created_at" > Created At</th>
+                                        <th class="td-updated_at" > Updated At</th>
+                                        <th class="td-account_status" > Account Status</th>
+                                        <th class="td-user_role_id" > User Role Id</th>
                                         <th class="td-btn"></th>
                                     </tr>
                                 </thead>
@@ -109,33 +110,38 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         </td>
                                         <?php } ?>
                                         <!--PageComponentStart-->
-                                        <td class="td-class_id">
-                                            <?php echo  $data['class_id'] ; ?>
-                                        </td>
-                                        <td class="td-gender">
-                                            <?php echo  $data['gender'] ; ?>
-                                        </td>
-                                        <td class="td-address">
-                                            <?php echo  $data['address'] ; ?>
-                                        </td>
-                                        <td class="td-guarantor_details">
-                                            <?php echo  $data['guarantor_details'] ; ?>
-                                        </td>
-                                        <td class="td-files">
-                                            <?php echo  $data['files'] ; ?>
-                                        </td>
-                                        <td class="td-date_joined">
-                                            <?php echo  $data['date_joined'] ; ?>
-                                        </td>
-                                        <td class="td-other_info">
-                                            <?php echo  $data['other_info'] ; ?>
-                                        </td>
                                         <td class="td-id">
-                                            <a href="<?php print_link("/staffdetails/view/$data[id]") ?>"><?php echo $data['id']; ?></a>
+                                            <a href="<?php print_link("/users/view/$data[id]") ?>"><?php echo $data['id']; ?></a>
                                         </td>
-                                        <td class="td-user_id">
-                                            <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[user_id]?subpage=1") ?>">
-                                            <i class="material-icons">visibility</i> <?php echo "Users" ?>
+                                        <td class="td-email">
+                                            <a href="<?php print_link("mailto:$data[email]") ?>"><?php echo $data['email']; ?></a>
+                                        </td>
+                                        <td class="td-name">
+                                            <?php echo  $data['name'] ; ?>
+                                        </td>
+                                        <td class="td-phone">
+                                            <a href="<?php print_link("tel:$data[phone]") ?>"><?php echo $data['phone']; ?></a>
+                                        </td>
+                                        <td class="td-image">
+                                            <?php 
+                                                Html :: page_img($data['image'], '50px', '50px', "small", 1); 
+                                            ?>
+                                        </td>
+                                        <td class="td-is_active">
+                                            <?php echo  $data['is_active'] ; ?>
+                                        </td>
+                                        <td class="td-created_at">
+                                            <?php echo  $data['created_at'] ; ?>
+                                        </td>
+                                        <td class="td-updated_at">
+                                            <?php echo  $data['updated_at'] ; ?>
+                                        </td>
+                                        <td class="td-account_status">
+                                            <?php echo  $data['account_status'] ; ?>
+                                        </td>
+                                        <td class="td-user_role_id">
+                                            <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("roles/view/$data[user_role_id]?subpage=1") ?>">
+                                            <i class="material-icons">visibility</i> <?php echo "Roles" ?>
                                         </a>
                                     </td>
                                     <!--PageComponentEnd-->
@@ -146,17 +152,17 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <?php if($can_view){ ?>
-                                                <a class="dropdown-item "   href="<?php print_link("staffdetails/view/$rec_id"); ?>" >
+                                                <a class="dropdown-item "   href="<?php print_link("users/view/$rec_id"); ?>" >
                                                 <i class="material-icons">visibility</i> View
                                             </a>
                                             <?php } ?>
                                             <?php if($can_edit){ ?>
-                                            <a class="dropdown-item "   href="<?php print_link("staffdetails/edit/$rec_id"); ?>" >
+                                            <a class="dropdown-item "   href="<?php print_link("users/edit/$rec_id"); ?>" >
                                             <i class="material-icons">edit</i> Edit
                                         </a>
                                         <?php } ?>
                                         <?php if($can_delete){ ?>
-                                        <a class="dropdown-item record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" href="<?php print_link("staffdetails/delete/$rec_id"); ?>" >
+                                        <a class="dropdown-item record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" href="<?php print_link("users/delete/$rec_id"); ?>" >
                                         <i class="material-icons">delete_sweep</i> Delete
                                     </a>
                                     <?php } ?>
@@ -193,7 +199,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
             <div class="row align-items-center justify-content-between">    
                 <div class="col-md-auto d-flex">    
                     <?php if($can_delete){ ?>
-                    <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("staffdetails/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
+                    <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("users/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
                     <i class="material-icons">delete_sweep</i> Delete Selected
                     </button>
                     <?php } ?>

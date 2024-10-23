@@ -26,6 +26,7 @@ class RolesEditRequest extends FormRequest
         return [
             
 				"role_name" => "filled|string",
+				"is_system" => "filled",
             
         ];
     }

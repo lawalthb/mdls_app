@@ -25,8 +25,8 @@ class StaffDetailsAddRequest extends FormRequest
 		
         return [
             
-				"class_id" => "nullable|numeric",
 				"gender" => "required",
+				"class_id" => "nullable",
 				"address" => "nullable|string",
 				"guarantor_details" => "nullable",
 				"files" => "nullable",

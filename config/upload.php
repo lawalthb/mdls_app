@@ -39,9 +39,9 @@
 
 		"files" => [
 			"file_name_type" => "random",
-			"extensions" => "jpg,png,gif,jpeg",
+			"extensions" => "docx,doc,xls,xlsx,xml,csv,pdf,xps",
 			"limit" => 1,
-			"max_file_size" => 3, //in mb
+			"max_file_size" => 10, //in mb
 			"return_full_path" => false,
 			"filename_prefix" => "",
 			"upload_dir" => "uploads/files",

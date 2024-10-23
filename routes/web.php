@@ -276,7 +276,9 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::any('users/edit_student/{rec_id}', 'UsersController@edit_student')->name('users.edit_student');	
 	Route::get('users/add_staff', 'UsersController@add_staff')->name('users.add_staff');
 	Route::post('users/add_staff', 'UsersController@add_staff_store')->name('users.add_staff_store');
-	
+		
+	Route::get('users/list_staff', 'UsersController@list_staff');
+	Route::get('users/list_staff/{filter?}/{filtervalue?}', 'UsersController@list_staff');
 
 /* routes for WebAbouts Controller */
 	Route::get('webabouts', 'WebAboutsController@index')->name('webabouts.index');
@@ -540,6 +542,12 @@ Route::get('componentsdata/plans_updated_by_option_list',  function(Request $req
 	}
 )->middleware(['auth']);
 	
+Route::get('componentsdata/staffdetails_class_id_option_list',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->staffdetails_class_id_option_list($request);
+	}
+)->middleware(['auth']);
+	
 Route::get('componentsdata/subjects_name_value_exist',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->subjects_name_value_exist($request);
@@ -570,15 +578,15 @@ Route::get('componentsdata/users_phone_value_exist',  function(Request $request)
 	}
 )->middleware(['auth']);
 	
-Route::get('componentsdata/category_id_option_list',  function(Request $request){
+Route::get('componentsdata/user_role_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
-		return $compModel->category_id_option_list($request);
+		return $compModel->user_role_id_option_list($request);
 	}
 )->middleware(['auth']);
 	
-Route::get('componentsdata/class_id_option_list_2',  function(Request $request){
+Route::get('componentsdata/category_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
-		return $compModel->class_id_option_list_2($request);
+		return $compModel->category_id_option_list($request);
 	}
 )->middleware(['auth']);
 	

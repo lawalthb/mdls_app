@@ -28,7 +28,7 @@ class StaffDetails extends Model
      * @var array
      */
 	protected $fillable = [
-		'class_id','gender','address','guarantor_details','files','date_joined','other_info'
+		'gender','class_id','address','guarantor_details','files','date_joined','other_info','user_id'
 	];
 	public $timestamps = false;
 	
@@ -69,7 +69,8 @@ class StaffDetails extends Model
 			"files",
 			"date_joined",
 			"other_info",
-			"id" 
+			"id",
+			"user_id" 
 		];
 	}
 	
@@ -88,7 +89,8 @@ class StaffDetails extends Model
 			"files",
 			"date_joined",
 			"other_info",
-			"id" 
+			"id",
+			"user_id" 
 		];
 	}
 	
@@ -107,7 +109,8 @@ class StaffDetails extends Model
 			"files",
 			"date_joined",
 			"other_info",
-			"id" 
+			"id",
+			"user_id" 
 		];
 	}
 	
@@ -126,7 +129,8 @@ class StaffDetails extends Model
 			"files",
 			"date_joined",
 			"other_info",
-			"id" 
+			"id",
+			"user_id" 
 		];
 	}
 	
@@ -138,13 +142,14 @@ class StaffDetails extends Model
      */
 	public static function editFields(){
 		return [ 
-			"class_id",
 			"gender",
+			"class_id",
 			"address",
 			"guarantor_details",
 			"files",
 			"date_joined",
 			"other_info",
+			"user_id",
 			"id" 
 		];
 	}

@@ -316,6 +316,48 @@ class Users extends Authenticatable
 	
 
 	/**
+     * return listStaff page fields of the model.
+     * 
+     * @return array
+     */
+	public static function listStaffFields(){
+		return [ 
+			"id",
+			"email",
+			"name",
+			"phone",
+			"image",
+			"is_active",
+			"created_at",
+			"updated_at",
+			"account_status",
+			"user_role_id" 
+		];
+	}
+	
+
+	/**
+     * return exportListStaff page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportListStaffFields(){
+		return [ 
+			"id",
+			"email",
+			"name",
+			"phone",
+			"image",
+			"is_active",
+			"created_at",
+			"updated_at",
+			"account_status",
+			"user_role_id" 
+		];
+	}
+	
+
+	/**
      * Get current user name
      * @return string
      */

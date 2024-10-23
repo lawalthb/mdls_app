@@ -147,7 +147,7 @@
 			'label' => "Staff Management", 
 			'icon' => '<i class="material-icons ">account_circle</i>','submenu' => [
 		[
-			'path' => 'users/add',
+			'path' => 'users/add_staff',
 			'label' => "Add Staff", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],

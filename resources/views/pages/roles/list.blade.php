@@ -81,7 +81,6 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 <?php } ?>
                                                 <th class="td-" > </th><th class="td-role_id" > Role Id</th>
                                                 <th class="td-role_name" > Role Name</th>
-                                                <th class="td-is_system" > Is System</th>
                                                 <th class="td-btn"></th>
                                             </tr>
                                         </thead>
@@ -115,9 +114,6 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             </td>
                                             <td class="td-role_name">
                                                 <?php echo  $data['role_name'] ; ?>
-                                            </td>
-                                            <td class="td-is_system">
-                                                <?php echo  $data['is_system'] ; ?>
                                             </td>
                                             <!--PageComponentEnd-->
                                             <td class="td-btn">

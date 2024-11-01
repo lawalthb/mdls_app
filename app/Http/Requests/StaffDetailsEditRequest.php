@@ -25,8 +25,8 @@ class StaffDetailsEditRequest extends FormRequest
 		
         return [
             
+				"class_id" => "nullable|numeric",
 				"gender" => "filled",
-				"class_id" => "nullable",
 				"address" => "nullable|string",
 				"guarantor_details" => "nullable",
 				"files" => "nullable",

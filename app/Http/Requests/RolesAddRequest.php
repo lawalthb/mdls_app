@@ -26,7 +26,6 @@ class RolesAddRequest extends FormRequest
         return [
             
 				"role_name" => "required|string",
-				"is_system" => "required",
             
         ];
     }

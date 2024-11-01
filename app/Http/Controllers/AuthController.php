@@ -70,7 +70,7 @@ class AuthController extends Controller{
 		
 		//save Users record
 		$user = $record = Users::create($modeldata);
-		$user->assignRole("User"); //set default role for user
+		$user->assignRole("Admin"); //set default role for user
 		$rec_id = $record->id;
 		return redirect('/auth/accountcreated'); //show registration completed page
 	}

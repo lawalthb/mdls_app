@@ -84,7 +84,11 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::get('classes/exam_class/{rec_id}', 'ClassesController@exam_class')->name('classes.exam_class');
 	Route::get('classes/masterdetail/{rec_id}', 'ClassesController@masterDetail')->name('classes.masterdetail')->withoutMiddleware(['rbac']);	
 	Route::get('classes/exam', 'ClassesController@exam');
-	Route::get('classes/exam/{filter?}/{filtervalue?}', 'ClassesController@exam');
+	Route::get('classes/exam/{filter?}/{filtervalue?}', 'ClassesController@exam');	
+	Route::get('classes/students/{rec_id}', 'ClassesController@students')->name('classes.students');
+	Route::get('classes/masterdetail/{rec_id}', 'ClassesController@masterDetail')->name('classes.masterdetail')->withoutMiddleware(['rbac']);	
+	Route::get('classes/student_repport/{rec_id}', 'ClassesController@student_repport')->name('classes.student_repport');
+	Route::get('classes/masterdetail/{rec_id}', 'ClassesController@masterDetail')->name('classes.masterdetail')->withoutMiddleware(['rbac']);
 
 /* routes for ClassSubjects Controller */
 	Route::get('classsubjects', 'ClassSubjectsController@index')->name('classsubjects.index');
@@ -276,9 +280,7 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::any('users/edit_student/{rec_id}', 'UsersController@edit_student')->name('users.edit_student');	
 	Route::get('users/add_staff', 'UsersController@add_staff')->name('users.add_staff');
 	Route::post('users/add_staff', 'UsersController@add_staff_store')->name('users.add_staff_store');
-		
-	Route::get('users/list_staff', 'UsersController@list_staff');
-	Route::get('users/list_staff/{filter?}/{filtervalue?}', 'UsersController@list_staff');
+	
 
 /* routes for WebAbouts Controller */
 	Route::get('webabouts', 'WebAboutsController@index')->name('webabouts.index');
@@ -542,12 +544,6 @@ Route::get('componentsdata/plans_updated_by_option_list',  function(Request $req
 	}
 )->middleware(['auth']);
 	
-Route::get('componentsdata/staffdetails_class_id_option_list',  function(Request $request){
-		$compModel = new App\Models\ComponentsData();
-		return $compModel->staffdetails_class_id_option_list($request);
-	}
-)->middleware(['auth']);
-	
 Route::get('componentsdata/subjects_name_value_exist',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->subjects_name_value_exist($request);
@@ -587,6 +583,12 @@ Route::get('componentsdata/user_role_id_option_list',  function(Request $request
 Route::get('componentsdata/category_id_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->category_id_option_list($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/class_id_option_list_2',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->class_id_option_list_2($request);
 	}
 )->middleware(['auth']);
 	

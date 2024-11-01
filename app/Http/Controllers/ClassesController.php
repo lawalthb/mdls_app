@@ -49,14 +49,6 @@ class ClassesController extends Controller
 	}
 
 
-	/**
-     * Display Master Detail Pages
-	 * @param string $rec_id //master record id
-     * @return \Illuminate\View\View
-     */
-	function masterDetail($rec_id = null){
-		return View("pages.classes.detail-pages", ["masterRecordId" => $rec_id]);
-	}
 
 
 	/**
@@ -127,7 +119,6 @@ class ClassesController extends Controller
 
 
 
-
 	/**
      * List table records
 	 * @param  \Illuminate\Http\Request
@@ -151,5 +142,41 @@ class ClassesController extends Controller
 		}
 		$records = $query->paginate($limit, Classes::examFields());
 		return $this->renderView($view, compact("records"));
+	}
+
+
+	/**
+     * Select table record by ID
+	 * @param string $rec_id
+     * @return \Illuminate\View\View
+     */
+	function students($rec_id = null){
+		$query = Classes::query();
+		$record = $query->findOrFail($rec_id, Classes::studentsFields());
+		return $this->renderView("pages.classes.students", ["data" => $record]);
+	}
+
+
+
+
+	/**
+     * Select table record by ID
+	 * @param string $rec_id
+     * @return \Illuminate\View\View
+     */
+	function student_repport($rec_id = null){
+		$query = Classes::query();
+		$record = $query->findOrFail($rec_id, Classes::studentRepportFields());
+		return $this->renderView("pages.classes.student_repport", ["data" => $record]);
+	}
+
+
+	/**
+     * Display Master Detail Pages
+	 * @param string $rec_id //master record id
+     * @return \Illuminate\View\View
+     */
+	function masterDetail($rec_id = null){
+		return View("pages.classes.detail-pages", ["masterRecordId" => $rec_id]);
 	}
 }

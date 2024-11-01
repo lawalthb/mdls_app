@@ -145,28 +145,21 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             </td>
                             <!--PageComponentEnd-->
                             <td class="td-btn">
-                                <div class="dropdown" >
-                                    <button data-bs-toggle="dropdown" class="dropdown-toggle btn text-primary btn-flat btn-sm">
-                                    <i class="material-icons">menu</i> 
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <?php if($can_view){ ?>
-                                        <a class="dropdown-item "   href="<?php print_link("examsheets/view/$rec_id"); ?>" >
-                                        <i class="material-icons">visibility</i> View
-                                    </a>
-                                    <?php } ?>
-                                    <?php if($can_edit){ ?>
-                                    <a class="dropdown-item "   href="<?php print_link("examsheets/edit/$rec_id"); ?>" >
-                                    <i class="material-icons">edit</i> Edit
-                                </a>
-                                <?php } ?>
-                                <?php if($can_delete){ ?>
-                                <a class="dropdown-item record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal" href="<?php print_link("examsheets/delete/$rec_id"); ?>" >
-                                <i class="material-icons">delete_sweep</i> Delete
+                                <?php if($can_view){ ?>
+                                <a class="btn btn-sm btn-primary has-tooltip "    href="<?php print_link("examsheets/view/$rec_id"); ?>" >
+                                <i class="material-icons">visibility</i> View
                             </a>
                             <?php } ?>
-                        </ul>
-                    </div>
+                            <?php if($can_edit){ ?>
+                            <a class="btn btn-sm btn-success has-tooltip "    href="<?php print_link("examsheets/edit/$rec_id"); ?>" >
+                            <i class="material-icons">edit</i> Edit
+                        </a>
+                        <?php } ?>
+                        <?php if($can_delete){ ?>
+                        <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal"  href="<?php print_link("examsheets/delete/$rec_id"); ?>" >
+                        <i class="material-icons">delete_sweep</i> Delete
+                    </a>
+                    <?php } ?>
                 </td>
             </tr>
             <?php 

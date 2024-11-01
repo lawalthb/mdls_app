@@ -94,11 +94,7 @@ class Classes extends Model
 	public static function viewFields(){
 		return [ 
 			"id",
-			"name",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
+			"name" 
 		];
 	}
 	
@@ -111,11 +107,7 @@ class Classes extends Model
 	public static function exportViewFields(){
 		return [ 
 			"id",
-			"name",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
+			"name" 
 		];
 	}
 	
@@ -183,6 +175,66 @@ class Classes extends Model
 		return [ 
 			"id",
 			"name" 
+		];
+	}
+	
+
+	/**
+     * return students page fields of the model.
+     * 
+     * @return array
+     */
+	public static function studentsFields(){
+		return [ 
+			"id",
+			"name" 
+		];
+	}
+	
+
+	/**
+     * return exportStudents page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportStudentsFields(){
+		return [ 
+			"id",
+			"name" 
+		];
+	}
+	
+
+	/**
+     * return studentRepport page fields of the model.
+     * 
+     * @return array
+     */
+	public static function studentRepportFields(){
+		return [ 
+			"id",
+			"name",
+			"is_active",
+			"created_at",
+			"updated_at",
+			"updated_by" 
+		];
+	}
+	
+
+	/**
+     * return exportStudentRepport page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportStudentRepportFields(){
+		return [ 
+			"id",
+			"name",
+			"is_active",
+			"created_at",
+			"updated_at",
+			"updated_by" 
 		];
 	}
 }

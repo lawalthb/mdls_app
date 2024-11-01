@@ -28,7 +28,7 @@ class Roles extends Model
      * @var array
      */
 	protected $fillable = [
-		'role_name','is_system'
+		'role_name'
 	];
 	public $timestamps = false;
 	
@@ -60,8 +60,7 @@ class Roles extends Model
 	public static function listFields(){
 		return [ 
 			"role_id",
-			"role_name",
-			"is_system" 
+			"role_name" 
 		];
 	}
 	
@@ -74,8 +73,7 @@ class Roles extends Model
 	public static function exportListFields(){
 		return [ 
 			"role_id",
-			"role_name",
-			"is_system" 
+			"role_name" 
 		];
 	}
 	
@@ -88,8 +86,7 @@ class Roles extends Model
 	public static function viewFields(){
 		return [ 
 			"role_id",
-			"role_name",
-			"is_system" 
+			"role_name" 
 		];
 	}
 	
@@ -102,8 +99,7 @@ class Roles extends Model
 	public static function exportViewFields(){
 		return [ 
 			"role_id",
-			"role_name",
-			"is_system" 
+			"role_name" 
 		];
 	}
 	
@@ -116,8 +112,7 @@ class Roles extends Model
 	public static function editFields(){
 		return [ 
 			"role_id",
-			"role_name",
-			"is_system" 
+			"role_name" 
 		];
 	}
 }

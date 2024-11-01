@@ -28,7 +28,7 @@ class StaffDetails extends Model
      * @var array
      */
 	protected $fillable = [
-		'gender','class_id','address','guarantor_details','files','date_joined','other_info','user_id'
+		'class_id','gender','address','guarantor_details','files','date_joined','other_info','user_id'
 	];
 	public $timestamps = false;
 	
@@ -142,15 +142,15 @@ class StaffDetails extends Model
      */
 	public static function editFields(){
 		return [ 
-			"gender",
 			"class_id",
+			"gender",
 			"address",
 			"guarantor_details",
 			"files",
 			"date_joined",
 			"other_info",
-			"user_id",
-			"id" 
+			"id",
+			"user_id" 
 		];
 	}
 }

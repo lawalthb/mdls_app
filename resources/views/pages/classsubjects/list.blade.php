@@ -14,7 +14,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
     $total_records = $records->total();
     $limit = $records->perPage();
     $record_count = count($records);
-    $staffdetails_class_id_option_list = $comp_model->staffdetails_class_id_option_list();
+    $class_id_option_list_2 = $comp_model->class_id_option_list_2();
     $pageTitle = "Class Subjects"; //set dynamic page title
 ?>
 @extends($layout)
@@ -68,7 +68,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                         <select   name="class_id" class="form-select custom " >
                         <option value="">Select a value ...</option>
                         <?php 
-                            $options = $staffdetails_class_id_option_list ?? [];
+                            $options = $class_id_option_list_2 ?? [];
                             foreach($options as $option){
                             $value = $option->value;
                             $label = $option->label ?? $value;
@@ -97,7 +97,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <div class="filter-tags mb-2">
                                 <?php Html::filter_tag('search', __('Search')); ?>
                                 <?php
-                                    Html::filter_tag('class_id', 'Class', $staffdetails_class_id_option_list);
+                                    Html::filter_tag('class_id', 'Class', $class_id_option_list_2);
                                 ?>
                             </div>
                             <table class="table table-hover table-striped table-sm text-left">

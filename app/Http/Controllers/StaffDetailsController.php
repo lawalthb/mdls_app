@@ -20,7 +20,7 @@ class StaffDetailsController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.staffdetails.list";
 		$query = StaffDetails::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			StaffDetails::search($query, $search); // search table records

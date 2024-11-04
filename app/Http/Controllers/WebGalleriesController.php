@@ -20,7 +20,7 @@ class WebGalleriesController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.webgalleries.list";
 		$query = WebGalleries::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			WebGalleries::search($query, $search); // search table records

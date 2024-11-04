@@ -20,7 +20,7 @@ class WebBlogCategoriesController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.webblogcategories.list";
 		$query = WebBlogCategories::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			WebBlogCategories::search($query, $search); // search table records

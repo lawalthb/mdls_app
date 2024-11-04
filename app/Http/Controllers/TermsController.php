@@ -20,7 +20,7 @@ class TermsController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.terms.list";
 		$query = Terms::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			Terms::search($query, $search); // search table records

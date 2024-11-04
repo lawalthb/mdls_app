@@ -20,7 +20,7 @@ class WebContactsController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.webcontacts.list";
 		$query = WebContacts::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			WebContacts::search($query, $search); // search table records

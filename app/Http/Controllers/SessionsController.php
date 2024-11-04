@@ -20,7 +20,7 @@ class SessionsController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.sessions.list";
 		$query = Sessions::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			Sessions::search($query, $search); // search table records

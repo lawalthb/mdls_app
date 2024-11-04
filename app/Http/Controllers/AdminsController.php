@@ -20,7 +20,7 @@ class AdminsController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.admins.list";
 		$query = Admins::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			Admins::search($query, $search); // search table records

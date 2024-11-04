@@ -128,4 +128,34 @@ class ClassSubjects extends Model
 			"id" 
 		];
 	}
+	
+
+	/**
+     * return reportCard page fields of the model.
+     * 
+     * @return array
+     */
+	public static function reportCardFields(){
+		return [ 
+			"id",
+			"class_id",
+			"subject_id",
+			"is_active" 
+		];
+	}
+	
+
+	/**
+     * return exportReportCard page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportReportCardFields(){
+		return [ 
+			"id",
+			"class_id",
+			"subject_id",
+			"is_active" 
+		];
+	}
 }

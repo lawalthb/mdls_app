@@ -21,7 +21,7 @@ class ClassSubjectsController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.classsubjects.list";
 		$query = ClassSubjects::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			ClassSubjects::search($query, $search); // search table records
@@ -107,5 +107,17 @@ class ClassSubjectsController extends Controller
 		$query->delete();
 		$redirectUrl = $request->redirect ?? url()->previous();
 		return $this->redirect($redirectUrl, "Record deleted successfully");
+	}
+	
+
+	/**
+     * Select table record by ID
+	 * @param string $rec_id
+     * @return \Illuminate\View\View
+     */
+	function report_card($rec_id = null){
+		$query = ClassSubjects::query();
+		$record = $query->findOrFail($rec_id, ClassSubjects::reportCardFields());
+		return $this->renderView("pages.classsubjects.report_card", ["data" => $record]);
 	}
 }

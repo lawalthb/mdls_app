@@ -20,7 +20,7 @@
                 $params = ['class_id' => $rec_id,'show_header' => false]; //new query param
                 $query = array_merge(request()->query(), $params);
                 $queryParams = http_build_query($query);
-                $url = url("studentdetails/index/class_id/$rec_id?$queryParams");
+                $url = url("studentdetails/class_students/class_id/$rec_id?$queryParams");
             ?>
             <div class="ajax-inline-page" data-url="{{ $url }}" >
                 <div class="ajax-page-load-indicator">

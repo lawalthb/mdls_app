@@ -186,4 +186,196 @@ class StudentDetails extends Model
 			"gender" 
 		];
 	}
+	
+
+	/**
+     * return classStudents page fields of the model.
+     * 
+     * @return array
+     */
+	public static function classStudentsFields(){
+		return [ 
+			"student_details.id AS id",
+			"student_details.user_id AS user_id",
+			"users.id AS users_id",
+			"student_details.firstname AS firstname",
+			"student_details.middlemane AS middlemane",
+			"student_details.lastname AS lastname",
+			"student_details.gender AS gender" 
+		];
+	}
+	
+
+	/**
+     * return exportClassStudents page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportClassStudentsFields(){
+		return [ 
+			"student_details.id AS id",
+			"student_details.user_id AS user_id",
+			"users.id AS users_id",
+			"student_details.firstname AS firstname",
+			"student_details.middlemane AS middlemane",
+			"student_details.lastname AS lastname",
+			"student_details.gender AS gender" 
+		];
+	}
+	
+
+	/**
+     * return viewFirstReport page fields of the model.
+     * 
+     * @return array
+     */
+	public static function viewFirstReportFields(){
+		return [ 
+			"id",
+			"user_id",
+			"firstname",
+			"middlemane",
+			"lastname",
+			"dob",
+			"class_id",
+			"religion",
+			"blood_group",
+			"height",
+			"weight",
+			"measurement_date",
+			"updated_at",
+			"address",
+			"gender" 
+		];
+	}
+	
+
+	/**
+     * return exportViewFirstReport page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportViewFirstReportFields(){
+		return [ 
+			"id",
+			"user_id",
+			"firstname",
+			"middlemane",
+			"lastname",
+			"dob",
+			"class_id",
+			"religion",
+			"blood_group",
+			"height",
+			"weight",
+			"measurement_date",
+			"updated_at",
+			"address",
+			"gender" 
+		];
+	}
+	
+
+	/**
+     * return viewSecondReport page fields of the model.
+     * 
+     * @return array
+     */
+	public static function viewSecondReportFields(){
+		return [ 
+			"id",
+			"user_id",
+			"firstname",
+			"middlemane",
+			"lastname",
+			"dob",
+			"class_id",
+			"religion",
+			"blood_group",
+			"height",
+			"weight",
+			"measurement_date",
+			"updated_at",
+			"address",
+			"gender" 
+		];
+	}
+	
+
+	/**
+     * return exportViewSecondReport page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportViewSecondReportFields(){
+		return [ 
+			"id",
+			"user_id",
+			"firstname",
+			"middlemane",
+			"lastname",
+			"dob",
+			"class_id",
+			"religion",
+			"blood_group",
+			"height",
+			"weight",
+			"measurement_date",
+			"updated_at",
+			"address",
+			"gender" 
+		];
+	}
+	
+
+	/**
+     * return viewThirdReport page fields of the model.
+     * 
+     * @return array
+     */
+	public static function viewThirdReportFields(){
+		return [ 
+			"id",
+			"user_id",
+			"firstname",
+			"middlemane",
+			"lastname",
+			"dob",
+			"class_id",
+			"religion",
+			"blood_group",
+			"height",
+			"weight",
+			"measurement_date",
+			"updated_at",
+			"address",
+			"gender" 
+		];
+	}
+	
+
+	/**
+     * return exportViewThirdReport page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportViewThirdReportFields(){
+		return [ 
+			"id",
+			"user_id",
+			"firstname",
+			"middlemane",
+			"lastname",
+			"dob",
+			"class_id",
+			"religion",
+			"blood_group",
+			"height",
+			"weight",
+			"measurement_date",
+			"updated_at",
+			"address",
+			"gender" 
+		];
+	}
 }

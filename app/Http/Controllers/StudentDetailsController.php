@@ -20,7 +20,7 @@ class StudentDetailsController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.studentdetails.list";
 		$query = StudentDetails::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			StudentDetails::search($query, $search); // search table records
@@ -104,5 +104,68 @@ class StudentDetailsController extends Controller
 		$query->delete();
 		$redirectUrl = $request->redirect ?? url()->previous();
 		return $this->redirect($redirectUrl, "Record deleted successfully");
+	}
+	
+
+	/**
+     * List table records
+	 * @param  \Illuminate\Http\Request
+     * @param string $fieldname //filter records by a table field
+     * @param string $fieldvalue //filter value
+     * @return \Illuminate\View\View
+     */
+	function class_students(Request $request, $fieldname = null , $fieldvalue = null){
+		$view = "pages.studentdetails.class_students";
+		$query = StudentDetails::query();
+		$limit = $request->limit ?? 50;
+		if($request->search){
+			$search = trim($request->search);
+			StudentDetails::search($query, $search); // search table records
+		}
+		$query->join("users", "student_details.user_id", "=", "users.id");
+		$orderby = $request->orderby ?? "student_details.id";
+		$ordertype = $request->ordertype ?? "desc";
+		$query->orderBy($orderby, $ordertype);
+		if($fieldname){
+			$query->where($fieldname , $fieldvalue); //filter by a table field
+		}
+		$records = $query->paginate($limit, StudentDetails::classStudentsFields());
+		return $this->renderView($view, compact("records"));
+	}
+	
+
+	/**
+     * Select table record by ID
+	 * @param string $rec_id
+     * @return \Illuminate\View\View
+     */
+	function view_first_report($rec_id = null){
+		$query = StudentDetails::query();
+		$record = $query->findOrFail($rec_id, StudentDetails::viewFirstReportFields());
+		return $this->renderView("pages.studentdetails.view_first_report", ["data" => $record]);
+	}
+	
+
+	/**
+     * Select table record by ID
+	 * @param string $rec_id
+     * @return \Illuminate\View\View
+     */
+	function view_second_report($rec_id = null){
+		$query = StudentDetails::query();
+		$record = $query->findOrFail($rec_id, StudentDetails::viewSecondReportFields());
+		return $this->renderView("pages.studentdetails.view_second_report", ["data" => $record]);
+	}
+	
+
+	/**
+     * Select table record by ID
+	 * @param string $rec_id
+     * @return \Illuminate\View\View
+     */
+	function view_third_report($rec_id = null){
+		$query = StudentDetails::query();
+		$record = $query->findOrFail($rec_id, StudentDetails::viewThirdReportFields());
+		return $this->renderView("pages.studentdetails.view_third_report", ["data" => $record]);
 	}
 }

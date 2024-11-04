@@ -86,8 +86,6 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::get('classes/exam', 'ClassesController@exam');
 	Route::get('classes/exam/{filter?}/{filtervalue?}', 'ClassesController@exam');	
 	Route::get('classes/students/{rec_id}', 'ClassesController@students')->name('classes.students');
-	Route::get('classes/masterdetail/{rec_id}', 'ClassesController@masterDetail')->name('classes.masterdetail')->withoutMiddleware(['rbac']);	
-	Route::get('classes/student_repport/{rec_id}', 'ClassesController@student_repport')->name('classes.student_repport');
 	Route::get('classes/masterdetail/{rec_id}', 'ClassesController@masterDetail')->name('classes.masterdetail')->withoutMiddleware(['rbac']);
 
 /* routes for ClassSubjects Controller */
@@ -98,7 +96,8 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::post('classsubjects/add', 'ClassSubjectsController@store')->name('classsubjects.store');
 		
 	Route::any('classsubjects/edit/{rec_id}', 'ClassSubjectsController@edit')->name('classsubjects.edit');	
-	Route::get('classsubjects/delete/{rec_id}', 'ClassSubjectsController@delete');
+	Route::get('classsubjects/delete/{rec_id}', 'ClassSubjectsController@delete');	
+	Route::get('classsubjects/report_card/{rec_id}', 'ClassSubjectsController@report_card')->name('classsubjects.report_card');
 
 /* routes for ExamSettings Controller */
 	Route::get('examsettings', 'ExamSettingsController@index')->name('examsettings.index');
@@ -223,7 +222,12 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::post('studentdetails/add', 'StudentDetailsController@store')->name('studentdetails.store');
 		
 	Route::any('studentdetails/edit/{rec_id}', 'StudentDetailsController@edit')->name('studentdetails.edit');	
-	Route::get('studentdetails/delete/{rec_id}', 'StudentDetailsController@delete');
+	Route::get('studentdetails/delete/{rec_id}', 'StudentDetailsController@delete');	
+	Route::get('studentdetails/class_students', 'StudentDetailsController@class_students');
+	Route::get('studentdetails/class_students/{filter?}/{filtervalue?}', 'StudentDetailsController@class_students');	
+	Route::get('studentdetails/view_first_report/{rec_id}', 'StudentDetailsController@view_first_report')->name('studentdetails.view_first_report');	
+	Route::get('studentdetails/view_second_report/{rec_id}', 'StudentDetailsController@view_second_report')->name('studentdetails.view_second_report');	
+	Route::get('studentdetails/view_third_report/{rec_id}', 'StudentDetailsController@view_third_report')->name('studentdetails.view_third_report');
 
 /* routes for Subjects Controller */
 	Route::get('subjects', 'SubjectsController@index')->name('subjects.index');

@@ -20,7 +20,7 @@ class WebTopbarsController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.webtopbars.list";
 		$query = WebTopbars::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			WebTopbars::search($query, $search); // search table records

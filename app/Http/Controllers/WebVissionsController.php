@@ -20,7 +20,7 @@ class WebVissionsController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.webvissions.list";
 		$query = WebVissions::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			WebVissions::search($query, $search); // search table records

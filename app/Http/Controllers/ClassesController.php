@@ -20,7 +20,7 @@ class ClassesController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.classes.list";
 		$query = Classes::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			Classes::search($query, $search); // search table records
@@ -49,6 +49,14 @@ class ClassesController extends Controller
 	}
 
 
+	/**
+     * Display Master Detail Pages
+	 * @param string $rec_id //master record id
+     * @return \Illuminate\View\View
+     */
+	function masterDetail($rec_id = null){
+		return View("pages.classes.detail-pages", ["masterRecordId" => $rec_id]);
+	}
 
 
 	/**
@@ -158,25 +166,4 @@ class ClassesController extends Controller
 
 
 
-
-	/**
-     * Select table record by ID
-	 * @param string $rec_id
-     * @return \Illuminate\View\View
-     */
-	function student_repport($rec_id = null){
-		$query = Classes::query();
-		$record = $query->findOrFail($rec_id, Classes::studentRepportFields());
-		return $this->renderView("pages.classes.student_repport", ["data" => $record]);
-	}
-
-
-	/**
-     * Display Master Detail Pages
-	 * @param string $rec_id //master record id
-     * @return \Illuminate\View\View
-     */
-	function masterDetail($rec_id = null){
-		return View("pages.classes.detail-pages", ["masterRecordId" => $rec_id]);
-	}
 }

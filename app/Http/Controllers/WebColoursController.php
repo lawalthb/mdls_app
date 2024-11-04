@@ -20,7 +20,7 @@ class WebColoursController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.webcolours.list";
 		$query = WebColours::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			WebColours::search($query, $search); // search table records

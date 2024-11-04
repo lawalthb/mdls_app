@@ -20,7 +20,7 @@ class AppSettingsController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.appsettings.list";
 		$query = AppSettings::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			AppSettings::search($query, $search); // search table records

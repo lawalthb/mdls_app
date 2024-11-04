@@ -26,7 +26,7 @@ class UsersController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.users.list";
 		$query = Users::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			Users::search($query, $search); // search table records
@@ -199,7 +199,7 @@ class UsersController extends Controller
 	function list_students(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.users.list_students";
 		$query = Users::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			Users::search($query, $search); // search table records

@@ -222,38 +222,6 @@
 	] ;
 	}
 	
-	public static function navbartopleft(){
-		return [
-		[
-			'path' => 'classsubjects',
-			'label' => "Class Subjects", 
-			'icon' => '<i class="material-icons">extension</i>'
-		],
-		
-		[
-			'path' => 'staffdetails',
-			'label' => "Staff Details", 
-			'icon' => '<i class="material-icons">extension</i>'
-		]
-	] ;
-	}
-	
-	public static function navbartopright(){
-		return [
-		[
-			'path' => 'classsubjects',
-			'label' => "Class Subjects", 
-			'icon' => '<i class="material-icons">extension</i>'
-		],
-		
-		[
-			'path' => 'staffdetails',
-			'label' => "Staff Details", 
-			'icon' => '<i class="material-icons">extension</i>'
-		]
-	] ;
-	}
-	
 		
 	public static function isActive(){
 		return [

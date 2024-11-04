@@ -20,7 +20,7 @@ class ParentsController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.parents.list";
 		$query = Parents::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			Parents::search($query, $search); // search table records

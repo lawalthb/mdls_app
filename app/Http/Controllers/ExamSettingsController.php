@@ -20,7 +20,7 @@ class ExamSettingsController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.examsettings.list";
 		$query = ExamSettings::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			ExamSettings::search($query, $search); // search table records

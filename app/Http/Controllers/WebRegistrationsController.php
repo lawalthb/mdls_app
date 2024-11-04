@@ -20,7 +20,7 @@ class WebRegistrationsController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.webregistrations.list";
 		$query = WebRegistrations::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			WebRegistrations::search($query, $search); // search table records

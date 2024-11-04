@@ -134,8 +134,7 @@ class Classes extends Model
      */
 	public static function examClassFields(){
 		return [ 
-			"id",
-			"name" 
+			"id" 
 		];
 	}
 	
@@ -147,8 +146,7 @@ class Classes extends Model
      */
 	public static function exportExamClassFields(){
 		return [ 
-			"id",
-			"name" 
+			"id" 
 		];
 	}
 	
@@ -201,40 +199,6 @@ class Classes extends Model
 		return [ 
 			"id",
 			"name" 
-		];
-	}
-	
-
-	/**
-     * return studentRepport page fields of the model.
-     * 
-     * @return array
-     */
-	public static function studentRepportFields(){
-		return [ 
-			"id",
-			"name",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
-		];
-	}
-	
-
-	/**
-     * return exportStudentRepport page fields of the model.
-     * 
-     * @return array
-     */
-	public static function exportStudentRepportFields(){
-		return [ 
-			"id",
-			"name",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"updated_by" 
 		];
 	}
 }

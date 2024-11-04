@@ -20,7 +20,7 @@ class ParentablesController extends Controller
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
 		$view = "pages.parentables.list";
 		$query = Parentables::query();
-		$limit = $request->limit ?? 10;
+		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
 			Parentables::search($query, $search); // search table records

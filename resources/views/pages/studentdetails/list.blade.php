@@ -77,7 +77,6 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         </label>
                                         </th>
                                         <?php } ?>
-                                        <th class="td-id" > Id</th>
                                         <th class="td-user_id" > User Id</th>
                                         <th class="td-firstname" > Firstname</th>
                                         <th class="td-middlemane" > Middlemane</th>
@@ -115,9 +114,6 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         </td>
                                         <?php } ?>
                                         <!--PageComponentStart-->
-                                        <td class="td-id">
-                                            <?php echo  $data['id'] ; ?>
-                                        </td>
                                         <td class="td-user_id">
                                             <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("users/view/$data[user_id]?subpage=1") ?>">
                                             <i class="material-icons">visibility</i> <?php echo "Users" ?>

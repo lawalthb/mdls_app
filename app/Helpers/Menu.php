@@ -138,6 +138,12 @@
 			'path' => 'classes/exam',
 			'label' => "By Class", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
+		],
+		
+		[
+			'path' => 'examsettings',
+			'label' => "BroadSheet", 
+			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		]
 	]
 		],

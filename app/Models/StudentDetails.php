@@ -41,11 +41,11 @@ class StudentDetails extends Model
 	public static function search($query, $text){
 		//search table record 
 		$search_condition = '(
-				id LIKE ?  OR 
 				firstname LIKE ?  OR 
 				middlemane LIKE ?  OR 
 				lastname LIKE ?  OR 
-				address LIKE ? 
+				address LIKE ?  OR 
+				id LIKE ? 
 		)';
 		$search_params = [
 			"%$text%","%$text%","%$text%","%$text%","%$text%"
@@ -62,7 +62,6 @@ class StudentDetails extends Model
      */
 	public static function listFields(){
 		return [ 
-			"id",
 			"user_id",
 			"firstname",
 			"middlemane",
@@ -76,7 +75,8 @@ class StudentDetails extends Model
 			"measurement_date",
 			"updated_at",
 			"address",
-			"gender" 
+			"gender",
+			"id" 
 		];
 	}
 	
@@ -88,7 +88,6 @@ class StudentDetails extends Model
      */
 	public static function exportListFields(){
 		return [ 
-			"id",
 			"user_id",
 			"firstname",
 			"middlemane",
@@ -102,7 +101,8 @@ class StudentDetails extends Model
 			"measurement_date",
 			"updated_at",
 			"address",
-			"gender" 
+			"gender",
+			"id" 
 		];
 	}
 	
@@ -231,21 +231,22 @@ class StudentDetails extends Model
      */
 	public static function viewFirstReportFields(){
 		return [ 
-			"id",
-			"user_id",
-			"firstname",
-			"middlemane",
-			"lastname",
-			"dob",
-			"class_id",
-			"religion",
-			"blood_group",
-			"height",
-			"weight",
-			"measurement_date",
-			"updated_at",
-			"address",
-			"gender" 
+			"student_details.id AS id",
+			"student_details.user_id AS user_id",
+			"student_details.firstname AS firstname",
+			"student_details.middlemane AS middlemane",
+			"student_details.lastname AS lastname",
+			"student_details.dob AS dob",
+			"student_details.class_id AS class_id",
+			"classes.name AS classes_name",
+			"student_details.religion AS religion",
+			"student_details.blood_group AS blood_group",
+			"student_details.height AS height",
+			"student_details.weight AS weight",
+			"student_details.measurement_date AS measurement_date",
+			"student_details.updated_at AS updated_at",
+			"student_details.address AS address",
+			"student_details.gender AS gender" 
 		];
 	}
 	
@@ -257,21 +258,22 @@ class StudentDetails extends Model
      */
 	public static function exportViewFirstReportFields(){
 		return [ 
-			"id",
-			"user_id",
-			"firstname",
-			"middlemane",
-			"lastname",
-			"dob",
-			"class_id",
-			"religion",
-			"blood_group",
-			"height",
-			"weight",
-			"measurement_date",
-			"updated_at",
-			"address",
-			"gender" 
+			"student_details.id AS id",
+			"student_details.user_id AS user_id",
+			"student_details.firstname AS firstname",
+			"student_details.middlemane AS middlemane",
+			"student_details.lastname AS lastname",
+			"student_details.dob AS dob",
+			"student_details.class_id AS class_id",
+			"classes.name AS classes_name",
+			"student_details.religion AS religion",
+			"student_details.blood_group AS blood_group",
+			"student_details.height AS height",
+			"student_details.weight AS weight",
+			"student_details.measurement_date AS measurement_date",
+			"student_details.updated_at AS updated_at",
+			"student_details.address AS address",
+			"student_details.gender AS gender" 
 		];
 	}
 	

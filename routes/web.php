@@ -596,12 +596,6 @@ Route::get('componentsdata/class_id_option_list_2',  function(Request $request){
 	}
 )->middleware(['auth']);
 	
-Route::get('componentsdata/classesid_list',  function(Request $request){
-		$compModel = new App\Models\ComponentsData();
-		return $compModel->classesid_list($request);
-	}
-)->middleware(['auth']);
-	
 Route::get('componentsdata/name_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->name_option_list($request);

@@ -141,6 +141,7 @@ class StudentDetailsController extends Controller
      */
 	function view_first_report($rec_id = null){
 		$query = StudentDetails::query();
+		$query->join("classes", "student_details.class_id", "=", "classes.id");
 		$record = $query->findOrFail($rec_id, StudentDetails::viewFirstReportFields());
 		return $this->renderView("pages.studentdetails.view_first_report", ["data" => $record]);
 	}

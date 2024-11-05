@@ -35,40 +35,38 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
     <div  class="" >
         <div class="container">
             <div class="row ">
-                <div class="col-md-3 comp-grid " >
-                    <?php $menu_id = "menu-" . random_str(); ?>
-                    <div class="card mb-3 ">
-                        <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="col-md-2 comp-grid " >
+                    <div class=" "><div>
+                        <?php $menu_id = "menu-" . random_str(); ?>
                         <div class="p-3">
-                            <div class="fw-bold">Filter by Name</div>
+                            <div class="fw-bold">Pick Class</div>
+                            selected class is <?php echo $_GET['label']?? 'No Class' ;?>
                         </div>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $menu_id ?>" aria-expanded="false">
                         <span class="navbar-toggler-icon"></span>
                         </button>
-                        </nav>  
-                        <div class="collapse collapse-lg " id="<?php echo $menu_id ?>" >
                         <?php 
                             $arr_menu = [];
-                            $menus = $comp_model->classesid_list(); // Get menu items from database
+                            $menus = $comp_model->class_id_option_list_2(); // Get menu items from database
                             if(!empty($menus)){
                             //build menu items into arrays
                             foreach($menus as $menu){
                             $count = $menu->num ?? null;
                             $arr_menu[] = array(
-                            "path"=>"classsubjects/add/id/{$menu->value}?label={$menu->label}&tag=Name", 
+                            "path"=>"classsubjects/add?class_id={$menu->value}&label={$menu->label}&tag=Name", 
                             "label"=>$menu->label, 
                             "count"=>$count, 
                             "icon"=>''
                             );
                             }
                             //call menu render helper.
-                            Html :: render_menu($arr_menu , "nav nav-tabs flex-column");
+                            Html :: render_menu($arr_menu ,"nav nav-tabs flex-column");
                             }
                         ?>
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 comp-grid " >
+            <div class="col-md-8 comp-grid " >
                 <div  class="card card-1 border rounded page-content" >
                     <!--[form-start]-->
                     <form id="classsubjects-add-form"  novalidate role="form" enctype="multipart/form-data" class="form multi-form page-form" action="{{ route('classsubjects.store') }}" method="post" >
@@ -97,7 +95,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <template id="<?php echo $template_id ?>">
                             <?php $row = "CURRENTROW"; // will be replaced with current row index. ?>
                             <tr data-row="<?php echo $row ?>" class="input-row">
-                            <input id="ctrl-class_id-row<?php echo $row; ?>" data-field="class_id"  value="<?php echo get_value('class_id') ?>" type="hidden" placeholder="Enter Class" list="class_id_list"  required="" name="row[<?php echo $row ?>][class_id]"  class="form-control " />
+                            <input id="ctrl-class_id-row<?php echo $row; ?>" data-field="class_id"  value="<?php echo $_GET['class_id']??0; ?>" type="hidden" placeholder="Enter Class" list="class_id_list"  required="" name="row[<?php echo $row ?>][class_id]"  class="form-control " />
                             <datalist id="class_id_list">
                             <?php 
                                 $options = $comp_model->class_id_option_list() ?? [];
@@ -140,7 +138,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                 foreach($options as $option){
                                 $value = $option['value'];
                                 $label = $option['label'];
-                                $selected = Html::get_field_selected('is_active', $value, "");
+                                $selected = Html::get_field_selected('is_active', $value, "Yes");
                             ?>
                             <option <?php echo $selected ?> value="<?php echo $value ?>">
                             <?php echo $label ?>

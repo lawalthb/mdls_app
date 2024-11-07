@@ -141,7 +141,7 @@
 		],
 		
 		[
-			'path' => 'examsettings',
+			'path' => 'classes/broadlist',
 			'label' => "BroadSheet", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		]

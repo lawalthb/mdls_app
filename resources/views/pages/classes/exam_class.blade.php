@@ -50,6 +50,18 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <div class="page-data">
                                 <!--PageComponentStart-->
                                 <div class="mb-3 row row justify-content-start g-0">
+                                    <div class="col-12">
+                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <small class="text-muted">Class</small>
+                                                    <div class="fw-bold">
+                                                        <?php echo  $data['name'] ; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!--PageComponentEnd-->
                                 <div class="d-flex align-items-center gap-2">
@@ -114,18 +126,6 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                                     <small class="text-muted">Current Term</small>
                                                                     <div class="fw-bold">
                                                                         <?php echo  $term_name['name']; ?>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="bg-light mb-1 card-1 p-2 border rounded">
-                                                            <div class="row align-items-center">
-                                                                <div class="col">
-                                                                    <small class="text-muted">Class</small>
-                                                                    <div class="fw-bold">
-                                                                        <?php echo  $data['name']; ?>
                                                                     </div>
                                                                 </div>
                                                             </div>

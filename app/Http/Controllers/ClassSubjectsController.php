@@ -1,4 +1,4 @@
-<?php
+<?php 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassSubjectsAddRequest;
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 class ClassSubjectsController extends Controller
 {
-
+	
 
 	/**
      * List table records
@@ -41,7 +41,7 @@ class ClassSubjectsController extends Controller
 		$records = $query->paginate($limit, ClassSubjects::listFields());
 		return $this->renderView($view, compact("records"));
 	}
-
+	
 
 	/**
      * Select table record by ID
@@ -53,7 +53,7 @@ class ClassSubjectsController extends Controller
 		$record = $query->findOrFail($rec_id, ClassSubjects::viewFields());
 		return $this->renderView("pages.classsubjects.view", ["data" => $record]);
 	}
-
+	
 
 	/**
      * Display form page
@@ -62,7 +62,7 @@ class ClassSubjectsController extends Controller
 	function add(){
 		return view("pages.classsubjects.add");
 	}
-
+	
 
 	/**
      * Insert multiple record into the database table
@@ -74,7 +74,7 @@ class ClassSubjectsController extends Controller
 		ClassSubjects::insert($modeldata);
 		return $this->redirect("classsubjects", "Record added successfully");
 	}
-
+	
 
 	/**
      * Update table record with form data
@@ -91,13 +91,13 @@ class ClassSubjectsController extends Controller
 		}
 		return $this->renderView("pages.classsubjects.edit", ["data" => $record, "rec_id" => $rec_id]);
 	}
-
+	
 
 	/**
      * Delete record from the database
 	 * Support multi delete by separating record id by comma.
 	 * @param  \Illuminate\Http\Request
-	 * @param string $rec_id //can be separated by comma
+	 * @param string $rec_id //can be separated by comma 
      * @return \Illuminate\Http\Response
      */
 	function delete(Request $request, $rec_id = null){
@@ -108,7 +108,7 @@ class ClassSubjectsController extends Controller
 		$redirectUrl = $request->redirect ?? url()->previous();
 		return $this->redirect($redirectUrl, "Record deleted successfully");
 	}
-
+	
 
 	/**
      * Select table record by ID

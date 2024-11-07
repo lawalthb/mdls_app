@@ -86,6 +86,10 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::get('classes/exam', 'ClassesController@exam');
 	Route::get('classes/exam/{filter?}/{filtervalue?}', 'ClassesController@exam');	
 	Route::get('classes/students/{rec_id}', 'ClassesController@students')->name('classes.students');
+	Route::get('classes/masterdetail/{rec_id}', 'ClassesController@masterDetail')->name('classes.masterdetail')->withoutMiddleware(['rbac']);	
+	Route::get('classes/broadlist', 'ClassesController@broadlist');
+	Route::get('classes/broadlist/{filter?}/{filtervalue?}', 'ClassesController@broadlist');	
+	Route::get('classes/broadview/{rec_id}', 'ClassesController@broadview')->name('classes.broadview');
 	Route::get('classes/masterdetail/{rec_id}', 'ClassesController@masterDetail')->name('classes.masterdetail')->withoutMiddleware(['rbac']);
 
 /* routes for ClassSubjects Controller */

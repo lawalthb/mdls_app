@@ -134,6 +134,7 @@ class Classes extends Model
      */
 	public static function examClassFields(){
 		return [ 
+			"name",
 			"id" 
 		];
 	}
@@ -146,6 +147,7 @@ class Classes extends Model
      */
 	public static function exportExamClassFields(){
 		return [ 
+			"name",
 			"id" 
 		];
 	}
@@ -196,6 +198,58 @@ class Classes extends Model
      * @return array
      */
 	public static function exportStudentsFields(){
+		return [ 
+			"id",
+			"name" 
+		];
+	}
+	
+
+	/**
+     * return broadlist page fields of the model.
+     * 
+     * @return array
+     */
+	public static function broadlistFields(){
+		return [ 
+			"id",
+			"name" 
+		];
+	}
+	
+
+	/**
+     * return exportBroadlist page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportBroadlistFields(){
+		return [ 
+			"id",
+			"name" 
+		];
+	}
+	
+
+	/**
+     * return broadview page fields of the model.
+     * 
+     * @return array
+     */
+	public static function broadviewFields(){
+		return [ 
+			"id",
+			"name" 
+		];
+	}
+	
+
+	/**
+     * return exportBroadview page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportBroadviewFields(){
 		return [ 
 			"id",
 			"name" 

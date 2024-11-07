@@ -167,4 +167,44 @@ class ClassesController extends Controller
 
 
 
+
+	/**
+     * List table records
+	 * @param  \Illuminate\Http\Request
+     * @param string $fieldname //filter records by a table field
+     * @param string $fieldvalue //filter value
+     * @return \Illuminate\View\View
+     */
+	function broadlist(Request $request, $fieldname = null , $fieldvalue = null){
+		$view = "pages.classes.broadlist";
+		$query = Classes::query();
+		$limit = $request->limit ?? 50;
+		if($request->search){
+			$search = trim($request->search);
+			Classes::search($query, $search); // search table records
+		}
+		$orderby = $request->orderby ?? "classes.id";
+		$ordertype = $request->ordertype ?? "desc";
+		$query->orderBy($orderby, $ordertype);
+		if($fieldname){
+			$query->where($fieldname , $fieldvalue); //filter by a table field
+		}
+		$records = $query->paginate($limit, Classes::broadlistFields());
+		return $this->renderView($view, compact("records"));
+	}
+
+
+	/**
+     * Select table record by ID
+	 * @param string $rec_id
+     * @return \Illuminate\View\View
+     */
+	function broadview($rec_id = null){
+		$query = Classes::query();
+		$record = $query->findOrFail($rec_id, Classes::broadviewFields());
+		return $this->renderView("pages.classes.broadview", ["data" => $record]);
+	}
+
+
+
 }

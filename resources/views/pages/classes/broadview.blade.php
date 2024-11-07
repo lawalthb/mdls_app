@@ -85,14 +85,9 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                     <div class=" "><div>
                         <!-- custom code start here -->
                         <?php
+                            use Illuminate\Support\Facades\DB;
                             $class_id = $data['id'];
-                            $students_ = DB::table('student_details')->where('class_id', $class_id)->get();
-                            $class_subjects = DB::table('class_subjects')
-                            ->join('subjects', 'class_subjects.subject_id', '=', 'subjects.id')
-                            ->where('class_subjects.class_id', $class_id)
-                            ->select('class_subjects.*', 'subjects.name')
-                            ->get();
-                            //dd($class_subjects);
+                            // Get students' details, exam scores, and ca scores
                             $students = DB::table('student_details')
                             ->where('student_details.class_id', $class_id)
                             ->leftJoin('exam_sheets', function ($join) {
@@ -114,13 +109,16 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             )
                             ->get();
                             $studentsData = [];
+                            $totalScores = [];
                             foreach ($students as $record) {
                             if (!isset($studentsData[$record->id])) {
                             $studentsData[$record->id] = [
                             'id' => $record->id,
                             'firstname' => $record->firstname,
                             'lastname' => $record->lastname,
-                            'scores' => []
+                            'scores' => [],
+                            'total_score' => 0,
+                            'percentage' => 0
                             ];
                             }
                             if ($record->subject_id) {
@@ -129,35 +127,62 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             'ca_score' => $record->ca_score,
                             'total_score' => $record->total
                             ];
+                            $studentsData[$record->id]['total_score'] += $record->total;
                             }
+                            }
+                            // Calculate percentage and store total scores for ranking
+                            foreach ($studentsData as $studentId => $studentData) {
+                            $totalSubjects = count($studentData['scores']);
+                            if ($totalSubjects > 0) {
+                            $studentsData[$studentId]['percentage'] = ($studentData['total_score'] / ($totalSubjects * 100)) * 100;
+                            }
+                            $totalScores[$studentId] = $studentData['total_score'];
+                            }
+                            // Sort total scores in descending order and assign positions with ordinal suffixes
+                            arsort($totalScores);
+                            $position = 0;
+                            $lastScore = null;
+                            foreach ($totalScores as $studentId => $score) {
+                            if ($score !== $lastScore) {
+                            $position++;
+                            }
+                            $studentsData[$studentId]['position'] = ordinal($position);
+                            $lastScore = $score;
                             }
                             $subjects = DB::table('class_subjects')
                             ->join('subjects', 'class_subjects.subject_id', '=', 'subjects.id')
                             ->where('class_subjects.class_id', $class_id)
                             ->select('subjects.id', 'subjects.name')
                             ->get();
+                            // Function to add ordinal suffix to the position
+                            function ordinal($number)
+                            {
+                            $suffix = ['th', 'st', 'nd', 'rd'];
+                            $value = $number % 100;
+                            return $number . ($suffix[($value - 20) % 10] ?? $suffix[$value] ?? $suffix[0]);
+                            }
                         ?>
-                        <!-- table start here -->
+                        <!-- HTML Table -->
                         <table class="table table-hover table-striped table-sm text-left">
                             <thead class="table-header">
                                 <tr>
                                     <th>SN</th>
-                                    <th class="td-">Students Name</th>
+                                    <th>Students Name</th>
                                     @foreach($subjects as $subject)
-                                    <th class="td-id">{{ $subject->name }}</th>
+                                    <th>{{ $subject->name }}</th>
                                     @endforeach
-                                    <th class="td-btn"></th>
+                                    <th>Total</th>
+                                    <th>Percentage</th>
+                                    <th>Position</th>
                                 </tr>
                             </thead>
                             <tbody class="page-data">
                                 @forelse($studentsData as $index => $student)
                                 <tr>
-                                    <td class="td-checkbox">{{ $index + 1 }}</td>
-                                    <td class="">
-                                        {{ $student['firstname'] }} {{ $student['lastname'] }}
-                                    </td>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $student['firstname'] }} {{ $student['lastname'] }}</td>
                                     @foreach($subjects as $subject)
-                                    <td class="">
+                                    <td>
                                         @if(isset($student['scores'][$subject->id]))
                                         <table>
                                             <tr>
@@ -175,20 +200,19 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         @endif
                                     </td>
                                     @endforeach
-                                    <td class="">
-                                        View
-                                    </td>
+                                    <td>{{ number_format($student['total_score'], 2) }}</td>
+                                    <td>{{ number_format($student['percentage'], 2) }}%</td>
+                                    <td>{{ $student['position'] }}</td>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td class="bg-light text-center text-muted animated bounce p-3" colspan="{{ count($subjects) + 3 }}">
+                                    <td colspan="{{ count($subjects) + 3 }}" class="bg-light text-center text-muted animated bounce p-3">
                                         <i class="material-icons">block</i> No record found
                                     </td>
                                 </tr>
                                 @endforelse
                             </tbody>
                         </table>
-                        <!-- end of table -->
                     </div>
                 </div>
             </div>

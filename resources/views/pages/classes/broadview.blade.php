@@ -82,7 +82,114 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                     </div>
                 </div>
                 <div class="col-12 comp-grid " >
-                    <div class=" "><div>list of student here</div>
+                    <div class=" "><div>
+                        <!-- custom code start here -->
+                        <?php
+                            $class_id = $data['id'];
+                            $students_ = DB::table('student_details')->where('class_id', $class_id)->get();
+                            $class_subjects = DB::table('class_subjects')
+                            ->join('subjects', 'class_subjects.subject_id', '=', 'subjects.id')
+                            ->where('class_subjects.class_id', $class_id)
+                            ->select('class_subjects.*', 'subjects.name')
+                            ->get();
+                            //dd($class_subjects);
+                            $students = DB::table('student_details')
+                            ->where('student_details.class_id', $class_id)
+                            ->leftJoin('exam_sheets', function ($join) {
+                            $join->on('student_details.id', '=', 'exam_sheets.user_id')
+                            ->where('exam_sheets.session_id', 1)
+                            ->where('exam_sheets.term_id', 2)
+                            ->where('exam_sheets.class_id', 16);
+                            })
+                            ->leftJoin('exam_sheet_performances', 'exam_sheets.id', '=', 'exam_sheet_performances.exam_sheet_id')
+                            ->leftJoin('subjects', 'exam_sheet_performances.subject_id', '=', 'subjects.id')
+                            ->select(
+                            'student_details.*',
+                            'exam_sheets.id as exam_sheet_id',
+                            'subjects.id as subject_id',
+                            'subjects.name',
+                            'exam_sheet_performances.exam_score',
+                            'exam_sheet_performances.ca_score',
+                            'exam_sheet_performances.total'
+                            )
+                            ->get();
+                            $studentsData = [];
+                            foreach ($students as $record) {
+                            if (!isset($studentsData[$record->id])) {
+                            $studentsData[$record->id] = [
+                            'id' => $record->id,
+                            'firstname' => $record->firstname,
+                            'lastname' => $record->lastname,
+                            'scores' => []
+                            ];
+                            }
+                            if ($record->subject_id) {
+                            $studentsData[$record->id]['scores'][$record->subject_id] = [
+                            'exam_score' => $record->exam_score,
+                            'ca_score' => $record->ca_score,
+                            'total_score' => $record->total
+                            ];
+                            }
+                            }
+                            $subjects = DB::table('class_subjects')
+                            ->join('subjects', 'class_subjects.subject_id', '=', 'subjects.id')
+                            ->where('class_subjects.class_id', $class_id)
+                            ->select('subjects.id', 'subjects.name')
+                            ->get();
+                        ?>
+                        <!-- table start here -->
+                        <table class="table table-hover table-striped table-sm text-left">
+                            <thead class="table-header">
+                                <tr>
+                                    <th>SN</th>
+                                    <th class="td-">Students Name</th>
+                                    @foreach($subjects as $subject)
+                                    <th class="td-id">{{ $subject->name }}</th>
+                                    @endforeach
+                                    <th class="td-btn"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="page-data">
+                                @forelse($studentsData as $index => $student)
+                                <tr>
+                                    <td class="td-checkbox">{{ $index + 1 }}</td>
+                                    <td class="">
+                                        {{ $student['firstname'] }} {{ $student['lastname'] }}
+                                    </td>
+                                    @foreach($subjects as $subject)
+                                    <td class="">
+                                        @if(isset($student['scores'][$subject->id]))
+                                        <table>
+                                            <tr>
+                                                <td>CA: {{ $student['scores'][$subject->id]['ca_score'] ?? 'N/A' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Exam: {{ $student['scores'][$subject->id]['exam_score'] ?? 'N/A' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total: {{ $student['scores'][$subject->id]['total_score'] ?? 'N/A' }}</td>
+                                            </tr>
+                                        </table>
+                                        @else
+                                        N/A
+                                        @endif
+                                    </td>
+                                    @endforeach
+                                    <td class="">
+                                        View
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td class="bg-light text-center text-muted animated bounce p-3" colspan="{{ count($subjects) + 3 }}">
+                                        <i class="material-icons">block</i> No record found
+                                    </td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        <!-- end of table -->
+                    </div>
                 </div>
             </div>
         </div>

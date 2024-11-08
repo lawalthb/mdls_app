@@ -212,18 +212,6 @@
 			'path' => 'auth/logout',
 			'label' => "LogOut", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_left</i>'
-		],
-		
-		[
-			'path' => 'classsubjects',
-			'label' => "Class Subjects", 
-			'icon' => '<i class="material-icons">extension</i>'
-		],
-		
-		[
-			'path' => 'staffdetails',
-			'label' => "Staff Details", 
-			'icon' => '<i class="material-icons">extension</i>'
 		]
 	] ;
 	}

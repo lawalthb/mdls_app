@@ -82,7 +82,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 <th class="td-" > </th><th class="td-id" > Id</th>
                                                 <th class="td-session_id" > Session</th>
                                                 <th class="td-term_id" > Term</th>
-                                                <th class="td-user_id" > User Id</th>
+                                                <th class="td-user_id" > Adm No.</th>
                                                 <th class="td-class_id" > Class</th>
                                                 <th class="td-total_score" > Total Score</th>
                                                 <th class="td-director_approval" > Director Approval</th>
@@ -114,9 +114,21 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                     <i class="material-icons">more_vert</i> view
                                                 </a>
                                             </td>
-                                            <td class="td-id">
-                                                <a href="<?php print_link("/examsheets/view/$data[id]") ?>"><?php echo $data['id']; ?></a>
-                                            </td>
+                                            <td class="td-id"><strong><?php echo $data['id']; 
+                                                // Calculate the sum of total for the current exam_sheet_id
+                                                $exam_sheet_id = $rec_id;
+                                                $total_sum = DB::table('exam_sheet_performances')
+                                                ->where('exam_sheet_id', $exam_sheet_id)
+                                                ->sum('total');
+                                                // Update the exam_sheets table with the new total
+                                                DB::table('exam_sheets')
+                                                ->where('id', $exam_sheet_id)
+                                                ->update(['total_score' => $total_sum]);
+                                                // Fetch the updated exam sheet data
+                                                $updated_exam_sheet = DB::table('exam_sheets')
+                                                ->where('id', $exam_sheet_id)
+                                                ->first();
+                                            ?></strong></td>
                                             <td class="td-session_id">
                                                 <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("sessions/view/$data[session_id]?subpage=1") ?>">
                                                 <?php echo $data['sessions_name'] ?>

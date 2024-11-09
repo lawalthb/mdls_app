@@ -380,4 +380,44 @@ class StudentDetails extends Model
 			"gender" 
 		];
 	}
+	
+
+	/**
+     * return homeList page fields of the model.
+     * 
+     * @return array
+     */
+	public static function homeListFields(){
+		return [ 
+			"student_details.id AS id",
+			"student_details.user_id AS user_id",
+			"users.id AS users_id",
+			"student_details.firstname AS firstname",
+			"student_details.middlemane AS middlemane",
+			"student_details.lastname AS lastname",
+			"student_details.class_id AS class_id",
+			"classes.name AS classes_name",
+			"student_details.gender AS gender" 
+		];
+	}
+	
+
+	/**
+     * return exportHomeList page fields of the model.
+     * 
+     * @return array
+     */
+	public static function exportHomeListFields(){
+		return [ 
+			"student_details.id AS id",
+			"student_details.user_id AS user_id",
+			"users.id AS users_id",
+			"student_details.firstname AS firstname",
+			"student_details.middlemane AS middlemane",
+			"student_details.lastname AS lastname",
+			"student_details.class_id AS class_id",
+			"classes.name AS classes_name",
+			"student_details.gender AS gender" 
+		];
+	}
 }

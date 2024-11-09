@@ -147,6 +147,7 @@
 		</div>
 		<script type="text/javascript" src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/plugins/app-plugins.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/plugins/chartjs-3.3.2.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/plugins/flatpickr.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/plugins/dropzone.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/page-scripts.js') }}"></script>

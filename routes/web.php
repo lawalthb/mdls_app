@@ -241,7 +241,9 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::get('studentdetails/class_students/{filter?}/{filtervalue?}', 'StudentDetailsController@class_students');	
 	Route::get('studentdetails/view_first_report/{rec_id}', 'StudentDetailsController@view_first_report')->name('studentdetails.view_first_report');	
 	Route::get('studentdetails/view_second_report/{rec_id}', 'StudentDetailsController@view_second_report')->name('studentdetails.view_second_report');	
-	Route::get('studentdetails/view_third_report/{rec_id}', 'StudentDetailsController@view_third_report')->name('studentdetails.view_third_report');
+	Route::get('studentdetails/view_third_report/{rec_id}', 'StudentDetailsController@view_third_report')->name('studentdetails.view_third_report');	
+	Route::get('studentdetails/home_list', 'StudentDetailsController@home_list');
+	Route::get('studentdetails/home_list/{filter?}/{filtervalue?}', 'StudentDetailsController@home_list');
 
 /* routes for Subjects Controller */
 	Route::get('subjects', 'SubjectsController@index')->name('subjects.index');
@@ -621,6 +623,60 @@ Route::get('componentsdata/class_id_option_list_2',  function(Request $request){
 Route::get('componentsdata/name_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->name_option_list($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/getcount_students',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->getcount_students($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/getcount_teachers',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->getcount_teachers($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/getcount_admin',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->getcount_admin($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/getcount_director',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->getcount_director($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/getcount_subjects',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->getcount_subjects($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/getcount_classes',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->getcount_classes($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/getcount_classsubjects',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->getcount_classsubjects($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/getcount_staffclasses',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->getcount_staffclasses($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/barchart_studentgenderchart',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->barchart_studentgenderchart($request);
 	}
 )->middleware(['auth']);
 

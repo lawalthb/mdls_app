@@ -286,4 +286,142 @@ $query_params['roleid'] = '2';
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
+	
+
+	/**
+     * getcount_students Model Action
+     * @return int
+     */
+	function getcount_students(){
+		$sqltext = "SELECT COUNT(*) AS num FROM users WHERE user_role_id=:roleid" ;
+		$query_params = [];
+		$query_params['roleid'] = 2 ;
+		$val = DB::selectOne($sqltext, $query_params);
+		return $val->num;
+	}
+	
+
+	/**
+     * getcount_teachers Model Action
+     * @return int
+     */
+	function getcount_teachers(){
+		$sqltext = "SELECT COUNT(*) AS num FROM users WHERE user_role_id=:roleid" ;
+		$query_params = [];
+$query_params['roleid'] = 3;
+		$val = DB::selectOne($sqltext, $query_params);
+		return $val->num;
+	}
+	
+
+	/**
+     * getcount_admin Model Action
+     * @return int
+     */
+	function getcount_admin(){
+		$sqltext = "SELECT COUNT(*) AS num FROM users WHERE user_role_id=:roleid" ;
+		$query_params = [];
+$query_params['roleid'] = 1;
+		$val = DB::selectOne($sqltext, $query_params);
+		return $val->num;
+	}
+	
+
+	/**
+     * getcount_director Model Action
+     * @return int
+     */
+	function getcount_director(){
+		$sqltext = "SELECT COUNT(*) AS num FROM users WHERE user_role_id=:roleid" ;
+		$query_params = [];
+$query_params['roleid'] = 4;
+		$val = DB::selectOne($sqltext, $query_params);
+		return $val->num;
+	}
+	
+
+	/**
+     * getcount_subjects Model Action
+     * @return int
+     */
+	function getcount_subjects(){
+		$sqltext = "SELECT COUNT(*) AS num FROM subjects";
+		$query_params = [];
+		$val = DB::selectOne($sqltext, $query_params);
+		return $val->num;
+	}
+	
+
+	/**
+     * getcount_classes Model Action
+     * @return int
+     */
+	function getcount_classes(){
+		$sqltext = "SELECT COUNT(*) AS num FROM classes";
+		$query_params = [];
+		$val = DB::selectOne($sqltext, $query_params);
+		return $val->num;
+	}
+	
+
+	/**
+     * getcount_classsubjects Model Action
+     * @return int
+     */
+	function getcount_classsubjects(){
+		$sqltext = "SELECT COUNT(*) AS num FROM class_subjects";
+		$query_params = [];
+		$val = DB::selectOne($sqltext, $query_params);
+		return $val->num;
+	}
+	
+
+	/**
+     * getcount_staffclasses Model Action
+     * @return int
+     */
+	function getcount_staffclasses(){
+		$sqltext = "SELECT COUNT(*) AS num FROM staff_classes";
+		$query_params = [];
+		$val = DB::selectOne($sqltext, $query_params);
+		return $val->num;
+	}
+	
+
+	/**
+	* barchart_studentgenderchart Model Action
+	* @return array
+	*/
+	function barchart_studentgenderchart(){
+		$request = request();
+		$chart_data  = [];
+		$sqltext = "SELECT 
+    COUNT(CASE WHEN gender = 'male' THEN 1 END) AS male,
+    COUNT(CASE WHEN gender = 'female' THEN 1 END) AS female
+FROM 
+    student_details;";
+		$query_params = [];
+		$records = DB::select($sqltext, $query_params);
+		$chart_labels = array_column($records, 'male');
+		$datasets = [];
+		$dataset1 = [
+			'data' =>  array_column($records, 'male'),
+			'label' => "Male",
+	'backgroundColor' =>  random_color(), 
+	'borderColor' =>  random_color(), 
+	'borderWidth' => '2',
+		];
+		$datasets[] = $dataset1;
+		$dataset2 = [
+			'data' =>  array_column($records, 'female'),
+			'label' => "Female",
+	'backgroundColor' =>  random_color(), 
+	'borderColor' =>  random_color(), 
+	'borderWidth' => '2',
+		];
+		$datasets[] = $dataset2;
+		$chart_data['datasets'] = $datasets;
+		$chart_data['labels'] = $chart_labels;
+		return $chart_data;
+	}
 }

@@ -169,4 +169,32 @@ class StudentDetailsController extends Controller
 		$record = $query->findOrFail($rec_id, StudentDetails::viewThirdReportFields());
 		return $this->renderView("pages.studentdetails.view_third_report", ["data" => $record]);
 	}
+	
+
+	/**
+     * List table records
+	 * @param  \Illuminate\Http\Request
+     * @param string $fieldname //filter records by a table field
+     * @param string $fieldvalue //filter value
+     * @return \Illuminate\View\View
+     */
+	function home_list(Request $request, $fieldname = null , $fieldvalue = null){
+		$view = "pages.studentdetails.home_list";
+		$query = StudentDetails::query();
+		$limit = $request->limit ?? 10;
+		if($request->search){
+			$search = trim($request->search);
+			StudentDetails::search($query, $search); // search table records
+		}
+		$query->join("users", "student_details.user_id", "=", "users.id");
+		$query->join("classes", "student_details.class_id", "=", "classes.id");
+		$orderby = $request->orderby ?? "student_details.id";
+		$ordertype = $request->ordertype ?? "desc";
+		$query->orderBy($orderby, $ordertype);
+		if($fieldname){
+			$query->where($fieldname , $fieldvalue); //filter by a table field
+		}
+		$records = $query->paginate($limit, StudentDetails::homeListFields());
+		return $this->renderView($view, compact("records"));
+	}
 }

@@ -278,13 +278,13 @@ $query->where("account_status", "=" , "active");
 
 		//Validate StaffDetails form data
 		$staffdetailsPostData = $request->staffdetails;
-		$staffdetailsValidator = validator()->make($staffdetailsPostData, ["class_id" => "nullable|numeric",
+		$staffdetailsValidator = validator()->make($staffdetailsPostData, ["class_id" => "nullable",
 				"gender" => "required",
 				"address" => "nullable|string",
 				"guarantor_details" => "nullable",
-				"files" => "nullable",
+				"other_info" => "nullable",
 				"date_joined" => "nullable|date",
-				"other_info" => "nullable"]);
+				"files" => "nullable"]);
 		if ($staffdetailsValidator->fails()) {
 			return $staffdetailsValidator->errors();
 		}
@@ -295,7 +295,6 @@ $query->where("account_status", "=" , "active");
 			$fileInfo = $this->moveUploadedFiles($staffdetailsModeldata['files'], "files");
 			 $staffdetailsModeldata['files'] = $fileInfo['filepath'];
 		}
-		$modeldata['password'] = "$2y$10$iOMlpi7zwljJ2SwAow0doOgizVAgByA3M3ykuEiKICLC5ZO5zVBSm";
 
 		//save Users record
 		$record = Users::create($modeldata);
@@ -306,7 +305,35 @@ $query->where("account_status", "=" , "active");
 		$staffdetailsModeldata['user_id'] = $rec_id;
 		//save StaffDetails record
 		$staffdetailsRecord = \App\Models\StaffDetails::create($staffdetailsModeldata);
-		return $this->redirect("users", "Record added successfully");
+		return $this->redirect("users/list_staff", "Record added successfully");
+	}
+
+
+	/**
+     * List table records
+	 * @param  \Illuminate\Http\Request
+     * @param string $fieldname //filter records by a table field
+     * @param string $fieldvalue //filter value
+     * @return \Illuminate\View\View
+     */
+	function list_staff(Request $request, $fieldname = null , $fieldvalue = null){
+		$view = "pages.users.list_staff";
+		$query = Users::query();
+		$limit = $request->limit ?? 50;
+		if($request->search){
+			$search = trim($request->search);
+			Users::search($query, $search); // search table records
+		}
+		$query->join("roles", "users.user_role_id", "=", "roles.role_id");
+		$orderby = $request->orderby ?? "users.id";
+		$ordertype = $request->ordertype ?? "desc";
+		$query->orderBy($orderby, $ordertype);
+		$query->where("user_role_id", "!=" , 2);
+		if($fieldname){
+			$query->where($fieldname , $fieldvalue); //filter by a table field
+		}
+		$records = $query->paginate($limit, Users::listStaffFields());
+		return $this->renderView($view, compact("records"));
 	}
     /**
      * Endpoint action

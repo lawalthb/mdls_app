@@ -46,7 +46,6 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <tr>
                                             <th class="bg-light"><label for="name">Name</label></th>
                                             <th class="bg-light"><label for="is_active">Is Active</label></th>
-                                            <th class="bg-light"><label for="updated_by">Updated By</label></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -92,30 +91,25 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                 </select>
                             </div>
                         </td>
-                        <td>
-                            <div id="ctrl-updated_by-row<?php echo $row; ?>-holder" class=" ">
-                            <input id="ctrl-updated_by-row<?php echo $row; ?>" data-field="updated_by"  value="<?php echo get_value('updated_by') ?>" type="number" placeholder="Enter Updated By" step="any"  required="" name="row[<?php echo $row ?>][updated_by]"  class="form-control " />
-                        </div>
-                    </td>
-                    <th class="text-center">
-                    <button type="button" class="btn-close btn-remove-table-row"></button>
-                    </th>
-                </tr>
-            </template>
-            <!--[/table row template]-->
-        </div>
-        <div class="form-ajax-status"></div>
-        <!--[form-button-start]-->
-        <div class="form-group form-submit-btn-holder text-center mt-3">
-            <button class="btn btn-primary" type="submit">
-            Submit
-            <i class="material-icons">send</i>
-            </button>
-        </div>
-        <!--[form-button-end]-->
-    </form>
-    <!--[form-end]-->
-</div>
+                        <th class="text-center">
+                        <button type="button" class="btn-close btn-remove-table-row"></button>
+                        </th>
+                    </tr>
+                </template>
+                <!--[/table row template]-->
+            </div>
+            <div class="form-ajax-status"></div>
+            <!--[form-button-start]-->
+            <div class="form-group form-submit-btn-holder text-center mt-3">
+                <button class="btn btn-primary" type="submit">
+                Submit
+                <i class="material-icons">send</i>
+                </button>
+            </div>
+            <!--[form-button-end]-->
+        </form>
+        <!--[form-end]-->
+    </div>
 </div>
 </div>
 </div>

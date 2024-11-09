@@ -14,7 +14,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
     $total_records = $records->total();
     $limit = $records->perPage();
     $record_count = count($records);
-    $pageTitle = "Users"; //set dynamic page title
+    $pageTitle = "Staff"; //set dynamic page title
 ?>
 @extends($layout)
 @section('title', $pageTitle)
@@ -28,14 +28,14 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
             <div class="row justify-content-between align-items-center gap-3">
                 <div class="col  " >
                     <div class="">
-                        <div class="h5 font-weight-bold text-primary">Staff List</div>
+                        <div class="h5 font-weight-bold text-primary">Staff</div>
                     </div>
                 </div>
                 <div class="col-auto  " >
                     <?php if($can_add){ ?>
-                    <a  class="btn btn-primary btn-block" href="<?php print_link("users/add_staff", true) ?>" >
+                    <a  class="btn btn-primary btn-block" href="<?php print_link("users/add", true) ?>" >
                     <i class="material-icons">add</i>                               
-                    Add New User 
+                    Add New Staff 
                 </a>
                 <?php } ?>
             </div>
@@ -70,23 +70,15 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <table class="table table-hover table-striped table-sm text-left">
                                 <thead class="table-header ">
                                     <tr>
-                                        <?php if($can_delete){ ?>
-                                        <th class="td-checkbox">
-                                        <label class="form-check-label">
-                                        <input class="toggle-check-all form-check-input" type="checkbox" />
-                                        </label>
-                                        </th>
-                                        <?php } ?>
                                         <th class="td-id" > Id</th>
                                         <th class="td-email" > Email</th>
                                         <th class="td-name" > Name</th>
                                         <th class="td-phone" > Phone</th>
                                         <th class="td-image" > Image</th>
                                         <th class="td-is_active" > Is Active</th>
-                                        <th class="td-created_at" > Created At</th>
                                         <th class="td-updated_at" > Updated At</th>
                                         <th class="td-account_status" > Account Status</th>
-                                        <th class="td-user_role_id" > User Role Id</th>
+                                        <th class="td-user_role_id" > Role</th>
                                         <th class="td-btn"></th>
                                     </tr>
                                 </thead>
@@ -102,13 +94,6 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         $counter++;
                                     ?>
                                     <tr>
-                                        <?php if($can_delete){ ?>
-                                        <td class=" td-checkbox">
-                                            <label class="form-check-label">
-                                            <input class="optioncheck form-check-input" name="optioncheck[]" value="<?php echo $data['id'] ?>" type="checkbox" />
-                                            </label>
-                                        </td>
-                                        <?php } ?>
                                         <!--PageComponentStart-->
                                         <td class="td-id">
                                             <a href="<?php print_link("/users/view/$data[id]") ?>"><?php echo $data['id']; ?></a>
@@ -130,18 +115,17 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <td class="td-is_active">
                                             <?php echo  $data['is_active'] ; ?>
                                         </td>
-                                        <td class="td-created_at">
-                                            <?php echo  $data['created_at'] ; ?>
-                                        </td>
                                         <td class="td-updated_at">
-                                            <?php echo  $data['updated_at'] ; ?>
+                                            <span title="<?php echo human_datetime($data['updated_at']); ?>" class="has-tooltip">
+                                            <?php echo relative_date($data['updated_at']); ?>
+                                            </span>
                                         </td>
                                         <td class="td-account_status">
                                             <?php echo  $data['account_status'] ; ?>
                                         </td>
                                         <td class="td-user_role_id">
                                             <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("roles/view/$data[user_role_id]?subpage=1") ?>">
-                                            <i class="material-icons">visibility</i> <?php echo "Roles" ?>
+                                            <?php echo $data['roles_role_name'] ?>
                                         </a>
                                     </td>
                                     <!--PageComponentEnd-->

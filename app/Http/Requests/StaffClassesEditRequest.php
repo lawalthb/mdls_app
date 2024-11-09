@@ -3,7 +3,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RolesEditRequest extends FormRequest
+class StaffClassesEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,9 @@ class RolesEditRequest extends FormRequest
 		
         return [
             
-				"role_name" => "filled|string",
-				"is_system" => "filled",
+				"user_id" => "filled",
+				"class_id" => "filled",
+				"is_active" => "filled",
             
         ];
     }

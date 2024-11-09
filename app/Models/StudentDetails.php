@@ -182,8 +182,8 @@ class StudentDetails extends Model
 			"weight",
 			"measurement_date",
 			"address",
-			"id",
-			"gender" 
+			"gender",
+			"id" 
 		];
 	}
 	

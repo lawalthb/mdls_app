@@ -155,6 +155,19 @@ class ComponentsData{
 	
 
 	/**
+     * staffclasses_user_id_option_list Model Action
+     * @return array
+     */
+	function staffclasses_user_id_option_list(){
+		$sqltext = "SELECT id as value, name as label FROM users WHERE user_role_id !=:roleid" ;
+		$query_params = [];
+$query_params['roleid'] = 2;
+		$arr = DB::select($sqltext, $query_params);
+		return $arr;
+	}
+	
+
+	/**
      * Check if value already exist in Subjects table
 	 * @param string $value
      * @return bool

@@ -1,12 +1,12 @@
 <?php 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SessionsAddRequest;
-use App\Http\Requests\SessionsEditRequest;
-use App\Models\Sessions;
+use App\Http\Requests\StaffClassesAddRequest;
+use App\Http\Requests\StaffClassesEditRequest;
+use App\Models\StaffClasses;
 use Illuminate\Http\Request;
 use Exception;
-class SessionsController extends Controller
+class StaffClassesController extends Controller
 {
 	
 
@@ -18,21 +18,22 @@ class SessionsController extends Controller
      * @return \Illuminate\View\View
      */
 	function index(Request $request, $fieldname = null , $fieldvalue = null){
-		$view = "pages.sessions.list";
-		$query = Sessions::query();
+		$view = "pages.staffclasses.list";
+		$query = StaffClasses::query();
 		$limit = $request->limit ?? 50;
 		if($request->search){
 			$search = trim($request->search);
-			Sessions::search($query, $search); // search table records
+			StaffClasses::search($query, $search); // search table records
 		}
-		$query->join("users", "sessions.updated_by", "=", "users.id");
-		$orderby = $request->orderby ?? "sessions.id";
+		$query->join("users", "staff_classes.user_id", "=", "users.id");
+		$query->join("classes", "staff_classes.class_id", "=", "classes.id");
+		$orderby = $request->orderby ?? "staff_classes.id";
 		$ordertype = $request->ordertype ?? "desc";
 		$query->orderBy($orderby, $ordertype);
 		if($fieldname){
 			$query->where($fieldname , $fieldvalue); //filter by a table field
 		}
-		$records = $query->paginate($limit, Sessions::listFields());
+		$records = $query->paginate($limit, StaffClasses::listFields());
 		return $this->renderView($view, compact("records"));
 	}
 	
@@ -43,19 +44,9 @@ class SessionsController extends Controller
      * @return \Illuminate\View\View
      */
 	function view($rec_id = null){
-		$query = Sessions::query();
-		$record = $query->findOrFail($rec_id, Sessions::viewFields());
-		return $this->renderView("pages.sessions.view", ["data" => $record]);
-	}
-	
-
-	/**
-     * Display Master Detail Pages
-	 * @param string $rec_id //master record id
-     * @return \Illuminate\View\View
-     */
-	function masterDetail($rec_id = null){
-		return View("pages.sessions.detail-pages", ["masterRecordId" => $rec_id]);
+		$query = StaffClasses::query();
+		$record = $query->findOrFail($rec_id, StaffClasses::viewFields());
+		return $this->renderView("pages.staffclasses.view", ["data" => $record]);
 	}
 	
 
@@ -64,7 +55,7 @@ class SessionsController extends Controller
      * @return \Illuminate\View\View
      */
 	function add(){
-		return $this->renderView("pages.sessions.add");
+		return $this->renderView("pages.staffclasses.add");
 	}
 	
 
@@ -72,14 +63,14 @@ class SessionsController extends Controller
      * Save form record to the table
      * @return \Illuminate\Http\Response
      */
-	function store(SessionsAddRequest $request){
+	function store(StaffClassesAddRequest $request){
 		$modeldata = $this->normalizeFormData($request->validated());
 		$modeldata['updated_by'] = auth()->user()->id;
 		
-		//save Sessions record
-		$record = Sessions::create($modeldata);
+		//save StaffClasses record
+		$record = StaffClasses::create($modeldata);
 		$rec_id = $record->id;
-		return $this->redirect("sessions", "Record added successfully");
+		return $this->redirect("staffclasses", "Record added successfully");
 	}
 	
 
@@ -88,15 +79,15 @@ class SessionsController extends Controller
 	 * @param string $rec_id //select record by table primary key
      * @return \Illuminate\View\View;
      */
-	function edit(SessionsEditRequest $request, $rec_id = null){
-		$query = Sessions::query();
-		$record = $query->findOrFail($rec_id, Sessions::editFields());
+	function edit(StaffClassesEditRequest $request, $rec_id = null){
+		$query = StaffClasses::query();
+		$record = $query->findOrFail($rec_id, StaffClasses::editFields());
 		if ($request->isMethod('post')) {
 			$modeldata = $this->normalizeFormData($request->validated());
 			$record->update($modeldata);
-			return $this->redirect("sessions", "Record updated successfully");
+			return $this->redirect("staffclasses", "Record updated successfully");
 		}
-		return $this->renderView("pages.sessions.edit", ["data" => $record, "rec_id" => $rec_id]);
+		return $this->renderView("pages.staffclasses.edit", ["data" => $record, "rec_id" => $rec_id]);
 	}
 	
 
@@ -109,7 +100,7 @@ class SessionsController extends Controller
      */
 	function delete(Request $request, $rec_id = null){
 		$arr_id = explode(",", $rec_id);
-		$query = Sessions::query();
+		$query = StaffClasses::query();
 		$query->whereIn("id", $arr_id);
 		$query->delete();
 		$redirectUrl = $request->redirect ?? url()->previous();

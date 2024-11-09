@@ -53,6 +53,35 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label class="control-label" for="is_system">Is System <span class="text-danger">*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div id="ctrl-is_system-holder" class=" ">
+                                                <select required=""  id="ctrl-is_system" data-field="is_system" name="is_system"  placeholder="Select a value ..."    class="form-select" >
+                                                <option value="">Select a value ...</option>
+                                                <?php
+                                                    $options = Menu::isActive();
+                                                    if(!empty($options)){
+                                                    foreach($options as $option){
+                                                    $value = $option['value'];
+                                                    $label = $option['label'];
+                                                    $selected = Html::get_field_selected('is_system', $value, "");
+                                                ?>
+                                                <option <?php echo $selected ?> value="<?php echo $value ?>">
+                                                <?php echo $label ?>
+                                                </option>                                   
+                                                <?php
+                                                    }
+                                                    }
+                                                ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-ajax-status"></div>
                             <!--[form-button-start]-->

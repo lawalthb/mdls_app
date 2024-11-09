@@ -208,6 +208,16 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::any('sessions/edit/{rec_id}', 'SessionsController@edit')->name('sessions.edit');	
 	Route::get('sessions/delete/{rec_id}', 'SessionsController@delete');
 
+/* routes for StaffClasses Controller */
+	Route::get('staffclasses', 'StaffClassesController@index')->name('staffclasses.index');
+	Route::get('staffclasses/index/{filter?}/{filtervalue?}', 'StaffClassesController@index')->name('staffclasses.index');	
+	Route::get('staffclasses/view/{rec_id}', 'StaffClassesController@view')->name('staffclasses.view');	
+	Route::get('staffclasses/add', 'StaffClassesController@add')->name('staffclasses.add');
+	Route::post('staffclasses/add', 'StaffClassesController@store')->name('staffclasses.store');
+		
+	Route::any('staffclasses/edit/{rec_id}', 'StaffClassesController@edit')->name('staffclasses.edit');	
+	Route::get('staffclasses/delete/{rec_id}', 'StaffClassesController@delete');
+
 /* routes for StaffDetails Controller */
 	Route::get('staffdetails', 'StaffDetailsController@index')->name('staffdetails.index');
 	Route::get('staffdetails/index/{filter?}/{filtervalue?}', 'StaffDetailsController@index')->name('staffdetails.index');	
@@ -288,7 +298,9 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 	Route::any('users/edit_student/{rec_id}', 'UsersController@edit_student')->name('users.edit_student');	
 	Route::get('users/add_staff', 'UsersController@add_staff')->name('users.add_staff');
 	Route::post('users/add_staff', 'UsersController@add_staff_store')->name('users.add_staff_store');
-	
+		
+	Route::get('users/list_staff', 'UsersController@list_staff');
+	Route::get('users/list_staff/{filter?}/{filtervalue?}', 'UsersController@list_staff');
 
 /* routes for WebAbouts Controller */
 	Route::get('webabouts', 'WebAboutsController@index')->name('webabouts.index');
@@ -549,6 +561,12 @@ Route::get('componentsdata/role_id_option_list',  function(Request $request){
 Route::get('componentsdata/plans_updated_by_option_list',  function(Request $request){
 		$compModel = new App\Models\ComponentsData();
 		return $compModel->plans_updated_by_option_list($request);
+	}
+)->middleware(['auth']);
+	
+Route::get('componentsdata/staffclasses_user_id_option_list',  function(Request $request){
+		$compModel = new App\Models\ComponentsData();
+		return $compModel->staffclasses_user_id_option_list($request);
 	}
 )->middleware(['auth']);
 	

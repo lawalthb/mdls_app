@@ -153,34 +153,34 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             <span class="input-group-text"><i class="material-icons">date_range</i></span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group ">
-                                    <label class="control-label" for="address">Address </label>
-                                    <div id="ctrl-address-holder" class=" "> 
-                                        <input id="ctrl-address" data-field="address"  value="<?php echo get_value('address') ?>" type="text" placeholder="Enter Address"  name="address"  class="form-control " />
+                                    <div class="form-group col-md-8">
+                                        <label class="control-label" for="address">Address </label>
+                                        <div id="ctrl-address-holder" class=" "> 
+                                            <input id="ctrl-address" data-field="address"  value="<?php echo get_value('address') ?>" type="text" placeholder="Enter Address"  name="address"  class="form-control " />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group ">
-                                    <label class="control-label" for="gender">Gender <span class="text-danger">*</span></label>
-                                    <div id="ctrl-gender-holder" class=" "> 
-                                        <select required=""  id="ctrl-gender" data-field="gender" name="gender"  placeholder="Select a value ..."    class="form-select" >
-                                        <option value="">Select a value ...</option>
-                                        <?php
-                                            $options = Menu::gender();
-                                            if(!empty($options)){
-                                            foreach($options as $option){
-                                            $value = $option['value'];
-                                            $label = $option['label'];
-                                            $selected = Html::get_field_selected('gender', $value, "");
-                                        ?>
-                                        <option <?php echo $selected ?> value="<?php echo $value ?>">
-                                        <?php echo $label ?>
-                                        </option>                                   
-                                        <?php
-                                            }
-                                            }
-                                        ?>
-                                        </select>
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label" for="gender">Gender <span class="text-danger">*</span></label>
+                                        <div id="ctrl-gender-holder" class=" "> 
+                                            <select required=""  id="ctrl-gender" data-field="gender" name="gender"  placeholder="Select a value ..."    class="form-select" >
+                                            <option value="">Select a value ...</option>
+                                            <?php
+                                                $options = Menu::gender();
+                                                if(!empty($options)){
+                                                foreach($options as $option){
+                                                $value = $option['value'];
+                                                $label = $option['label'];
+                                                $selected = Html::get_field_selected('gender', $value, "");
+                                            ?>
+                                            <option <?php echo $selected ?> value="<?php echo $value ?>">
+                                            <?php echo $label ?>
+                                            </option>                                   
+                                            <?php
+                                                }
+                                                }
+                                            ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

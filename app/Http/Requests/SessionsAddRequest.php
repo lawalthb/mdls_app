@@ -27,7 +27,6 @@ class SessionsAddRequest extends FormRequest
             
 				"name" => "required|string",
 				"is_active" => "required",
-				"updated_by" => "required",
             
         ];
     }

@@ -29,8 +29,8 @@ class Usersadd_staffRequest extends FormRequest
 				"name" => "required|string",
 				"phone" => "nullable|string",
 				"is_active" => "nullable",
-				"account_status" => "nullable",
 				"user_role_id" => "nullable",
+				"account_status" => "nullable",
             
         ];
     }

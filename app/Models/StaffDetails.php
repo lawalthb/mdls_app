@@ -28,7 +28,7 @@ class StaffDetails extends Model
      * @var array
      */
 	protected $fillable = [
-		'class_id','gender','address','guarantor_details','files','date_joined','other_info','user_id'
+		'class_id','gender','address','guarantor_details','other_info','date_joined','files','user_id'
 	];
 	public $timestamps = false;
 	
@@ -146,11 +146,11 @@ class StaffDetails extends Model
 			"gender",
 			"address",
 			"guarantor_details",
-			"files",
-			"date_joined",
 			"other_info",
-			"id",
-			"user_id" 
+			"date_joined",
+			"files",
+			"user_id",
+			"id" 
 		];
 	}
 }

@@ -21,7 +21,7 @@
 		],
 		
 		[
-			'path' => 'users/add',
+			'path' => 'users/add_student',
 			'label' => "Admission", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
@@ -75,7 +75,7 @@
 		],
 		
 		[
-			'path' => 'classes',
+			'path' => 'staffclasses',
 			'label' => "Assign Class Teacher", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
@@ -153,6 +153,12 @@
 			'label' => "Staff Management", 
 			'icon' => '<i class="material-icons ">account_circle</i>','submenu' => [
 		[
+			'path' => 'users/list_staff',
+			'label' => "List", 
+			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
+		],
+		
+		[
 			'path' => 'users/add_staff',
 			'label' => "Add Staff", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
@@ -212,6 +218,32 @@
 			'path' => 'auth/logout',
 			'label' => "LogOut", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_left</i>'
+		],
+		
+		[
+			'path' => 'staffclasses',
+			'label' => "Staff Classes", 
+			'icon' => '<i class="material-icons">extension</i>'
+		]
+	] ;
+	}
+	
+	public static function navbartopleft(){
+		return [
+		[
+			'path' => 'staffclasses',
+			'label' => "Staff Classes", 
+			'icon' => '<i class="material-icons">extension</i>'
+		]
+	] ;
+	}
+	
+	public static function navbartopright(){
+		return [
+		[
+			'path' => 'staffclasses',
+			'label' => "Staff Classes", 
+			'icon' => '<i class="material-icons">extension</i>'
 		]
 	] ;
 	}
@@ -382,6 +414,18 @@
 		[
 			'value' => 'Pending', 
 			'label' => "Not Allow", 
+		],] ;
+	}
+	
+	public static function accountStatus2(){
+		return [
+		[
+			'value' => 'Pending', 
+			'label' => "Allow to login", 
+		],
+		[
+			'value' => 'active', 
+			'label' => "Can not login", 
 		],] ;
 	}
 	

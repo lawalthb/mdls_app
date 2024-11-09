@@ -84,18 +84,6 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group ">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label class="control-label" for="updated_by">Updated By <span class="text-danger">*</span></label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div id="ctrl-updated_by-holder" class=" ">
-                                            <input id="ctrl-updated_by" data-field="updated_by"  value="<?php  echo $data['updated_by']; ?>" type="number" placeholder="Enter Updated By" step="any"  required="" name="updated_by"  class="form-control " />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="form-ajax-status"></div>
                         <!--[form-content-end]-->

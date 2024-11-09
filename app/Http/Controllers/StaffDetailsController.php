@@ -69,6 +69,7 @@ class StaffDetailsController extends Controller
 			$fileInfo = $this->moveUploadedFiles($modeldata['files'], "files");
 			$modeldata['files'] = $fileInfo['filepath'];
 		}
+		$modeldata['user_id'] = auth()->user()->id;
 		
 		//save StaffDetails record
 		$record = StaffDetails::create($modeldata);

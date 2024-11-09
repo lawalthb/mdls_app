@@ -75,6 +75,7 @@ class ClassesController extends Controller
 	function store(ClassesAddRequest $request){
 		$postdata = $request->input("row");
 		$modeldata = array_values($postdata);
+		$modeldata['updated_by'] = auth()->user()->id;
 		Classes::insert($modeldata);
 		return $this->redirect("classes", "Record added successfully");
 	}
@@ -127,6 +128,7 @@ class ClassesController extends Controller
 
 
 
+
 	/**
      * List table records
 	 * @param  \Illuminate\Http\Request
@@ -163,7 +165,6 @@ class ClassesController extends Controller
 		$record = $query->findOrFail($rec_id, Classes::studentsFields());
 		return $this->renderView("pages.classes.students", ["data" => $record]);
 	}
-
 
 
 

@@ -27,7 +27,6 @@ class ClassesEditRequest extends FormRequest
             
 				"name" => "filled|string",
 				"is_active" => "filled",
-				"updated_by" => "filled|numeric",
             
         ];
     }

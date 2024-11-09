@@ -2,7 +2,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-class Roles extends Model 
+class StaffClasses extends Model 
 {
 	
 
@@ -11,7 +11,7 @@ class Roles extends Model
      *
      * @var string
      */
-	protected $table = 'roles';
+	protected $table = 'staff_classes';
 	
 
 	/**
@@ -19,7 +19,7 @@ class Roles extends Model
      *
      * @var string
      */
-	protected $primaryKey = 'role_id';
+	protected $primaryKey = 'id';
 	
 
 	/**
@@ -28,7 +28,7 @@ class Roles extends Model
      * @var array
      */
 	protected $fillable = [
-		'role_name','is_system'
+		'user_id','class_id','is_active','updated_by'
 	];
 	public $timestamps = false;
 	
@@ -41,11 +41,10 @@ class Roles extends Model
 	public static function search($query, $text){
 		//search table record 
 		$search_condition = '(
-				role_id LIKE ?  OR 
-				role_name LIKE ? 
+				staff_classes.id LIKE ? 
 		)';
 		$search_params = [
-			"%$text%","%$text%"
+			"%$text%"
 		];
 		//setting search conditions
 		$query->whereRaw($search_condition, $search_params);
@@ -59,9 +58,13 @@ class Roles extends Model
      */
 	public static function listFields(){
 		return [ 
-			"role_id",
-			"role_name",
-			"is_system" 
+			"staff_classes.id AS id",
+			"staff_classes.user_id AS user_id",
+			"users.name AS users_name",
+			"staff_classes.class_id AS class_id",
+			"classes.name AS classes_name",
+			"staff_classes.is_active AS is_active",
+			"staff_classes.updated_date AS updated_date" 
 		];
 	}
 	
@@ -73,9 +76,13 @@ class Roles extends Model
      */
 	public static function exportListFields(){
 		return [ 
-			"role_id",
-			"role_name",
-			"is_system" 
+			"staff_classes.id AS id",
+			"staff_classes.user_id AS user_id",
+			"users.name AS users_name",
+			"staff_classes.class_id AS class_id",
+			"classes.name AS classes_name",
+			"staff_classes.is_active AS is_active",
+			"staff_classes.updated_date AS updated_date" 
 		];
 	}
 	
@@ -87,9 +94,12 @@ class Roles extends Model
      */
 	public static function viewFields(){
 		return [ 
-			"role_id",
-			"role_name",
-			"is_system" 
+			"id",
+			"user_id",
+			"class_id",
+			"is_active",
+			"updated_by",
+			"updated_date" 
 		];
 	}
 	
@@ -101,9 +111,12 @@ class Roles extends Model
      */
 	public static function exportViewFields(){
 		return [ 
-			"role_id",
-			"role_name",
-			"is_system" 
+			"id",
+			"user_id",
+			"class_id",
+			"is_active",
+			"updated_by",
+			"updated_date" 
 		];
 	}
 	
@@ -115,9 +128,11 @@ class Roles extends Model
      */
 	public static function editFields(){
 		return [ 
-			"role_id",
-			"role_name",
-			"is_system" 
+			"user_id",
+			"class_id",
+			"is_active",
+			"updated_by",
+			"id" 
 		];
 	}
 }

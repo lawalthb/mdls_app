@@ -218,32 +218,6 @@
 			'path' => 'auth/logout',
 			'label' => "LogOut", 
 			'icon' => '<i class="material-icons ">subdirectory_arrow_left</i>'
-		],
-		
-		[
-			'path' => 'staffclasses',
-			'label' => "Staff Classes", 
-			'icon' => '<i class="material-icons">extension</i>'
-		]
-	] ;
-	}
-	
-	public static function navbartopleft(){
-		return [
-		[
-			'path' => 'staffclasses',
-			'label' => "Staff Classes", 
-			'icon' => '<i class="material-icons">extension</i>'
-		]
-	] ;
-	}
-	
-	public static function navbartopright(){
-		return [
-		[
-			'path' => 'staffclasses',
-			'label' => "Staff Classes", 
-			'icon' => '<i class="material-icons">extension</i>'
 		]
 	] ;
 	}

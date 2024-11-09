@@ -32,37 +32,31 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                     </div>
                 </div>
                 <div class="col-auto  " >
-                    <?php if($can_add){ ?>
-                    <a  class="btn btn-primary btn-block" href="<?php print_link("webabouts/add", true) ?>" >
-                    <i class="material-icons">add</i>                               
-                    Add New Web About 
-                </a>
-                <?php } ?>
-            </div>
-            <div class="col-md-3  " >
-                <!-- Page drop down search component -->
-                <form  class="search" action="{{ url()->current() }}" method="get">
-                    <input type="hidden" name="page" value="1" />
-                    <div class="input-group">
-                        <input value="<?php echo get_value('search'); ?>" class="form-control page-search" type="text" name="search"  placeholder="Search" />
-                        <button class="btn btn-primary"><i class="material-icons">search</i></button>
-                    </div>
-                </form>
+                </div>
+                <div class="col-md-3  " >
+                    <!-- Page drop down search component -->
+                    <form  class="search" action="{{ url()->current() }}" method="get">
+                        <input type="hidden" name="page" value="1" />
+                        <div class="input-group">
+                            <input value="<?php echo get_value('search'); ?>" class="form-control page-search" type="text" name="search"  placeholder="Search" />
+                            <button class="btn btn-primary"><i class="material-icons">search</i></button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<?php
-    }
-?>
-<div  class="" >
-    <div class="container-fluid">
-        <div class="row ">
-            <div class="col comp-grid " >
+    <?php
+        }
+    ?>
+    <div  class="" >
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="col comp-grid " >
+                </div>
             </div>
         </div>
     </div>
-</div>
 </section>
 
 

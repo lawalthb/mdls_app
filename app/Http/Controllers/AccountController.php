@@ -23,6 +23,7 @@ class AccountController extends Controller{
 	function index(){
 		$rec_id = Auth::id();
 		$query = Users::query();
+		$query->join("roles", "users.user_role_id", "=", "roles.role_id");
 		$record = $query->find($rec_id, Users::accountviewFields());
 		if(!$record){
 			return $this->reject("No record found", 404);

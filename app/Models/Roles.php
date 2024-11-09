@@ -60,8 +60,7 @@ class Roles extends Model
 	public static function listFields(){
 		return [ 
 			"role_id",
-			"role_name",
-			"is_system" 
+			"role_name" 
 		];
 	}
 	
@@ -74,8 +73,7 @@ class Roles extends Model
 	public static function exportListFields(){
 		return [ 
 			"role_id",
-			"role_name",
-			"is_system" 
+			"role_name" 
 		];
 	}
 	
@@ -115,9 +113,9 @@ class Roles extends Model
      */
 	public static function editFields(){
 		return [ 
-			"role_id",
 			"role_name",
-			"is_system" 
+			"is_system",
+			"role_id" 
 		];
 	}
 }

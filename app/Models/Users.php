@@ -97,15 +97,16 @@ class Users extends Authenticatable
      */
 	public static function viewFields(){
 		return [ 
-			"id",
-			"email",
-			"name",
-			"phone",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"account_status",
-			"user_role_id" 
+			"users.id AS id",
+			"users.email AS email",
+			"users.name AS name",
+			"users.phone AS phone",
+			"users.is_active AS is_active",
+			"users.created_at AS created_at",
+			"users.updated_at AS updated_at",
+			"users.account_status AS account_status",
+			"users.user_role_id AS user_role_id",
+			"roles.role_name AS roles_role_name" 
 		];
 	}
 	
@@ -117,15 +118,16 @@ class Users extends Authenticatable
      */
 	public static function exportViewFields(){
 		return [ 
-			"id",
-			"email",
-			"name",
-			"phone",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"account_status",
-			"user_role_id" 
+			"users.id AS id",
+			"users.email AS email",
+			"users.name AS name",
+			"users.phone AS phone",
+			"users.is_active AS is_active",
+			"users.created_at AS created_at",
+			"users.updated_at AS updated_at",
+			"users.account_status AS account_status",
+			"users.user_role_id AS user_role_id",
+			"roles.role_name AS roles_role_name" 
 		];
 	}
 	
@@ -137,13 +139,10 @@ class Users extends Authenticatable
      */
 	public static function accounteditFields(){
 		return [ 
-			"id",
 			"name",
 			"phone",
 			"image",
-			"is_active",
-			"account_status",
-			"user_role_id" 
+			"id" 
 		];
 	}
 	
@@ -155,15 +154,16 @@ class Users extends Authenticatable
      */
 	public static function accountviewFields(){
 		return [ 
-			"id",
-			"email",
-			"name",
-			"phone",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"account_status",
-			"user_role_id" 
+			"users.id AS id",
+			"users.email AS email",
+			"users.name AS name",
+			"users.phone AS phone",
+			"users.is_active AS is_active",
+			"users.created_at AS created_at",
+			"users.updated_at AS updated_at",
+			"users.account_status AS account_status",
+			"users.user_role_id AS user_role_id",
+			"roles.role_name AS roles_role_name" 
 		];
 	}
 	
@@ -175,15 +175,16 @@ class Users extends Authenticatable
      */
 	public static function exportAccountviewFields(){
 		return [ 
-			"id",
-			"email",
-			"name",
-			"phone",
-			"is_active",
-			"created_at",
-			"updated_at",
-			"account_status",
-			"user_role_id" 
+			"users.id AS id",
+			"users.email AS email",
+			"users.name AS name",
+			"users.phone AS phone",
+			"users.is_active AS is_active",
+			"users.created_at AS created_at",
+			"users.updated_at AS updated_at",
+			"users.account_status AS account_status",
+			"users.user_role_id AS user_role_id",
+			"roles.role_name AS roles_role_name" 
 		];
 	}
 	

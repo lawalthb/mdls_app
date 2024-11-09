@@ -169,7 +169,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                                     <small class="text-muted">User Role Id</small>
                                                                     <div class="fw-bold">
                                                                         <a size="sm" class="btn btn-sm btn btn-secondary page-modal" href="<?php print_link("roles/view/$data[user_role_id]?subpage=1") ?>">
-                                                                        <i class="material-icons">visibility</i> <?php echo "Roles Detail" ?>
+                                                                        <i class="material-icons">visibility</i> <?php echo $data['roles_role_name'] ?>
                                                                     </a>
                                                                 </div>
                                                             </div>

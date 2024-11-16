@@ -129,7 +129,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                     <!--PageComponentEnd-->
                                     <td class="td-btn">
                                         <?php if($can_view){ ?>
-                                        <a class="btn btn-sm btn-primary has-tooltip "   title="1st Report Card" href="<?php print_link("studentdetails/view_first_report/$rec_id"); ?>" >
+                                        <a class="btn btn-sm btn-primary has-tooltip "   title="1st Report Card" href="<?php print_link("studentdetails/view_first_report/$rec_id"); ?>" target="_blank">
                                         First Term
                                     </a>
                                     <?php } ?>

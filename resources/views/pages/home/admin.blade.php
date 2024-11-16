@@ -24,7 +24,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
     <div  class="mb-3" >
         <div class="container-fluid">
             <div class="row ">
-                <div class="col-3 comp-grid " >
+                <div class="col-md-3 comp-grid " >
                     <?php $rec_count = $comp_model->getcount_students();  ?>
                     <a class="animated zoomIn record-count alert alert-secondary"  href='<?php print_link("users") ?>' >
                     <div class="row gutter-sm align-items-center">
@@ -98,7 +98,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
 <div  class="mb-3" >
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-3 comp-grid " >
+            <div class="col-md-3 comp-grid " >
                 <?php $rec_count = $comp_model->getcount_subjects();  ?>
                 <a class="animated zoomIn record-count alert alert-primary"  href='<?php print_link("subjects") ?>' >
                 <div class="row gutter-sm align-items-center">
@@ -172,7 +172,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
 <div  class="mb-3" >
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-6 comp-grid " >
+            <div class="col-md-6 comp-grid " >
                 <!--Include chart component-->
                 @include("pages.admin-student-gender-chart")
             </div>

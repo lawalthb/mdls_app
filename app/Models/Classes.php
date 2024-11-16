@@ -93,8 +93,8 @@ class Classes extends Model
      */
 	public static function viewFields(){
 		return [ 
-			"id",
-			"name" 
+			"name",
+			"id" 
 		];
 	}
 	
@@ -106,8 +106,8 @@ class Classes extends Model
      */
 	public static function exportViewFields(){
 		return [ 
-			"id",
-			"name" 
+			"name",
+			"id" 
 		];
 	}
 	

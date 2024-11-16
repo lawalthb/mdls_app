@@ -1,4 +1,4 @@
-<!--
+<!-- 
 expose component model to current view
 e.g $arrDataFromDb = $comp_model->fetchData(); //function name
 -->
@@ -34,8 +34,8 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                 <div class="col-auto  " >
                     <?php if($can_add){ ?>
                     <a  class="btn btn-primary btn-block" href="<?php print_link("examsheetperformances/add", true) ?>" >
-                    <i class="material-icons">add</i>
-                    Add New Exam Sheet Performance
+                    <i class="material-icons">add</i>                               
+                    Add New Exam Sheet Performance 
                 </a>
                 <?php } ?>
             </div>
@@ -154,7 +154,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <td class="td-btn">
                                 <div class="dropdown" >
                                     <button data-bs-toggle="dropdown" class="dropdown-toggle btn text-primary btn-flat btn-sm">
-                                    <i class="material-icons">menu</i>
+                                    <i class="material-icons">menu</i> 
                                     </button>
                                     <ul class="dropdown-menu">
                                         <?php if($can_view){ ?>
@@ -176,7 +176,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                     </div>
                 </td>
             </tr>
-            <?php
+            <?php 
                 }
             ?>
             <!--endrecord-->
@@ -202,15 +202,15 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
     if($show_footer){
 ?>
 <div class=" mt-3">
-    <div class="row align-items-center justify-content-between">
-        <div class="col-md-auto d-flex">
+    <div class="row align-items-center justify-content-between">    
+        <div class="col-md-auto d-flex">    
             <?php if($can_delete){ ?>
             <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("examsheetperformances/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
             <i class="material-icons">delete_sweep</i> Delete Selected
             </button>
             <?php } ?>
         </div>
-        <div class="col">
+        <div class="col">   
             <?php
                 if($show_pagination == true){
                 $pager = new Pagination($total_records, $record_count);
@@ -239,4 +239,3 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
 
 
 @endsection
-

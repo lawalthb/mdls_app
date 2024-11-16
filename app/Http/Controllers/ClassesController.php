@@ -128,7 +128,6 @@ class ClassesController extends Controller
 
 
 
-
 	/**
      * List table records
 	 * @param  \Illuminate\Http\Request
@@ -207,5 +206,5 @@ class ClassesController extends Controller
 	}
 
 
-
+	
 }

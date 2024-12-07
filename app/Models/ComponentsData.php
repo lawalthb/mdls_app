@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Models;
 
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
  * @category Model
  */
 class ComponentsData{
-	
+
 
 	/**
      * class_id_option_list Model Action
@@ -22,7 +22,7 @@ class ComponentsData{
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * subject_id_option_list Model Action
@@ -34,7 +34,7 @@ class ComponentsData{
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * session_id_option_list Model Action
@@ -46,7 +46,7 @@ class ComponentsData{
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * updated_by_option_list Model Action
@@ -58,7 +58,7 @@ class ComponentsData{
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * term_id_option_list Model Action
@@ -70,7 +70,7 @@ class ComponentsData{
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * examsheets_term_id_option_list Model Action
@@ -84,7 +84,7 @@ class ComponentsData{
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * user_id_option_list Model Action
@@ -98,7 +98,7 @@ class ComponentsData{
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * Check if value already exist in Grades table
@@ -107,13 +107,13 @@ class ComponentsData{
      */
 	function grades_name_value_exist(Request $request){
 		$value = trim($request->value);
-		$exist = DB::table('grades')->where('name', $value)->value('name');   
+		$exist = DB::table('grades')->where('name', $value)->value('name');
 		if($exist){
 			return true;
 		}
 		return false;
 	}
-	
+
 
 	/**
      * Check if value already exist in Grades table
@@ -122,13 +122,13 @@ class ComponentsData{
      */
 	function grades_remarks_value_exist(Request $request){
 		$value = trim($request->value);
-		$exist = DB::table('grades')->where('remarks', $value)->value('remarks');   
+		$exist = DB::table('grades')->where('remarks', $value)->value('remarks');
 		if($exist){
 			return true;
 		}
 		return false;
 	}
-	
+
 
 	/**
      * role_id_option_list Model Action
@@ -140,7 +140,7 @@ class ComponentsData{
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * plans_updated_by_option_list Model Action
@@ -152,7 +152,7 @@ class ComponentsData{
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * staffclasses_user_id_option_list Model Action
@@ -165,7 +165,7 @@ $query_params['roleid'] = 2;
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * Check if value already exist in Subjects table
@@ -174,13 +174,13 @@ $query_params['roleid'] = 2;
      */
 	function subjects_name_value_exist(Request $request){
 		$value = trim($request->value);
-		$exist = DB::table('subjects')->where('name', $value)->value('name');   
+		$exist = DB::table('subjects')->where('name', $value)->value('name');
 		if($exist){
 			return true;
 		}
 		return false;
 	}
-	
+
 
 	/**
      * price_settings_id_option_list Model Action
@@ -192,7 +192,7 @@ $query_params['roleid'] = 2;
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * Check if value already exist in Users table
@@ -201,13 +201,13 @@ $query_params['roleid'] = 2;
      */
 	function users_email_value_exist(Request $request){
 		$value = trim($request->value);
-		$exist = DB::table('users')->where('email', $value)->value('email');   
+		$exist = DB::table('users')->where('email', $value)->value('email');
 		if($exist){
 			return true;
 		}
 		return false;
 	}
-	
+
 
 	/**
      * Check if value already exist in Users table
@@ -216,13 +216,13 @@ $query_params['roleid'] = 2;
      */
 	function users_name_value_exist(Request $request){
 		$value = trim($request->value);
-		$exist = DB::table('users')->where('name', $value)->value('name');   
+		$exist = DB::table('users')->where('name', $value)->value('name');
 		if($exist){
 			return true;
 		}
 		return false;
 	}
-	
+
 
 	/**
      * Check if value already exist in Users table
@@ -231,26 +231,16 @@ $query_params['roleid'] = 2;
      */
 	function users_phone_value_exist(Request $request){
 		$value = trim($request->value);
-		$exist = DB::table('users')->where('phone', $value)->value('phone');   
+		$exist = DB::table('users')->where('phone', $value)->value('phone');
 		if($exist){
 			return true;
 		}
 		return false;
 	}
-	
 
-	/**
-     * user_role_id_option_list Model Action
-     * @return array
-     */
-	function user_role_id_option_list(){
-		$sqltext = "SELECT role_id AS value, role_name AS label FROM roles" ;
-		$query_params = [];
-$query_params['roleid'] = '2';
-		$arr = DB::select($sqltext, $query_params);
-		return $arr;
-	}
-	
+
+
+
 
 	/**
      * category_id_option_list Model Action
@@ -262,7 +252,7 @@ $query_params['roleid'] = '2';
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * class_id_option_list_2 Model Action
@@ -274,7 +264,7 @@ $query_params['roleid'] = '2';
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * name_option_list Model Action
@@ -286,7 +276,7 @@ $query_params['roleid'] = '2';
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
-	
+
 
 	/**
      * getcount_students Model Action
@@ -299,7 +289,7 @@ $query_params['roleid'] = '2';
 		$val = DB::selectOne($sqltext, $query_params);
 		return $val->num;
 	}
-	
+
 
 	/**
      * getcount_teachers Model Action
@@ -312,7 +302,7 @@ $query_params['roleid'] = 3;
 		$val = DB::selectOne($sqltext, $query_params);
 		return $val->num;
 	}
-	
+
 
 	/**
      * getcount_admin Model Action
@@ -325,7 +315,7 @@ $query_params['roleid'] = 1;
 		$val = DB::selectOne($sqltext, $query_params);
 		return $val->num;
 	}
-	
+
 
 	/**
      * getcount_director Model Action
@@ -338,7 +328,7 @@ $query_params['roleid'] = 4;
 		$val = DB::selectOne($sqltext, $query_params);
 		return $val->num;
 	}
-	
+
 
 	/**
      * getcount_subjects Model Action
@@ -350,7 +340,7 @@ $query_params['roleid'] = 4;
 		$val = DB::selectOne($sqltext, $query_params);
 		return $val->num;
 	}
-	
+
 
 	/**
      * getcount_classes Model Action
@@ -362,7 +352,7 @@ $query_params['roleid'] = 4;
 		$val = DB::selectOne($sqltext, $query_params);
 		return $val->num;
 	}
-	
+
 
 	/**
      * getcount_classsubjects Model Action
@@ -374,7 +364,7 @@ $query_params['roleid'] = 4;
 		$val = DB::selectOne($sqltext, $query_params);
 		return $val->num;
 	}
-	
+
 
 	/**
      * getcount_staffclasses Model Action
@@ -386,7 +376,7 @@ $query_params['roleid'] = 4;
 		$val = DB::selectOne($sqltext, $query_params);
 		return $val->num;
 	}
-	
+
 
 	/**
 	* barchart_studentgenderchart Model Action
@@ -395,10 +385,10 @@ $query_params['roleid'] = 4;
 	function barchart_studentgenderchart(){
 		$request = request();
 		$chart_data  = [];
-		$sqltext = "SELECT 
+		$sqltext = "SELECT
     COUNT(CASE WHEN gender = 'male' THEN 1 END) AS male,
     COUNT(CASE WHEN gender = 'female' THEN 1 END) AS female
-FROM 
+FROM
     student_details;";
 		$query_params = [];
 		$records = DB::select($sqltext, $query_params);
@@ -407,16 +397,16 @@ FROM
 		$dataset1 = [
 			'data' =>  array_column($records, 'male'),
 			'label' => "Male",
-	'backgroundColor' =>  random_color(), 
-	'borderColor' =>  random_color(), 
+	'backgroundColor' =>  random_color(),
+	'borderColor' =>  random_color(),
 	'borderWidth' => '2',
 		];
 		$datasets[] = $dataset1;
 		$dataset2 = [
 			'data' =>  array_column($records, 'female'),
 			'label' => "Female",
-	'backgroundColor' =>  random_color(), 
-	'borderColor' =>  random_color(), 
+	'backgroundColor' =>  random_color(),
+	'borderColor' =>  random_color(),
 	'borderWidth' => '2',
 		];
 		$datasets[] = $dataset2;

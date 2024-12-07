@@ -87,7 +87,7 @@ $pageTitle = "Student Report Card"; //set dynamic page title
 
 <body>
 
-    <a href="{{ route('download.report', ['id' => $data['id']]) }}" class="btn btn-primary">Download PDF</a>
+    <!-- <a href="#" class="btn btn-primary">Download PDF</a> -->
 
     <!-- start of report card -->
     <div class="mb-3" id="student-report-card">

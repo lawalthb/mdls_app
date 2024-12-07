@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -15,8 +16,12 @@ use Illuminate\Support\Facades\Mail;
 */
 
 
+Route::get('/', [WebsiteController::class, 'home']);
+Route::get('/about', [WebsiteController::class, 'about']);
+Route::get('/contact', [WebsiteController::class, 'contact']);
+Route::post('/contact/send', [WebsiteController::class, 'sendContact']);
 
-	Route::get('', 'IndexController@index')->name('index')->middleware(['redirect.to.home']);
+	 Route::get('/login', 'IndexController@index')->name('index')->middleware(['redirect.to.home']);
 	Route::get('index/login', 'IndexController@login')->name('login');
 
 	Route::post('auth/login', 'AuthController@login')->name('auth.login');
@@ -756,4 +761,4 @@ Route::get('info/changelocale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('info.changelocale');
 
-Route::get('/download/report/{id}', [StudentDetailsController::class, 'downloadReport'])->name('download.report');
+

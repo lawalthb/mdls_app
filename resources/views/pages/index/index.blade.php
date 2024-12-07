@@ -4,14 +4,14 @@
         -->
         @inject('comp_model', 'App\Models\ComponentsData')
         <?php
-            $pageTitle = "mdls_app"; // set page title
+            $pageTitle = "MDLS"; // set page title
         ?>
         @extends($layout)
         @section('title', $pageTitle)
         @section('content')
         <div>
             <div  class="mb-3" >
-                <div class="container-fluid">
+                <div class="container-fluid" style="background-image: url('{{ asset('images/placeholder/login.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-position: center center; min-height: 100vh;">
                     <div class="row justify-content-center">
                         <div class="col col-sm-6 col-md-3 col-lg-3 comp-grid " >
                             <div class=" card-7 mt-5 bg-light"><div class="h4 fw-bold text-primary text-center">

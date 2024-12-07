@@ -1,4 +1,4 @@
-<?php
+<?php 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentDetailsAddRequest;
@@ -6,10 +6,9 @@ use App\Http\Requests\StudentDetailsEditRequest;
 use App\Models\StudentDetails;
 use Illuminate\Http\Request;
 use Exception;
-use PDF;
 class StudentDetailsController extends Controller
 {
-
+	
 
 	/**
      * List table records
@@ -35,7 +34,7 @@ class StudentDetailsController extends Controller
 		$records = $query->paginate($limit, StudentDetails::listFields());
 		return $this->renderView($view, compact("records"));
 	}
-
+	
 
 	/**
      * Select table record by ID
@@ -49,7 +48,7 @@ class StudentDetailsController extends Controller
 		$record = $query->findOrFail($rec_id, StudentDetails::viewFields());
 		return $this->renderView("pages.studentdetails.view", ["data" => $record]);
 	}
-
+	
 
 	/**
      * Display form page
@@ -58,7 +57,7 @@ class StudentDetailsController extends Controller
 	function add(){
 		return $this->renderView("pages.studentdetails.add");
 	}
-
+	
 
 	/**
      * Save form record to the table
@@ -66,13 +65,13 @@ class StudentDetailsController extends Controller
      */
 	function store(StudentDetailsAddRequest $request){
 		$modeldata = $this->normalizeFormData($request->validated());
-
+		
 		//save StudentDetails record
 		$record = StudentDetails::create($modeldata);
 		$rec_id = $record->id;
 		return $this->redirect("studentdetails", "Record added successfully");
 	}
-
+	
 
 	/**
      * Update table record with form data
@@ -89,13 +88,13 @@ class StudentDetailsController extends Controller
 		}
 		return $this->renderView("pages.studentdetails.edit", ["data" => $record, "rec_id" => $rec_id]);
 	}
-
+	
 
 	/**
      * Delete record from the database
 	 * Support multi delete by separating record id by comma.
 	 * @param  \Illuminate\Http\Request
-	 * @param string $rec_id //can be separated by comma
+	 * @param string $rec_id //can be separated by comma 
      * @return \Illuminate\Http\Response
      */
 	function delete(Request $request, $rec_id = null){
@@ -106,7 +105,7 @@ class StudentDetailsController extends Controller
 		$redirectUrl = $request->redirect ?? url()->previous();
 		return $this->redirect($redirectUrl, "Record deleted successfully");
 	}
-
+	
 
 	/**
      * List table records
@@ -133,7 +132,7 @@ class StudentDetailsController extends Controller
 		$records = $query->paginate($limit, StudentDetails::classStudentsFields());
 		return $this->renderView($view, compact("records"));
 	}
-
+	
 
 	/**
      * Select table record by ID
@@ -146,7 +145,7 @@ class StudentDetailsController extends Controller
 		$record = $query->findOrFail($rec_id, StudentDetails::viewFirstReportFields());
 		return $this->renderView("pages.studentdetails.view_first_report", ["data" => $record]);
 	}
-
+	
 
 	/**
      * Select table record by ID
@@ -158,7 +157,7 @@ class StudentDetailsController extends Controller
 		$record = $query->findOrFail($rec_id, StudentDetails::viewSecondReportFields());
 		return $this->renderView("pages.studentdetails.view_second_report", ["data" => $record]);
 	}
-
+	
 
 	/**
      * Select table record by ID
@@ -170,7 +169,7 @@ class StudentDetailsController extends Controller
 		$record = $query->findOrFail($rec_id, StudentDetails::viewThirdReportFields());
 		return $this->renderView("pages.studentdetails.view_third_report", ["data" => $record]);
 	}
-
+	
 
 	/**
      * List table records
@@ -198,23 +197,4 @@ class StudentDetailsController extends Controller
 		$records = $query->paginate($limit, StudentDetails::homeListFields());
 		return $this->renderView($view, compact("records"));
 	}
-
-    public function downloadReport($id)
-    {
-        $data = StudentDetails::find($id);
-        $user = auth()->user();
-      
-
-        $pdf = PDF::loadView('pages.studentdetails.view_first_report', [
-            'data' => $data,
-            'user' => $user,
-
-        ]);
-
-        $pdf->setPaper('A4');
-        $pdf->getDomPDF()->set_option("enable_php", true);
-
-        return $pdf->download('student_report_card.pdf');
-    }
-
 }

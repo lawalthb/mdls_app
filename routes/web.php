@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\StudentDetailsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -64,7 +63,7 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 
 /* routes for AppSettings Controller */
 	Route::get('appsettings', 'AppSettingsController@index')->name('appsettings.index');
-	Route::get('appsettings/index/{filter?}/{filtervalue?}', 'AppSettingsController@index')->name('appsettings.index');
+	Route::get('appsettings/index/{filter?}/{filtervalue?}', 'AppSettingsController@index')->name('appsettings.index2');
 	Route::get('appsettings/view/{rec_id}', 'AppSettingsController@view')->name('appsettings.view');
 	Route::get('appsettings/add', 'AppSettingsController@add')->name('appsettings.add');
 	Route::post('appsettings/add', 'AppSettingsController@store')->name('appsettings.store');

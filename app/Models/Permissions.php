@@ -1,10 +1,10 @@
-<?php 
+<?php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-class Permissions extends Model 
+class Permissions extends Model
 {
-	
+
 
 	/**
      * The table associated with the model.
@@ -12,7 +12,7 @@ class Permissions extends Model
      * @var string
      */
 	protected $table = 'permissions';
-	
+
 
 	/**
      * The table primary key field
@@ -20,7 +20,7 @@ class Permissions extends Model
      * @var string
      */
 	protected $primaryKey = 'permission_id';
-	
+
 
 	/**
      * Table fillable fields
@@ -31,7 +31,7 @@ class Permissions extends Model
 		'permission','role_id'
 	];
 	public $timestamps = false;
-	
+
 
 	/**
      * Set search query for the model
@@ -39,87 +39,89 @@ class Permissions extends Model
 	 * @param string $text
      */
 	public static function search($query, $text){
-		//search table record 
+		//search table record
 		$search_condition = '(
-				permissions.permission_id LIKE ?  OR 
-				permissions.permission LIKE ? 
+				permissions.permission_id LIKE ?  OR
+				permissions.permission LIKE ?  OR
+                permissions.role_id LIKE ?
 		)';
 		$search_params = [
-			"%$text%","%$text%"
+			"%$text%","%$text%",
+            "%$text%"
 		];
 		//setting search conditions
 		$query->whereRaw($search_condition, $search_params);
 	}
-	
+
 
 	/**
      * return list page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function listFields(){
-		return [ 
+		return [
 			"permissions.permission_id AS permission_id",
 			"permissions.permission AS permission",
 			"permissions.role_id AS role_id",
-			"roles.role_name AS roles_role_name" 
+			"roles.role_name AS roles_role_name"
 		];
 	}
-	
+
 
 	/**
      * return exportList page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportListFields(){
-		return [ 
+		return [
 			"permissions.permission_id AS permission_id",
 			"permissions.permission AS permission",
 			"permissions.role_id AS role_id",
-			"roles.role_name AS roles_role_name" 
+			"roles.role_name AS roles_role_name"
 		];
 	}
-	
+
 
 	/**
      * return view page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function viewFields(){
-		return [ 
+		return [
 			"permission_id",
 			"permission",
-			"role_id" 
+			"role_id"
 		];
 	}
-	
+
 
 	/**
      * return exportView page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportViewFields(){
-		return [ 
+		return [
 			"permission_id",
 			"permission",
-			"role_id" 
+			"role_id"
 		];
 	}
-	
+
 
 	/**
      * return edit page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function editFields(){
-		return [ 
+		return [
 			"permission_id",
 			"permission",
-			"role_id" 
+			"role_id"
 		];
 	}
 }

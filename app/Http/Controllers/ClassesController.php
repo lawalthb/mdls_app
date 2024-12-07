@@ -128,6 +128,7 @@ class ClassesController extends Controller
 
 
 
+
 	/**
      * List table records
 	 * @param  \Illuminate\Http\Request
@@ -164,6 +165,7 @@ class ClassesController extends Controller
 		$record = $query->findOrFail($rec_id, Classes::studentsFields());
 		return $this->renderView("pages.classes.students", ["data" => $record]);
 	}
+
 
 
 
@@ -206,5 +208,5 @@ class ClassesController extends Controller
 	}
 
 
-	
+
 }

@@ -1,12 +1,12 @@
-<?php 
+<?php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-class Users extends Authenticatable 
+class Users extends Authenticatable
 {
 	use Notifiable;
-	
+
 
 	/**
      * The table associated with the model.
@@ -14,7 +14,7 @@ class Users extends Authenticatable
      * @var string
      */
 	protected $table = 'users';
-	
+
 
 	/**
      * The table primary key field
@@ -24,7 +24,7 @@ class Users extends Authenticatable
 	protected $primaryKey = 'id';
 	protected $fillable = ['email','name','phone','password','image','account_status','is_active','user_role_id'];
 	public $timestamps = false;
-	
+
 
 	/**
      * Set search query for the model
@@ -32,29 +32,31 @@ class Users extends Authenticatable
 	 * @param string $text
      */
 	public static function search($query, $text){
-		//search table record 
+		//search table record
 		$search_condition = '(
-				id LIKE ?  OR 
-				email LIKE ?  OR 
-				name LIKE ?  OR 
-				phone LIKE ?  OR 
-				account_status LIKE ? 
+				id LIKE ?  OR
+				email LIKE ?  OR
+				name LIKE ?  OR
+				phone LIKE ?  OR
+                user_role_id LIKE ?  OR
+				account_status LIKE ?
 		)';
 		$search_params = [
-			"%$text%","%$text%","%$text%","%$text%","%$text%"
+			"%$text%","%$text%","%$text%","%$text%","%$text%",
+            "%$text%"
 		];
 		//setting search conditions
 		$query->whereRaw($search_condition, $search_params);
 	}
-	
+
 
 	/**
      * return list page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function listFields(){
-		return [ 
+		return [
 			"id",
 			"email",
 			"name",
@@ -64,18 +66,18 @@ class Users extends Authenticatable
 			"created_at",
 			"updated_at",
 			"account_status",
-			"user_role_id" 
+			"user_role_id"
 		];
 	}
-	
+
 
 	/**
      * return exportList page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportListFields(){
-		return [ 
+		return [
 			"id",
 			"email",
 			"name",
@@ -85,18 +87,18 @@ class Users extends Authenticatable
 			"created_at",
 			"updated_at",
 			"account_status",
-			"user_role_id" 
+			"user_role_id"
 		];
 	}
-	
+
 
 	/**
      * return view page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function viewFields(){
-		return [ 
+		return [
 			"users.id AS id",
 			"users.email AS email",
 			"users.name AS name",
@@ -106,18 +108,18 @@ class Users extends Authenticatable
 			"users.updated_at AS updated_at",
 			"users.account_status AS account_status",
 			"users.user_role_id AS user_role_id",
-			"roles.role_name AS roles_role_name" 
+			"roles.role_name AS roles_role_name"
 		];
 	}
-	
+
 
 	/**
      * return exportView page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportViewFields(){
-		return [ 
+		return [
 			"users.id AS id",
 			"users.email AS email",
 			"users.name AS name",
@@ -127,33 +129,33 @@ class Users extends Authenticatable
 			"users.updated_at AS updated_at",
 			"users.account_status AS account_status",
 			"users.user_role_id AS user_role_id",
-			"roles.role_name AS roles_role_name" 
+			"roles.role_name AS roles_role_name"
 		];
 	}
-	
+
 
 	/**
      * return accountedit page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function accounteditFields(){
-		return [ 
+		return [
 			"name",
 			"phone",
 			"image",
-			"id" 
+			"id"
 		];
 	}
-	
+
 
 	/**
      * return accountview page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function accountviewFields(){
-		return [ 
+		return [
 			"users.id AS id",
 			"users.email AS email",
 			"users.name AS name",
@@ -163,18 +165,18 @@ class Users extends Authenticatable
 			"users.updated_at AS updated_at",
 			"users.account_status AS account_status",
 			"users.user_role_id AS user_role_id",
-			"roles.role_name AS roles_role_name" 
+			"roles.role_name AS roles_role_name"
 		];
 	}
-	
+
 
 	/**
      * return exportAccountview page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportAccountviewFields(){
-		return [ 
+		return [
 			"users.id AS id",
 			"users.email AS email",
 			"users.name AS name",
@@ -184,36 +186,36 @@ class Users extends Authenticatable
 			"users.updated_at AS updated_at",
 			"users.account_status AS account_status",
 			"users.user_role_id AS user_role_id",
-			"roles.role_name AS roles_role_name" 
+			"roles.role_name AS roles_role_name"
 		];
 	}
-	
+
 
 	/**
      * return edit page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function editFields(){
-		return [ 
+		return [
 			"name",
 			"phone",
 			"image",
 			"is_active",
 			"account_status",
 			"id",
-			"user_role_id" 
+			"user_role_id"
 		];
 	}
-	
+
 
 	/**
      * return listStudents page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function listStudentsFields(){
-		return [ 
+		return [
 			"users.id AS id",
 			"users.name AS name",
 			"users.email AS email",
@@ -227,18 +229,18 @@ class Users extends Authenticatable
 			"classes.name AS classes_name",
 			"student_details.updated_at AS studentdetails_updated_at",
 			"student_details.id AS studentdetails_id",
-			"classes.id AS classes_id" 
+			"classes.id AS classes_id"
 		];
 	}
-	
+
 
 	/**
      * return exportListStudents page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportListStudentsFields(){
-		return [ 
+		return [
 			"users.id AS id",
 			"users.name AS name",
 			"users.email AS email",
@@ -252,18 +254,18 @@ class Users extends Authenticatable
 			"classes.name AS classes_name",
 			"student_details.updated_at AS studentdetails_updated_at",
 			"student_details.id AS studentdetails_id",
-			"classes.id AS classes_id" 
+			"classes.id AS classes_id"
 		];
 	}
-	
+
 
 	/**
      * return viewStudent page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function viewStudentFields(){
-		return [ 
+		return [
 			"id",
 			"email",
 			"name",
@@ -273,18 +275,18 @@ class Users extends Authenticatable
 			"created_at",
 			"updated_at",
 			"account_status",
-			"user_role_id" 
+			"user_role_id"
 		];
 	}
-	
+
 
 	/**
      * return exportViewStudent page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportViewStudentFields(){
-		return [ 
+		return [
 			"id",
 			"email",
 			"name",
@@ -294,35 +296,35 @@ class Users extends Authenticatable
 			"created_at",
 			"updated_at",
 			"account_status",
-			"user_role_id" 
+			"user_role_id"
 		];
 	}
-	
+
 
 	/**
      * return editStudent page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function editStudentFields(){
-		return [ 
+		return [
 			"email",
 			"name",
 			"phone",
 			"image",
 			"account_status",
-			"id" 
+			"id"
 		];
 	}
-	
+
 
 	/**
      * return listStaff page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function listStaffFields(){
-		return [ 
+		return [
 			"users.id AS id",
 			"users.email AS email",
 			"users.name AS name",
@@ -332,18 +334,18 @@ class Users extends Authenticatable
 			"users.updated_at AS updated_at",
 			"users.account_status AS account_status",
 			"users.user_role_id AS user_role_id",
-			"roles.role_name AS roles_role_name" 
+			"roles.role_name AS roles_role_name"
 		];
 	}
-	
+
 
 	/**
      * return exportListStaff page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportListStaffFields(){
-		return [ 
+		return [
 			"users.id AS id",
 			"users.email AS email",
 			"users.name AS name",
@@ -353,10 +355,10 @@ class Users extends Authenticatable
 			"users.updated_at AS updated_at",
 			"users.account_status AS account_status",
 			"users.user_role_id AS user_role_id",
-			"roles.role_name AS roles_role_name" 
+			"roles.role_name AS roles_role_name"
 		];
 	}
-	
+
 
 	/**
      * Get current user name
@@ -365,7 +367,7 @@ class Users extends Authenticatable
 	public function UserName(){
 		return $this->name;
 	}
-	
+
 
 	/**
      * Get current user id
@@ -383,10 +385,10 @@ class Users extends Authenticatable
 	public function UserRole(){
 		return $this->user_role_id;
 	}
-	
+
 
 	/**
-     * Send Password reset link to user email 
+     * Send Password reset link to user email
 	 * @param string $token
      * @return string
      */
@@ -394,24 +396,24 @@ class Users extends Authenticatable
 	{
 		$this->notify(new \App\Notifications\ResetPassword($token));
 	}
-	
+
 	private $roleNames = [];
 	private $userPages = [];
-	
+
 	/**
 	* Get the permissions of the user.
 	*/
 	public function permissions(){
 		return $this->hasMany(Permissions::class, 'role_id', 'user_role_id');
 	}
-	
+
 	/**
 	* Get the roles of the user.
 	*/
 	public function roles(){
 		return $this->hasMany(Roles::class, 'role_id', 'user_role_id');
 	}
-	
+
 	/**
 	* set user role
 	*/
@@ -420,7 +422,7 @@ class Users extends Authenticatable
 		$this->user_role_id = $roleId;
 		$this->save();
 	}
-	
+
 	/**
      * return list of pages user can access
      * @return array
@@ -431,7 +433,7 @@ class Users extends Authenticatable
 		}
 		return $this->userPages;
 	}
-	
+
 	/**
      * return user role names
      * @return array
@@ -442,7 +444,7 @@ class Users extends Authenticatable
 		}
 		return $this->roleNames;
 	}
-	
+
 	/**
      * check if user has a role
      * @return bool
@@ -457,7 +459,7 @@ class Users extends Authenticatable
 		}
 		return false;
 	}
-	
+
 	/**
      * check if user is the owner of the record
      * @return bool
@@ -465,7 +467,7 @@ class Users extends Authenticatable
 	public function isOwner($recId){
 		return $this->UserId() == $recId;
 	}
-	
+
 	/**
      * check if user can access page
      * @return bool
@@ -478,7 +480,7 @@ class Users extends Authenticatable
 		$page_path = "$page/$action";
 		return in_array($page_path, $userPages);
 	}
-	
+
 	/**
      * check if user is the owner of the record or has role that can edit or delete it
      * @return bool

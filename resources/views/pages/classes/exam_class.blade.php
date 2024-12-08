@@ -204,7 +204,7 @@ $pageTitle = "Class Details"; //set dynamic page title
                                                                     @if(isset($_GET['subject_id']) && !empty($_GET['subject_id']))
                                                                     <table style="border: 1px solid; overflow-x:auto; display:flex" id="score_table">
                                                                         @foreach ($students as $student)
-                                                                        <form id="my-form<?= ++$sn; ?>" action="{{url('examsheets/byclass')}}" method="POST">
+                                                                        <form id="my-form<?= ++$sn; ?>" action="/examsheets/byclass" method="POST">
                                                                             <tr style="border: 1px solid;">
                                                                                 <td style="border: 1px solid;">
                                                                                     {{$sn;}}
@@ -236,7 +236,7 @@ $pageTitle = "Class Details"; //set dynamic page title
                                                                                 </td>
                                                                                 <td style="border: 1px solid;">
                                                                                     <div class=" ">
-                                                                                        {{ $student->firstname }}
+                                                                                        {{ $student->firstname }} {{ $student->middlemane }}
                                                                                     </div>
                                                                                 </td>
                                                                                 <td style="border: 1px solid;">

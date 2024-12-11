@@ -99,14 +99,19 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                     <image src="{{asset('images/logo.png')}}" width="150px" height="200px" />
                 </th>
                 <th colspan="3">
+                    @if($data['classes_type'] == 'Secondary')
                     <h2>MERIT DATALIGHT COLLEGE</h2>
+                    @else
+                    <h2>Merit Datalight Nursery/Primary School</h2>
+                    @endif
                     <h5>Motto: Creating and evious legacy <br />
                         Address: Cadid Estate Phase II Opposite Origan 2nd Bus Stop Badagry Exp-way, Lagos<br />
                         Email: datalight444@gmail.com<br />
                         Tel: 07041112438, 07033056074, 08179531056
                     </h5>
                 </th>
-                <th> &nbsp;</th>
+                <th>Pupil's Photo <br>
+                    Will be here later</th>
             </tr>
             <tbody>
                 <tr>
@@ -114,14 +119,14 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                 </tr>
                 <tr>
                     <td>END OF: FIRST TERM</td>
-                    <td>REPORT FOR: 2023/2024</td>
+                    <td>REPORT FOR: 2024/2025</td>
                     <td colspan="3"></td>
                 </tr>
                 <tr>
                     <td>NAME OF STUDENT:</td>
                     <td colspan="3"> <?php echo  $data['firstname']; ?>
                         <?php echo  $data['middlemane']; ?>
-                        <?php echo  $data['lastname']; ?>
+                        <?php $data['lastname']; ?>
                     </td>
                     <td> &nbsp;</td>
                 </tr>
@@ -136,16 +141,16 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                                 $age_years = $diff->y;
                                 echo " $age_years years";
                                 ?></td>
-                    <td>ADMISSION NO: MSDL00<?php echo  $data['id']; ?></td>
+                    <td colspan="2">ADMISSION NO: MSDL00<?php echo  $data['id']; ?></td>
+
                     <td>CLASS: <?php echo $data['classes_name'] ?></td>
-                    <td>HEIGHT: <?php echo  $data['height']; ?> </td>
                 </tr>
                 <tr>
-                    <td>NO. OF TIMES SCHOOL OPENED: 116</td>
-                    <td>NO. OF TIMES PRESENT: 116</td>
-                    <td>SCHOOL RE-OPEN ON: 16- Sep-2024: </td>
-                    <td></td>
-                    <td></td>
+                    <td>NO. OF TIMES SCHOOL OPENED: Nill</td>
+                    <td colspan="2">NO. OF TIMES PRESENT: Nill</td>
+                    <td colspan="2">SCHOOL RE-OPEN ON: 06- Jan.-2025: </td>
+
+
                 </tr>
                 <tr>
                     <td colspan="5"><B>PERFORMANCE IN SUBJECTS</B></td>
@@ -298,36 +303,39 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                     <td colspan="4">
                         <table>
                             <tr>
-                                <th colspan="2">RATING SCALE </th>
+                                <th colspan="2">CLASS TEACHER'S REMARK </th>
                             </tr>
                             <tr>
-                                <td>i. Hand Writting</td>
+                                <td>(i ) average performance
+                                </td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr>
-                                <td>i. Hand Writting</td>
+                                <td>( ii) Very good results, keep it up</td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr>
-                                <td>i. Hand Writting</td>
+                                <td>(iii ) Bellow average performance, improve on your studies next term
                                 <td>&nbsp;</td>
                             </tr>
-                            <tr>
-                                <td>i. Hand Writting</td>
-                                <td>&nbsp;</td>
-                            </tr>
+
                         </table>
                     </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>CLASS TEACHER'S REMARK:</td>
                     <td colspan="4"></td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td>PRINCIPAL'S COMMENT</td>
-                    <td colspan="2"></td>
+                    <td colspan="2"><input type="checkbox"> Satisfactory&nbsp;&nbsp;&nbsp;<input type="checkbox"> Not Satisfactory</td>
                     <td>SIGNATURE:</td>
-                    <td>________________</td>
+                    <td>@if($data['classes_type'] == 'Secondary')
+                        <img src="{{asset('images/sec_sign.jpg')}}" width="100px" height="50px" />
+                        @else
+                        <img src="{{asset('images/pry_sign.jpg')}}" width="100px" height="50px" />
+                        @endif
+                    </td>
                 </tr>
             </tbody>
         </table>

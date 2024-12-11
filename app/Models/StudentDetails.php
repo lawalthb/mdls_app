@@ -1,10 +1,10 @@
-<?php 
+<?php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-class StudentDetails extends Model 
+class StudentDetails extends Model
 {
-	
+
 
 	/**
      * The table associated with the model.
@@ -12,7 +12,7 @@ class StudentDetails extends Model
      * @var string
      */
 	protected $table = 'student_details';
-	
+
 
 	/**
      * The table primary key field
@@ -20,7 +20,7 @@ class StudentDetails extends Model
      * @var string
      */
 	protected $primaryKey = 'id';
-	
+
 
 	/**
      * Table fillable fields
@@ -31,7 +31,7 @@ class StudentDetails extends Model
 		'user_id','firstname','middlemane','lastname','dob','class_id','religion','blood_group','height','weight','measurement_date','address','gender'
 	];
 	public $timestamps = false;
-	
+
 
 	/**
      * Set search query for the model
@@ -39,13 +39,13 @@ class StudentDetails extends Model
 	 * @param string $text
      */
 	public static function search($query, $text){
-		//search table record 
+		//search table record
 		$search_condition = '(
-				firstname LIKE ?  OR 
-				middlemane LIKE ?  OR 
-				lastname LIKE ?  OR 
-				address LIKE ?  OR 
-				id LIKE ? 
+				firstname LIKE ?  OR
+				middlemane LIKE ?  OR
+				lastname LIKE ?  OR
+				address LIKE ?  OR
+				id LIKE ?
 		)';
 		$search_params = [
 			"%$text%","%$text%","%$text%","%$text%","%$text%"
@@ -53,15 +53,15 @@ class StudentDetails extends Model
 		//setting search conditions
 		$query->whereRaw($search_condition, $search_params);
 	}
-	
+
 
 	/**
      * return list page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function listFields(){
-		return [ 
+		return [
 			"user_id",
 			"firstname",
 			"middlemane",
@@ -76,18 +76,18 @@ class StudentDetails extends Model
 			"updated_at",
 			"address",
 			"gender",
-			"id" 
+			"id"
 		];
 	}
-	
+
 
 	/**
      * return exportList page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportListFields(){
-		return [ 
+		return [
 			"user_id",
 			"firstname",
 			"middlemane",
@@ -102,18 +102,18 @@ class StudentDetails extends Model
 			"updated_at",
 			"address",
 			"gender",
-			"id" 
+			"id"
 		];
 	}
-	
+
 
 	/**
      * return view page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function viewFields(){
-		return [ 
+		return [
 			"student_details.firstname AS firstname",
 			"student_details.middlemane AS middlemane",
 			"student_details.lastname AS lastname",
@@ -130,18 +130,18 @@ class StudentDetails extends Model
 			"student_details.id AS id",
 			"student_details.user_id AS user_id",
 			"users.id AS users_id",
-			"student_details.gender AS gender" 
+			"student_details.gender AS gender"
 		];
 	}
-	
+
 
 	/**
      * return exportView page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportViewFields(){
-		return [ 
+		return [
 			"student_details.firstname AS firstname",
 			"student_details.middlemane AS middlemane",
 			"student_details.lastname AS lastname",
@@ -158,18 +158,18 @@ class StudentDetails extends Model
 			"student_details.id AS id",
 			"student_details.user_id AS user_id",
 			"users.id AS users_id",
-			"student_details.gender AS gender" 
+			"student_details.gender AS gender"
 		];
 	}
-	
+
 
 	/**
      * return edit page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function editFields(){
-		return [ 
+		return [
 			"user_id",
 			"firstname",
 			"middlemane",
@@ -183,54 +183,54 @@ class StudentDetails extends Model
 			"measurement_date",
 			"address",
 			"gender",
-			"id" 
+			"id"
 		];
 	}
-	
+
 
 	/**
      * return classStudents page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function classStudentsFields(){
-		return [ 
+		return [
 			"student_details.id AS id",
 			"student_details.user_id AS user_id",
 			"users.id AS users_id",
 			"student_details.firstname AS firstname",
 			"student_details.middlemane AS middlemane",
 			"student_details.lastname AS lastname",
-			"student_details.gender AS gender" 
+			"student_details.gender AS gender"
 		];
 	}
-	
+
 
 	/**
      * return exportClassStudents page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportClassStudentsFields(){
-		return [ 
+		return [
 			"student_details.id AS id",
 			"student_details.user_id AS user_id",
 			"users.id AS users_id",
 			"student_details.firstname AS firstname",
 			"student_details.middlemane AS middlemane",
 			"student_details.lastname AS lastname",
-			"student_details.gender AS gender" 
+			"student_details.gender AS gender"
 		];
 	}
-	
+
 
 	/**
      * return viewFirstReport page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function viewFirstReportFields(){
-		return [ 
+		return [
 			"student_details.id AS id",
 			"student_details.user_id AS user_id",
 			"student_details.firstname AS firstname",
@@ -239,6 +239,7 @@ class StudentDetails extends Model
 			"student_details.dob AS dob",
 			"student_details.class_id AS class_id",
 			"classes.name AS classes_name",
+            "classes.type AS classes_type",
 			"student_details.religion AS religion",
 			"student_details.blood_group AS blood_group",
 			"student_details.height AS height",
@@ -246,18 +247,18 @@ class StudentDetails extends Model
 			"student_details.measurement_date AS measurement_date",
 			"student_details.updated_at AS updated_at",
 			"student_details.address AS address",
-			"student_details.gender AS gender" 
+			"student_details.gender AS gender"
 		];
 	}
-	
+
 
 	/**
      * return exportViewFirstReport page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportViewFirstReportFields(){
-		return [ 
+		return [
 			"student_details.id AS id",
 			"student_details.user_id AS user_id",
 			"student_details.firstname AS firstname",
@@ -273,18 +274,18 @@ class StudentDetails extends Model
 			"student_details.measurement_date AS measurement_date",
 			"student_details.updated_at AS updated_at",
 			"student_details.address AS address",
-			"student_details.gender AS gender" 
+			"student_details.gender AS gender"
 		];
 	}
-	
+
 
 	/**
      * return viewSecondReport page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function viewSecondReportFields(){
-		return [ 
+		return [
 			"id",
 			"user_id",
 			"firstname",
@@ -299,18 +300,18 @@ class StudentDetails extends Model
 			"measurement_date",
 			"updated_at",
 			"address",
-			"gender" 
+			"gender"
 		];
 	}
-	
+
 
 	/**
      * return exportViewSecondReport page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportViewSecondReportFields(){
-		return [ 
+		return [
 			"id",
 			"user_id",
 			"firstname",
@@ -325,18 +326,18 @@ class StudentDetails extends Model
 			"measurement_date",
 			"updated_at",
 			"address",
-			"gender" 
+			"gender"
 		];
 	}
-	
+
 
 	/**
      * return viewThirdReport page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function viewThirdReportFields(){
-		return [ 
+		return [
 			"id",
 			"user_id",
 			"firstname",
@@ -351,18 +352,18 @@ class StudentDetails extends Model
 			"measurement_date",
 			"updated_at",
 			"address",
-			"gender" 
+			"gender"
 		];
 	}
-	
+
 
 	/**
      * return exportViewThirdReport page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportViewThirdReportFields(){
-		return [ 
+		return [
 			"id",
 			"user_id",
 			"firstname",
@@ -377,18 +378,18 @@ class StudentDetails extends Model
 			"measurement_date",
 			"updated_at",
 			"address",
-			"gender" 
+			"gender"
 		];
 	}
-	
+
 
 	/**
      * return homeList page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function homeListFields(){
-		return [ 
+		return [
 			"student_details.id AS id",
 			"student_details.user_id AS user_id",
 			"users.id AS users_id",
@@ -397,18 +398,18 @@ class StudentDetails extends Model
 			"student_details.lastname AS lastname",
 			"student_details.class_id AS class_id",
 			"classes.name AS classes_name",
-			"student_details.gender AS gender" 
+			"student_details.gender AS gender"
 		];
 	}
-	
+
 
 	/**
      * return exportHomeList page fields of the model.
-     * 
+     *
      * @return array
      */
 	public static function exportHomeListFields(){
-		return [ 
+		return [
 			"student_details.id AS id",
 			"student_details.user_id AS user_id",
 			"users.id AS users_id",
@@ -417,7 +418,7 @@ class StudentDetails extends Model
 			"student_details.lastname AS lastname",
 			"student_details.class_id AS class_id",
 			"classes.name AS classes_name",
-			"student_details.gender AS gender" 
+			"student_details.gender AS gender"
 		];
 	}
 }

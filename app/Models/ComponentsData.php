@@ -159,10 +159,11 @@ class ComponentsData{
      * @return array
      */
 	function staffclasses_user_id_option_list(){
-		$sqltext = "SELECT id as value, name as label FROM users WHERE user_role_id !=:roleid" ;
+		$sqltext = "SELECT id as value, name as label FROM users WHERE user_role_id =:roleid" ;
 		$query_params = [];
-$query_params['roleid'] = 2;
+$query_params['roleid'] = 3;
 		$arr = DB::select($sqltext, $query_params);
+
 		return $arr;
 	}
 

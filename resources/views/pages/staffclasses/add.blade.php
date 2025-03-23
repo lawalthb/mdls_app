@@ -1,4 +1,4 @@
-<!-- 
+<!--
 expose component model to current view
 e.g $arrDataFromDb = $comp_model->fetchData(); //function name
 -->
@@ -18,7 +18,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
             <div class="row justify-content-between align-items-center">
                 <div class="col-auto  back-btn-col" >
                     <a class="back-btn btn " href="{{ url()->previous() }}" >
-                        <i class="material-icons">arrow_back</i>                                
+                        <i class="material-icons">arrow_back</i>
                     </a>
                 </div>
                 <div class="col  " >
@@ -43,10 +43,12 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             <div>
                                 <div class="form-group ">
                                     <label class="control-label" for="user_id">Teacher <span class="text-danger">*</span></label>
-                                    <div id="ctrl-user_id-holder" class=" "> 
+                                    <div id="ctrl-user_id-holder" class=" ">
+
                                         <select required=""  id="ctrl-user_id" data-field="user_id" name="user_id"  placeholder="Select a value ..."    class="form-select" >
+
                                         <option value="">Select a value ...</option>
-                                        <?php 
+                                        <?php
                                             $options = $comp_model->staffclasses_user_id_option_list() ?? [];
                                             foreach($options as $option){
                                             $value = $option->value;
@@ -64,10 +66,10 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                 </div>
                                 <div class="form-group ">
                                     <label class="control-label" for="class_id">Class <span class="text-danger">*</span></label>
-                                    <div id="ctrl-class_id-holder" class=" "> 
+                                    <div id="ctrl-class_id-holder" class=" ">
                                         <select required=""  id="ctrl-class_id" data-field="class_id" name="class_id"  placeholder="Select a value ..."    class="form-select" >
                                         <option value="">Select a value ...</option>
-                                        <?php 
+                                        <?php
                                             $options = $comp_model->class_id_option_list() ?? [];
                                             foreach($options as $option){
                                             $value = $option->value;
@@ -85,7 +87,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                 </div>
                                 <div class="form-group ">
                                     <label class="control-label" for="is_active">Is Active <span class="text-danger">*</span></label>
-                                    <div id="ctrl-is_active-holder" class=" "> 
+                                    <div id="ctrl-is_active-holder" class=" ">
                                         <select required=""  id="ctrl-is_active" data-field="is_active" name="is_active"  placeholder="Select a value ..."    class="form-select" >
                                         <option value="">Select a value ...</option>
                                         <?php
@@ -98,7 +100,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         ?>
                                         <option <?php echo $selected ?> value="<?php echo $value ?>">
                                         <?php echo $label ?>
-                                        </option>                                   
+                                        </option>
                                         <?php
                                             }
                                             }

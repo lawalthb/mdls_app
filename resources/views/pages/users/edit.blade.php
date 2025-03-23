@@ -1,4 +1,4 @@
-<!-- 
+<!--
 expose component model to current view
 e.g $arrDataFromDb = $comp_model->fetchData(); //function name
 -->
@@ -18,7 +18,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
             <div class="row justify-content-between align-items-center">
                 <div class="col-auto  back-btn-col" >
                     <a class="back-btn btn " href="{{ url()->previous() }}" >
-                        <i class="material-icons">arrow_back</i>                                
+                        <i class="material-icons">arrow_back</i>
                     </a>
                 </div>
                 <div class="col  " >
@@ -52,7 +52,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             <div class="col-sm-8">
                                                 <div id="ctrl-name-holder" class=" ">
                                                     <input id="ctrl-name" data-field="name"  value="<?php  echo $data['name']; ?>" type="text" placeholder="Enter Name"  required="" name="name"  data-url="componentsdata/users_name_value_exist/" data-loading-msg="Checking availability ..." data-available-msg="Available" data-unavailable-msg="Not available" class="form-control  ctrl-check-duplicate" />
-                                                    <div class="check-status"></div> 
+                                                    <div class="check-status"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,7 +106,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                     ?>
                                                     <option <?php echo $selected ?> value="<?php echo $value ?>">
                                                     <?php echo $label ?>
-                                                    </option>                                   
+                                                    </option>
                                                     <?php
                                                         }
                                                         }
@@ -123,7 +123,23 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             </div>
                                             <div class="col-sm-8">
                                                 <div id="ctrl-account_status-holder" class=" ">
-                                                    <input id="ctrl-account_status" data-field="account_status"  value="<?php  echo $data['account_status']; ?>" type="text" placeholder="Enter Account Status"  name="account_status"  class="form-control " />
+                                                    <?php
+                                            $options = Menu::accountStatus2();
+                                            if (!empty($options)) {
+                                                foreach ($options as $option) {
+                                                    $value = $option['value'];
+                                                    $label = $option['label'];
+                                                    //check if current option is checked option
+                                                    $checked = Html::get_field_checked('account_status', $value, "active");
+                                            ?>
+                                                    <label class="form-check form-check-inline">
+                                                        <input class="form-check-input" <?php echo $checked ?> value="<?php echo $value ?>" type="radio" name="account_status" />
+                                                        <span class="form-check-label"><?php echo $label ?></span>
+                                                    </label>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
                                                 </div>
                                             </div>
                                         </div>

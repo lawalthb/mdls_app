@@ -299,7 +299,7 @@ $query->where("account_status", "=" , "active");
 
 		//save Users record
 		$record = Users::create($modeldata);
-		$record->assignRole("Admin"); //set default role for user
+		$record->assignRole("Teacher"); //set default role for user
 		$rec_id = $record->id;
 
         // set staffdetails.user_id to users.id

@@ -1,406 +1,416 @@
 
 <?php
 	class Menu{
-		
+
 	public static function navbarsideleft(){
 		return [
 		[
 			'path' => 'home',
-			'label' => "Dashboard", 
+			'label' => "Dashboard",
 			'icon' => '<i class="material-icons ">dashboard</i>'
 		],
-		
+
 		[
 			'path' => 'users',
-			'label' => "Student Management", 
-			'icon' => '<i class="material-icons ">supervisor_account</i>','submenu' => [
+			'label' => "Student Management",
+			'icon' => '<i class="material-icons ">supervisor_account</i>',
+'submenu' => [
 		[
 			'path' => 'users/list_students',
-			'label' => "Students", 
+			'label' => "Students",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'users/add_student',
-			'label' => "Admission", 
+			'label' => "Admission",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => '',
-			'label' => "Bulk Adminssion", 
+			'label' => "Bulk Adminssion",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'parents',
-			'label' => "Parents", 
+			'label' => "Parents",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => '',
-			'label' => "Banned Students", 
+			'label' => "Banned Students",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		]
 	]
 		],
-		
+
 		[
 			'path' => 'subjects',
-			'label' => "Academics", 
-			'icon' => '<i class="material-icons ">class</i>','submenu' => [
+			'label' => "Academics",
+			'icon' => '<i class="material-icons ">class</i>',
+'submenu' => [
 		[
 			'path' => 'subjects',
-			'label' => "Subjects", 
+			'label' => "Subjects",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'classes',
-			'label' => "Classes", 
+			'label' => "Classes",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'terms',
-			'label' => "Terms", 
+			'label' => "Terms",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'sessions',
-			'label' => "Sessions", 
+			'label' => "Sessions",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'staffclasses',
-			'label' => "Assign Class Teacher", 
+			'label' => "Assign Class Teacher",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'classsubjects',
-			'label' => "Assign Class Subjects", 
+			'label' => "Assign Class Subjects",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'classes',
-			'label' => "Promote Students", 
+			'label' => "Promote Students",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		]
 	]
 		],
-		
+
 		[
 			'path' => 'examsettings',
-			'label' => "Examination", 
-			'icon' => '<i class="material-icons ">library_books</i>','submenu' => [
+			'label' => "Examination",
+			'icon' => '<i class="material-icons ">library_books</i>',
+'submenu' => [
 		[
 			'path' => 'grades',
-			'label' => "Grade System", 
+			'label' => "Grade System",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => '',
-			'label' => "Assign Score to Student", 
+			'label' => "Assign Score to Student",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => '',
-			'label' => "Assign Score to Subject", 
+			'label' => "Assign Score to Subject",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'examsheets',
-			'label' => "Terminal Sheet", 
+			'label' => "Terminal Sheet",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'examsettings',
-			'label' => "Exam Settings", 
+			'label' => "Exam Settings",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'examsheetperformances',
-			'label' => "Exam Sheet Performances", 
+			'label' => "Exam Sheet Performances",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'classes/exam',
-			'label' => "By Class", 
+			'label' => "By Class",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+        [
+			'path' => 'classes/staff_exam',
+			'label' => "My Class",
+			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
+		],
+
 		[
 			'path' => 'classes/broadlist',
-			'label' => "BroadSheet", 
+			'label' => "BroadSheet",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		]
 	]
 		],
-		
+
 		[
 			'path' => 'users',
-			'label' => "Staff Management", 
-			'icon' => '<i class="material-icons ">account_circle</i>','submenu' => [
+			'label' => "Staff Management",
+			'icon' => '<i class="material-icons ">account_circle</i>',
+'submenu' => [
 		[
 			'path' => 'users/list_staff',
-			'label' => "List", 
+			'label' => "List",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'users/add_staff',
-			'label' => "Add Staff", 
+			'label' => "Add Staff",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'users',
-			'label' => "Bans", 
+			'label' => "Bans",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => '',
-			'label' => "Reset Password", 
+			'label' => "Reset Password",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		]
 	]
 		],
-		
+
 		[
 			'path' => 'webabouts',
-			'label' => "Website Management", 
+			'label' => "Website Management",
 			'icon' => '<i class="material-icons ">web</i>'
 		],
-		
+
 		[
 			'path' => 'appsettings',
-			'label' => "App Settings", 
+			'label' => "App Settings",
 			'icon' => '<i class="material-icons ">settings_applications</i>'
 		],
-		
+
 		[
 			'path' => 'roles',
-			'label' => "Roles and Permission", 
-			'icon' => '<i class="material-icons ">perm_contact_calendar</i>','submenu' => [
+			'label' => "Roles and Permission",
+			'icon' => '<i class="material-icons ">perm_contact_calendar</i>',
+'submenu' => [
 		[
 			'path' => 'roles',
-			'label' => "Roles", 
+			'label' => "Roles",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		],
-		
+
 		[
 			'path' => 'permissions',
-			'label' => "Permissions", 
+			'label' => "Permissions",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		]
 	]
 		],
-		
+
 		[
 			'path' => 'account',
-			'label' => "Profile", 
+			'label' => "Profile",
 			'icon' => '<i class="material-icons ">person</i>'
 		],
-		
+
 		[
 			'path' => 'auth/logout',
-			'label' => "LogOut", 
+			'label' => "LogOut",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_left</i>'
 		]
 	] ;
 	}
-	
-		
+
+
 	public static function isActive(){
 		return [
 		[
-			'value' => 'Yes', 
-			'label' => "Yes", 
+			'value' => 'Yes',
+			'label' => "Yes",
 		],
 		[
-			'value' => 'No', 
-			'label' => "No", 
+			'value' => 'No',
+			'label' => "No",
 		],] ;
 	}
-	
+
 	public static function directorApprove(){
 		return [
 		[
-			'value' => 'Approved', 
-			'label' => "Approved", 
+			'value' => 'Approved',
+			'label' => "Approved",
 		],
 		[
-			'value' => 'Not Yet', 
-			'label' => "Not Yet", 
+			'value' => 'Not Yet',
+			'label' => "Not Yet",
 		],] ;
 	}
-	
+
 	public static function directorApproval(){
 		return [
 		[
-			'value' => 'Approved', 
-			'label' => "Approved", 
+			'value' => 'Approved',
+			'label' => "Approved",
 		],
 		[
-			'value' => 'Not Yet', 
-			'label' => "Not Yet", 
+			'value' => 'Not Yet',
+			'label' => "Not Yet",
 		],
 		[
-			'value' => 'Disapproved', 
-			'label' => "Disapproved", 
+			'value' => 'Disapproved',
+			'label' => "Disapproved",
 		],] ;
 	}
-	
+
 	public static function parentType(){
 		return [
 		[
-			'value' => 'Father', 
-			'label' => "Father", 
+			'value' => 'Father',
+			'label' => "Father",
 		],
 		[
-			'value' => 'Monther', 
-			'label' => "Monther", 
+			'value' => 'Monther',
+			'label' => "Monther",
 		],] ;
 	}
-	
+
 	public static function gender(){
 		return [
 		[
-			'value' => 'Male', 
-			'label' => "Male", 
+			'value' => 'Male',
+			'label' => "Male",
 		],
 		[
-			'value' => 'Female', 
-			'label' => "Female", 
+			'value' => 'Female',
+			'label' => "Female",
 		],] ;
 	}
-	
+
 	public static function religion(){
 		return [
 		[
-			'value' => 'Christian', 
-			'label' => "Christian", 
+			'value' => 'Christian',
+			'label' => "Christian",
 		],
 		[
-			'value' => 'Islam', 
-			'label' => "Islam", 
+			'value' => 'Islam',
+			'label' => "Islam",
 		],
 		[
-			'value' => 'Others', 
-			'label' => "Others", 
+			'value' => 'Others',
+			'label' => "Others",
 		],] ;
 	}
-	
+
 	public static function bloodGroup(){
 		return [
 		[
-			'value' => 'O+', 
-			'label' => "O+", 
+			'value' => 'O+',
+			'label' => "O+",
 		],
 		[
-			'value' => 'A+', 
-			'label' => "A+", 
+			'value' => 'A+',
+			'label' => "A+",
 		],
 		[
-			'value' => 'B+', 
-			'label' => "B+", 
+			'value' => 'B+',
+			'label' => "B+",
 		],
 		[
-			'value' => 'AB+', 
-			'label' => "AB+", 
+			'value' => 'AB+',
+			'label' => "AB+",
 		],
 		[
-			'value' => 'O-', 
-			'label' => "O-", 
+			'value' => 'O-',
+			'label' => "O-",
 		],
 		[
-			'value' => 'A-', 
-			'label' => "A-", 
+			'value' => 'A-',
+			'label' => "A-",
 		],
 		[
-			'value' => 'B-', 
-			'label' => "B-", 
+			'value' => 'B-',
+			'label' => "B-",
 		],
 		[
-			'value' => 'AB-', 
-			'label' => "AB-", 
+			'value' => 'AB-',
+			'label' => "AB-",
 		],] ;
 	}
-	
+
 	public static function type(){
 		return [
 		[
-			'value' => 'theory', 
-			'label' => "Theory", 
+			'value' => 'theory',
+			'label' => "Theory",
 		],
 		[
-			'value' => 'pratical', 
-			'label' => "Pratical", 
+			'value' => 'pratical',
+			'label' => "Pratical",
 		],] ;
 	}
-	
+
 	public static function isActive2(){
 		return [
 		[
-			'value' => 'no', 
-			'label' => "no", 
+			'value' => 'no',
+			'label' => "no",
 		],
 		[
-			'value' => 'yes', 
-			'label' => "yes", 
+			'value' => 'yes',
+			'label' => "yes",
 		],] ;
 	}
-	
+
 	public static function status(){
 		return [
 		[
-			'value' => 'Pending', 
-			'label' => "Pending", 
+			'value' => 'Pending',
+			'label' => "Pending",
 		],
 		[
-			'value' => 'Success', 
-			'label' => "Success", 
+			'value' => 'Success',
+			'label' => "Success",
 		],
 		[
-			'value' => 'Failed', 
-			'label' => "Failed", 
+			'value' => 'Failed',
+			'label' => "Failed",
 		],] ;
 	}
-	
+
 	public static function accountStatus(){
 		return [
 		[
-			'value' => 'active', 
-			'label' => "Allow to login", 
+			'value' => 'active',
+			'label' => "Allow to login",
 		],
 		[
-			'value' => 'Pending', 
-			'label' => "Not Allow", 
+			'value' => 'Pending',
+			'label' => "Not Allow",
 		],] ;
 	}
-	
+
 	public static function accountStatus2(){
 		return [
 		[
-			'value' => 'Pending', 
-			'label' => "Allow to login", 
+			'value' => 'Pending',
+			'label' => "Can not login",
 		],
 		[
-			'value' => 'active', 
-			'label' => "Can not login", 
+			'value' => 'active',
+			'label' => "Allow to login",
 		],] ;
 	}
-	
+
 	}

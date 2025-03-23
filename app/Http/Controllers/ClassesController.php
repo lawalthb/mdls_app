@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassesAddRequest;
 use App\Http\Requests\ClassesEditRequest;
 use App\Models\Classes;
+use App\Models\StaffClasses;
 use Illuminate\Http\Request;
 use Exception;
 class ClassesController extends Controller
@@ -129,6 +130,8 @@ class ClassesController extends Controller
 
 
 
+
+
 	/**
      * List table records
 	 * @param  \Illuminate\Http\Request
@@ -151,6 +154,24 @@ class ClassesController extends Controller
 			$query->where($fieldname , $fieldvalue); //filter by a table field
 		}
 		$records = $query->paginate($limit, Classes::examFields());
+		return $this->renderView($view, compact("records"));
+	}
+
+// for logged in staff
+    function staff_exam(Request $request, $fieldname = null , $fieldvalue = null){
+		$view = "pages.classes.staff_exam";
+		$query = StaffClasses::query();
+		$limit = $request->limit ?? 50;
+   	$query->where("user_id", auth()->user()->id);
+
+$query->join("classes", "staff_classes.class_id", "=", "classes.id");
+		$orderby = $request->orderby ?? "classes.id";
+		$ordertype = $request->ordertype ?? "desc";
+		$query->orderBy($orderby, $ordertype);
+		if($fieldname){
+			$query->where($fieldname , $fieldvalue); //filter by a table field
+		}
+		$records = $query->paginate($limit, StaffClasses::staff_listFields());
 		return $this->renderView($view, compact("records"));
 	}
 

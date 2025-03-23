@@ -101,6 +101,10 @@ $pageTitle = "User"; // set dynamic page title
 
 
                             <a href="card/view_first_report" target="_blank">Click here to view first term report card</a>
+                            <br />
+                            <a href="card/view_second_report" target="_blank">Click here to view second term report card</a>
+                            <br />
+                            <a href="#card/view_third_report" target="_blank">Click here to view third term report card</a>
                         </div>
                     </div>
 

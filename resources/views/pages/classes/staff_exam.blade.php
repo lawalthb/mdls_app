@@ -77,13 +77,13 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                         <?php
                                             $counter = 0;
                                             foreach($records as $data){
-                                            $rec_id = ($data['id'] ? urlencode($data['id']) : null);
+                                            $rec_id = ($data['class_id'] ? urlencode($data['class_id']) : null);
                                             $counter++;
                                         ?>
                                         <tr>
                                             <!--PageComponentStart-->
                                             <td class="td-id">
-                                                <a href="<?php print_link("/classes/view/$data[id]") ?>"><?php echo $data['id']; ?></a>
+                                                <a href="<?php print_link("/classes/view/$data[class_id]") ?>"><?php echo $data['class_id']; ?></a>
                                             </td>
                                             <td class="td-name">
                                                 <?php echo  $data['classes_name'] ; ?>

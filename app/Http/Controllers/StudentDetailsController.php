@@ -160,8 +160,6 @@ class StudentDetailsController extends Controller
 
     function student_view_first_report()
     {
-       
-
         $user_id = auth()->user()->id;
         $user_class_id = StudentDetails::where("user_id", $user_id)->first()->class_id;
         $query = StudentDetails::query();
@@ -169,6 +167,19 @@ class StudentDetailsController extends Controller
         $query->join("classes", "student_details.class_id", "=", "classes.id");
         $record = $query->first(StudentDetails::viewFirstReportFields());
         return $this->renderView("pages.studentdetails.view_first_report", ["data" => $record]);
+
+    }
+
+     function student_view_second_report()
+    {
+
+        $user_id = auth()->user()->id;
+        $user_class_id = StudentDetails::where("user_id", $user_id)->first()->class_id;
+        $query = StudentDetails::query();
+        $query->where("student_details.class_id", $user_class_id);
+        $query->join("classes", "student_details.class_id", "=", "classes.id");
+        $record = $query->first(StudentDetails::viewFirstReportFields());
+        return $this->renderView("pages.studentdetails.view_second_report", ["data" => $record]);
 
     }
 

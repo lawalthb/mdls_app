@@ -674,3 +674,23 @@ function examsettings($name)
 
 	return null;
 }
+
+/**
+ * Get class name from class_id
+ * @param int $class_id
+ * @return string
+ */
+function get_class_name($class_id)
+{
+    if (!$class_id) {
+        return '';
+    }
+
+    // Use DB facade to query the classes table
+    $class = \Illuminate\Support\Facades\DB::table('classes')
+        ->where('id', $class_id)
+        ->first();
+
+    // Return the class name if found, otherwise return empty string
+    return $class ? $class->name : '';
+}

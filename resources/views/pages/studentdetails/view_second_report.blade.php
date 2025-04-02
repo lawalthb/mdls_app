@@ -143,7 +143,8 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                                 ?></td>
                     <td colspan="2">ADMISSION NO: MSDL00<?php echo  $data['id']; ?></td>
 
-                    <td>CLASS: <?php echo $data['classes_name'] ?></td>
+                 <td>CLASS: <?php echo get_class_name($data['class_id']); ?></td>
+
                 </tr>
                 <tr>
                     <td>NO. OF TIMES SCHOOL OPENED: Nill</td>

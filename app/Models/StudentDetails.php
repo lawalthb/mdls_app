@@ -20,7 +20,7 @@ class StudentDetails extends Model
      * @var string
      */
 	protected $primaryKey = 'id';
-
+public $incrementing = false;
 
 	/**
      * Table fillable fields
@@ -28,6 +28,7 @@ class StudentDetails extends Model
      * @var array
      */
 	protected $fillable = [
+        'id',
 		'user_id','firstname','middlemane','lastname','dob','class_id','religion','blood_group','height','weight','measurement_date','address','gender'
 	];
 	public $timestamps = false;

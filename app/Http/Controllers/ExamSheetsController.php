@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExamSheetsAddRequest;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 class ExamSheetsController extends Controller
 {
-	
+
 
 	/**
      * List table records
@@ -42,7 +42,7 @@ class ExamSheetsController extends Controller
 		$records = $query->paginate($limit, ExamSheets::listFields());
 		return $this->renderView($view, compact("records"));
 	}
-	
+
 
 	/**
      * Select table record by ID
@@ -59,7 +59,7 @@ class ExamSheetsController extends Controller
 		$record = $query->findOrFail($rec_id, ExamSheets::viewFields());
 		return $this->renderView("pages.examsheets.view", ["data" => $record]);
 	}
-	
+
 
 	/**
      * Display Master Detail Pages
@@ -69,7 +69,7 @@ class ExamSheetsController extends Controller
 	function masterDetail($rec_id = null){
 		return View("pages.examsheets.detail-pages", ["masterRecordId" => $rec_id]);
 	}
-	
+
 
 	/**
      * Display form page
@@ -78,7 +78,7 @@ class ExamSheetsController extends Controller
 	function add(){
 		return $this->renderView("pages.examsheets.add");
 	}
-	
+
 
 	/**
      * Save form record to the table
@@ -86,7 +86,7 @@ class ExamSheetsController extends Controller
      */
 	function store(ExamSheetsAddRequest $request){
 		$modeldata = $this->normalizeFormData($request->validated());
-		
+
 		//Validate ExamSheetPerformances form data
 		$examsheetperformancesPostData = $request->examsheetperformances;
 		$examsheetperformancesValidator = validator()->make($examsheetperformancesPostData, ["*.subject_id" => "required",
@@ -100,21 +100,21 @@ class ExamSheetsController extends Controller
 		}
 		$examsheetperformancesValidData = $examsheetperformancesValidator->valid();
 		$examsheetperformancesModeldata = array_values($examsheetperformancesValidData);
-		
+
 		//save ExamSheets record
 		$record = ExamSheets::create($modeldata);
 		$rec_id = $record->id;
-		
+
 		// set examsheetperformances.exam_sheet_id to exam_sheets $rec_id
 		foreach ($examsheetperformancesModeldata as &$data) {
 			$data['exam_sheet_id'] = $rec_id;
 		}
-		
+
 		//Save ExamSheetPerformances record
 		\App\Models\ExamSheetPerformances::insert($examsheetperformancesModeldata);
 		return $this->redirect("examsheets", "Record added successfully");
 	}
-	
+
 
 	/**
      * Update table record with form data
@@ -131,13 +131,13 @@ class ExamSheetsController extends Controller
 		}
 		return $this->renderView("pages.examsheets.edit", ["data" => $record, "rec_id" => $rec_id]);
 	}
-	
+
 
 	/**
      * Delete record from the database
 	 * Support multi delete by separating record id by comma.
 	 * @param  \Illuminate\Http\Request
-	 * @param string $rec_id //can be separated by comma 
+	 * @param string $rec_id //can be separated by comma
      * @return \Illuminate\Http\Response
      */
 	function delete(Request $request, $rec_id = null){
@@ -153,14 +153,15 @@ class ExamSheetsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function byclass(Request $request){
+
         $request->validate([
-    'subject_id' => 'required|integer|exists:subjects,id', 
-  'class_id' => 'required|integer|exists:classes,id', 
-    'user_id' => 'required|integer|exists:users,id',         
-    'session_id' => 'required|integer|exists:sessions,id',   
-    'term_id' => 'required|integer|exists:terms,id',         
-    'ca_score' => 'required|numeric|min:0|max:40',           
-    'exam_score' => 'required|numeric|min:0|max:60',         
+    'subject_id' => 'required|integer|exists:subjects,id',
+  'class_id' => 'required|integer|exists:classes,id',
+    'user_id' => 'required|integer|exists:users,id',
+    'session_id' => 'required|integer|exists:sessions,id',
+    'term_id' => 'required|integer|exists:terms,id',
+    'ca_score' => 'required|numeric|min:0|max:40',
+    'exam_score' => 'required|numeric|min:0|max:60',
 ]);
 $existingExamSheet = DB::table('exam_sheets')
     ->where('user_id', $request->input('user_id'))
@@ -189,7 +190,7 @@ $existingPerformance = DB::table('exam_sheet_performances')
         'total' => $request->input('total') ,
         'updated_at' => now()
     ]);
-        return "Updated"; 
+        return "Updated";
     }
   DB::table('exam_sheet_performances')->insert([
         'exam_sheet_id' => $exam_sheet_id, // foreign key
@@ -212,7 +213,7 @@ $examSheetId = DB::table('exam_sheets')->insertGetId([
     'user_id' => $user_id,
     'session_id' => $session_id,
     'term_id' => $term_id,
-'class_id' => $class_id,   
+'class_id' => $class_id,
  'present_count' => 20,
      'open_count' => 20,
      'updated_by' => auth()->user()->id
@@ -231,7 +232,7 @@ $examSheetId = DB::table('exam_sheets')->insertGetId([
         'total' => $request->input('total') ,
         'updated_at' => now()
     ]);
-        return "Updated"; 
+        return "Updated";
     }
   DB::table('exam_sheet_performances')->insert([
         'exam_sheet_id' => $exam_sheet_id, // foreign key
@@ -244,7 +245,7 @@ $examSheetId = DB::table('exam_sheets')->insertGetId([
     ]);
     return "success";
   }
-	
+
 
 	/**
      * Export single record to different format

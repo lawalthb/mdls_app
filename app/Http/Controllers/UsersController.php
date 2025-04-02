@@ -160,7 +160,8 @@ class UsersController extends Controller
 
 		//Validate StudentDetails form data
 		$studentdetailsPostData = $request->studentdetails;
-		$studentdetailsValidator = validator()->make($studentdetailsPostData, ["firstname" => "required|string",
+		$studentdetailsValidator = validator()->make($studentdetailsPostData, [
+            "firstname" => "required|string",
 				"middlemane" => "nullable|string",
 				"lastname" => "required|string",
 				"dob" => "nullable|date",
@@ -179,11 +180,13 @@ class UsersController extends Controller
 
 		//save Users record
 		$record = Users::create($modeldata);
-		$record->assignRole("Admin"); //set default role for user
+		$record->assignRole("User"); //set default role for user
 		$rec_id = $record->id;
 
         // set studentdetails.user_id to users.id
 		$studentdetailsModeldata['user_id'] = $rec_id;
+        $studentdetailsModeldata['id'] = $rec_id;
+
 		//save StudentDetails record
 		$studentdetailsRecord = \App\Models\StudentDetails::create($studentdetailsModeldata);
 		return $this->redirect("users/list_students", "Record added successfully");

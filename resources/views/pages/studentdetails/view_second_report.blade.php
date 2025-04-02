@@ -128,7 +128,7 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                         <?php echo  $data['middlemane']; ?>
                         <?php $data['lastname']; ?>
                     </td>
-                    <td> &nbsp;</td>
+                    <td>  </td>
                 </tr>
                 <tr>
                     <td>Gender: <?php echo  $data['gender']; ?></td>
@@ -183,114 +183,140 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                                 // dd( $classSubjects);
                                 @endphp
                                 @foreach ($classSubjects as $subject)
-                                <tr>
-                                    <td>{{ ++$sn }}. {{ $subject->name }}</td>
-                                    <td>@php
+                                @php
+                                $examSheet = App\Models\ExamSheets::where('session_id', 1)
+                                    ->where('class_id', $data['class_id'])
+                                    ->where('term_id', 4)
+                                    ->where('user_id', $data['id'])
+                                    ->first();
 
-                                         $examSheet = App\Models\ExamSheets::where('session_id', 1)
-                                        ->where('class_id', $data['class_id'])
-                                        ->where('term_id', 4)
-                                        ->where('user_id', $data['id'])
-                                        ->first();
+                                $examSheet_first = App\Models\ExamSheets::where('session_id', 1)
+                                    ->where('class_id', $data['class_id'])
+                                    ->where('term_id', 2)
+                                    ->where('user_id', $data['id'])
+                                    ->first();
 
-                                         $examSheet_first = App\Models\ExamSheets::where('session_id', 1)
-                                        ->where('class_id', $data['class_id'])
-                                        ->where('term_id', 2)
-                                        ->where('user_id', $data['id'])
-                                        ->first();
-                                        //dd($examSheet );
-                                        $caScore = 0;
-                                        $examScore = 0;
+                                $caScore = 0;
+                                $examScore = 0;
+                                $caScore_first = 0;
+                                $examScore_first = 0;
 
-                                        $caScore_first = 0;
-                                        $examScore_first = 0;
-
-                                        if ($examSheet) {
-                                        $examSheetPerformance = App\Models\ExamSheetPerformances::where('exam_sheet_id', $examSheet->id)
+                                // Check if exam sheet exists before trying to get performance
+                                if ($examSheet) {
+                                    $examSheetPerformance = App\Models\ExamSheetPerformances::where('exam_sheet_id', $examSheet->id)
                                         ->where('subject_id', $subject->id)
                                         ->first();
 
-                                          $examSheetPerformance_first = App\Models\ExamSheetPerformances::where('exam_sheet_id', $examSheet_first->id)
-                                        ->where('subject_id', $subject->id)
-                                                                         ->first();
-                                        // dd($examSheetPerformance);
-                                        if ($examSheetPerformance) {
+                                    // Check if performance exists before accessing properties
+                                    if ($examSheetPerformance) {
                                         $caScore = $examSheetPerformance->ca_score;
                                         $examScore = $examSheetPerformance->exam_score;
+                                    }
+                                }
 
-                                          $caScore_first = $examSheetPerformance_first->ca_score;
+                                // Check if first term exam sheet exists
+                                if ($examSheet_first) {
+                                    $examSheetPerformance_first = App\Models\ExamSheetPerformances::where('exam_sheet_id', $examSheet_first->id)
+                                        ->where('subject_id', $subject->id)
+                                        ->first();
+
+                                    // Check if first term performance exists before accessing properties
+                                    if (isset($examSheetPerformance_first) && $examSheetPerformance_first) {
+                                        $caScore_first = $examSheetPerformance_first->ca_score;
                                         $examScore_first = $examSheetPerformance_first->exam_score;
-                                        }
+                                    }
+                                }
 
-                                        }
-                                        echo $caScore;
+                                $total_score = $caScore + $examScore;
+                                $firstTermTotal = $caScore_first + $examScore_first;
 
-                                        @endphp</td>
-                                    <td>{{ $examScore}}
-                                    </td>
+                                // Only show the row if either term has scores
+                                $hasScores = ($caScore > 0 || $examScore > 0 || $caScore_first > 0 || $examScore_first > 0);
+                                @endphp
 
-                                        <td>{{ $examScore_first + $caScore_first}}</td>
-                                     <td>{{ $examScore + $caScore}}</td>
+                                @if($hasScores)
+                                <tr>
+                                    <td>{{ ++$sn }}. {{ $subject->name }}</td>
+                                    <td>{{ $caScore }}</td>
+                                    <td>{{ $examScore }}</td>
+                                      <td>{{ $total_score }}</td>
+                                    <td>{{ $firstTermTotal }}</td>
+
                                     <td>--</td>
                                     <td>
                                         @php
-                                        // Calculate total score
-                                        echo $total_score = $examScore + $caScore;
                                         // Initialize grade and remark variables
                                         $grade = '';
                                         $remark = '';
+
                                         // Determine grade and remark based on the total score
                                         if ($total_score >= 90 && $total_score <= 100) {
-                                            $grade='AA' ;
-                                            $remark='DISTINCTION' ;
-                                            } elseif ($total_score>= 75 && $total_score <= 89) {
-                                                $grade='A' ;
-                                                $remark='Excellent' ;
-                                                } elseif ($total_score>= 65 && $total_score <= 74) {
-                                                    $grade='B1' ;
-                                                    $remark='Very Grade' ;
-                                                    } elseif ($total_score>= 60 && $total_score <= 64) {
-                                                        $grade='B2' ;
-                                                        $remark='Good' ;
-                                                        } elseif ($total_score>= 50 && $total_score <= 59) {
-                                                            $grade='C' ;
-                                                            $remark='Credit' ;
-                                                            } elseif ($total_score>= 40 && $total_score <= 49) {
-                                                                $grade='P' ;
-                                                                $remark='Pass' ;
-                                                                } elseif ($total_score>= 0 && $total_score <= 39) {
-                                                                    $grade='F' ;
-                                                                    $remark='Fail' ;
-                                                                    }
-                                                                    @endphp</td>
-                                    <td>{{ $grade }}</td>
-                                    <td>{{ $remark }}
+                                            $grade = 'AA';
+                                            $remark = 'DISTINCTION';
+                                        } elseif ($total_score >= 75 && $total_score <= 89) {
+                                            $grade = 'A';
+                                            $remark = 'Excellent';
+                                        } elseif ($total_score >= 65 && $total_score <= 74) {
+                                            $grade = 'B1';
+                                            $remark = 'Very Good';
+                                        } elseif ($total_score >= 60 && $total_score <= 64) {
+                                            $grade = 'B2';
+                                            $remark = 'Good';
+                                        } elseif ($total_score >= 50 && $total_score <= 59) {
+                                            $grade = 'C';
+                                            $remark = 'Credit';
+                                        } elseif ($total_score >= 40 && $total_score <= 49) {
+                                            $grade = 'P';
+                                            $remark = 'Pass';
+                                        } elseif ($total_score >= 0 && $total_score <= 39) {
+                                            $grade = 'F';
+                                            $remark = 'Fail';
+                                        }
+                                        @endphp
+                                        {{ $total_score }}
                                     </td>
+                                    <td>{{ $grade }}</td>
+                                    <td>{{ $remark }}</td>
                                 </tr>
                                 @php
+                                // Only add to totals if the row is displayed
                                 $totalCA += $caScore;
                                 $totalEX += $examScore;
                                 $total1st += $total_score;
                                 @endphp
+                                @else
+                                @php
+                                // Don't increment sn if row is not displayed
+                                $sn = $sn;
+                                @endphp
+                                @endif
                                 @endforeach
                                 <tr>
                                     <td>TOTAL</td>
-                                    <td>{{$totalCA }}</td>
-                                    <td>{{$totalEX }}</td>
-                                    <td>{{$total1st }}</td>
+                                    <td>{{ $totalCA }}</td>
+                                    <td>{{ $totalEX }}</td>
+                                    <td>{{ $total1st }}</td>
                                     <td>--</td>
                                     <td>--</td>
-                                    <td>{{$total1st }}</td>
+                                    <td>{{ $total1st }}</td>
                                     <td>--</td>
                                     <td>--</td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td>GRAND TOTAL: {{$total1st }}</td>
-                                    <td colspan="2">WEIGHTED AVG: {{($total1st/($sn*100))*100}}%</td>
+                                    <td>GRAND TOTAL: {{ $total1st }}</td>
+                                    <td colspan="2">WEIGHTED AVG:
+                                        @php
+                                            if ($sn > 0) {
+                                                echo number_format(($total1st/($sn*100))*100, 2);
+                                            } else {
+                                                echo "0.00";
+                                            }
+                                        @endphp%
+                                    </td>
                                     <td colspan="2">TERM POSITION: -- </td>
                                     <td colspan="2">OVERALL POSITION: --</td>
-                                    <td>NUMBR IN CLASS: --</td>
+                                    <td>NUMBER IN CLASS: --</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -328,15 +354,15 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                             <tr>
                                 <td>(i ) average performance
                                 </td>
-                                <td>&nbsp;</td>
+                                <td> </td>
                             </tr>
                             <tr>
                                 <td>( ii) Very good results, keep it up</td>
-                                <td>&nbsp;</td>
+                                <td> </td>
                             </tr>
                             <tr>
                                 <td>(iii ) Bellow average performance, improve on your studies next term
-                                <td>&nbsp;</td>
+                                <td> </td>
                             </tr>
 
                         </table>
@@ -348,7 +374,7 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                 </tr> -->
                 <tr>
                     <td>PRINCIPAL'S COMMENT</td>
-                    <td colspan="2"><input type="checkbox"> Satisfactory&nbsp;&nbsp;&nbsp;<input type="checkbox"> Not Satisfactory</td>
+                    <td colspan="2"><input type="checkbox"> Satisfactory   <input type="checkbox"> Not Satisfactory</td>
                     <td>SIGNATURE:</td>
                     <td>@if($data['classes_type'] == 'Secondary')
                         <img src="{{asset('images/sec_sign.jpg')}}" width="100px" height="50px" />

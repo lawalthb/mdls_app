@@ -99,9 +99,10 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                     <image src="{{asset('images/logo.png')}}" width="150px" height="200px" />
                 </th>
                 <th colspan="3">
+
                     @if($data['classes_type'] == 'Secondary')
                     <h2>MERIT DATALIGHT COLLEGE</h2>
-                    @else
+                    @elseif($data['classes_type'] == 'Primary')
                     <h2>Merit Datalight Nursery/Primary School</h2>
                     @endif
                     <h5>Motto: Creating and evious legacy <br />

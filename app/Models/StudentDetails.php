@@ -287,21 +287,23 @@ public $incrementing = false;
      */
 	public static function viewSecondReportFields(){
 		return [
-			"id",
-			"user_id",
-			"firstname",
-			"middlemane",
-			"lastname",
-			"dob",
-			"class_id",
-			"religion",
-			"blood_group",
-			"height",
-			"weight",
-			"measurement_date",
-			"updated_at",
-			"address",
-			"gender"
+			"student_details.id AS id",
+			"student_details.user_id AS user_id",
+			"student_details.firstname AS firstname",
+			"student_details.middlemane AS middlemane",
+			"student_details.lastname AS lastname",
+			"student_details.dob AS dob",
+			"student_details.class_id AS class_id",
+			"classes.name AS classes_name",
+            "classes.type AS classes_type",
+			"student_details.religion AS religion",
+			"student_details.blood_group AS blood_group",
+			"student_details.height AS height",
+			"student_details.weight AS weight",
+			"student_details.measurement_date AS measurement_date",
+			"student_details.updated_at AS updated_at",
+			"student_details.address AS address",
+			"student_details.gender AS gender"
 		];
 	}
 

@@ -179,6 +179,8 @@ class StudentDetailsController extends Controller
         $query->where("student_details.class_id", $user_class_id);
         $query->join("classes", "student_details.class_id", "=", "classes.id");
         $record = $query->first(StudentDetails::viewFirstReportFields());
+
+
         return $this->renderView("pages.studentdetails.view_second_report", ["data" => $record]);
 
     }
@@ -191,7 +193,9 @@ class StudentDetailsController extends Controller
      */
     function view_second_report($rec_id = null)
     {
+
         $query = StudentDetails::query();
+        $query->join("classes", "student_details.class_id", "=", "classes.id");
         $record = $query->findOrFail($rec_id, StudentDetails::viewSecondReportFields());
         return $this->renderView("pages.studentdetails.view_second_report", ["data" => $record]);
     }

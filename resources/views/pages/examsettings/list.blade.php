@@ -1,4 +1,4 @@
-<!-- 
+<!--
 expose component model to current view
 e.g $arrDataFromDb = $comp_model->fetchData(); //function name
 -->
@@ -31,14 +31,14 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                         <div class="h5 font-weight-bold text-primary">Exam Settings</div>
                     </div>
                 </div>
-                <div class="col-auto  " >
+                {{-- <div class="col-auto  " >
                     <?php if($can_add){ ?>
                     <a  class="btn btn-primary btn-block" href="<?php print_link("examsettings/add", true) ?>" >
-                    <i class="material-icons">add</i>                               
-                    Add New Exam Setting 
+                    <i class="material-icons">add</i>
+                    Add New Exam Setting
                 </a>
                 <?php } ?>
-            </div>
+            </div> --}}
             <div class="col-md-3  " >
                 <!-- Page drop down search component -->
                 <form  class="search" action="{{ url()->current() }}" method="get">
@@ -162,13 +162,13 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                             </a>
                             <?php } ?>
                             <?php if($can_delete){ ?>
-                            <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal"  href="<?php print_link("examsettings/delete/$rec_id"); ?>" >
+                            {{-- <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal"  href="<?php print_link("examsettings/delete/$rec_id"); ?>" >
                             <i class="material-icons">delete_sweep</i> Delete
-                        </a>
+                        </a> --}}
                         <?php } ?>
                     </td>
                 </tr>
-                <?php 
+                <?php
                     }
                 ?>
                 <!--endrecord-->
@@ -194,15 +194,15 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
         if($show_footer){
     ?>
     <div class=" mt-3">
-        <div class="row align-items-center justify-content-between">    
-            <div class="col-md-auto d-flex">    
+        <div class="row align-items-center justify-content-between">
+            <div class="col-md-auto d-flex">
                 <?php if($can_delete){ ?>
                 <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("examsettings/delete/{sel_ids}"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
                 <i class="material-icons">delete_sweep</i> Delete Selected
                 </button>
                 <?php } ?>
             </div>
-            <div class="col">   
+            <div class="col">
                 <?php
                     if($show_pagination == true){
                     $pager = new Pagination($total_records, $record_count);

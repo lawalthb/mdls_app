@@ -250,6 +250,7 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
     Route::get('card/view_first_report', 'StudentDetailsController@student_view_first_report')->name('studentdetails.student_view_first_report');
 
     Route::get('card/view_second_report', 'StudentDetailsController@student_view_second_report')->name('studentdetails.student_view_second_report');
+    Route::get('card/view_third_report', 'StudentDetailsController@student_view_third_report')->name('studentdetails.student_view_third_report');
 
 
     Route::get('studentdetails/view_second_report/{rec_id}', 'StudentDetailsController@view_second_report')->name('studentdetails.view_second_report');

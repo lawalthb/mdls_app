@@ -13,7 +13,6 @@ $pageTitle = "Student Report Card"; //set dynamic page title
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>Student Report Card</title>
@@ -99,7 +98,7 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                 </th>
                 <th colspan="3">
 
-                    @if($data['class_id'] > 8)
+                    @if(($data['class_id'] == 14) or ($data['class_id'] == 15) or ($data['class_id'] == 16) or ($data['class_id'] == 1) or ($data['class_id'] == 2) or ($data['class_id'] == 3) )
                     <h2>MERIT DATALIGHT COLLEGE</h2>
                     @else
                     <h2>Merit Datalight Nursery/Primary School</h2>

@@ -11,7 +11,6 @@ $can_view = $user->canAccess("studentdetails/view");
 $can_delete = $user->canAccess("studentdetails/delete");
 $pageTitle = "Student Report Card"; //set dynamic page title
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -100,9 +99,9 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                 </th>
                 <th colspan="3">
 
-                    @if($data['classes_type'] == 'Secondary')
+                    @if($data['class_id'] > 8)
                     <h2>MERIT DATALIGHT COLLEGE</h2>
-                    @elseif($data['classes_type'] == 'Primary')
+                    @else
                     <h2>Merit Datalight Nursery/Primary School</h2>
                     @endif
                     <h5>Motto: Creating and evious legacy <br />
@@ -150,7 +149,7 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                 <tr>
                     <td>NO. OF TIMES SCHOOL OPENED: Nill</td>
                     <td colspan="2">NO. OF TIMES PRESENT: Nill</td>
-                    <td colspan="2">SCHOOL RE-OPEN ON: 04- May-2025: </td>
+                    <td colspan="2">SCHOOL RE-OPEN ON: 15- September -2025: </td>
 
 
                 </tr>

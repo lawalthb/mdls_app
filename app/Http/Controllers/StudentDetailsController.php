@@ -195,7 +195,7 @@ class StudentDetailsController extends Controller
         $query = StudentDetails::query();
         $query->where("student_details.class_id", $user_class_id);
         $query->join("classes", "student_details.class_id", "=", "classes.id");
-        $record = $query->first(StudentDetails::viewFirstReportFields());
+        $record = $query->first(StudentDetails::viewThirdReportFields());
 
 
         return $this->renderView("pages.studentdetails.view_third_report", ["data" => $record]);

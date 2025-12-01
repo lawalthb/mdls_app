@@ -135,7 +135,9 @@
                 <a href="#admissions" class="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105">Apply Now</a>
             </div>
             <div class="bg-gray-200 rounded-xl h-96 flex items-center justify-center">
-                <p class="text-gray-500 text-lg">[ Admissions Image Placeholder ]</p>
+                <p class="text-gray-500 text-lg">
+                    <img src="{{ asset('images/placeholder/IMG-20241127-WA0050.jpg') }}" alt="Admissions Image" class="rounded-xl object-cover h-96 w-full">
+                </p>
             </div>
         </div>
     </div>

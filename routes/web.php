@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Mail;
 
 Route::get('/', [WebsiteController::class, 'home']);
 Route::get('/about', [WebsiteController::class, 'about']);
+Route::get('/events', [WebsiteController::class, 'events']);
 Route::get('/contact', [WebsiteController::class, 'contact']);
 Route::post('/contact/send', [WebsiteController::class, 'sendContact']);
 

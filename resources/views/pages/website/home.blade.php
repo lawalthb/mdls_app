@@ -40,7 +40,7 @@
                 </div>
                 <h3 class="text-2xl font-bold text-gray-900 mb-4">School Events</h3>
                 <p class="text-gray-600 mb-6">Stay updated with upcoming events and activities</p>
-                <a href="#events" class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition">View Events</a>
+                <a href="{{ url('/events') }}" class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition">View Events</a>
             </div>
 
             <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-8 shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2">

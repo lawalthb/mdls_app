@@ -28,7 +28,7 @@
                     <a href="{{ url('/') }}" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
                     <a href="#about" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
                     <a href="#admissions" class="text-gray-700 hover:text-blue-600 font-medium">Admissions</a>
-                    <a href="#events" class="text-gray-700 hover:text-blue-600 font-medium">Events</a>
+                    <a href="{{ url('/events') }}" class="text-gray-700 hover:text-blue-600 font-medium">Events</a>
                     <a href="{{ url('/contact') }}" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
                     <a href="{{ url('/login') }}" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">Portal Login</a>
                 </div>
@@ -45,7 +45,7 @@
                 <a href="{{ url('/') }}" class="block text-gray-700 hover:text-blue-600 font-medium py-2">Home</a>
                 <a href="#about" class="block text-gray-700 hover:text-blue-600 font-medium py-2">About</a>
                 <a href="#admissions" class="block text-gray-700 hover:text-blue-600 font-medium py-2">Admissions</a>
-                <a href="#events" class="block text-gray-700 hover:text-blue-600 font-medium py-2">Events</a>
+                <a href="{{ url('/events') }}" class="block text-gray-700 hover:text-blue-600 font-medium py-2">Events</a>
                 <a href="{{ url('/contact') }}" class="block text-gray-700 hover:text-blue-600 font-medium py-2">Contact</a>
                 <a href="{{ url('/login') }}" class="block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center">Portal Login</a>
             </div>
@@ -77,7 +77,7 @@
                     <h4 class="font-semibold mb-4">Contact</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
                         <li>Email: info@meritdatalight.com</li>
-                        <li>Phone: +234 XXX XXX XXXX</li>
+                        <li>Phone: +234 7041112438</li>
                     </ul>
                 </div>
                 <div>

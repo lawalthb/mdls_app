@@ -29,7 +29,7 @@ public $incrementing = false;
      */
 	protected $fillable = [
         'id',
-		'user_id','firstname','middlemane','lastname','dob','class_id','religion','blood_group','height','weight','measurement_date','address','gender'
+		'user_id','firstname','middlemane','lastname','dob','class_id','religion','blood_group','height','weight','measurement_date','address','gender','last_promoted_at','promotion_flag'
 	];
 	public $timestamps = false;
 
@@ -402,7 +402,9 @@ public $incrementing = false;
 			"student_details.lastname AS lastname",
 			"student_details.class_id AS class_id",
 			"classes.name AS classes_name",
-			"student_details.gender AS gender"
+			"student_details.gender AS gender",
+			"student_details.promotion_flag AS promotion_flag",
+			"student_details.last_promoted_at AS last_promoted_at"
 		];
 	}
 

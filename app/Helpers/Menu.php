@@ -89,7 +89,7 @@
 		],
 
 		[
-			'path' => 'classes',
+			'path' => 'to_promote',
 			'label' => "Promote Students",
 			'icon' => '<i class="material-icons ">subdirectory_arrow_right</i>'
 		]

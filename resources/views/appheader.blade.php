@@ -5,13 +5,17 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="/home">
-            <img class="img-responsive" src="{{ asset('images/logo.png') }}" /> 
+            <img class="img-responsive" src="{{ asset('images/logo.png') }}" />
             {{ config('app.name') }}
         </a>
         <button type="button" class="navbar-toggler dropdown-toggle" data-bs-toggle="collapse" data-bs-target=".navbar-responsive-collapse">
         </button>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
-            <div class="me-auto"></div>
+            <div class="me-auto">
+                <a href="{{ route('to_promote') }}" >
+                Promote
+            </a>
+        </div>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
@@ -41,10 +45,10 @@
 <ul class="nav navbar-nav w-100 flex-column align-self-start">
     <li class="menu-profile text-center nav-item">
         <a class="avatar" href="<?php print_link('account') ?>">
-        <?php 
+        <?php
             $user_photo = $user->UserPhoto();
             if($user_photo){
-            Html::page_img($user_photo, 260, 200, "medium", ""); 
+            Html::page_img($user_photo, 260, 200, "medium", "");
             }
             else{
         ?>
@@ -53,7 +57,7 @@
             }
         ?>
     </a>
-    <h5 class="user-name">Hi 
+    <h5 class="user-name">Hi
     <?php echo $user->UserName(); ?>
     <?php $userRoles = $user->getRoleNames(); ?>
     <br />
@@ -76,7 +80,7 @@
 <div id="topbar" class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/home">
-            <img class="img-responsive" src="{{ asset('images/logo.png') }}" /> 
+            <img class="img-responsive" src="{{ asset('images/logo.png') }}" />
             {{ config('app.name') }}
         </a>
     </div>

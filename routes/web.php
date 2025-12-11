@@ -98,6 +98,7 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
     Route::get('classes/broadlist/{filter?}/{filtervalue?}', 'ClassesController@broadlist');
     Route::get('classes/broadview/{rec_id}', 'ClassesController@broadview')->name('classes.broadview');
     Route::get('classes/masterdetail/{rec_id}', 'ClassesController@masterDetail')->name('classes.masterdetail')->withoutMiddleware(['rbac']);
+    Route::post('classes/promote_students', 'ClassesController@promote_students')->name('classes.promote_students');
 
     /* routes for ClassSubjects Controller */
     Route::get('classsubjects', 'ClassSubjectsController@index')->name('classsubjects.index');
@@ -244,6 +245,7 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
 
     Route::any('studentdetails/edit/{rec_id}', 'StudentDetailsController@edit')->name('studentdetails.edit');
     Route::get('studentdetails/delete/{rec_id}', 'StudentDetailsController@delete');
+    Route::post('studentdetails/promote', 'StudentDetailsController@promote')->name('studentdetails.promote');
     Route::get('studentdetails/class_students', 'StudentDetailsController@class_students');
     Route::get('studentdetails/class_students/{filter?}/{filtervalue?}', 'StudentDetailsController@class_students');
     Route::get('studentdetails/view_first_report/{rec_id}', 'StudentDetailsController@view_first_report')->name('studentdetails.view_first_report');
@@ -846,3 +848,8 @@ Route::get('info/changelocale/{locale}', function ($locale) {
     session()->put('locale', $locale);
     return redirect()->back();
 })->name('info.changelocale');
+
+
+  Route::get('/to_promote', 'StudentDetailsController@listClasses')->name('to_promote');
+    Route::get('/studentinclass', 'StudentDetailsController@studentinclass');
+

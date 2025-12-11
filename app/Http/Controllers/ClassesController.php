@@ -228,6 +228,52 @@ $query->join("classes", "staff_classes.class_id", "=", "classes.id");
 		return $this->renderView("pages.classes.broadview", ["data" => $record]);
 	}
 
+	/**
+     * Promote all students from selected classes to a new class
+     * @param  \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
+	function promote_students(Request $request)
+	{
+		$request->validate([
+			'class_ids' => 'required|string',
+			'promote_to_class_id' => 'required|exists:classes,id'
+		]);
 
+		$class_ids = explode(',', $request->class_ids);
+		$promote_to_class_id = $request->promote_to_class_id;
+
+		try {
+			// First, mark existing students in destination class as 'old' (if not already)
+			\App\Models\StudentDetails::where('class_id', $promote_to_class_id)
+				->where('promotion_flag', '!=', 'old')
+				->update(['promotion_flag' => 'old']);
+
+			// Get all students from the selected classes and promote them
+			$updated = \App\Models\StudentDetails::whereIn('class_id', $class_ids)
+				->update([
+					'class_id' => $promote_to_class_id,
+					'last_promoted_at' => now(),
+					'promotion_flag' => 'new'
+				]);
+
+			if ($updated > 0) {
+				return response()->json([
+					'success' => true,
+					'message' => "$updated student(s) promoted successfully to the new class"
+				]);
+			} else {
+				return response()->json([
+					'success' => false,
+					'message' => 'No students found in the selected class(es).'
+				], 400);
+			}
+		} catch (Exception $e) {
+			return response()->json([
+				'success' => false,
+				'message' => 'Error promoting students: ' . $e->getMessage()
+			], 500);
+		}
+	}
 
 }

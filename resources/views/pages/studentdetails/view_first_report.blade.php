@@ -119,7 +119,7 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                 </tr>
                 <tr>
                     <td>END OF: FIRST TERM</td>
-                    <td>REPORT FOR: 2024/2025</td>
+                    <td>REPORT FOR: 2025/2026</td>
                     <td colspan="3"></td>
                 </tr>
                 <tr>
@@ -179,27 +179,27 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                                 ->select('subjects.name','subjects.id')
                                 ->get();
                                 $sn = 0;
-                                // dd( $classSubjects);
+                                 //dd( $classSubjects);
                                 @endphp
                                 @foreach ($classSubjects as $subject)
                                 <tr>
                                     <td>{{ ++$sn }}. {{ $subject->name }}</td>
                                     <td>@php
                                         // Step 1: Get the exam sheet ID where session_id is 1, class_id is 16, and user_id is 170
-                                        $examSheet = App\Models\ExamSheets::where('session_id', 1)
+                                        $examSheet = App\Models\ExamSheets::where('session_id', 2)
                                         ->where('class_id', $data['class_id'])
-                                        ->where('term_id', 2)
+                                        ->where('term_id', 3)
                                         ->where('user_id', $data['id'])
                                         ->first();
-                                        //dd($examSheet );
+                                       // dd($examSheet );
                                         $caScore = 0;
                                         $examScore = 0;
                                         // Step 2: Check if an exam sheet was found and then fetch ca_score and exam_score based on subject_id and exam_sheet_id
                                         if ($examSheet) {
-                                        $examSheetPerformance = App\Models\ExamSheetPerformances::where('exam_sheet_id', $examSheet->id)
+                                         $examSheetPerformance = App\Models\ExamSheetPerformances::where('exam_sheet_id', $examSheet->id)
                                         ->where('subject_id', $subject->id)
                                         ->first();
-                                        // dd($examSheetPerformance);
+                                        //dd($examSheetPerformance);
                                         if ($examSheetPerformance) {
                                         $caScore = $examSheetPerformance->ca_score;
                                         $examScore = $examSheetPerformance->exam_score;

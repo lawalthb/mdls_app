@@ -120,7 +120,7 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                 </tr>
                 <tr>
                     <td>END OF: SECOND TERM</td>
-                    <td>REPORT FOR: 2024/2025</td>
+                    <td>REPORT FOR: 2025/2026</td>
                     <td colspan="3"></td>
                 </tr>
                 <tr>

@@ -148,7 +148,7 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                 <tr>
                     <td>NO. OF TIMES SCHOOL OPENED: Nill</td>
                     <td colspan="2">NO. OF TIMES PRESENT: Nill</td>
-                    <td colspan="2">SCHOOL RE-OPEN ON: 06- Jan.-2025: </td>
+                    <td colspan="2">SCHOOL RE-OPEN ON: 12th January, 2026: </td>
 
 
                 </tr>

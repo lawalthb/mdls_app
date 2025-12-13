@@ -182,29 +182,34 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                                  //dd( $classSubjects);
                                 @endphp
                                 @foreach ($classSubjects as $subject)
+                                @php
+                                    // Step 1: Get the exam sheet ID where session_id is 1, class_id is 16, and user_id is 170
+                                    $examSheet = App\Models\ExamSheets::where('session_id', 2)
+                                    ->where('class_id', $data['class_id'])
+                                    ->where('term_id', 3)
+                                    ->where('user_id', $data['id'])
+                                    ->first();
+                                   // dd($examSheet );
+                                    $caScore = 0;
+                                    $examScore = 0;
+                                    // Step 2: Check if an exam sheet was found and then fetch ca_score and exam_score based on subject_id and exam_sheet_id
+                                    if ($examSheet) {
+                                     $examSheetPerformance = App\Models\ExamSheetPerformances::where('exam_sheet_id', $examSheet->id)
+                                    ->where('subject_id', $subject->id)
+                                    ->first();
+                                    //dd($examSheetPerformance);
+                                    if ($examSheetPerformance) {
+                                    $caScore = $examSheetPerformance->ca_score;
+                                    $examScore = $examSheetPerformance->exam_score;
+                                    }
+                                    }
+                                    // Calculate total score early to check if we should display this row
+                                    $total_score = $examScore + $caScore;
+                                @endphp
+                                @if($total_score > 0)
                                 <tr>
                                     <td>{{ ++$sn }}. {{ $subject->name }}</td>
                                     <td>@php
-                                        // Step 1: Get the exam sheet ID where session_id is 1, class_id is 16, and user_id is 170
-                                        $examSheet = App\Models\ExamSheets::where('session_id', 2)
-                                        ->where('class_id', $data['class_id'])
-                                        ->where('term_id', 3)
-                                        ->where('user_id', $data['id'])
-                                        ->first();
-                                       // dd($examSheet );
-                                        $caScore = 0;
-                                        $examScore = 0;
-                                        // Step 2: Check if an exam sheet was found and then fetch ca_score and exam_score based on subject_id and exam_sheet_id
-                                        if ($examSheet) {
-                                         $examSheetPerformance = App\Models\ExamSheetPerformances::where('exam_sheet_id', $examSheet->id)
-                                        ->where('subject_id', $subject->id)
-                                        ->first();
-                                        //dd($examSheetPerformance);
-                                        if ($examSheetPerformance) {
-                                        $caScore = $examSheetPerformance->ca_score;
-                                        $examScore = $examSheetPerformance->exam_score;
-                                        }
-                                        }
                                         echo $caScore;
                                         @endphp</td>
                                     <td>{{ $examScore}}
@@ -214,8 +219,8 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                                     <td>--</td>
                                     <td>
                                         @php
-                                        // Calculate total score
-                                        echo $total_score = $examScore + $caScore;
+                                        // Display total score (already calculated earlier)
+                                        echo $total_score;
                                         // Initialize grade and remark variables
                                         $grade = '';
                                         $remark = '';
@@ -252,6 +257,7 @@ $pageTitle = "Student Report Card"; //set dynamic page title
                                 $totalEX += $examScore;
                                 $total1st += $total_score;
                                 @endphp
+                                @endif
                                 @endforeach
                                 <tr>
                                     <td>TOTAL</td>

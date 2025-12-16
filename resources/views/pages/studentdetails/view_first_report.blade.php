@@ -3,14 +3,7 @@ expose component model to current view
 e.g $arrDataFromDb = $comp_model->fetchData(); //function name
 -->
 @inject('comp_model', 'App\Models\ComponentsData')
-<?php
-//check if current user role is allowed access to the pages
-$can_add = $user->canAccess("studentdetails/add");
-$can_edit = $user->canAccess("studentdetails/edit");
-$can_view = $user->canAccess("studentdetails/view");
-$can_delete = $user->canAccess("studentdetails/delete");
-$pageTitle = "Student Report Card"; //set dynamic page title
-?>
+
 
 <!DOCTYPE html>
 <html>

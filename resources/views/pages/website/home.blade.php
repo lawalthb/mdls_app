@@ -10,6 +10,7 @@
             <p class="text-xl sm:text-2xl md:text-3xl mb-6 sm:mb-8 font-light">Excellence in Education</p>
             <p class="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto px-4">Nurturing young minds for a brighter future. Quality education for Primary and College students.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                 <button onclick="document.getElementById('resultModal').classList.remove('hidden')" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105">Check your Result</button>
                 <a href="#admissions" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105">Apply Now</a>
                 <a href="{{ url('/contact') }}" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition transform hover:scale-105">Contact Us</a>
             </div>
@@ -154,5 +155,26 @@
         </div>
     </div>
 </section>
+
+<!-- Result Check Modal -->
+<div id="resultModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">Check Your Result</h3>
+            <button onclick="document.getElementById('resultModal').classList.add('hidden')" class="text-gray-500 hover:text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <form action="{{ url('card/view_first_report') }}" method="GET">
+            <div class="mb-4">
+                <label for="adm_no" class="block text-gray-700 font-semibold mb-2">Admission Number</label>
+                <input type="text" id="adm_no" name="adm_no" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your admission number">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">View Result</button>
+        </form>
+    </div>
+</div>
 
 @endsection

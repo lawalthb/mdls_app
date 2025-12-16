@@ -250,7 +250,7 @@ Route::middleware(['auth', 'accountstatus', 'rbac'])->group(function () {
     Route::get('studentdetails/class_students/{filter?}/{filtervalue?}', 'StudentDetailsController@class_students');
     Route::get('studentdetails/view_first_report/{rec_id}', 'StudentDetailsController@view_first_report')->name('studentdetails.view_first_report');
 
-    Route::get('card/view_first_report', 'StudentDetailsController@student_view_first_report')->name('studentdetails.student_view_first_report');
+   // Route::get('card/view_first_report', 'StudentDetailsController@student_view_first_report')->name('studentdetails.student_view_first_report');
 
     Route::get('card/view_second_report', 'StudentDetailsController@student_view_second_report')->name('studentdetails.student_view_second_report');
     Route::get('card/view_third_report', 'StudentDetailsController@student_view_third_report')->name('studentdetails.student_view_third_report');
@@ -853,3 +853,4 @@ Route::get('info/changelocale/{locale}', function ($locale) {
   Route::get('/to_promote', 'StudentDetailsController@listClasses')->name('to_promote');
     Route::get('/studentinclass', 'StudentDetailsController@studentinclass');
 
+  Route::get('card/view_first_report', 'StudentDetailsController@student_view_first_report')->name('studentdetails.student_view_first_report');

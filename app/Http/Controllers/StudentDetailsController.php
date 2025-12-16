@@ -159,9 +159,11 @@ class StudentDetailsController extends Controller
         return $this->renderView("pages.studentdetails.view_first_report", ["data" => $record]);
     }
 
-    function student_view_first_report()
+    function student_view_first_report(Request $request)
     {
-        $user_id = auth()->user()->id;
+        $adm_no = $request->adm_no;
+        $user_id = substr($adm_no, -3);
+         
         $user_class_id = StudentDetails::where("user_id", $user_id)->first()->class_id;
         $query = StudentDetails::query();
         $query->where("student_details.class_id", $user_class_id);

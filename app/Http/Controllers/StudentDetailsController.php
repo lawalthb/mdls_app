@@ -163,12 +163,17 @@ class StudentDetailsController extends Controller
     {
         $adm_no = $request->adm_no;
         $user_id = substr($adm_no, -3);
-         
-        $user_class_id = StudentDetails::where("user_id", $user_id)->first()->class_id;
-        $query = StudentDetails::query();
-        $query->where("student_details.class_id", $user_class_id);
+
+//  echo        $user_class_id = StudentDetails::where("user_id", $user_id)->first()->class_id;
+//         $query = StudentDetails::query();
+//         $query->where("student_details.class_id", $user_class_id);
+//         $query->join("classes", "student_details.class_id", "=", "classes.id");
+//         $record = $query->first(StudentDetails::viewFirstReportFields());
+    $query = StudentDetails::query();
         $query->join("classes", "student_details.class_id", "=", "classes.id");
-        $record = $query->first(StudentDetails::viewFirstReportFields());
+        $record = $query->findOrFail($user_id, StudentDetails::viewFirstReportFields());
+
+
         return $this->renderView("pages.studentdetails.view_first_report", ["data" => $record]);
 
     }
@@ -379,5 +384,40 @@ class StudentDetailsController extends Controller
         }
     }
 
+
+    function studentList(Request $request)
+    {
+        $view = "pages.studentdetails.student_list";
+        $query = StudentDetails::query();
+        $query->join("users", "student_details.user_id", "=", "users.id")
+              ->join("classes", "student_details.class_id", "=", "classes.id")
+              ->select(
+                  "student_details.*",
+                  "users.name", "users.email", "users.phone",
+                  "classes.name as class_name"
+              );
+        
+        if ($request->has('class')) {
+            $query->where('student_details.class_id', $request->class);
+            $query->orderBy("student_details.firstname");
+            $records = $query->get();
+            $groupBy = null;
+        } elseif ($request->has('name')) {
+            $query->where(function($q) use ($request) {
+                $q->where('student_details.firstname', 'LIKE', '%' . $request->name . '%')
+                  ->orWhere('student_details.middlemane', 'LIKE', '%' . $request->name . '%')
+                  ->orWhere('student_details.lastname', 'LIKE', '%' . $request->name . '%');
+            });
+            $query->orderBy("student_details.firstname");
+            $records = $query->get();
+            $groupBy = null;
+        } else {
+            $query->orderBy("student_details.class_id")->orderBy("student_details.firstname");
+            $records = $query->get()->groupBy('class_id');
+            $groupBy = 'class';
+        }
+        
+        return $this->renderView($view, compact("records", "groupBy"));
+    }
 
 }

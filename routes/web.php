@@ -854,3 +854,6 @@ Route::get('info/changelocale/{locale}', function ($locale) {
     Route::get('/studentinclass', 'StudentDetailsController@studentinclass');
 
   Route::get('card/view_first_report', 'StudentDetailsController@student_view_first_report')->name('studentdetails.student_view_first_report');
+
+
+    Route::get('student-list', 'StudentDetailsController@studentList')->name('studentlist');

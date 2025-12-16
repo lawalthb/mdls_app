@@ -71,6 +71,7 @@
                         <li><a href="#about" class="hover:text-white">About Us</a></li>
                         <li><a href="#admissions" class="hover:text-white">Admissions</a></li>
                         <li><a href="#events" class="hover:text-white">Events</a></li>
+                         <li><a href="{{ route('studentlist') }}" class="hover:text-white">Student List</a></li>
                     </ul>
                 </div>
                 <div>
